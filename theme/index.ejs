@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brian Douglas</title>
+
+    <link rel="stylesheet" href="/styles/external/pure.min.css">
+    <link rel="stylesheet" href="/styles/external/pure-grid.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <%- include('site-header') %>
+        <main>
+            <%- include('bio') %>
+            <%- include('post-list', { posts }) %>
+        </main>
+        <%- include('site-footer') %>
+    </div>
+</body>
+</html>
