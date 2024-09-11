@@ -7,6 +7,7 @@ import * as path from "node:path";
 import connect from "gulp-connect";
 import rename from "gulp-rename";
 import * as templateHelpers from "./template-helpers.js";
+import { generateSitemap } from "./sitemap.js";
 
 const POSTS = getPosts();
 const DIST = "./dist";
@@ -54,7 +55,14 @@ export function copyAssets() {
     .pipe(connect.reload());
 }
 
-export const build = series([clean, buildIndex, buildPosts, copyAssets]);
+export function sitemap() {
+  return new Promise((resolve, reject) => {
+    generateSitemap(POSTS, DIST);
+    resolve();
+  });
+}
+
+export const build = series([clean, buildIndex, buildPosts, copyAssets, sitemap]);
 
 function serve() {
   connect.server({
