@@ -10,7 +10,7 @@ import * as templateHelpers from "./template-helpers.js";
 import { generateSitemap } from "./sitemap.js";
 
 const POSTS = getPosts();
-const DIST = "./dist";
+const DIST = "./docs";
 const INCLUDE_DIR = path.join(process.cwd(), "/theme/templates/includes");
 
 export function clean() {
