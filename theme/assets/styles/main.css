@@ -13,6 +13,12 @@
     --gray-700: #3f3f46;
     --link-blue: #2563eb;
 
+    --magpie-base: #eef2ff;
+    --magpie-accent: #818cf8;
+
+    --chicken-base: #fffbeb;
+    --chicken-accent: #fbbf24;
+
     --max-content-width: 768px;
 }
 
@@ -219,4 +225,51 @@ pre {
 
 code {
     background-color: var(--gray-50);
+}
+
+/*custom elements*/
+
+chicken-asks .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+}
+
+chicken-asks .content {
+    background: var(--chicken-base);
+    padding: var(--p-md) var(--p-lg);
+    border: 1px solid var(--chicken-accent);
+    border-radius: .5rem;
+}
+
+magpie-replies .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+}
+
+magpie-trinket .content-container,
+magpie-replies .content {
+    background: var(--magpie-base);
+    padding: var(--p-md) var(--p-lg);
+    border: 1px solid var(--magpie-accent);
+    border-radius: .5rem;
+}
+
+magpie-trinket .content-container {
+    position: relative;
+    padding: var(--p-md);
+}
+
+magpie-trinket .image {
+    position: absolute;
+    top: -18px;
+    right: 0;
+    max-width: 106px;
+}
+
+magpie-trinket h3 {
+    margin-top: 0;
 }

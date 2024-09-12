@@ -30,5 +30,9 @@ export function getPosts() {
   for (const file of markdownFiles) {
     posts.push(new Post(file));
   }
-  return posts;
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.data.date);
+    const dateB = new Date(b.data.date);
+    return dateB - dateA;
+  });
 }

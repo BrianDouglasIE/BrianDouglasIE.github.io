@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title -->
+    <title>Brian Douglas' Tech Blog - One assertion per test please</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="One assertion per test please">
+
+    <!-- Keywords -->
+    <meta name="keywords"
+          content="Brian Douglas, tech blog, javascript,testing">
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brian Douglas' Tech Blog - One assertion per test please">
+    <meta property="og:description"
+          content="One assertion per test please">
+    <meta property="og:url" content="https://www.briandouglas.ie">
+    <meta property="og:image" content="https://www.briandouglas.ie/images/open-graph-index.png">
+    <meta property="og:site_name" content="Brian Douglas' Tech Blog">
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brian Douglas' Tech Blog - One assertion per test please">
+    <meta name="twitter:description"
+          content="One assertion per test please">
+    <meta name="twitter:image" content="https://www.briandouglas.ie/images/open-graph-index.png">
+    <meta name="twitter:site" content="@BrianDouglasIE">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie">
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon">
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="/styles/external/pure.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="wrapper">
+    <header class="site-header">
+    <nav class="container">
+        <ul class="reset-list">
+            <li><a href="/" class="reset-a"><h1 class="m-0">Brian Douglas</h1></a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li aria-current="page">One assertion per test please</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <article class="post-full">
+                <header>
+                    <h2>One assertion per test please</h2>
+                    <p class="post-meta">Published on
+                        <time datetime="12/09/2024">September 12th, 2024</time>
+                        by Brian
+                    </p>
+                </header>
+                <p class="post-content"><p>Please! when you are writing tests try to limit each test case to one <code>expect</code>.
+Let&#39;s refactor the monstrosity below to understand why fewer expects and more 
+tests are better.</p>
+<!-- more -->
+
+<magpie-trinket>
+Try your best to write test cases as if they were telling a story.
+Stick to one assertion per test, and split out any shared logic into
+hooks, like <code>beforeEach</code> and <code>beforeAll</code>.
+</magpie-trinket>
+
+<h2>The Monstrosity</h2>
+<pre><code class="language-javascript">import { render, screen, fireEvent } from &#39;@testing-library/react&#39;;
+import { expect, test } from &#39;vitest&#39;;
+import MyComponent from &#39;./MyComponent&#39;;
+
+test(&#39;User Name Submit Form&#39;, () =&gt; {
+  const mockApiData = { user: &#39;John Doe&#39; };
+  const apiFetchMock = vi.fn(() =&gt; Promise.resolve(mockApiData));
+
+  render(&lt;MyComponent fetchData={apiFetchMock} /&gt;);
+
+  const header = screen.getByText(/My Dashboard/i);
+  expect(header).toBeInTheDocument();
+
+  const button = screen.getByRole(&#39;button&#39;, { name: /Submit/i });
+  expect(button).toBeInTheDocument();
+  expect(button).toBeDisabled();
+
+  const input = screen.getByPlaceholderText(&#39;Enter your name&#39;);
+  expect(input).toBeInTheDocument();
+  expect(input.value).toBe(&#39;&#39;);
+
+  fireEvent.change(input, { target: { value: &#39;John Doe&#39; } });
+  expect(input.value).toBe(&#39;John Doe&#39;);
+
+  expect(button).not.toBeDisabled();
+
+  fireEvent.click(button);
+
+  const successMessage = screen.getByText(/Success!/i);
+  expect(successMessage).toBeInTheDocument();
+});
+</code></pre>
+<p>Now you wouldn&#39;t know it at first glance but the above test case is used to validate
+a form where the user can submit their name. The test technically works, but it does
+not communicate it&#39;s intent.</p>
+<p>I see code like this all the time. Especially when working with UI frameworks like
+React, Angular, and Vue. Developers pile assertion upon assertion into one large 
+test case. And when a new requirement comes along? they just add in yet another
+assertion.</p>
+<p>Why? because the set-up is <em>done</em>, and bulky, and they don&#39;t want to have to rewrite
+or duplicate the work.</p>
+<chicken-asks>
+So how do we fix this?
+</chicken-asks>
+
+<magpie-replies>
+We break out each assertion into its own test.
+</magpie-replies>
+
+<h2>The Refactor</h2>
+<pre><code class="language-javascript">import { render, screen, fireEvent } from &#39;@testing-library/react&#39;;
+import { beforeEach, expect, test } from &#39;vitest&#39;;
+import MyComponent from &#39;./MyComponent&#39;;
+
+describe(&#39;User Name Submit Form&#39;, () =&gt; {
+    let apiFetchMock;
+
+    beforeEach(() =&gt; {
+        const mockApiData = { user: &#39;John Doe&#39; };
+        apiFetchMock = vi.fn(() =&gt; Promise.resolve(mockApiData));
+
+        render(&lt;MyComponent fetchData={apiFetchMock} /&gt;);
+    });
+
+    test(&#39;renders header&#39;, () =&gt; {
+        const header = screen.getByText(/My Dashboard/i);
+        expect(header).toBeInTheDocument();
+    });
+
+    test(&#39;renders input field&#39;, () =&gt; {
+        const input = screen.getByPlaceholderText(&#39;Enter your name&#39;);
+        expect(input).toBeInTheDocument();
+    });
+
+    test(&#39;initial input field is empty&#39;, () =&gt; {
+        const input = screen.getByPlaceholderText(&#39;Enter your name&#39;);
+        expect(input.value).toBe(&#39;&#39;);
+    });
+
+    test(&#39;changes input value on user input&#39;, () =&gt; {
+        const input = screen.getByPlaceholderText(&#39;Enter your name&#39;);
+        fireEvent.change(input, { target: { value: &#39;John Doe&#39; } });
+        expect(input.value).toBe(&#39;John Doe&#39;);
+    });
+
+    test(&#39;renders submit button&#39;, () =&gt; {
+        const button = screen.getByRole(&#39;button&#39;, { name: /Submit/i });
+        expect(button).toBeInTheDocument();
+    });
+
+    test(&#39;submit button is disabled initially&#39;, () =&gt; {
+        const button = screen.getByRole(&#39;button&#39;, { name: /Submit/i });
+        expect(button).toBeDisabled();
+    });
+
+    test(&#39;submit button is enabled after input change&#39;, () =&gt; {
+        const input = screen.getByPlaceholderText(&#39;Enter your name&#39;);
+        fireEvent.change(input, { target: { value: &#39;John Doe&#39; } });
+        const button = screen.getByRole(&#39;button&#39;, { name: /Submit/i });
+        expect(button).not.toBeDisabled();
+    });
+});
+</code></pre>
+<p>In the above refactor any shared test set up is broken out into a <code>beforeEach</code> hook
+and each assertion is given its own test case.</p>
+<p>The advantage of doing this becomes immediately clear. The tests now read like a 
+story. We know exactly what the intent of each test case is, and  we only have to
+read a small amount of code to understand the test&#39;s logic. To accentuate my point
+about read ability. If we were to take the name of each test case and list it out
+we would have the following verse.</p>
+<pre><code>User Name Submit Form
+    renders header
+    renders input field
+    initial input field is empty
+    changes input value on user input
+    renders submit button
+    submit button is disabled initially
+    submit button is enabled after input change
+</code></pre>
+<p>This reads like a list of requirements. Which is essentially what UI tests are.
+Compare this with the story the initial test gave us.</p>
+<pre><code>User Name Submit Form
+</code></pre>
+<p>Yea, not as descriptive. Who knows what that test does. Not me.</p>
+<p>So in summary, try your best to write your test cases as if they were telling a 
+story. Try to stick to one assertion per test, and split out any shared logic into
+hooks, like <code>beforeEach</code> and <code>beforeAll</code>.</p>
+</p>
+                <footer>
+                    <p>Until next time,</p>
+                    <p>— Brian</p>
+                </footer>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer">
+    <div class="container">
+        <p>Since August 4th, 2024. All words by Brian Douglas.</p>
+    </div>
+</footer>
+</div>
+
+<script>
+    !function (e, t) {
+        "function" == typeof define && define.amd ? define(["exports"], t) : t("undefined" != typeof exports ? exports : e.microlight = {})
+    }(this, function (e) {
+        var t, n, o, i = window, r = document, a = "appendChild", l = "test", s = function (e, s = {
+            keywords: "font-weight:bold;",
+            punctuation: "font-style:bold;",
+            strings: "font-style:italic;",
+            comments: "font-style:italic;"
+        }) {
+            for (t = 0, n = e ? r.getElementsByClassName(e || "microlight") : r.getElementsByTagName("pre"); o = n[t++];) {
+                var c, d, u, f, g, m = o.textContent, h = 0, p = m[0], y = 1, b = o.innerHTML = "", _ = 0,
+                    w = /(\d*\, \d*\, \d*)(, ([.\d]*))?/g.exec(i.getComputedStyle(o).color);
+                for (w[1], w[3]; d = c, c = _ < 7 && "\\" == c ? 1 : y;) {
+                    if (y = p, p = m[++h], f = b.length > 1, !y || _ > 8 && "\n" == y || [/\S/[l](y), 1, 1, !/[$\w]/[l](y), ("/" == c || "\n" == c) && f, '"' == c && f, "'" == c && f, m[h - 4] + d + c == "-->", d + c == "*/"][_]) for (b && (o[a](g = r.createElement("span")).setAttribute("style", ["", s.keywords, s.punctuation, s.strings, s.comments,][_ ? _ < 3 ? 2 : _ > 6 ? 4 : _ > 3 ? 3 : +/^(a(bstract|lias|nd|rguments|rray|s(m|sert)?|uto)|b(ase|egin|ool(ean)?|reak|yte)|c(ase|atch|har|hecked|lass|lone|ompl|onst|ontinue)|de(bugger|cimal|clare|f(ault|er)?|init|l(egate|ete)?)|do|double|e(cho|ls?if|lse(if)?|nd|nsure|num|vent|x(cept|ec|p(licit|ort)|te(nds|nsion|rn)))|f(allthrough|alse|inal(ly)?|ixed|loat|or(each)?|riend|rom|unc(tion)?)|global|goto|guard|i(f|mp(lements|licit|ort)|n(it|clude(_once)?|line|out|stanceof|t(erface|ernal)?)?|s)|l(ambda|et|ock|ong)|m(icrolight|odule|utable)|NaN|n(amespace|ative|ext|ew|il|ot|ull)|o(bject|perator|r|ut|verride)|p(ackage|arams|rivate|rotected|rotocol|ublic)|r(aise|e(adonly|do|f|gister|peat|quire(_once)?|scue|strict|try|turn))|s(byte|ealed|elf|hort|igned|izeof|tatic|tring|truct|ubscript|uper|ynchronized|witch)|t(emplate|hen|his|hrows?|ransient|rue|ry|ype(alias|def|id|name|of))|u(n(checked|def(ined)?|ion|less|signed|til)|se|sing)|v(ar|irtual|oid|olatile)|w(char_t|hen|here|hile|ith)|xor|yield)$/[l](b) : 0]), g[a](r.createTextNode(b))), u = _ && _ < 7 ? _ : u, b = "", _ = 11; ![1, /[\/{}[(\-+*=<>:;|\\.,?!&@~]/[l](y), /[\])]/[l](y), /[$\w]/[l](y), "/" == y && u < 2 && "<" != c, '"' == y, "'" == y, y + p + m[h + 1] + m[h + 2] == "<!--", y + p == "/*", y + p == "//", "#" == y][--_];) ;
+                    b += y
+                }
+            }
+        };
+        e.reset = s, "complete" == r.readyState ? s() : i.addEventListener("load", function () {
+            s()
+        }, 0)
+    });
+</script>
+<script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+</html>
