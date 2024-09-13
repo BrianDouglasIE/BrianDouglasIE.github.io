@@ -8,8 +8,9 @@ import connect from "gulp-connect";
 import rename from "gulp-rename";
 import * as templateHelpers from "./template-helpers.js";
 import { generateSitemap } from "./sitemap.js";
+import {generateOGImage} from "./og-image-generator.js";
 
-const POSTS = getPosts();
+let POSTS = getPosts();
 const DIST = "./docs";
 const INCLUDE_DIR = path.join(process.cwd(), "/theme/templates/includes");
 
@@ -28,6 +29,7 @@ export function buildIndex() {
 }
 
 export function buildPosts() {
+  POSTS = getPosts();
   const tasks = POSTS.map((post) => {
     const outputPath = path.join(DIST, post.slug, "index.html");
 
@@ -62,7 +64,20 @@ export function sitemap() {
   });
 }
 
-export const build = series([clean, buildIndex, buildPosts, copyAssets, sitemap]);
+export async function generateOGImages() {
+  for (const post of POSTS) {
+    await generateOGImage(post);
+  }
+}
+
+export const build = series([
+  clean,
+  buildIndex,
+  buildPosts,
+  copyAssets,
+  sitemap,
+  generateOGImages,
+]);
 
 function serve() {
   connect.server({

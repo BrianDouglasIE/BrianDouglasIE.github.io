@@ -21,3 +21,9 @@ function getDaySuffix(day) {
         default: return day + "th";
     }
 }
+
+export function parseDate(dateString) {
+    const [day, month, year] = dateString.split("/");
+    const formattedDate = `${year}-${month}-${day}`;
+    return new Date(formattedDate);
+}

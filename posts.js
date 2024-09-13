@@ -4,6 +4,7 @@ import * as url from "node:url";
 import * as fs from "node:fs";
 import fm from "front-matter";
 import * as marked from "marked";
+import { parseDate } from "./template-helpers.js";
 
 const convertWinPathToUnix = (p) => path.normalize(p).replace(/\\/g, "/");
 const __filename = url.fileURLToPath(import.meta.url);
@@ -30,9 +31,5 @@ export function getPosts() {
   for (const file of markdownFiles) {
     posts.push(new Post(file));
   }
-  return posts.sort((a, b) => {
-    const dateA = new Date(a.data.date);
-    const dateB = new Date(b.data.date);
-    return dateB - dateA;
-  });
+  return posts.sort((a, b) => parseDate(b.data.date) - parseDate(a.data.date));
 }

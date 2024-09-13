@@ -1,5 +1,5 @@
 ---
-title: Seeding a DB with Irish Counties in Laravel
+title: Seeding a Laravel DB with Irish Counties
 date: 06/06/2024
 tags: [laravel]
 ---
