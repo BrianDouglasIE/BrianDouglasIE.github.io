@@ -111,14 +111,22 @@ class Blog extends Model
 }
 </code></pre>
 <p>Awesome. What a completely foolproof implementation.</p>
-<blockquote>
-<p>But what if we update the title?!?</p>
-</blockquote>
-<p>If the title is updated the <code>slug</code> may no longer match the content.</p>
-<blockquote>
-<p>Or worse, the <code>slug</code> might update too!</p>
-</blockquote>
-<p>Then the previous url will return a 404, which may break embedded content.</p>
+<chicken-asks>
+But what if we update the title?!?
+</chicken-asks>
+
+<magpie-replies>
+If the title is updated the `slug` may no longer match the content.
+</magpie-replies>
+
+<chicken-asks>
+Or worse, the `slug` might update too!
+</chicken-asks>
+
+<magpie-replies>
+Then the previous url will return a 404, which may break embedded content.
+</magpie-replies>
+
 <h2>The Smart Way</h2>
 <p>Yes, so not foolproof after all. The <code>title</code> of the blog may change. So it&#39;s not something we want to base our urls off, because we don&#39;t want our urls to change.</p>
 <p>So what shouldn&#39;t change about our blog? it&#39;s id. At the start of this article we showed an ugly url <code>https://mysite.com/blog/1</code>. The good thing about this <em>ugly</em> url is it shouldn&#39;t change. By visiting it you will always view the blog with id 1. The downside is it&#39;s not descriptive. So let&#39;s combine the unique identifier of the id with the slug based of the blog&#39;s title. By doing this we get a url like so, <code>https://mysite.com/blog/1/my-awesome-content</code>. The trick here is that the slug part of the url is just for aesthetics. It gives the user an idea of what the blog with id 1 might be about. Let&#39;s implement this in Laravel so that the url works but uses the id solely to get the blog and redirects to the updated slug if the title changes.</p>
@@ -159,7 +167,7 @@ class Blog extends Model
     </main>
     <footer class="site-footer">
     <div class="container">
-        <p>Since August 4th, 2024. All words by Brian Douglas.</p>
+        <p>Since August 4th, 2023. All words by Brian Douglas.</p>
     </div>
 </footer>
 </div>

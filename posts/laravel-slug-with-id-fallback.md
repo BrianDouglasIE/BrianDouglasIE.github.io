@@ -42,14 +42,21 @@ public function show(string $slug)
 
 Awesome. What a completely foolproof implementation.
 
-> But what if we update the title?!?
+<chicken-asks>
+But what if we update the title?!?
+</chicken-asks>
 
-
+<magpie-replies>
 If the title is updated the `slug` may no longer match the content.
+</magpie-replies>
 
-> Or worse, the `slug` might update too!
+<chicken-asks>
+Or worse, the `slug` might update too!
+</chicken-asks>
 
+<magpie-replies>
 Then the previous url will return a 404, which may break embedded content.
+</magpie-replies>
 
 ## The Smart Way
 
