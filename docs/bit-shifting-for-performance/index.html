@@ -151,7 +151,7 @@ it as an object in this example.</p>
 exists with in the game world. In my JS games I&#39;ll sometimes create tens of thousands of these at a time. I&#39;ve often
 thought about the performance impact of this, but never really came up with a good solution. The games I make are
 often rudimentary in nature.</p>
-<p>So let&#39;s look at the amount of memory used by creating an modifying such objects. To record the memory usage I have
+<p>So let&#39;s look at the amount of memory used by creating and modifying such objects. To record the memory usage I have
 written the following method. Which breaks down the results as follows:</p>
 <ul>
 <li>rss: Resident Set Size – total memory allocated for the process.</li>
@@ -226,10 +226,10 @@ setTimeout(() =&gt; {
 </code></pre>
 <p>Using the above object based implementation as baseline, let&#39;s now look at the bit-shifter variant.</p>
 <h2>The Bit Shifter Implementation</h2>
-<p>The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is need to <code>pack</code>
-and <code>unpack</code> out vector&#39;s values. Essentially what we are doing with the <code>pack</code> method is a mask and shift of <code>x</code>, <code>y</code>,
+<p>The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is needed to <code>pack</code>
+and <code>unpack</code> our vector&#39;s values. Essentially what we are doing with the <code>pack</code> method is a mask and shift of <code>x</code>, <code>y</code>,
 and <code>z</code> to pack them efficiently into a single 32-bit number. The idea here being that a 32-bit number will be stored
-with less memory that the class used in the object based run.</p>
+with less memory than the class used in the object based run.</p>
 <p>Putting these concepts into practice we have the below script.</p>
 <pre><code class="language-javascript">function pack(n, offset) {
     if (!offset) return (n &amp; 0x3FF);

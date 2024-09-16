@@ -80,7 +80,7 @@ exists with in the game world. In my JS games I'll sometimes create tens of thou
 thought about the performance impact of this, but never really came up with a good solution. The games I make are
 often rudimentary in nature.
 
-So let's look at the amount of memory used by creating an modifying such objects. To record the memory usage I have
+So let's look at the amount of memory used by creating and modifying such objects. To record the memory usage I have
 written the following method. Which breaks down the results as follows:
 
 - rss: Resident Set Size – total memory allocated for the process.
@@ -165,10 +165,10 @@ Using the above object based implementation as baseline, let's now look at the b
 
 ## The Bit Shifter Implementation
 
-The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is need to `pack`
-and `unpack` out vector's values. Essentially what we are doing with the `pack` method is a mask and shift of `x`, `y`,
+The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is needed to `pack`
+and `unpack` our vector's values. Essentially what we are doing with the `pack` method is a mask and shift of `x`, `y`,
 and `z` to pack them efficiently into a single 32-bit number. The idea here being that a 32-bit number will be stored
-with less memory that the class used in the object based run.
+with less memory than the class used in the object based run.
 
 Putting these concepts into practice we have the below script.
 
