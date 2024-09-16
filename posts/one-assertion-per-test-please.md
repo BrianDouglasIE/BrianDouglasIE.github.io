@@ -1,6 +1,6 @@
 ---
 title: One assertion per test please
-date: 12/09/2024
+date: 17/08/2024
 tags: [javascript, testing]
 ---
 

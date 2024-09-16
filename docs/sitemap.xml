@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.briandouglas.ie/bit-shifting-for-performance</loc>
+    <lastmod>2024-09-15T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.briandouglas.ie/generate-og-images-for-blog-posts</loc>
-    <lastmod>2024-09-13T00:00:00.000Z</lastmod>
+    <lastmod>2024-09-07T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.briandouglas.ie/one-assertion-per-test-please</loc>
-    <lastmod>2024-09-12T00:00:00.000Z</lastmod>
+    <lastmod>2024-08-17T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

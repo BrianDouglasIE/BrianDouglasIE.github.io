@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title -->
+    <title>Brian Douglas' Tech Blog - Bit shifting to increase performance</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Bit shifting to increase performance">
+
+    <!-- Keywords -->
+    <meta name="keywords"
+          content="Brian Douglas, tech blog, javascript,performance">
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brian Douglas' Tech Blog - Bit shifting to increase performance">
+    <meta property="og:description"
+          content="Bit shifting to increase performance">
+    <meta property="og:url" content="https://www.briandouglas.ie">
+    <meta property="og:image" content="https://www.briandouglas.ie/images/og-images//bit-shifting-for-performance.png">
+    <meta property="og:site_name" content="Brian Douglas' Tech Blog">
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brian Douglas' Tech Blog - Bit shifting to increase performance">
+    <meta name="twitter:description"
+          content="Bit shifting to increase performance">
+    <meta name="twitter:image" content="https://www.briandouglas.ie/images/og-images//bit-shifting-for-performance.png">
+    <meta name="twitter:site" content="@BrianDouglasIE">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie">
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon">
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="/styles/external/pure.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="wrapper">
+    <header class="site-header">
+    <nav class="container">
+        <ul class="reset-list">
+            <li><a href="/" class="reset-a"><h1 class="m-0">Brian Douglas</h1></a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li aria-current="page">Bit shifting to increase performance</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <article class="post-full">
+                <header>
+                    <h2>Bit shifting to increase performance</h2>
+                    <p class="post-meta">Published on
+                        <time datetime="15/09/2024">September 15th, 2024</time>
+                        by Brian
+                    </p>
+                </header>
+                <p class="post-content"><p>I&#39;ve been watching <a href="https://www.youtube.com/@Vercidium">@Vercidium</a>&#39;s awesome content on YouTube. His videos are all
+about performance optimization in regards to game development, and I learned a nifty performance optimization for my
+JS code as a result.</p>
+<!-- more -->
+
+<p>In his <a href="https://youtu.be/40JzyaOYJeY?si=5J97q3bm7MsJ3I6k">&quot;I Optimised My Game Engine Up To 12000 FPS&quot;</a> video Vercidium
+shows a <em>bit-shifting</em> technique which he has used to store information about his voxel based scene. This got me
+thinking
+<em>could the same technique be used to save memory in JS code?</em>.</p>
+<magpie-trinket>
+<p><strong>TLDR;</strong> Storing a vector (x, y, z) as a 32-bit number uses a seventh of the memory compared to storing
+it as an object in this example.</p>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Object Based</th>
+            <th>Bit Shifted</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RSS</td>
+            <td>646.12 MB</td>
+            <td>132.29 MB</td>
+        </tr>
+        <tr>
+            <td>Heap Total</td>
+            <td>576.83 MB</td>
+            <td>87.58 MB</td>
+        </tr>
+        <tr>
+            <td>Heap Used</td>
+            <td>545.67 MB</td>
+            <td>82.33 MB</td>
+        </tr>
+        <tr>
+            <td>External</td>
+            <td>0.98 MB</td>
+            <td>0.98 MB</td>
+        </tr>
+        <tr>
+            <td>Array Buffers</td>
+            <td>0.01 MB</td>
+            <td>0.01 MB</td>
+        </tr>
+    </tbody>
+</table>
+</magpie-trinket>
+
+<h2>The Plan</h2>
+<p>When creating games and rendering scenes on canvas I often start by creating a <code>Vector</code> class like the one below.</p>
+<pre><code class="language-javascript">class Vector3 {
+    x = 0
+    y = 0
+    z = 0
+
+    constructor(x, y, z) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+}
+</code></pre>
+<p>You&#39;ll see varying implementations of this in pretty much every game engine. It&#39;s used to define where something
+exists with in the game world. In my JS games I&#39;ll sometimes create tens of thousands of these at a time. I&#39;ve often
+thought about the performance impact of this, but never really came up with a good solution. The games I make are
+often rudimentary in nature.</p>
+<p>So let&#39;s look at the amount of memory used by creating an modifying such objects. To record the memory usage I have
+written the following method. Which breaks down the results as follows:</p>
+<ul>
+<li>rss: Resident Set Size – total memory allocated for the process.</li>
+<li>heapTotal: Total size of the allocated heap.</li>
+<li>heapUsed: Actual memory used by the program.</li>
+<li>external: Memory used by C++ objects bound to JavaScript objects.</li>
+<li>arrayBuffers: Memory allocated for ArrayBuffers and SharedArrayBuffers.</li>
+</ul>
+<pre><code class="language-javascript">function logMemoryUsage() {
+    const memoryUsage = process.memoryUsage();
+
+    console.log(`Memory Usage:
+        RSS: ${memoryUsage.rss / 1024 / 1024} MB
+        Heap Total: ${memoryUsage.heapTotal / 1024 / 1024} MB
+        Heap Used: ${memoryUsage.heapUsed / 1024 / 1024} MB
+        External: ${memoryUsage.external / 1024 / 1024} MB
+        Array Buffers: ${memoryUsage.arrayBuffers / 1024 / 1024} MB
+    `);
+}
+</code></pre>
+<p>The below script creates <strong>10 million</strong> <code>Vector3</code> objects and updates the <code>x</code> and <code>y</code> co-ordinates of each randomly
+every
+millisecond for 2 seconds.</p>
+<pre><code class="language-javascript">class Vector3 {
+    x = 0
+    y = 0
+    z = 0
+
+    constructor(x, y, z) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * max) + min;
+}
+
+const maxVectors = 10_000_000
+const vectors = new Array(maxVectors)
+
+for (let i = 0; i &lt; maxVectors; i++) {
+    vectors[i] = new Vector3(
+        randomNumber(0, 1000),
+        randomNumber(0, 1000),
+        randomNumber(0, 1000)
+    )
+}
+
+let demoLengthInSeconds = 2;
+
+const updateInterval = setInterval(() =&gt; {
+    for (const v of vectors) {
+        v.x += randomNumber(-2, 2)
+        v.y += randomNumber(-2, 2)
+    }
+}, 1);
+
+setTimeout(() =&gt; {
+    logMemoryUsage()
+    clearInterval(updateInterval)
+}, demoLengthInSeconds * 1000)
+</code></pre>
+<p>For the purposes of this article I will run the script with node. Which gives the following results.</p>
+<pre><code>Memory Usage:
+        RSS: 646.12109375 MB
+        Heap Total: 576.828125 MB
+        Heap Used: 545.6746520996094 MB
+        External: 0.9788284301757812 MB
+        Array Buffers: 0.009958267211914062 MB
+</code></pre>
+<p>Using the above object based implementation as baseline, let&#39;s now look at the bit-shifter variant.</p>
+<h2>The Bit Shifter Implementation</h2>
+<p>The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is need to <code>pack</code>
+and <code>unpack</code> out vector&#39;s values. Essentially what we are doing with the <code>pack</code> method is a mask and shift of <code>x</code>, <code>y</code>,
+and <code>z</code> to pack them efficiently into a single 32-bit number. The idea here being that a 32-bit number will be stored
+with less memory that the class used in the object based run.</p>
+<p>Putting these concepts into practice we have the below script.</p>
+<pre><code class="language-javascript">function pack(n, offset) {
+    if (!offset) return (n &amp; 0x3FF);
+    return (n &amp; 0x3FF) &lt;&lt; offset;
+}
+
+function Vector3(x, y, z) {
+    return (pack(x, 20) | pack(y, 10) | pack(z));
+}
+
+function unpack(packed, offset) {
+    if (!offset) return packed &amp; 0x3FF;
+    return (packed &gt;&gt; offset) &amp; 0x3FF;
+}
+
+function getX(vector3) {
+    return unpack(vector3, 20);
+}
+
+function getY(vector3) {
+    return unpack(vector3, 10);
+}
+
+function getZ(vector3) {
+    return unpack(vector3);
+}
+
+function setX(vector3, x) {
+    vector3 &amp;= ~(0x3FF &lt;&lt; 20);
+    vector3 |= pack(x, 20);
+    return vector3;
+}
+
+function setY(vector3, y) {
+    vector3 &amp;= ~(0x3FF &lt;&lt; 10);
+    vector3 |= pack(y, 10);
+    return vector3;
+}
+
+function setZ(vector3, z) {
+    vector3 &amp;= ~0x3FF;
+    vector3 |= pack(z);
+    return vector3;
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * max) + min;
+}
+
+const maxVectors = 10_000_000
+const vectors = new Array(maxVectors)
+
+for (let i = 0; i &lt; maxVectors; i++) {
+    vectors[i] = Vector3(
+        randomNumber(0, 1000),
+        randomNumber(0, 1000),
+        randomNumber(0, 1000)
+    )
+}
+
+let demoLengthInSeconds = 2;
+
+const updateInterval = setInterval(() =&gt; {
+    for (const v of vectors) {
+        setX(v, getX(v) + randomNumber(-2, 2))
+        setY(v, getY(v) + randomNumber(-2, 2))
+    }
+}, 1);
+
+setTimeout(() =&gt; {
+    logMemoryUsage()
+    clearInterval(updateInterval)
+}, demoLengthInSeconds * 1000)
+</code></pre>
+<chicken-asks>
+Will the calls to `pack` and `unpack` affect the performance?
+</chicken-asks>
+
+<magpie-replies>
+Good question, there may be a more efficient way of doing this. But in regard to this test, the impact of calling `pack`
+and `unpack` seem to be negligible.
+</magpie-replies>
+
+<p>Again this is run with node, <code>v18.19.0</code>. The resulting memory usage is as follows.</p>
+<pre><code>Memory Usage:
+        RSS: 132.28515625 MB
+        Heap Total: 87.578125 MB
+        Heap Used: 82.33492279052734 MB
+        External: 0.9788284301757812 MB
+        Array Buffers: 0.009958267211914062 MB
+</code></pre>
+<h2>The Results</h2>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Object Based</th>
+            <th>Bit Shifted</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RSS</td>
+            <td>646.12 MB</td>
+            <td>132.29 MB</td>
+        </tr>
+        <tr>
+            <td>Heap Total</td>
+            <td>576.83 MB</td>
+            <td>87.58 MB</td>
+        </tr>
+        <tr>
+            <td>Heap Used</td>
+            <td>545.67 MB</td>
+            <td>82.33 MB</td>
+        </tr>
+        <tr>
+            <td>External</td>
+            <td>0.98 MB</td>
+            <td>0.98 MB</td>
+        </tr>
+        <tr>
+            <td>Array Buffers</td>
+            <td>0.01 MB</td>
+            <td>0.01 MB</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>As we can see from the above table the object based implementation used around <strong>7 times</strong> more memory than the bit
+shifted example.</p>
+<p>When it comes to creating my next game I will certainly be using this technique. While it does require extra code, the
+code required is still fairly minimal. Especially seeing as it uses a seventh of the memory.</p>
+</p>
+                <footer>
+                    <p>Until next time,</p>
+                    <p>— Brian</p>
+                </footer>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer">
+    <div class="container">
+        <p>Since August 4th, 2023. All words by Brian Douglas.</p>
+    </div>
+</footer>
+</div>
+
+<script>
+    !function (e, t) {
+        "function" == typeof define && define.amd ? define(["exports"], t) : t("undefined" != typeof exports ? exports : e.microlight = {})
+    }(this, function (e) {
+        var t, n, o, i = window, r = document, a = "appendChild", l = "test", s = function (e, s = {
+            keywords: "font-weight:bold;",
+            punctuation: "font-style:bold;",
+            strings: "font-style:italic;",
+            comments: "font-style:italic;"
+        }) {
+            for (t = 0, n = e ? r.getElementsByClassName(e || "microlight") : r.getElementsByTagName("pre"); o = n[t++];) {
+                var c, d, u, f, g, m = o.textContent, h = 0, p = m[0], y = 1, b = o.innerHTML = "", _ = 0,
+                    w = /(\d*\, \d*\, \d*)(, ([.\d]*))?/g.exec(i.getComputedStyle(o).color);
+                for (w[1], w[3]; d = c, c = _ < 7 && "\\" == c ? 1 : y;) {
+                    if (y = p, p = m[++h], f = b.length > 1, !y || _ > 8 && "\n" == y || [/\S/[l](y), 1, 1, !/[$\w]/[l](y), ("/" == c || "\n" == c) && f, '"' == c && f, "'" == c && f, m[h - 4] + d + c == "-->", d + c == "*/"][_]) for (b && (o[a](g = r.createElement("span")).setAttribute("style", ["", s.keywords, s.punctuation, s.strings, s.comments,][_ ? _ < 3 ? 2 : _ > 6 ? 4 : _ > 3 ? 3 : +/^(a(bstract|lias|nd|rguments|rray|s(m|sert)?|uto)|b(ase|egin|ool(ean)?|reak|yte)|c(ase|atch|har|hecked|lass|lone|ompl|onst|ontinue)|de(bugger|cimal|clare|f(ault|er)?|init|l(egate|ete)?)|do|double|e(cho|ls?if|lse(if)?|nd|nsure|num|vent|x(cept|ec|p(licit|ort)|te(nds|nsion|rn)))|f(allthrough|alse|inal(ly)?|ixed|loat|or(each)?|riend|rom|unc(tion)?)|global|goto|guard|i(f|mp(lements|licit|ort)|n(it|clude(_once)?|line|out|stanceof|t(erface|ernal)?)?|s)|l(ambda|et|ock|ong)|m(icrolight|odule|utable)|NaN|n(amespace|ative|ext|ew|il|ot|ull)|o(bject|perator|r|ut|verride)|p(ackage|arams|rivate|rotected|rotocol|ublic)|r(aise|e(adonly|do|f|gister|peat|quire(_once)?|scue|strict|try|turn))|s(byte|ealed|elf|hort|igned|izeof|tatic|tring|truct|ubscript|uper|ynchronized|witch)|t(emplate|hen|his|hrows?|ransient|rue|ry|ype(alias|def|id|name|of))|u(n(checked|def(ined)?|ion|less|signed|til)|se|sing)|v(ar|irtual|oid|olatile)|w(char_t|hen|here|hile|ith)|xor|yield)$/[l](b) : 0]), g[a](r.createTextNode(b))), u = _ && _ < 7 ? _ : u, b = "", _ = 11; ![1, /[\/{}[(\-+*=<>:;|\\.,?!&@~]/[l](y), /[\])]/[l](y), /[$\w]/[l](y), "/" == y && u < 2 && "<" != c, '"' == y, "'" == y, y + p + m[h + 1] + m[h + 2] == "<!--", y + p == "/*", y + p == "//", "#" == y][--_];) ;
+                    b += y
+                }
+            }
+        };
+        e.reset = s, "complete" == r.readyState ? s() : i.addEventListener("load", function () {
+            s()
+        }, 0)
+    });
+</script>
+<script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+</html>

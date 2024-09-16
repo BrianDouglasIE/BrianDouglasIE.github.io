@@ -1,6 +1,6 @@
 ---
 title: Generate OG images for blog posts
-date: 13/09/2024
+date: 07/09/2024
 tags: [node, javascript]
 ---
 
