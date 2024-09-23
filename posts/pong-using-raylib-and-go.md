@@ -44,7 +44,7 @@ No much to it, create a Go module and install [raylib-go](https://github.com/gen
 
 ```
 go mod init main
-go get https://github.com/gen2brain/raylib-go
+go get github.com/gen2brain/raylib-go
 ```
 
 ## The Code
