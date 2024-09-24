@@ -82,7 +82,7 @@
                         by Brian
                     </p>
                 </header>
-                <p class="post-content"><p>Slugs make a URL look legit. No one wants to click on a link that reads like <code>https://mysite.com/blog/1</code>. I&#39;d definitely get hacked if I clicked that. But what if it read <code>https://mysite.com/blog/1/some-awesome-content</code>. Now that looks trustworthy. I&#39;m definitely gonna see some awesome content if I click that link.</p>
+                <div class="post-content"><p>Slugs make a URL look legit. No one wants to click on a link that reads like <code>https://mysite.com/blog/1</code>. I&#39;d definitely get hacked if I clicked that. But what if it read <code>https://mysite.com/blog/1/some-awesome-content</code>. Now that looks trustworthy. I&#39;m definitely gonna see some awesome content if I click that link.</p>
 <!-- more -->
 
 <h2>Naive Way</h2>
@@ -157,7 +157,7 @@ class Blog extends Model
 }
 </code></pre>
 <p>In the above <code>show</code> method, Laravel&#39;s route model binding is used to find the correct blog based on the id supplied. We then add an extra check to make sure the <code>$request-&gt;path()</code> matches the <code>showRoute()</code>. If it does not we redirect to the correct <code>showRoute()</code> with a status of <code>301 Moved Permanently</code> to let the browser know the slug has updated.</p>
-</p>
+</div>
                 <footer>
                     <p>Until next time,</p>
                     <p>— Brian</p>

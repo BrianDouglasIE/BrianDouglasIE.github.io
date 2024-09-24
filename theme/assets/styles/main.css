@@ -148,8 +148,13 @@ main {
     border-top: 5px solid var(--red);
 }
 
-.post-item {
-    margin-bottom: var(--p-lg);
+.post-item, .post-full {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.post-list {
+    margin-bottom: 2rem;
 }
 
 .post-item a, .post-item a:visited {

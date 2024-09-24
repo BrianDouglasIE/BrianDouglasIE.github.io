@@ -1,7 +1,7 @@
 ---
 title: Creating a Pong clone using Raylib and Go
 date: 22/09/2024
-tags: [ golang, go, raylib ]
+tags: [ go, raylib ]
 ---
 
 As a fun exercise I implemented a rudimentary Pong clone using Raylib and Go.
