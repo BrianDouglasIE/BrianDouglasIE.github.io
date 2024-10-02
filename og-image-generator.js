@@ -4,7 +4,7 @@ import path from "node:path";
 
 const OUT_DIR = "./docs/images/og-images";
 const FONT = PImage.registerFont(
-  "C:\\Users\\brian\\AppData\\Local\\Microsoft\\Windows\\Fonts\\JetBrainsMono-Bold.ttf",
+  "/home/brian/.local/share/fonts/fonts/ttf/JetBrainsMono-Regular.ttf",
   "MyFont",
 );
 
@@ -32,10 +32,13 @@ export async function generateOGImage(post) {
     fs.mkdirSync(OUT_DIR);
   }
 
-  await PImage.encodePNGToStream(
-    pImage,
-    fs.createWriteStream(path.join(OUT_DIR, `${post.slug}.png`)),
-  );
+  const outFile = path.join(OUT_DIR, `${post.slug}.png`)
+  if(!fs.existsSync(outFile)) {
+    await PImage.encodePNGToStream(
+      pImage,
+      fs.createWriteStream(path.join(OUT_DIR, `${post.slug}.png`)),
+    );
+  }
 }
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {

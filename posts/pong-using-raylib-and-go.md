@@ -58,7 +58,7 @@ are an ace programmer, so you don't need your hand held.
 
 The game can be launched with `go run main.go`.
 
-```
+```go
 package main
 
 import (
