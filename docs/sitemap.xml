@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.briandouglas.ie/enum-for-status</loc>
+    <lastmod>2024-10-06T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.briandouglas.ie/db-migrator-in-go</loc>
     <lastmod>2024-09-30T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
