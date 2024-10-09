@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title -->
+    <title>Brian Douglas' Tech Blog - Add IF NOT EXISTS to your migrations</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Add IF NOT EXISTS to your migrations">
+
+    <!-- Keywords -->
+    <meta name="keywords"
+          content="Brian Douglas, tech blog, sql,postgresql">
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brian Douglas' Tech Blog - Add IF NOT EXISTS to your migrations">
+    <meta property="og:description"
+          content="Add IF NOT EXISTS to your migrations">
+    <meta property="og:url" content="https://www.briandouglas.ie">
+    <meta property="og:image" content="https://www.briandouglas.ie/images/og-images/add-if-not-exists-to-your-migrations.png">
+    <meta property="og:site_name" content="Brian Douglas' Tech Blog">
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brian Douglas' Tech Blog - Add IF NOT EXISTS to your migrations">
+    <meta name="twitter:description"
+          content="Add IF NOT EXISTS to your migrations">
+    <meta name="twitter:image" content="https://www.briandouglas.ie/images/og-images/add-if-not-exists-to-your-migrations.png">
+    <meta name="twitter:site" content="@BrianDouglasIE">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie">
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon">
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="/styles/external/pure.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="wrapper">
+    <header class="site-header">
+    <nav class="container">
+        <ul class="reset-list">
+            <li><a href="/" class="reset-a"><h1 class="m-0">Brian Douglas</h1></a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="breadcrumbs">
+        <div class="container">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ol>
+                    <li><a href="/">Home</a></li>
+                    <li aria-current="page">Add IF NOT EXISTS to your migrations</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+            <article class="post-full">
+                <header>
+                    <h2>Add IF NOT EXISTS to your migrations</h2>
+                    <p class="post-meta">Published on
+                        <time datetime="09/10/2024">October 9th, 2024</time>
+                        by Brian
+                    </p>
+                </header>
+                <div class="post-content"><p>When working on a codebase with a number of other developers migrations can cause
+database conflicts. One simple step to stop migrations failing when switching 
+between development branches is to add <code>IF NOT EXISTS</code> when creating a table.</p>
+<!-- more -->
+
+<h2>The Problem</h2>
+<p>Let&#39;s say we have a migration like the following.</p>
+<pre><code class="language-sql">CREATE TABLE tickets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<p>This is perfectly fine. It creates the <code>tickets</code> table. But what if we are working on this
+feature and then have to switch to another part way through? Well we checkout the other feature
+branch and work away. Now it&#39;s time to come back to the <code>tickets</code> feature. Let&#39;s say we have
+to build the application locally when working on it. Once we try to build the app the migrations
+will fail. Why? because the <code>tickets</code> table already exists, from when we were previously working on
+the feature and ran the migration.</p>
+<h2>The Solution</h2>
+<p>Well that&#39;s annoying right? one solution would be to rollback the migration or delete the correct
+row in our <code>migrations</code> table. But we can avoid this problem from ever happening in the first place.
+We simply add <code>CREATE TABLE IF NOT EXISTS</code> to our migration. It now looks like this.</p>
+<pre><code class="language-sql">CREATE TABLE IF NOT ECISTS tickets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<p>It may seem like an obvious thing but I&#39;ve been working on a codebase recently where the
+teams have not been doing this. It leads to annoying failures when checking out different
+branches. So make sure to apply this when writing SQL migrations.</p>
+<p>Those lucky ones working on Laravel, Django, or Rails apps will never face this issue. This
+is a burden of the enterprise Java developer.</p>
+</div>
+                <footer>
+                    <p>Until next time,</p>
+                    <p>— Brian</p>
+                </footer>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer">
+    <div class="container">
+        <p>Since August 4th, 2023. All words by Brian Douglas.</p>
+    </div>
+</footer>
+</div>
+
+<script>
+    !function (e, t) {
+        "function" == typeof define && define.amd ? define(["exports"], t) : t("undefined" != typeof exports ? exports : e.microlight = {})
+    }(this, function (e) {
+        var t, n, o, i = window, r = document, a = "appendChild", l = "test", s = function (e, s = {
+            keywords: "font-weight:bold;",
+            punctuation: "font-style:bold;",
+            strings: "font-style:italic;",
+            comments: "font-style:italic;"
+        }) {
+            for (t = 0, n = e ? r.getElementsByClassName(e || "microlight") : r.getElementsByTagName("pre"); o = n[t++];) {
+                var c, d, u, f, g, m = o.textContent, h = 0, p = m[0], y = 1, b = o.innerHTML = "", _ = 0,
+                    w = /(\d*\, \d*\, \d*)(, ([.\d]*))?/g.exec(i.getComputedStyle(o).color);
+                for (w[1], w[3]; d = c, c = _ < 7 && "\\" == c ? 1 : y;) {
+                    if (y = p, p = m[++h], f = b.length > 1, !y || _ > 8 && "\n" == y || [/\S/[l](y), 1, 1, !/[$\w]/[l](y), ("/" == c || "\n" == c) && f, '"' == c && f, "'" == c && f, m[h - 4] + d + c == "-->", d + c == "*/"][_]) for (b && (o[a](g = r.createElement("span")).setAttribute("style", ["", s.keywords, s.punctuation, s.strings, s.comments,][_ ? _ < 3 ? 2 : _ > 6 ? 4 : _ > 3 ? 3 : +/^(a(bstract|lias|nd|rguments|rray|s(m|sert)?|uto)|b(ase|egin|ool(ean)?|reak|yte)|c(ase|atch|har|hecked|lass|lone|ompl|onst|ontinue)|de(bugger|cimal|clare|f(ault|er)?|init|l(egate|ete)?)|do|double|e(cho|ls?if|lse(if)?|nd|nsure|num|vent|x(cept|ec|p(licit|ort)|te(nds|nsion|rn)))|f(allthrough|alse|inal(ly)?|ixed|loat|or(each)?|riend|rom|unc(tion)?)|global|goto|guard|i(f|mp(lements|licit|ort)|n(it|clude(_once)?|line|out|stanceof|t(erface|ernal)?)?|s)|l(ambda|et|ock|ong)|m(icrolight|odule|utable)|NaN|n(amespace|ative|ext|ew|il|ot|ull)|o(bject|perator|r|ut|verride)|p(ackage|arams|rivate|rotected|rotocol|ublic)|r(aise|e(adonly|do|f|gister|peat|quire(_once)?|scue|strict|try|turn))|s(byte|ealed|elf|hort|igned|izeof|tatic|tring|truct|ubscript|uper|ynchronized|witch)|t(emplate|hen|his|hrows?|ransient|rue|ry|ype(alias|def|id|name|of))|u(n(checked|def(ined)?|ion|less|signed|til)|se|sing)|v(ar|irtual|oid|olatile)|w(char_t|hen|here|hile|ith)|xor|yield)$/[l](b) : 0]), g[a](r.createTextNode(b))), u = _ && _ < 7 ? _ : u, b = "", _ = 11; ![1, /[\/{}[(\-+*=<>:;|\\.,?!&@~]/[l](y), /[\])]/[l](y), /[$\w]/[l](y), "/" == y && u < 2 && "<" != c, '"' == y, "'" == y, y + p + m[h + 1] + m[h + 2] == "<!--", y + p == "/*", y + p == "//", "#" == y][--_];) ;
+                    b += y
+                }
+            }
+        };
+        e.reset = s, "complete" == r.readyState ? s() : i.addEventListener("load", function () {
+            s()
+        }, 0)
+    });
+</script>
+<script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+</html>
