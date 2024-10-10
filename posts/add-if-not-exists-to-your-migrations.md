@@ -36,7 +36,7 @@ the feature and ran the migration.
 ## The Solution
 
 Well that's annoying right? one solution would be to rollback the migration or delete the correct
-row in our `migrations` table. But we can avoid this problem from ever happening in the first place.
+row in our `migrations` table. But we can prevent this problem from ever happening in the first place.
 We simply add `CREATE TABLE IF NOT EXISTS` to our migration. It now looks like this.
 
 ```sql

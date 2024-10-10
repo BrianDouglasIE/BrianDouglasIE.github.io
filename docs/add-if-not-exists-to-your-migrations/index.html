@@ -90,12 +90,13 @@ between development branches is to add <code>IF NOT EXISTS</code> when creating 
 <h2>The Problem</h2>
 <p>Let&#39;s say we have a migration like the following.</p>
 <pre><code class="language-sql">CREATE TABLE tickets (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
 
-    title TEXT NOT NULL,
-    description TEXT NOT NULL,
+    title VARCHAR(140) NOT NULL,
+    content VARCHAR(500) NOT NULL,
 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 </code></pre>
 <p>This is perfectly fine. It creates the <code>tickets</code> table. But what if we are working on this
@@ -106,15 +107,16 @@ will fail. Why? because the <code>tickets</code> table already exists, from when
 the feature and ran the migration.</p>
 <h2>The Solution</h2>
 <p>Well that&#39;s annoying right? one solution would be to rollback the migration or delete the correct
-row in our <code>migrations</code> table. But we can avoid this problem from ever happening in the first place.
+row in our <code>migrations</code> table. But we can prevent this problem from ever happening in the first place.
 We simply add <code>CREATE TABLE IF NOT EXISTS</code> to our migration. It now looks like this.</p>
-<pre><code class="language-sql">CREATE TABLE IF NOT ECISTS tickets (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS tickets (
+    id SERIAL PRIMARY KEY,
 
-    title TEXT NOT NULL,
-    description TEXT NOT NULL,
+    title VARCHAR(140) NOT NULL,
+    content VARCHAR(500) NOT NULL,
 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 </code></pre>
 <p>It may seem like an obvious thing but I&#39;ve been working on a codebase recently where the
