@@ -1,202 +1,219 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Title -->
-    <title>Brian Douglas' Tech Blog - Writing a DB migrator in Go</title>
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - Writing a DB migrator in Go</title>
 
-    <!-- Meta Description -->
-    <meta name="description" content="Writing a DB migrator in Go">
+        <!-- Meta Description -->
+        <meta name="description" content="Writing a DB migrator in Go" />
 
-    <!-- Keywords -->
-    <meta name="keywords"
-          content="Brian Douglas, tech blog, go">
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, go"
+        />
 
-    <!-- Author -->
-    <meta name="author" content="Brian Douglas">
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Brian Douglas' Tech Blog - Writing a DB migrator in Go">
-    <meta property="og:description"
-          content="Writing a DB migrator in Go">
-    <meta property="og:url" content="https://www.briandouglas.ie">
-    <meta property="og:image" content="https://www.briandouglas.ie/images/og-images/db-migrator-in-go.png">
-    <meta property="og:site_name" content="Brian Douglas' Tech Blog">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - Writing a DB migrator in Go"
+        />
+        <meta property="og:description" content="Writing a DB migrator in Go" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/db-migrator-in-go.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
 
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Brian Douglas' Tech Blog - Writing a DB migrator in Go">
-    <meta name="twitter:description"
-          content="Writing a DB migrator in Go">
-    <meta name="twitter:image" content="https://www.briandouglas.ie/images/og-images/db-migrator-in-go.png">
-    <meta name="twitter:site" content="@BrianDouglasIE">
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - Writing a DB migrator in Go"
+        />
+        <meta name="twitter:description" content="Writing a DB migrator in Go" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/db-migrator-in-go.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie">
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
 
-    <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon">
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
 
-    <!-- Robots -->
-    <meta name="robots" content="index, follow">
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
 
-    <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
 
-    <link rel="stylesheet" href="/styles/external/pure.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
-</head>
-<body>
-<div class="wrapper">
-    <header class="site-header">
-    <nav class="container">
-        <ul class="reset-list">
-            <li><a href="/" class="reset-a"><h1 class="m-0">Brian Douglas</h1></a></li>
-        </ul>
-    </nav>
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+    </div>
 </header>
-    <div class="breadcrumbs">
-        <div class="container">
-            <nav aria-label="Breadcrumb" class="breadcrumb">
-                <ol>
-                    <li><a href="/">Home</a></li>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
                     <li aria-current="page">Writing a DB migrator in Go</li>
                 </ol>
             </nav>
         </div>
-    </div>
-    <main>
-        <div class="container">
-            <article class="post-full">
-                <header>
-                    <h2>Writing a DB migrator in Go</h2>
-                    <p class="post-meta">Published on
-                        <time datetime="30/09/2024">September 30th, 2024</time>
-                        by Brian
-                    </p>
-                </header>
-                <div class="post-content"><p>A database migrator applies database migrations. These are usually SQL scripts that
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>Writing a DB migrator in Go</h2>
+                        <p class="post-meta">
+                            <time datetime="30/09/2024"
+                            >September 30th, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>A database migrator applies database migrations. These are usually SQL scripts that
 update the version of a database. They can be applied and reverted. Allowing for db
 versions to be rolled back and pushed forward.</p>
 <!-- more -->
-
-<p>I feel that these should be simple tools, with simple commands. Migrate up a version, 
+<p>I feel that these should be simple tools, with simple commands. Migrate up a version,
 migrate down a version, migrate to version x, migrate all pending migrations, and also
 a reset command to remove all migrations. This is all I want. So I decided to make my
 own, no bloat, no complexity, just simple useful commands.</p>
 <p>Convert the above requirements to CLI commands and we get.</p>
-<pre><code>  -all
-        Apply all pending migrations
-  -down int
-        Migrate down a certain number of versions
-  -reset
-        Revert all migrations
-  -to int
-        Migrate to a specific version
-  -up int
-        Migrate up a certain number of versions
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>  -all</span></span>
+<span class="line"><span>        Apply all pending migrations</span></span>
+<span class="line"><span>  -down int</span></span>
+<span class="line"><span>        Migrate down a certain number of versions</span></span>
+<span class="line"><span>  -reset</span></span>
+<span class="line"><span>        Revert all migrations</span></span>
+<span class="line"><span>  -to int</span></span>
+<span class="line"><span>        Migrate to a specific version</span></span>
+<span class="line"><span>  -up int</span></span>
+<span class="line"><span>        Migrate up a certain number of versions</span></span></code></pre>
 <magpie-trinket>
 He highlights some interesting bit's of code below. Well at least the parts he found interesting. If you want the full source code it
 is available at <a href="https://github.com/BrianDouglasIE/go-lang-db-migrator">BrianDouglasIE/go-lang-db-migrator</a>.
 </magpie-trinket>
-
 <h2>Assumptions</h2>
-<p>Let&#39;s assume the code in the sections below is part of a package called <code>migrator</code>, and that we will be
-running the code from that package as a command line application. Let&#39;s also assume that the program has
+<p>Let's assume the code in the sections below is part of a package called <code>migrator</code>, and that we will be
+running the code from that package as a command line application. Let's also assume that the program has
 recieved details about how to connect to the database, and uses the go <code>sql</code> package to connect.</p>
 <h2>Command line options</h2>
-<p>This is intended to be a command line tool. Luckily Go&#39;s <code>flags</code> package makes this trivial.
+<p>This is intended to be a command line tool. Luckily Go's <code>flags</code> package makes this trivial.
 I start by defining an <code>Options</code> struct in the <code>migrator</code> package.</p>
-<pre><code class="language-go">type Options struct {
-	To    int
-	Up    int
-	Down  int
-	All   bool
-	Reset bool
-}
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-go"><span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> Options</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#24292E">	To    </span><span style="color:#D73A49">int</span></span>
+<span class="line"><span style="color:#24292E">	Up    </span><span style="color:#D73A49">int</span></span>
+<span class="line"><span style="color:#24292E">	Down  </span><span style="color:#D73A49">int</span></span>
+<span class="line"><span style="color:#24292E">	All   </span><span style="color:#D73A49">bool</span></span>
+<span class="line"><span style="color:#24292E">	Reset </span><span style="color:#D73A49">bool</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
 <p>Then inside <code>main.go</code> I can set the <code>Options</code> values like so. Notice the default values and description text.
 All this info will be displayed when passing the <code>--help</code> flag.</p>
-<pre><code class="language-go">var opts migrator.Options
-flag.BoolVar(&amp;opts.All, &quot;all&quot;, false, &quot;Apply all pending migrations&quot;)
-flag.BoolVar(&amp;opts.Reset, &quot;reset&quot;, false, &quot;Revert all migrations&quot;)
-flag.IntVar(&amp;opts.To, &quot;to&quot;, 0, &quot;Migrate to a specific version&quot;)
-flag.IntVar(&amp;opts.Up, &quot;up&quot;, 0, &quot;Migrate up a certain number of versions&quot;)
-flag.IntVar(&amp;opts.Down, &quot;down&quot;, 0, &quot;Migrate down a certain number of versions&quot;)
-flag.Parse()
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-go"><span class="line"><span style="color:#D73A49">var</span><span style="color:#24292E"> opts </span><span style="color:#6F42C1">migrator</span><span style="color:#24292E">.</span><span style="color:#6F42C1">Options</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">BoolVar</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">opts.All, </span><span style="color:#032F62">"all"</span><span style="color:#24292E">, </span><span style="color:#005CC5">false</span><span style="color:#24292E">, </span><span style="color:#032F62">"Apply all pending migrations"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">BoolVar</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">opts.Reset, </span><span style="color:#032F62">"reset"</span><span style="color:#24292E">, </span><span style="color:#005CC5">false</span><span style="color:#24292E">, </span><span style="color:#032F62">"Revert all migrations"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">IntVar</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">opts.To, </span><span style="color:#032F62">"to"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#032F62">"Migrate to a specific version"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">IntVar</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">opts.Up, </span><span style="color:#032F62">"up"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#032F62">"Migrate up a certain number of versions"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">IntVar</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">opts.Down, </span><span style="color:#032F62">"down"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#032F62">"Migrate down a certain number of versions"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">flag.</span><span style="color:#6F42C1">Parse</span><span style="color:#24292E">()</span></span></code></pre>
 <p>A pointer to this struct will then be passed into the <code>migrator.Migrate</code> function.</p>
 <h2>Structuring a migration</h2>
-<p>Typically a migration has an <code>up</code> and a <code>down</code> action. I&#39;ve opted to use sql files for migrations
-rather than an orm. I&#39;ve done this to avoid complexity. The complexity being, having to learn the
+<p>Typically a migration has an <code>up</code> and a <code>down</code> action. I've opted to use sql files for migrations
+rather than an orm. I've done this to avoid complexity. The complexity being, having to learn the
 nuances of an orm, when I already know what I want to achieve with sql.</p>
 <p>The migrations will be stored in a <code>migrations</code> directory and each migration will have a <code>.up.sql</code>
 and <code>.down.sql</code> file. The file naming convention will look like this <code>[version]-[name].[direction].sql</code>.
 So, for example, our first migration will look as follows. <strong>Note</strong>: this migration will always need to
 be first as it creates the table where our migration info will be stored.</p>
-<pre><code class="language-sql">-- 001-create-migrations-table.up.sql
-CREATE TABLE IF NOT EXISTS migrations (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    version INTEGER NOT NULL,
-    name TEXT NOT NULL,
-
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
--- 001-create-migrations-table.down.sql
-DROP TABLE IF EXISTS migrations;
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#6A737D">-- 001-create-migrations-table.up.sql</span></span>
+<span class="line"><span style="color:#D73A49">CREATE</span><span style="color:#D73A49"> TABLE</span><span style="color:#6F42C1"> IF</span><span style="color:#D73A49"> NOT</span><span style="color:#D73A49"> EXISTS</span><span style="color:#24292E"> migrations (</span></span>
+<span class="line"><span style="color:#24292E">    id </span><span style="color:#D73A49">INTEGER</span><span style="color:#D73A49"> PRIMARY KEY</span><span style="color:#24292E"> AUTOINCREMENT,</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    version</span><span style="color:#D73A49"> INTEGER</span><span style="color:#D73A49"> NOT NULL</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">    name</span><span style="color:#D73A49"> TEXT</span><span style="color:#D73A49"> NOT NULL</span><span style="color:#24292E">,</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    created_at </span><span style="color:#D73A49">DATETIME</span><span style="color:#D73A49"> DEFAULT</span><span style="color:#24292E"> CURRENT_TIMESTAMP</span></span>
+<span class="line"><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- 001-create-migrations-table.down.sql</span></span>
+<span class="line"><span style="color:#D73A49">DROP</span><span style="color:#D73A49"> TABLE</span><span style="color:#D73A49"> IF</span><span style="color:#D73A49"> EXISTS</span><span style="color:#24292E"> migrations;</span></span></code></pre>
 <p>Our migrator program will read the <code>migrations</code> directory and gather the migration files into the
 following <code>struct</code>.</p>
-<pre><code class="language-go">type Migration struct {
-	Version  int
-	Name     string
-	UpFile   string
-	DownFile string
-}
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-go"><span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> Migration</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#24292E">	Version  </span><span style="color:#D73A49">int</span></span>
+<span class="line"><span style="color:#24292E">	Name     </span><span style="color:#D73A49">string</span></span>
+<span class="line"><span style="color:#24292E">	UpFile   </span><span style="color:#D73A49">string</span></span>
+<span class="line"><span style="color:#24292E">	DownFile </span><span style="color:#D73A49">string</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
 <p>This can then be used to sort migrations by version. Getting the latest migration from our <code>migrations</code>
 table will tell us our current DB version. When running the <code>up</code> or <code>down</code> commands we need only concern
-ourselves with the migrations that have a version that is higher or lower than the current db version 
+ourselves with the migrations that have a version that is higher or lower than the current db version
 respectively. If a migration should be applied then execute the <code>UpFile</code> if it should be reverted then
 execute the <code>DownFile</code>.</p>
 <h2>Using transactions with context</h2>
 <p>Transactions in go can be used to commit or rollback multiple grouped sql queries.
-The go docs at <a href="https://go.dev/doc/database/execute-transactions">database/execute-transactions</a> sum up 
+The go docs at <a href="https://go.dev/doc/database/execute-transactions">database/execute-transactions</a> sum up
 transactions like so.</p>
 <blockquote>
 <p>A database transaction groups multiple operations as part of a larger goal.</p>
 </blockquote>
-<p>The migrator program is doing just that. It takes a bunch of sql statements and runs them to create a 
+<p>The migrator program is doing just that. It takes a bunch of sql statements and runs them to create a
 new database state. Should one of the migrations fail, we can use the go transaction to rollback the
 state of the database to how it was before the migrator ran. Alternatively we can also commit the transaction
 if all migrations run successfully.</p>
-<p>We&#39;ll use the transaction along with a context. Using a Go <code>context.Context</code> with a database transaction helps 
+<p>We'll use the transaction along with a context. Using a Go <code>context.Context</code> with a database transaction helps
 manage timeouts, cancellations, and ensures that long-running database operations are cleaned up with the context.
 If the context is canceled any ongoing database transactions can be rolled back. This prevents partial data writes
 or inconsistencies.</p>
 <p>Using a transaction along with a context is trivial.</p>
-<pre><code class="language-go">// create context
-ctx := context.Background()
-
-// pass our context to the transaction
-tx, err := db.BeginTx(ctx, nil)
-if err != nil {
-    return fail(err)
-}
-
-// defer rollback, will be called if `tx.Commit` is not
-defer tx.Rollback()
-</code></pre>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-go"><span class="line"><span style="color:#6A737D">// create context</span></span>
+<span class="line"><span style="color:#24292E">ctx </span><span style="color:#D73A49">:=</span><span style="color:#24292E"> context.</span><span style="color:#6F42C1">Background</span><span style="color:#24292E">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// pass our context to the transaction</span></span>
+<span class="line"><span style="color:#24292E">tx, err </span><span style="color:#D73A49">:=</span><span style="color:#24292E"> db.</span><span style="color:#6F42C1">BeginTx</span><span style="color:#24292E">(ctx, </span><span style="color:#005CC5">nil</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">if</span><span style="color:#24292E"> err </span><span style="color:#D73A49">!=</span><span style="color:#005CC5"> nil</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#6F42C1"> fail</span><span style="color:#24292E">(err)</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// defer rollback, will be called if `tx.Commit` is not</span></span>
+<span class="line"><span style="color:#D73A49">defer</span><span style="color:#24292E"> tx.</span><span style="color:#6F42C1">Rollback</span><span style="color:#24292E">()</span></span></code></pre>
 <p>This transaction can then be passed around out migrator program. Once all the migrations
 have been handled, and assuming no errors have occured, the transaction can be committed
 be calling <code>tx.Commit</code>. Any call to the trnasaction after it is commited will result in
@@ -209,44 +226,22 @@ same end. It took around 90 minutes and helped me to better understand how migra
 also now have my own tool to manage migrations, that I can bend to my liking.</p>
 <p>Feel free to look through the entire source code at <a href="https://github.com/BrianDouglasIE/go-lang-db-migrator">BrianDouglasIE/go-lang-db-migrator</a>.</p>
 </div>
-                <footer>
-                    <p>Until next time,</p>
-                    <p>— Brian</p>
-                </footer>
-            </article>
-        </div>
-    </main>
-    <footer class="site-footer">
-    <div class="container">
-        <p>Since August 4th, 2023. All words by Brian Douglas.</p>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
     </div>
 </footer>
-</div>
 
-<script>
-    !function (e, t) {
-        "function" == typeof define && define.amd ? define(["exports"], t) : t("undefined" != typeof exports ? exports : e.microlight = {})
-    }(this, function (e) {
-        var t, n, o, i = window, r = document, a = "appendChild", l = "test", s = function (e, s = {
-            keywords: "font-weight:bold;",
-            punctuation: "font-style:bold;",
-            strings: "font-style:italic;",
-            comments: "font-style:italic;"
-        }) {
-            for (t = 0, n = e ? r.getElementsByClassName(e || "microlight") : r.getElementsByTagName("pre"); o = n[t++];) {
-                var c, d, u, f, g, m = o.textContent, h = 0, p = m[0], y = 1, b = o.innerHTML = "", _ = 0,
-                    w = /(\d*\, \d*\, \d*)(, ([.\d]*))?/g.exec(i.getComputedStyle(o).color);
-                for (w[1], w[3]; d = c, c = _ < 7 && "\\" == c ? 1 : y;) {
-                    if (y = p, p = m[++h], f = b.length > 1, !y || _ > 8 && "\n" == y || [/\S/[l](y), 1, 1, !/[$\w]/[l](y), ("/" == c || "\n" == c) && f, '"' == c && f, "'" == c && f, m[h - 4] + d + c == "-->", d + c == "*/"][_]) for (b && (o[a](g = r.createElement("span")).setAttribute("style", ["", s.keywords, s.punctuation, s.strings, s.comments,][_ ? _ < 3 ? 2 : _ > 6 ? 4 : _ > 3 ? 3 : +/^(a(bstract|lias|nd|rguments|rray|s(m|sert)?|uto)|b(ase|egin|ool(ean)?|reak|yte)|c(ase|atch|har|hecked|lass|lone|ompl|onst|ontinue)|de(bugger|cimal|clare|f(ault|er)?|init|l(egate|ete)?)|do|double|e(cho|ls?if|lse(if)?|nd|nsure|num|vent|x(cept|ec|p(licit|ort)|te(nds|nsion|rn)))|f(allthrough|alse|inal(ly)?|ixed|loat|or(each)?|riend|rom|unc(tion)?)|global|goto|guard|i(f|mp(lements|licit|ort)|n(it|clude(_once)?|line|out|stanceof|t(erface|ernal)?)?|s)|l(ambda|et|ock|ong)|m(icrolight|odule|utable)|NaN|n(amespace|ative|ext|ew|il|ot|ull)|o(bject|perator|r|ut|verride)|p(ackage|arams|rivate|rotected|rotocol|ublic)|r(aise|e(adonly|do|f|gister|peat|quire(_once)?|scue|strict|try|turn))|s(byte|ealed|elf|hort|igned|izeof|tatic|tring|truct|ubscript|uper|ynchronized|witch)|t(emplate|hen|his|hrows?|ransient|rue|ry|ype(alias|def|id|name|of))|u(n(checked|def(ined)?|ion|less|signed|til)|se|sing)|v(ar|irtual|oid|olatile)|w(char_t|hen|here|hile|ith)|xor|yield)$/[l](b) : 0]), g[a](r.createTextNode(b))), u = _ && _ < 7 ? _ : u, b = "", _ = 11; ![1, /[\/{}[(\-+*=<>:;|\\.,?!&@~]/[l](y), /[\])]/[l](y), /[$\w]/[l](y), "/" == y && u < 2 && "<" != c, '"' == y, "'" == y, y + p + m[h + 1] + m[h + 2] == "<!--", y + p == "/*", y + p == "//", "#" == y][--_];) ;
-                    b += y
-                }
-            }
-        };
-        e.reset = s, "complete" == r.readyState ? s() : i.addEventListener("load", function () {
-            s()
-        }, 0)
-    });
-</script>
-<script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
 </html>

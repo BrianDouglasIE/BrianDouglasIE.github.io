@@ -1,9 +1,7 @@
-<div class="container">
-    <ul class="reset-list post-list">
-        <% posts.forEach(post => { %>
-            <li>
-                <%- include('post-list-item', { post }); %>
-            </li>
-        <% }) %>
-    </ul>
-</div>
+<ul class="list-reset content-md mx-auto">
+    <% posts.forEach(post => { %>
+    <li>
+        <%- include('post-list-item', { post }); %>
+    </li>
+    <% }) %>
+</ul>

@@ -3,8 +3,9 @@ import { globSync } from "glob";
 import * as url from "node:url";
 import * as fs from "node:fs";
 import fm from "front-matter";
-import * as marked from "marked";
 import { parseDate } from "./template-helpers.js";
+import Shiki from "@shikijs/markdown-it";
+import MarkdownIt from "markdown-it";
 
 const convertWinPathToUnix = (p) => path.normalize(p).replace(/\\/g, "/");
 const __filename = url.fileURLToPath(import.meta.url);
@@ -13,12 +14,21 @@ const postsDir = path.join(__dirname, "./posts");
 const globPattern = path.join(postsDir, "**/*.md");
 const markdownFiles = globSync(convertWinPathToUnix(globPattern));
 
+const md = MarkdownIt({ html: true });
+
+md.use(
+  await Shiki({
+    theme: "github-light"
+  }),
+);
+
 class Post {
   constructor(filePath) {
     const fileContent = fs.readFileSync(filePath, "utf-8");
     const frontmatter = fm(fileContent);
     this.data = frontmatter.attributes;
-    this.html = marked.parse(frontmatter.body);
+
+    this.html = md.render(frontmatter.body);
     this.slug = convertWinPathToUnix(
       filePath.replace(postsDir, "").replace(".md", ""),
     );

@@ -1,5 +1,5 @@
 import * as PImage from "pureimage";
-import * as fs from "fs";
+import * as fs from "node:fs";
 import path from "node:path";
 
 const OUT_DIR = "./docs/images/og-images";

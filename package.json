@@ -1,9 +1,11 @@
 {
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "dev": "gulp"
   },
   "dependencies": {
+    "@shikijs/markdown-it": "^1.22.0",
     "del": "^7.1.0",
     "front-matter": "^4.0.2",
     "glob": "^11.0.0",
@@ -12,7 +14,7 @@
     "gulp-ejs": "^5.1.0",
     "gulp-file": "^0.4.0",
     "gulp-rename": "^2.0.0",
-    "marked": "^14.1.2",
+    "markdown-it": "^14.1.0",
     "pureimage": "^0.4.13"
   }
 }
