@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - Prevent pixel art blur on canvas</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="Prevent pixel art blur on canvas" />
+
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, js,canvas"
+        />
+
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - Prevent pixel art blur on canvas"
+        />
+        <meta property="og:description" content="Prevent pixel art blur on canvas" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/draw-pixel-art-on-canvas.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - Prevent pixel art blur on canvas"
+        />
+        <meta name="twitter:description" content="Prevent pixel art blur on canvas" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/draw-pixel-art-on-canvas.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
+
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+    </div>
+</header>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
+                    <li aria-current="page">Prevent pixel art blur on canvas</li>
+                </ol>
+            </nav>
+        </div>
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>Prevent pixel art blur on canvas</h2>
+                        <p class="post-meta">
+                            <time datetime="15/10/2024"
+                            >October 15th, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>Nobody wants to see blurry pixel art rendered in a game. So let's investigate
+how to render crisp pixel art images on a canvas element.</p>
+<!-- more -->
+<magpie-trinket>
+Full source code for this article is available at <a href="https://github.com/BrianDouglasIE/canvas-pixel-art">BrianDouglasIE/canvas-pixel-art</a>
+</magpie-trinket>
+<h2>The task at hand</h2>
+<p>So for this demo let's say we want to render the sprite of our game's hero character
+on a canvas. The sprite sheet that I will be using is from KenneyNL, it's the 1-Bit
+monochrome asset pack. Each sprite in the canvas is 16x16 pixels in dimension. This
+will be scaled up to around 4 times it's original size.</p>
+<p>I want my canvas to be 640x480 pixels in dimension. If I were to draw a sprite
+directly on the canvas it would look miniscule. If I were to draw it at 4 times it's
+original size, it would look blurry. So the question is, how do I draw my scaled up
+pixel art character without causing it to blur.</p>
+<p><chicken-asks>I bet this complex problem requires a complex solution</chicken-asks>
+<magpie-replies>I bet the solution is a one liner</magpie-replies></p>
+<h2>Some boiler plate</h2>
+<p>Before I even get as far as rendering my pixel art character on a canvas there is some
+initial boilerplate code that is needed.</p>
+<p>Firstly I'll need to create a canvas element to render the game on. I can do that with
+the following code. Which creates the canvas and appends it to the document's body. I
+also set the canvas' width and height to be a quarter of the intended size. I will scale
+this up later.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> canvas</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> document.</span><span style="color:#6F42C1">createElement</span><span style="color:#24292E">(</span><span style="color:#032F62">'canvas'</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> ctx</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> canvas.</span><span style="color:#6F42C1">getContext</span><span style="color:#24292E">(</span><span style="color:#032F62">'2d'</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">document.body.</span><span style="color:#6F42C1">appendChild</span><span style="color:#24292E">(canvas)</span></span>
+<span class="line"><span style="color:#24292E">canvas.height </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 120</span></span>
+<span class="line"><span style="color:#24292E">canvas.width </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 160</span></span></code></pre>
+<p>Once this is in place I will add some functions to render the sprite sheet and extract the
+image data of the sprite that I want to render. To do this I create a separate canvas. This
+canvas will not be appended to the body of the html document as the user will never see it.
+Instead it will be used to draw the sprite sheet in it's entirety. I will then grab the
+individual sprites from it as and when they are needed. I also set the canvas to be scaled
+up the target size using CSS. The code for this is below.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> spriteCellSize</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 16</span></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> spriteSheet</span><span style="color:#D73A49"> =</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Image</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">spriteSheet.crossOrigin </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "anonymous"</span></span>
+<span class="line"><span style="color:#24292E">spriteSheet.</span><span style="color:#6F42C1">addEventListener</span><span style="color:#24292E">(</span><span style="color:#032F62">"load"</span><span style="color:#24292E">, onLoad, </span><span style="color:#005CC5">false</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">spriteSheet.src </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "./monochrome-transparent.png"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> scale</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 4</span></span>
+<span class="line"><span style="color:#24292E">canvas.style.width </span><span style="color:#D73A49">=</span><span style="color:#032F62"> `${</span><span style="color:#24292E">canvas</span><span style="color:#032F62">.</span><span style="color:#24292E">width</span><span style="color:#D73A49"> *</span><span style="color:#24292E"> scale</span><span style="color:#032F62">}px`</span></span>
+<span class="line"><span style="color:#24292E">canvas.style.height </span><span style="color:#D73A49">=</span><span style="color:#032F62"> `${</span><span style="color:#24292E">canvas</span><span style="color:#032F62">.</span><span style="color:#24292E">height</span><span style="color:#D73A49"> *</span><span style="color:#24292E"> scale</span><span style="color:#032F62">}px`</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> spriteSheetCanvas</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> document.</span><span style="color:#6F42C1">createElement</span><span style="color:#24292E">(</span><span style="color:#032F62">'canvas'</span><span style="color:#24292E">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> heroSprite </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> undefined</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> onLoad</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">heroSprite) {</span></span>
+<span class="line"><span style="color:#24292E">    spriteSheetCanvas.width </span><span style="color:#D73A49">=</span><span style="color:#24292E"> spriteSheet.width</span></span>
+<span class="line"><span style="color:#24292E">    spriteSheetCanvas.height </span><span style="color:#D73A49">=</span><span style="color:#24292E"> spriteSheet.height</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#005CC5"> spriteSheetContext</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> spriteSheetCanvas.</span><span style="color:#6F42C1">getContext</span><span style="color:#24292E">(</span><span style="color:#032F62">'2d'</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#6F42C1">    clearScreen</span><span style="color:#24292E">(spriteSheetContext, spriteSheetCanvas.width, spriteSheetCanvas.height)</span></span>
+<span class="line"><span style="color:#6F42C1">    drawSpriteSheet</span><span style="color:#24292E">(spriteSheetContext, spriteSheet)</span></span>
+<span class="line"><span style="color:#24292E">    heroSprite </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> getSpriteSheetCell</span><span style="color:#24292E">(spriteSheetContext, spriteCellSize, </span><span style="color:#005CC5">26</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  clearScreen</span><span style="color:#24292E">(ctx, canvas.width, canvas.height)</span></span>
+<span class="line"><span style="color:#24292E">  ctx.</span><span style="color:#6F42C1">putImageData</span><span style="color:#24292E">(heroSprite, canvas.width </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#D73A49"> -</span><span style="color:#24292E"> spriteCellSize </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">, canvas.height </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#D73A49"> -</span><span style="color:#24292E"> spriteCellSize </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> clearScreen</span><span style="color:#24292E">(</span><span style="color:#E36209">ctx</span><span style="color:#24292E">, </span><span style="color:#E36209">w</span><span style="color:#24292E">, </span><span style="color:#E36209">h</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">  ctx.</span><span style="color:#6F42C1">save</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">  ctx.fillStyle </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "black"</span></span>
+<span class="line"><span style="color:#24292E">  ctx.</span><span style="color:#6F42C1">fillRect</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, w, h)</span></span>
+<span class="line"><span style="color:#24292E">  ctx.</span><span style="color:#6F42C1">restore</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> drawSpriteSheet</span><span style="color:#24292E">(</span><span style="color:#E36209">ctx</span><span style="color:#24292E">, </span><span style="color:#E36209">spriteSheet</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">  ctx.</span><span style="color:#6F42C1">drawImage</span><span style="color:#24292E">(spriteSheet, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> getSpriteSheetCell</span><span style="color:#24292E">(</span><span style="color:#E36209">ctx</span><span style="color:#24292E">, </span><span style="color:#E36209">spriteCellSize</span><span style="color:#24292E">, </span><span style="color:#E36209">col</span><span style="color:#24292E">, </span><span style="color:#E36209">row</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> x</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> spriteCellSize </span><span style="color:#D73A49">*</span><span style="color:#24292E"> col</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> y</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> spriteCellSize </span><span style="color:#D73A49">*</span><span style="color:#24292E"> row</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> ctx.</span><span style="color:#6F42C1">getImageData</span><span style="color:#24292E">(x, y, spriteCellSize, spriteCellSize)</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p>Here is what is rendered on the canvas. As you can see it is super blurry.</p>
+<p><img src="/images/blurry-sprite-render.png" alt="blurry sprite render"></p>
+<h2>The solution</h2>
+<p>One line of CSS fixes this. Setting the <code>image-rendering</code> property on the canvas to be <code>pixelated</code>.
+In the demo code this can be done by adding the following statement at line 10.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#24292E">canvas.style.imageRendering </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "pixelated"</span></span></code></pre>
+<p>The canvas now renders a crisp sprite.</p>
+<p><img src="/images/crisp-sprite-render.png" alt="crisp sprite render"></p>
+</div>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
+</html>
