@@ -375,3 +375,7 @@ td {
 img {
     max-width: 100%;
 }
+
+time {
+  font-style: italic;
+}
