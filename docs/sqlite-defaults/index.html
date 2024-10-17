@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - Sensible defaults for an SQLite website</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="Sensible defaults for an SQLite website" />
+
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, sql"
+        />
+
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - Sensible defaults for an SQLite website"
+        />
+        <meta property="og:description" content="Sensible defaults for an SQLite website" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/sqlite-defaults.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - Sensible defaults for an SQLite website"
+        />
+        <meta name="twitter:description" content="Sensible defaults for an SQLite website" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/sqlite-defaults.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
+
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+    </div>
+</header>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
+                    <li aria-current="page">Sensible defaults for an SQLite website</li>
+                </ol>
+            </nav>
+        </div>
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>Sensible defaults for an SQLite website</h2>
+                        <p class="post-meta">
+                            <time datetime="17/10/2024"
+                            >October 17th, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>SQLite is cool now. DHH uses it, Laravel defaults to it. Here is a list of
+<em>sensible defaults</em> when using sqlite.</p>
+<!-- more -->
+<h2>The whys?</h2>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA journal_mode </span><span style="color:#D73A49">=</span><span style="color:#24292E"> WAL;</span></span></code></pre>
+<p><strong>Why?</strong>: Allows concurrent reads and writes, making it more suitable for web applications with multiple users accessing the database simultaneously.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA synchronous </span><span style="color:#D73A49">=</span><span style="color:#24292E"> NORMAL;</span></span></code></pre>
+<p><strong>Why?</strong>: Balances performance and data safety by ensuring that data is written to disk in a reasonable time frame without slowing down writes as much as <code>FULL</code> mode.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA busy_timeout </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 5000</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Prevents &quot;database is locked&quot; errors by giving SQLite 5 seconds to wait for a locked resource before returning an error, useful for handling multiple concurrent accesses.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA cache_size </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">20000</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Sets the cache size to 20MB, allowing more data to be cached in memory, improving query performance by reducing the number of disk reads.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA foreign_keys </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> ON</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Ensures referential integrity by enforcing foreign key constraints, critical for maintaining consistent relationships between tables (e.g., users, posts, and comments).</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA auto_vacuum </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> INCREMENTAL</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Reclaims disk space gradually as rows are deleted, instead of performing a full vacuum, reducing performance impact during database operations.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA temp_store </span><span style="color:#D73A49">=</span><span style="color:#24292E"> MEMORY;</span></span></code></pre>
+<p><strong>Why?</strong>: Stores temporary tables and other temporary data in memory, improving the performance of operations like sorting and indexing that are common in web applications.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA mmap_size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 2147483648</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Uses memory-mapped I/O with a size of 2GB, which can speed up database access by reducing disk I/O, especially beneficial for large databases with frequent reads and writes.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#24292E">PRAGMA page_size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 8192</span><span style="color:#24292E">;</span></span></code></pre>
+<p><strong>Why?</strong>: Sets a page size of 8KB, which provides a balance between memory usage and disk I/O performance for a forum database that handles many reads and writes.</p>
+<h2>Copy paste</h2>
+<p>For your convenience.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#6A737D">-- Set the journal mode to Write-Ahead Logging for concurrency</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA journal_mode </span><span style="color:#D73A49">=</span><span style="color:#24292E"> WAL;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Set synchronous mode to NORMAL for performance and data safety balance</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA synchronous </span><span style="color:#D73A49">=</span><span style="color:#24292E"> NORMAL;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Set busy timeout to 5 seconds to avoid "database is locked" errors</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA busy_timeout </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 5000</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Set cache size to 20MB for faster data access</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA cache_size </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">20000</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Enable foreign key constraint enforcement</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA foreign_keys </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> ON</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Enable auto vacuuming and set it to incremental mode for gradual space reclaiming</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA auto_vacuum </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> INCREMENTAL</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Store temporary tables and data in memory for better performance</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA temp_store </span><span style="color:#D73A49">=</span><span style="color:#24292E"> MEMORY;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Set the mmap_size to 2GB for faster read/write access using memory-mapped I/O</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA mmap_size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 2147483648</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- Set the page size to 8KB for balanced memory usage and performance</span></span>
+<span class="line"><span style="color:#24292E">PRAGMA page_size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 8192</span><span style="color:#24292E">;</span></span></code></pre>
+</div>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
+</html>
