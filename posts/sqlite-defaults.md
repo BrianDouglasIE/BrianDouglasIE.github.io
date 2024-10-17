@@ -1,5 +1,5 @@
 ---
-title: Sensible defaults for an SQLite website
+title: Sensible SQLite defaults
 tags: [sql]
 date: 17/10/2024
 ---
