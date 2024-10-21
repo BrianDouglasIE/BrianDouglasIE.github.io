@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - I wrote a test framework in Julia</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="I wrote a test framework in Julia" />
+
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, julia"
+        />
+
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - I wrote a test framework in Julia"
+        />
+        <meta property="og:description" content="I wrote a test framework in Julia" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/beedeedee-julia-test-framework.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - I wrote a test framework in Julia"
+        />
+        <meta name="twitter:description" content="I wrote a test framework in Julia" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/beedeedee-julia-test-framework.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
+
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+
+        <a href='https://github.com/BrianDouglasIE'>
+        <svg height="32" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
+          <path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
+        </svg>
+        </a>
+    </div>
+</header>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
+                    <li aria-current="page">I wrote a test framework in Julia</li>
+                </ol>
+            </nav>
+        </div>
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>I wrote a test framework in Julia</h2>
+                        <p class="post-meta">
+                            <time datetime="21/10/2024"
+                            >October 21st, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>Have you ever wondered how frameworks like Jest and Vitest work?
+Well I wrote a BDD style test framework in Julia to find out.</p>
+<!-- more -->
+<chicken-asks>
+Hold up! He wrote a BDD framework in Julia?
+</chicken-asks>
+<magpie-replies>
+Yea, he must think he's a polyglot or something.
+</magpie-replies>
+<h2>Why Julia?</h2>
+<p>Well that is a straight forward one to answer. I was watching a Formula 1
+race and noticed that JuliaHub is a sponsor of the Williams F1 team. So
+naturally I thought I better try out the language and so I set about writing
+some programs in Julia.</p>
+<p>Julia is mainly used in the academic and scientific realms. But at it's core
+it is quite a nice general purpose language.</p>
+<p>It is similar to Python, but it does not support OOP. Instead it uses pattern
+matching with method overloads to handle different data types. For example let's
+say we have a greeter function that can greet students and teachers. In Julia
+that might look like this.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> greet</span><span style="color:#24292E">(person</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Teacher</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#032F62"> "Hello Teacher"</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> greet</span><span style="color:#24292E">(person</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Student</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#032F62"> "Hello Student"</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span></code></pre>
+<p>The correct variant of greet get's called based on the type of <code>struct</code> that is
+passed to the method. A <code>struct</code> being the way to define a custom data type.
+This takes a little bit of getting used to. But once I got my head around the fact
+that Julia operators being methods it started to makes sense. This clicked when
+it came to writing comparators for <a href="https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main">BeeDeeDee.jl</a> the test framework I ended up writing.</p>
+<p>But <strong>why</strong> did I end writing a test framework? I hear you ask. Well because the built
+in Julia test framework lacked features that I wanted and would expect every test
+framework to have. For example hooks, like <code>before_each</code> and <code>after_all</code>, as well
+as human readable methods. The latter being something that the Julia community
+seem to readily reject. Opting to use mathematic operators where they can. Which
+is no surprise when Julia's scientific background is taken into account.</p>
+<p>So I set off into the unknown and started writing a test framework. I had a clear
+idea in mind of what I wanted to achieve. That being an api that looked like the following.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#005CC5">describe</span><span style="color:#24292E">(</span><span style="color:#032F62">"User Age Tests"</span><span style="color:#24292E">) </span><span style="color:#D73A49">do</span></span>
+<span class="line"><span style="color:#005CC5">  it</span><span style="color:#24292E">(</span><span style="color:#032F62">"should have an age greater than or equal 18 and less than 100"</span><span style="color:#24292E">) </span><span style="color:#D73A49">do</span></span>
+<span class="line"><span style="color:#005CC5">    expect</span><span style="color:#24292E">(user</span><span style="color:#D73A49">.</span><span style="color:#24292E">age) </span><span style="color:#D73A49">|></span></span>
+<span class="line"><span style="color:#005CC5">      to_be_greater_than_or_equal</span><span style="color:#24292E">(</span><span style="color:#005CC5">18</span><span style="color:#24292E">) </span><span style="color:#D73A49">|></span><span style="color:#24292E"> and </span><span style="color:#D73A49">|></span><span style="color:#005CC5"> to_be_less_than</span><span style="color:#24292E">(</span><span style="color:#005CC5">100</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">  end</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span></code></pre>
+<h2>The implementation</h2>
+<p>Starting off with the code I wanted to achieve was a great help. I knew that I wanted to
+make use of method chaining using Julia's pipe operator <code>|&gt;</code>. The reason for this being
+that it allows for clear an readable code. It also allows for a data structure to
+be passed through and transformed by multiple methods. This would be necessary for assertions.</p>
+<p>In BeeDeeDee the <code>expect</code> method takes a value and creates and <code>Expectation</code> struct based off of
+that value. The <em>comparators</em>, which are methods that are called against the assertion, then
+take the value of the assertion and apply their own logic. These are essentially methods which
+check for the correct <code>boolean</code> value when comparing their own value with the assertion. I say
+<em>correct</em> <code>boolean</code> value as an <code>Expectation</code> may be negated using the <code>not</code> comparator. Which
+essentially changes reverses the expected <code>boolean</code> value from <code>True</code> to <code>False</code>.</p>
+<p>The <code>Expectation</code> struct itself holds it's own value as well as it's comparator function and
+result of that comparator function, once it has been applied on it's value. This is necessary
+as more than one expectation may be called per test. The code for the <code>Expectation</code> struct is
+minimal as shown below. You'll notice that a <code>Vector{String}</code> data type is also present. This
+is used to store the logs from the Expectation's comparator methods. Which are used for cli
+reporting.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#D73A49">struct</span><span style="color:#24292E"> Expectation</span></span>
+<span class="line"><span style="color:#24292E">    value</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Any</span></span>
+<span class="line"><span style="color:#24292E">    comparator</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Function</span></span>
+<span class="line"><span style="color:#24292E">    result</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Bool</span></span>
+<span class="line"><span style="color:#24292E">    logs</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{String}</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span></code></pre>
+<p>The test framework allows for tests to be grouped and hooks to be applied to those groups.
+Implementing this was difficult and my solution was not ideal. In order to keep track of
+what the current test suite was I used a global variable that stored the current test suite's
+id. The id belonged to a <code>Suite</code> struct that was created when either <code>testgroup</code> or <code>describe</code>
+was called. This struct would then be used to hold information such as the tests which were
+run inside the suite, the results of those tests, as well as the hooks that should be run before
+and after each test. The definition of these structs are below.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#24292E">Base</span><span style="color:#D73A49">.</span><span style="color:#005CC5">@kwdef</span><span style="color:#D73A49"> mutable struct</span><span style="color:#24292E"> Hooks</span></span>
+<span class="line"><span style="color:#24292E">    before_all_called</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Bool</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> false</span></span>
+<span class="line"><span style="color:#24292E">    after_all_called</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Bool</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> false</span></span>
+<span class="line"><span style="color:#24292E">    before_all</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Union{Nothing,Function}}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    after_all</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Union{Nothing,Function}}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    before_each</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Union{Nothing,Function}}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    after_each</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Union{Nothing,Function}}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">Base</span><span style="color:#D73A49">.</span><span style="color:#005CC5">@kwdef</span><span style="color:#D73A49"> mutable struct</span><span style="color:#24292E"> TestResult</span></span>
+<span class="line"><span style="color:#24292E">    description</span><span style="color:#D73A49">::</span><span style="color:#005CC5">String</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> ""</span></span>
+<span class="line"><span style="color:#24292E">    status</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Symbol</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> :Pending</span></span>
+<span class="line"><span style="color:#24292E">    f</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Union{Task,Function}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> () </span><span style="color:#D73A49">-></span><span style="color:#005CC5"> nothing</span></span>
+<span class="line"><span style="color:#24292E">    expectations</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Expectation}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    stacktrace</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Any</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">Base</span><span style="color:#D73A49">.</span><span style="color:#005CC5">@kwdef</span><span style="color:#D73A49"> mutable struct</span><span style="color:#24292E"> Suite</span></span>
+<span class="line"><span style="color:#24292E">    tests</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{TestResult}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    child_suites</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Suite}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    f</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Union{Task,Function}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> () </span><span style="color:#D73A49">-></span><span style="color:#005CC5"> nothing</span></span>
+<span class="line"><span style="color:#24292E">    status</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Symbol</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> :Pending</span></span>
+<span class="line"><span style="color:#24292E">    hooks</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Hooks</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> Hooks</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">    description</span><span style="color:#D73A49">::</span><span style="color:#005CC5">String</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> ""</span></span>
+<span class="line"><span style="color:#24292E">    id</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Int64</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span></code></pre>
+<p>I mentioned that this was not a <em>good</em> solution. This is because it would not allow for current
+test files to be run. Because a global variable it used to store the current suite. The tests
+must be executed in order. Otherwise their results could end up in the wrong <code>Suite</code> struct.
+I'm still not entirely sure how this could be solved. I would have to take a look at other
+frameworks to see how they have solved it.</p>
+<p>The final noteworthy part of the implementation was the use of Julia's built in operators to create
+comparators. I was able to leverage the fact that Julia's builtin operators are methods themselves.
+To create concise comparators. For example I wrote a helper method called <code>construct_comparator</code> that
+took an operator as an argument and then used it as a callback method to compare the expected value
+with the actual value. I have left out the code for <code>construct_comparator</code> as it contains reporting
+logic which makes the code hard to understand without some domain knowledge. What is easy to understand
+however is it's use. For example here is how the <code>to_be</code> comparator is defined.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#24292E">to_be </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> construct_comparator</span><span style="color:#24292E">(</span><span style="color:#D73A49">===</span><span style="color:#24292E">, </span><span style="color:#032F62">"to be"</span><span style="color:#24292E">)</span></span></code></pre>
+<magpie-trinket>
+Why not look through the code for BeeDeeDee.jl yourself. It's a small codebase which can be view at
+<a href="https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main">BrianDouglasIE/BeeDeeDee.jl</a>
+</magpie-trinket>
+<h2>My thoughts on Julia</h2>
+<p>Writing a test framework in an unknown programming language is quite a feat. But it allowed me to
+really dig down deep into Julia in quite a short period of time. I was impressed by the syntax of
+Julia. There are some real opportunities to write beautiful code. The use of the <code>do</code> keyword and
+pipe operator allow for concise and readable code. Even if it took me a while to understand the
+argument order required for the <code>do</code> keyword.</p>
+<p>It's a shame however that the <em>beautiful</em> and readable syntax which Julia can offer is contrasted
+with some awkward syntax such as how default arguments are assigned in a struct. For example, the
+<code>Suite</code> struct in BeeDeeDee.jl.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#24292E">Base</span><span style="color:#D73A49">.</span><span style="color:#005CC5">@kwdef</span><span style="color:#D73A49"> mutable struct</span><span style="color:#24292E"> Suite</span></span>
+<span class="line"><span style="color:#24292E">    tests</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{TestResult}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    child_suites</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Vector{Suite}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> []</span></span>
+<span class="line"><span style="color:#24292E">    f</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Union{Task,Function}</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> () </span><span style="color:#D73A49">-></span><span style="color:#005CC5"> nothing</span></span>
+<span class="line"><span style="color:#24292E">    status</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Symbol</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> :Pending</span></span>
+<span class="line"><span style="color:#24292E">    hooks</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Hooks</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> Hooks</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">    description</span><span style="color:#D73A49">::</span><span style="color:#005CC5">String</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> ""</span></span>
+<span class="line"><span style="color:#24292E">    id</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Int64</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span></code></pre>
+<p>Experienced users of Julia might look past this. But me it reeks of complexity. To understand this
+a developer must understand why the <code>mutable</code> keyword is there, and what <code>Base.@kwdef</code> is, as well
+as why a <code>macro</code> is needed. A <code>macro</code> being a language feature that allow for certain meta programming
+techniques. They are used frequently, but I've only ever found them to add complexity.</p>
+<p>Another example of Julia being awkward is in it's use of <code>modules</code> and <code>exports</code>. I still don't
+fully understand how <code>modules</code> work. One might think of them sort of like a <code>class</code> in OOP. They act
+like a container for code, which can export certain members. Unfortunately though Julia forces
+the developer to export each method individually. Leading to some verbose code. Below is the
+comparators export for BeeDeeDee. A <code>public</code> keyword on the method definition would be much nicer.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#D73A49">export</span><span style="color:#24292E"> to_be,</span></span>
+<span class="line"><span style="color:#24292E">to_be_true,</span></span>
+<span class="line"><span style="color:#24292E">to_be_false,</span></span>
+<span class="line"><span style="color:#24292E">to_be_greater_than,</span></span>
+<span class="line"><span style="color:#24292E">to_be_less_than,</span></span>
+<span class="line"><span style="color:#24292E">to_be_greater_than_or_equal,</span></span>
+<span class="line"><span style="color:#24292E">to_be_less_than_or_equal,</span></span>
+<span class="line"><span style="color:#24292E">to_be_in,</span></span>
+<span class="line"><span style="color:#24292E">to_be_nothing,</span></span>
+<span class="line"><span style="color:#24292E">to_be_typeof,</span></span>
+<span class="line"><span style="color:#24292E">to_be_empty,</span></span>
+<span class="line"><span style="color:#24292E">to_have_key,</span></span>
+<span class="line"><span style="color:#24292E">to_be_subset,</span></span>
+<span class="line"><span style="color:#24292E">to_be_setequal,</span></span>
+<span class="line"><span style="color:#24292E">to_be_disjoint,</span></span>
+<span class="line"><span style="color:#24292E">to_match,</span></span>
+<span class="line"><span style="color:#24292E">to_be_valid_email,</span></span>
+<span class="line"><span style="color:#24292E">to_throw</span></span></code></pre>
+<p>Imports are equally awkward. Every time a module is imported it is imported fresh. Meaning that
+if A.jl and B.jl are in the same application and import C.jl. There will be a conflict and an error
+with Julia, complaining that C.jl is already imported. To get around this Julia developers import
+modules into a common parent and access them using a path like syntax. With <code>using ..C</code> meaning
+import the C.jl module that was required in my parent's scope... yikes.</p>
+<h3>Will Julia become a mainstream language?</h3>
+<p>In data science and academia, yes. In anything else, no.</p>
+<p>Julia is great at what it is designed to do. It doesn't need to be the next web development or
+app language. So don't try to force it. There are better languages out there for those things.</p>
+<p>That said though I really enjoyed learning Julia paradigms. It made a change to my usually sort
+programming and opened my mind to some novel concepts.</p>
+</div>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
+</html>
