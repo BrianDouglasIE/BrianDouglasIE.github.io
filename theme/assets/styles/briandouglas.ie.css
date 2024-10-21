@@ -288,6 +288,12 @@
     background-color: #7f1d1d;
 }
 
+.site-header div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .site-header h1 {
     color: #fff;
 }
@@ -378,4 +384,9 @@ img {
 
 time {
   font-style: italic;
+}
+
+.octicon {
+  fill: white;
+  vertical-align: middle;
 }
