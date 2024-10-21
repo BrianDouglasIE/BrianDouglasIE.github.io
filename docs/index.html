@@ -141,9 +141,9 @@
                 </div>
             </div>
             <div class="content-md mx-auto my-md px-sm">
-                <h2>Most Recent Posts</h2>
+                <h2>Recent Posts</h2>
                 <hr />
-                <ul class="list-reset content-md mx-auto">
+                <ul class="list-reset content-md mx-auto post-list">
     
     <li>
         <article class="post-item">
@@ -197,156 +197,80 @@ between development branches is to add <code>IF NOT EXISTS</code> when creating 
 
     </li>
     
+</ul>
+
+                <h2>Older Posts</h2>
+                <hr />
+                <ul class="list-reset content-md mx-auto post-list">
+    
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/enum-for-status">Using a PostgreSQL enum for state</a></h2>
-        <time datetime="06/10/2024"
-        >October 6th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>There are lot's of occasions where I see SQL table definitions that contain
-various boolean properties to communicate state. Often in these instances it
-would be much more optimal to use an <code>enum</code>.</p>
-</p>
-    <footer>
-        <a href="/enum-for-status">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="06/10/2024">06/10/2024</time>
+  <h2><a href="/enum-for-status">Using a PostgreSQL enum for state</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/conways-game-of-life-go">Conway&#39;s Game of Life in Go</a></h2>
-        <time datetime="01/10/2024"
-        >October 1st, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>Conway's <em>Game of Life</em> is a relatively straight forward cellular automata.
-I created an interactive demo using the rules that exists for it, using Go and Raylib.</p>
-</p>
-    <footer>
-        <a href="/conways-game-of-life-go">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="01/10/2024">01/10/2024</time>
+  <h2><a href="/conways-game-of-life-go">Conway&#39;s Game of Life in Go</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/db-migrator-in-go">Writing a DB migrator in Go</a></h2>
-        <time datetime="30/09/2024"
-        >September 30th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>A database migrator applies database migrations. These are usually SQL scripts that
-update the version of a database. They can be applied and reverted. Allowing for db
-versions to be rolled back and pushed forward.</p>
-</p>
-    <footer>
-        <a href="/db-migrator-in-go">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="30/09/2024">30/09/2024</time>
+  <h2><a href="/db-migrator-in-go">Writing a DB migrator in Go</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/pong-using-raylib-and-go">Creating a Pong clone using Raylib and Go</a></h2>
-        <time datetime="22/09/2024"
-        >September 22nd, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>As a fun exercise I implemented a rudimentary Pong clone using Raylib and Go.</p>
-</p>
-    <footer>
-        <a href="/pong-using-raylib-and-go">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="22/09/2024">22/09/2024</time>
+  <h2><a href="/pong-using-raylib-and-go">Creating a Pong clone using Raylib and Go</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/bit-shifting-for-performance">Bit shifting to increase performance</a></h2>
-        <time datetime="15/09/2024"
-        >September 15th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>I've been watching <a href="https://www.youtube.com/@Vercidium">@Vercidium</a>'s awesome content on YouTube. His videos are all
-about performance optimization in regards to game development, and I learned a nifty performance optimization for my
-JS code as a result.</p>
-</p>
-    <footer>
-        <a href="/bit-shifting-for-performance">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="15/09/2024">15/09/2024</time>
+  <h2><a href="/bit-shifting-for-performance">Bit shifting to increase performance</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/generate-og-images-for-blog-posts">Generate OG images for blog posts</a></h2>
-        <time datetime="07/09/2024"
-        >September 7th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>When sharing an article on social media you will see a preview. The preview uses the html <code>og:image</code> meta tag. In this
-article I will demonstrate how I generate a unique <code>og:image</code> for each of my blog posts.</p>
-</p>
-    <footer>
-        <a href="/generate-og-images-for-blog-posts">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="07/09/2024">07/09/2024</time>
+  <h2><a href="/generate-og-images-for-blog-posts">Generate OG images for blog posts</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/one-assertion-per-test-please">One assertion per test please</a></h2>
-        <time datetime="17/08/2024"
-        >August 17th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>Please! when you are writing tests try to limit each test case to one <code>expect</code>.
-Let's refactor the monstrosity below to understand why fewer expects and more
-tests are better.</p>
-</p>
-    <footer>
-        <a href="/one-assertion-per-test-please">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="17/08/2024">17/08/2024</time>
+  <h2><a href="/one-assertion-per-test-please">One assertion per test please</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/laravel-slug-with-id-fallback">Slugs with an ID fallback in Laravel</a></h2>
-        <time datetime="12/06/2024"
-        >June 12th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>Slugs make a URL look legit. No one wants to click on a link that reads like <code>https://mysite.com/blog/1</code>. I'd definitely get hacked if I clicked that. But what if it read <code>https://mysite.com/blog/1/some-awesome-content</code>. Now that looks trustworthy. I'm definitely gonna see some awesome content if I click that link.</p>
-</p>
-    <footer>
-        <a href="/laravel-slug-with-id-fallback">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="12/06/2024">12/06/2024</time>
+  <h2><a href="/laravel-slug-with-id-fallback">Slugs with an ID fallback in Laravel</a></h2>
 </article>
 
     </li>
     
     <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/laravel-seed-db-with-irish-counties">Seeding a Laravel DB with Irish Counties</a></h2>
-        <time datetime="06/06/2024"
-        >June 6th, 2024</time>
-    </header>
-    <p class="post-excerpt"><p>This is a step-by-step guide on how to seed your database with Irish Counties grouped by their Province.</p>
-</p>
-    <footer>
-        <a href="/laravel-seed-db-with-irish-counties">Read More</a>
-    </footer>
+        <article class="post-item post-item--brief">
+  <time datetime="06/06/2024">06/06/2024</time>
+  <h2><a href="/laravel-seed-db-with-irish-counties">Seeding a Laravel DB with Irish Counties</a></h2>
 </article>
 
     </li>

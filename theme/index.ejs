@@ -111,9 +111,12 @@
                 </div>
             </div>
             <div class="content-md mx-auto my-md px-sm">
-                <h2>Most Recent Posts</h2>
+                <h2>Recent Posts</h2>
                 <hr />
-                <%- include('post-list', { posts }) %>
+                <%- include('post-list', { posts: posts.slice(0, 3) }) %>
+                <h2>Older Posts</h2>
+                <hr />
+                <%- include('post-list-brief', { posts: posts.slice(3) }) %>
             </div>
         </main>
         <%- include('site-footer') %>

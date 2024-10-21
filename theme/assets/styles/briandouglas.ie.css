@@ -95,6 +95,10 @@
     margin-bottom: var(--space-lg);
 }
 
+.Robyn .mt-lg {
+  margin-top: var(--space-lg);
+}
+
 .Robyn .my-auto {
     margin-top: auto;
     margin-bottom: auto;
@@ -304,6 +308,21 @@
 
 .post-full footer {
     font-style: italic;
+}
+
+.post-item--brief {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.post-item--brief h2 {
+  font-size: 1rem;
+}
+
+.post-list {
+  margin-bottom: var(--space-lg);
 }
 
 /*custom elements*/
