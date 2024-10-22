@@ -4,8 +4,9 @@ date: 21/10/2024
 tags: [julia]
 ---
 
-Have you ever wondered how frameworks work. Well I wrote a BDD style
-test framework in Julia to find out.
+I didn't set out to write a test framework in Julia. But I ended up
+going down the rabbit hole, and learning a lot about the language
+on the way.
 
 <!-- more -->
 
