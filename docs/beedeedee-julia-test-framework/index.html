@@ -113,11 +113,11 @@
                             >October 21st, 2024</time>
                         </p>
                     </header>
-                    <div class="post-content"><p>Have you ever wondered how frameworks like Jest and Vitest work?
-Well I wrote a BDD style test framework in Julia to find out.</p>
+                    <div class="post-content"><p>Have you ever wondered how frameworks work. Well I wrote a BDD style
+test framework in Julia to find out.</p>
 <!-- more -->
 <chicken-asks>
-Hold up! He wrote a BDD framework in Julia?
+Hold up! He wrote a test framework in Julia?
 </chicken-asks>
 <magpie-replies>
 Yea, he must think he's a polyglot or something.
@@ -143,9 +143,9 @@ that might look like this.</p>
 <p>The correct variant of greet get's called based on the type of <code>struct</code> that is
 passed to the method. A <code>struct</code> being the way to define a custom data type.
 This takes a little bit of getting used to. But once I got my head around the fact
-that Julia operators being methods it started to makes sense. This clicked when
+that Julia operators were methods it started to make sense. This clicked when
 it came to writing comparators for <a href="https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main">BeeDeeDee.jl</a> the test framework I ended up writing.</p>
-<p>But <strong>why</strong> did I end writing a test framework? I hear you ask. Well because the built
+<p>But <strong>why</strong> did I end up writing a test framework? I hear you ask. Well because the built
 in Julia test framework lacked features that I wanted and would expect every test
 framework to have. For example hooks, like <code>before_each</code> and <code>after_all</code>, as well
 as human readable methods. The latter being something that the Julia community
@@ -164,12 +164,12 @@ idea in mind of what I wanted to achieve. That being an api that looked like the
 make use of method chaining using Julia's pipe operator <code>|&gt;</code>. The reason for this being
 that it allows for clear an readable code. It also allows for a data structure to
 be passed through and transformed by multiple methods. This would be necessary for assertions.</p>
-<p>In BeeDeeDee the <code>expect</code> method takes a value and creates and <code>Expectation</code> struct based off of
+<p>In BeeDeeDee the <code>expect</code> method takes a value and creates an <code>Expectation</code> struct based off of
 that value. The <em>comparators</em>, which are methods that are called against the assertion, then
 take the value of the assertion and apply their own logic. These are essentially methods which
 check for the correct <code>boolean</code> value when comparing their own value with the assertion. I say
 <em>correct</em> <code>boolean</code> value as an <code>Expectation</code> may be negated using the <code>not</code> comparator. Which
-essentially changes reverses the expected <code>boolean</code> value from <code>True</code> to <code>False</code>.</p>
+essentially reverses the expected <code>boolean</code> value from <code>True</code> to <code>False</code>.</p>
 <p>The <code>Expectation</code> struct itself holds it's own value as well as it's comparator function and
 result of that comparator function, once it has been applied on it's value. This is necessary
 as more than one expectation may be called per test. The code for the <code>Expectation</code> struct is
@@ -215,21 +215,21 @@ and after each test. The definition of these structs are below.</p>
 <span class="line"><span style="color:#24292E">    description</span><span style="color:#D73A49">::</span><span style="color:#005CC5">String</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> ""</span></span>
 <span class="line"><span style="color:#24292E">    id</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Int64</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
 <span class="line"><span style="color:#D73A49">end</span></span></code></pre>
-<p>I mentioned that this was not a <em>good</em> solution. This is because it would not allow for current
-test files to be run. Because a global variable it used to store the current suite. The tests
+<p>I mentioned that this was not a <em>good</em> solution. This is because it would not allow for concurrent
+test files to be run. Because a global variable is used to store the current suite, the tests
 must be executed in order. Otherwise their results could end up in the wrong <code>Suite</code> struct.
 I'm still not entirely sure how this could be solved. I would have to take a look at other
-frameworks to see how they have solved it.</p>
+frameworks for some inspiration.</p>
 <p>The final noteworthy part of the implementation was the use of Julia's built in operators to create
-comparators. I was able to leverage the fact that Julia's builtin operators are methods themselves.
-To create concise comparators. For example I wrote a helper method called <code>construct_comparator</code> that
+comparators. I was able to leverage the fact that Julia's builtin operators are methods themselves,
+to create concise comparators. For example I wrote a helper method called <code>construct_comparator</code> that
 took an operator as an argument and then used it as a callback method to compare the expected value
 with the actual value. I have left out the code for <code>construct_comparator</code> as it contains reporting
 logic which makes the code hard to understand without some domain knowledge. What is easy to understand
 however is it's use. For example here is how the <code>to_be</code> comparator is defined.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-julia"><span class="line"><span style="color:#24292E">to_be </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> construct_comparator</span><span style="color:#24292E">(</span><span style="color:#D73A49">===</span><span style="color:#24292E">, </span><span style="color:#032F62">"to be"</span><span style="color:#24292E">)</span></span></code></pre>
 <magpie-trinket>
-Why not look through the code for BeeDeeDee.jl yourself. It's a small codebase which can be view at
+Why not look through the source code of BeeDeeDee.jl yourself. It's a small codebase which can be view at
 <a href="https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main">BrianDouglasIE/BeeDeeDee.jl</a>
 </magpie-trinket>
 <h2>My thoughts on Julia</h2>
@@ -250,9 +250,9 @@ with some awkward syntax such as how default arguments are assigned in a struct.
 <span class="line"><span style="color:#24292E">    description</span><span style="color:#D73A49">::</span><span style="color:#005CC5">String</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> ""</span></span>
 <span class="line"><span style="color:#24292E">    id</span><span style="color:#D73A49">::</span><span style="color:#005CC5">Int64</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
 <span class="line"><span style="color:#D73A49">end</span></span></code></pre>
-<p>Experienced users of Julia might look past this. But me it reeks of complexity. To understand this
+<p>Experienced users of Julia might look past this. But to me it reeks of complexity. To understand this
 a developer must understand why the <code>mutable</code> keyword is there, and what <code>Base.@kwdef</code> is, as well
-as why a <code>macro</code> is needed. A <code>macro</code> being a language feature that allow for certain meta programming
+as why a <code>macro</code> is needed. A <code>macro</code> being a language feature that allows for certain meta programming
 techniques. They are used frequently, but I've only ever found them to add complexity.</p>
 <p>Another example of Julia being awkward is in it's use of <code>modules</code> and <code>exports</code>. I still don't
 fully understand how <code>modules</code> work. One might think of them sort of like a <code>class</code> in OOP. They act
@@ -279,15 +279,17 @@ comparators export for BeeDeeDee. A <code>public</code> keyword on the method de
 <span class="line"><span style="color:#24292E">to_throw</span></span></code></pre>
 <p>Imports are equally awkward. Every time a module is imported it is imported fresh. Meaning that
 if A.jl and B.jl are in the same application and import C.jl. There will be a conflict and an error
-with Julia, complaining that C.jl is already imported. To get around this Julia developers import
+with Julia complaining that C.jl is already imported. To get around this Julia developers import
 modules into a common parent and access them using a path like syntax. With <code>using ..C</code> meaning
 import the C.jl module that was required in my parent's scope... yikes.</p>
 <h3>Will Julia become a mainstream language?</h3>
-<p>In data science and academia, yes. In anything else, no.</p>
-<p>Julia is great at what it is designed to do. It doesn't need to be the next web development or
-app language. So don't try to force it. There are better languages out there for those things.</p>
-<p>That said though I really enjoyed learning Julia paradigms. It made a change to my usually sort
-programming and opened my mind to some novel concepts.</p>
+<p>In data science and academia, yes. Maybe third or fourth for popularity at it's height. But only
+because there seems to be a lot of money behind it. Well at least I assume there must be if
+Formula 1 cars are being sponsored by JuliaHub.</p>
+<p>In anything else, no. I was not convinced that Julia would help me solve any problems on the web or
+in game dev. It did introduce me to some novel concepts. But ultimately there was nothing there to
+convert me into a Julia developer. The main annoyances being around how modules work. I could never
+imagine building a large complicated system in a language that has such confusing code interop.</p>
 </div>
                     <footer>
                         <p>Until next time,</p>

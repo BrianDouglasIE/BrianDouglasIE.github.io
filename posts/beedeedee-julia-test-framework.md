@@ -4,13 +4,13 @@ date: 21/10/2024
 tags: [julia]
 ---
 
-Have you ever wondered how frameworks like Jest and Vitest work?
-Well I wrote a BDD style test framework in Julia to find out.
+Have you ever wondered how frameworks work. Well I wrote a BDD style
+test framework in Julia to find out.
 
 <!-- more -->
 
 <chicken-asks>
-Hold up! He wrote a BDD framework in Julia?
+Hold up! He wrote a test framework in Julia?
 </chicken-asks>
 
 <magpie-replies>
@@ -45,10 +45,10 @@ end
 The correct variant of greet get's called based on the type of `struct` that is 
 passed to the method. A `struct` being the way to define a custom data type.
 This takes a little bit of getting used to. But once I got my head around the fact
-that Julia operators being methods it started to makes sense. This clicked when
+that Julia operators were methods it started to make sense. This clicked when
 it came to writing comparators for [BeeDeeDee.jl](https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main) the test framework I ended up writing.
 
-But __why__ did I end writing a test framework? I hear you ask. Well because the built
+But __why__ did I end up writing a test framework? I hear you ask. Well because the built
 in Julia test framework lacked features that I wanted and would expect every test 
 framework to have. For example hooks, like `before_each` and `after_all`, as well
 as human readable methods. The latter being something that the Julia community
@@ -74,12 +74,12 @@ make use of method chaining using Julia's pipe operator `|>`. The reason for thi
 that it allows for clear an readable code. It also allows for a data structure to
 be passed through and transformed by multiple methods. This would be necessary for assertions.
 
-In BeeDeeDee the `expect` method takes a value and creates and `Expectation` struct based off of
+In BeeDeeDee the `expect` method takes a value and creates an `Expectation` struct based off of
 that value. The _comparators_, which are methods that are called against the assertion, then
 take the value of the assertion and apply their own logic. These are essentially methods which
 check for the correct `boolean` value when comparing their own value with the assertion. I say
 _correct_ `boolean` value as an `Expectation` may be negated using the `not` comparator. Which 
-essentially changes reverses the expected `boolean` value from `True` to `False`.
+essentially reverses the expected `boolean` value from `True` to `False`.
 
 The `Expectation` struct itself holds it's own value as well as it's comparator function and
 result of that comparator function, once it has been applied on it's value. This is necessary
@@ -134,15 +134,15 @@ Base.@kwdef mutable struct Suite
 end
 ```
 
-I mentioned that this was not a _good_ solution. This is because it would not allow for current
-test files to be run. Because a global variable it used to store the current suite. The tests
+I mentioned that this was not a _good_ solution. This is because it would not allow for concurrent
+test files to be run. Because a global variable is used to store the current suite, the tests
 must be executed in order. Otherwise their results could end up in the wrong `Suite` struct.
 I'm still not entirely sure how this could be solved. I would have to take a look at other 
-frameworks to see how they have solved it.
+frameworks for some inspiration.
 
 The final noteworthy part of the implementation was the use of Julia's built in operators to create
-comparators. I was able to leverage the fact that Julia's builtin operators are methods themselves.
-To create concise comparators. For example I wrote a helper method called `construct_comparator` that
+comparators. I was able to leverage the fact that Julia's builtin operators are methods themselves,
+to create concise comparators. For example I wrote a helper method called `construct_comparator` that
 took an operator as an argument and then used it as a callback method to compare the expected value
 with the actual value. I have left out the code for `construct_comparator` as it contains reporting
 logic which makes the code hard to understand without some domain knowledge. What is easy to understand
@@ -153,7 +153,7 @@ to_be = construct_comparator(===, "to be")
 ```
 
 <magpie-trinket>
-Why not look through the code for BeeDeeDee.jl yourself. It's a small codebase which can be view at
+Why not look through the source code of BeeDeeDee.jl yourself. It's a small codebase which can be view at
 <a href="https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main">BrianDouglasIE/BeeDeeDee.jl</a>
 </magpie-trinket>
 
@@ -181,9 +181,9 @@ Base.@kwdef mutable struct Suite
 end
 ```
 
-Experienced users of Julia might look past this. But me it reeks of complexity. To understand this
+Experienced users of Julia might look past this. But to me it reeks of complexity. To understand this
 a developer must understand why the `mutable` keyword is there, and what `Base.@kwdef` is, as well
-as why a `macro` is needed. A `macro` being a language feature that allow for certain meta programming
+as why a `macro` is needed. A `macro` being a language feature that allows for certain meta programming
 techniques. They are used frequently, but I've only ever found them to add complexity.
 
 Another example of Julia being awkward is in it's use of `modules` and `exports`. I still don't
@@ -215,16 +215,18 @@ to_throw
 
 Imports are equally awkward. Every time a module is imported it is imported fresh. Meaning that
 if A.jl and B.jl are in the same application and import C.jl. There will be a conflict and an error
-with Julia, complaining that C.jl is already imported. To get around this Julia developers import
+with Julia complaining that C.jl is already imported. To get around this Julia developers import
 modules into a common parent and access them using a path like syntax. With `using ..C` meaning 
 import the C.jl module that was required in my parent's scope... yikes.
 
 ### Will Julia become a mainstream language?
 
-In data science and academia, yes. In anything else, no.
+In data science and academia, yes. Maybe third or fourth for popularity at it's height. But only 
+because there seems to be a lot of money behind it. Well at least I assume there must be if 
+Formula 1 cars are being sponsored by JuliaHub.
 
-Julia is great at what it is designed to do. It doesn't need to be the next web development or
-app language. So don't try to force it. There are better languages out there for those things.
+In anything else, no. I was not convinced that Julia would help me solve any problems on the web or
+in game dev. It did introduce me to some novel concepts. But ultimately there was nothing there to
+convert me into a Julia developer. The main annoyances being around how modules work. I could never
+imagine building a large complicated system in a language that has such confusing code interop.
 
-That said though I really enjoyed learning Julia paradigms. It made a change to my usually sort
-programming and opened my mind to some novel concepts.
