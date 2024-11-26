@@ -18,7 +18,7 @@ const md = MarkdownIt({ html: true });
 
 md.use(
   await Shiki({
-    theme: "github-light"
+    theme: "github-light",
   }),
 );
 

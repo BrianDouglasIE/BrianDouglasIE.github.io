@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - Partial function implementation</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="Partial function implementation" />
+
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, js"
+        />
+
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - Partial function implementation"
+        />
+        <meta property="og:description" content="Partial function implementation" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/partial-implementation.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - Partial function implementation"
+        />
+        <meta name="twitter:description" content="Partial function implementation" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/partial-implementation.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
+
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <div class="wrap content-md mx-auto">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+
+        <a href='https://github.com/BrianDouglasIE'>
+        <svg height="32" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
+          <path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
+        </svg>
+        </a>
+    </div>
+</header>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
+                    <li aria-current="page">Partial function implementation</li>
+                </ol>
+            </nav>
+        </div>
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>Partial function implementation</h2>
+                        <p class="post-meta">
+                            <time datetime="25/11/2024"
+                            >November 25th, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>Partial function implementation is a functional programming technique that
+can be used to create many functions from one, by binding fixed arguments.</p>
+<!-- more -->
+<magpie-trinket>
+Another name for this is <i>currying</i>. You can read more about it at 
+<a href="https://en.wikipedia.org/wiki/Currying">wiki/currying</a>.
+</magpie-trinket>
+<h2>Example</h2>
+<p>The common way of explaining this is by using the following math example.
+Say we have a function called <code>add(a: number, b: number)</code>. We could use this
+to create a function called <code>addOne</code> by binding one as the first argument
+like so:</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-typescript"><span class="line"><span style="color:#D73A49">const</span><span style="color:#6F42C1"> add</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">a</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> number</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> number</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> a </span><span style="color:#D73A49">+</span><span style="color:#24292E"> b</span></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> addOne</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> partial</span><span style="color:#24292E">(add, </span><span style="color:#005CC5">1</span><span style="color:#24292E">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">addOne</span><span style="color:#24292E">(</span><span style="color:#005CC5">2</span><span style="color:#24292E">) </span><span style="color:#6A737D">// 3</span></span></code></pre>
+<p>The above is a naive example, but I'm sure that you can see how this would
+be of benefit in more complex examples. Perhaps it could be use to build
+up config methods in your application or to create methods that work on a
+certain instance of an object, where you cannot modify the source code.</p>
+<h2>Implementation</h2>
+<p>Implementing a method that can partially apply arguments to other methods is
+somewhat trivial thanks to ECMAScript's syntactic sugar.</p>
+<p>Below is a Typed and untyped example.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-typescript"><span class="line"><span style="color:#6A737D">// Untyped</span></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#6F42C1"> partial</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">fn</span><span style="color:#24292E">, </span><span style="color:#D73A49">...</span><span style="color:#E36209">fixedArgs</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#6F42C1"> fn</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#24292E">fixedArgs, </span><span style="color:#D73A49">...</span><span style="color:#24292E">args)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Typed... and ugly</span></span>
+<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> partial</span><span style="color:#24292E">&#x3C;</span><span style="color:#6F42C1">T</span><span style="color:#24292E">, </span><span style="color:#6F42C1">U</span><span style="color:#D73A49"> extends</span><span style="color:#005CC5"> any</span><span style="color:#24292E">[], </span><span style="color:#6F42C1">V</span><span style="color:#D73A49"> extends</span><span style="color:#005CC5"> any</span><span style="color:#24292E">[]>(</span></span>
+<span class="line"><span style="color:#6F42C1">  fn</span><span style="color:#D73A49">:</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#D73A49">:</span><span style="color:#24292E"> [</span><span style="color:#D73A49">...</span><span style="color:#6F42C1">U</span><span style="color:#24292E">, </span><span style="color:#D73A49">...</span><span style="color:#6F42C1">V</span><span style="color:#24292E">]) </span><span style="color:#D73A49">=></span><span style="color:#005CC5"> any</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">  ...</span><span style="color:#E36209">fixedargs</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> U</span></span>
+<span class="line"><span style="color:#24292E">)</span><span style="color:#D73A49">:</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> V</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#005CC5"> any</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> (</span><span style="color:#D73A49">...</span><span style="color:#E36209">args</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> V</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#6F42C1"> fn</span><span style="color:#24292E">(</span><span style="color:#D73A49">...</span><span style="color:#24292E">fixedargs, </span><span style="color:#D73A49">...</span><span style="color:#24292E">args);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p>There is possibly a nicer way to type this, that does not use <code>any</code>. However I don't
+feel like wrestling with the type system. Mainly because the use of <code>partial</code> implementation
+lends itself better to loosely typed programming.</p>
+</div>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+        </div>
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
+</html>

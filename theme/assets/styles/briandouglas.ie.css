@@ -266,17 +266,13 @@
         align-self: center;
     }
 
-    .bio-text-container {
-        padding: 0 0 1.5rem;
-    }
-
     .bio.content-md {
         margin-top: -12px;
     }
 }
 
 .breadcrumbs {
-    background-color: #eee;
+    background-color: #efefef;
 }
 
 .breadcrumbs ol {
@@ -303,7 +299,7 @@
 }
 
 .gray-bg {
-    background-color: #fafafa;
+    background-color: #efefef;
 }
 
 .post-full footer {
@@ -411,7 +407,7 @@ time {
 }
 
 body {
-  background: hsl(0, 0%, 96%);
+  background: hsl(0, 0%, 97%);
 }
 
 .wrap {
