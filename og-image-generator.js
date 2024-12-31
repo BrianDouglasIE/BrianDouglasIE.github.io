@@ -4,7 +4,7 @@ import path from "node:path";
 
 const OUT_DIR = "./docs/images/og-images";
 const FONT = PImage.registerFont(
-  "/home/brian/.local/share/fonts/fonts/ttf/JetBrainsMono-Regular.ttf",
+  path.join(process.cwd(), "./theme/fonts/JetBrainsMono-Regular.ttf"),
   "MyFont",
 );
 

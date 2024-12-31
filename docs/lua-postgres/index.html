@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Title -->
+        <title>Brian Douglas' Tech Blog - Setting up PostgreSQL and Lua in Docker</title>
+
+        <!-- Meta Description -->
+        <meta name="description" content="Setting up PostgreSQL and Lua in Docker" />
+
+        <!-- Keywords -->
+        <meta
+            name="keywords"
+            content="Brian Douglas, tech blog, lua,docker,postgres"
+        />
+
+        <!-- Author -->
+        <meta name="author" content="Brian Douglas" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Brian Douglas' Tech Blog - Setting up PostgreSQL and Lua in Docker"
+        />
+        <meta property="og:description" content="Setting up PostgreSQL and Lua in Docker" />
+        <meta property="og:url" content="https://www.briandouglas.ie" />
+        <meta
+            property="og:image"
+            content="https://www.briandouglas.ie/images/og-images/lua-postgres.png"
+        />
+        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+
+        <!-- Twitter Meta -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Brian Douglas' Tech Blog - Setting up PostgreSQL and Lua in Docker"
+        />
+        <meta name="twitter:description" content="Setting up PostgreSQL and Lua in Docker" />
+        <meta
+            name="twitter:image"
+            content="https://www.briandouglas.ie/images/og-images/lua-postgres.png"
+        />
+        <meta name="twitter:site" content="@BrianDouglasIE" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://www.briandouglas.ie" />
+
+        <!-- Favicon (Optional) -->
+        <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+        />
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+
+        <!-- Favicon-->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    </head>
+    <body class="m-0">
+        <div class="wrap content-md mx-auto">
+        <header class="site-header">
+    <div class="content-md mx-auto px-sm">
+        <h1 class="m-0">Brian Douglas</h1>
+
+        <a href='https://github.com/BrianDouglasIE'>
+        <svg height="32" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
+          <path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
+        </svg>
+        </a>
+    </div>
+</header>
+
+        <div class="breadcrumbs">
+            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                <ol class="list-reset m-0">
+                    <li><a href="/">Home</a></li> /
+                    <li aria-current="page">Setting up PostgreSQL and Lua in Docker</li>
+                </ol>
+            </nav>
+        </div>
+        <main>
+            <div class="content-md mx-auto px-sm my-md">
+                <article class="post-full">
+                    <header>
+                        <h2>Setting up PostgreSQL and Lua in Docker</h2>
+                        <p class="post-meta">
+                            <time datetime="31/12/2024"
+                            >December 31st, 2024</time>
+                        </p>
+                    </header>
+                    <div class="post-content"><p>I did a quick exploration into Lua after seeing is used in the CS50 game dev course.</p>
+<!-- more -->
+<magpie-trinket>
+The environment used for this tutorial is Ubuntu running inside WSL.
+</magpie-trinket>
+<h2>Creating the PostgreSQL container</h2>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>docker run --name postgres-1 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine</span></span></code></pre>
+<p>This command creates an instance of the <code>postgres:alpine</code> container. The <code>--name</code> flag is used to assign a name to the container.
+The <code>-e</code> flag passes in the required environment variables. In this case a <code>POSTGRES_PASSWORD</code> is required. This will be used to
+authenticate the <code>postgres</code> user. <code>-d</code> tells docker to run the command as a background process. Finally <code>-p</code> is used to expose
+the port that postgres is running on. The default is <code>5432</code>, so we map the container's <code>5432</code> to <code>localhost:5432</code>.</p>
+<h2>Create a database and add some content</h2>
+<h3>Access the PostgreSQL instance running inside the Docker container</h3>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>docker exec -it postgres-1 psql -h localhost -p 5432 -U postgres</span></span></code></pre>
+<p>This command can be broken into two parts. The first part <code>docker exec -it postgres-1</code>, tells docker the execute the following
+command inside our previously created container. The <code>-it</code> flag is a combination of <code>--interactive</code> and<code>--tty</code>. This tells
+docker to take you straight inside the container.</p>
+<p>The second part of the command <code>psql -h localhost -p 5432 -U postgres</code> takes us inside the postgres server. The <code>-h</code> flag
+specifies the the host, <code>-p</code> specifies the port, and <code>-U</code> the user we want to login as.</p>
+<p>Once the initial command is run you should see the postgres prompt. We can now create a database and populate it with some information.</p>
+<h3>Create and modify database</h3>
+<p>Once inside the postgres instance we can use the following commands to create a database, add a table to
+that database, and finally insert data into the table.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>create database test;</span></span></code></pre>
+<p>The above command creates a database named &quot;test&quot;. We can then connect to that database using the following command.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>\c test;</span></span></code></pre>
+<p>Once connected we can run the following to add the <code>messages</code> table to the test database.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>create table if not exists messages();</span></span>
+<span class="line"><span>alter table messages add column id uuid not null primary key;</span></span>
+<span class="line"><span>alter table messages add column content varchar(255);</span></span>
+<span class="line"><span>insert into messages (id, content) values (uuid_generate_v4(), 'Hi, from postgres');</span></span></code></pre>
+<blockquote>
+<p>Install the <code>uuid-ossp</code> extension with the following command <code>create extension if not exists &quot;uuid-ossp&quot;;</code></p>
+</blockquote>
+<p>After successfully running the above our <code>test</code> database will now have some content which we will fetch with lua.</p>
+<h2>Querying the database with Lua</h2>
+<h3>Installing luasql via LuaRocks</h3>
+<p>In order to connect to our postgres database with Lua, we will use the <code>luasql.postgres</code> rock.
+To install this rock run the following command <code>luarocks install luasql-postgres</code>.</p>
+<h4>Fixing the <code>libpq-fe.h</code> install error on Ubuntu</h4>
+<p>If you are using Ubuntu to follow this tutorial, you may see the following error when running <code>luarocks install luasql-postgres</code>.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>Error: Could not find header file for PGSQL</span></span>
+<span class="line"><span>  No file libpq-fe.h in /usr/local/include</span></span>
+<span class="line"><span>  No file libpq-fe.h in /usr/include</span></span>
+<span class="line"><span>  No file libpq-fe.h in /include</span></span>
+<span class="line"><span>You may have to install PGSQL in your system and/or pass PGSQL_DIR or PGSQL_INCDIR to the luarocks command.</span></span></code></pre>
+<p>This can be solved by passing the <code>PGSQL_INCDIR</code> property to the progam. Commonly the required value is
+<code>/usr/include/postgresql/</code>. As that is the directory containing the <code>libpg-fe.h</code>.</p>
+<p>Run the command as follows to successfully install <code>luasql-postgres</code>.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>luarocks install luasql-postgres PGSQL_INCDIR=/usr/include/postgresql</span></span></code></pre>
+<h3>Writing a lua script to print the messages</h3>
+<p>Once <code>luasql-postgres</code> has successfully been installed, we can then write a Lua program to fetch records
+from the database we created earlier.</p>
+<p>Create a <code>main.lua</code> file and add the following.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-lua"><span class="line"><span style="color:#6A737D">-- load driver</span></span>
+<span class="line"><span style="color:#D73A49">local</span><span style="color:#24292E"> driver </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> require</span><span style="color:#032F62"> "luasql.postgres"</span></span>
+<span class="line"><span style="color:#6A737D">-- create environment object</span></span>
+<span class="line"><span style="color:#24292E">env </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> assert</span><span style="color:#24292E"> (driver.</span><span style="color:#005CC5">postgres</span><span style="color:#24292E">())</span></span>
+<span class="line"><span style="color:#6A737D">-- connect to data source</span></span>
+<span class="line"><span style="color:#24292E">con </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> assert</span><span style="color:#24292E"> (</span><span style="color:#6F42C1">env</span><span style="color:#24292E">:</span><span style="color:#005CC5">connect</span><span style="color:#24292E">(</span><span style="color:#032F62">"test"</span><span style="color:#24292E">))</span></span>
+<span class="line"><span style="color:#6A737D">-- reset our table</span></span>
+<span class="line"><span style="color:#24292E">cur </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> con</span><span style="color:#24292E">:</span><span style="color:#005CC5">execute</span><span style="color:#032F62">"SELECT * FROM messages;"</span></span>
+<span class="line"><span style="color:#24292E">row </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> cur</span><span style="color:#24292E">:</span><span style="color:#005CC5">fetch</span><span style="color:#24292E"> ({}, </span><span style="color:#032F62">"a"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">while</span><span style="color:#24292E"> row </span><span style="color:#D73A49">do</span></span>
+<span class="line"><span style="color:#005CC5">  print</span><span style="color:#24292E">(</span><span style="color:#005CC5">string.format</span><span style="color:#24292E">(</span><span style="color:#032F62">"MESSAGE: %s"</span><span style="color:#24292E">, row.</span><span style="color:#6F42C1">content</span><span style="color:#24292E">))</span></span>
+<span class="line"><span style="color:#6A737D">  -- reusing the table of results</span></span>
+<span class="line"><span style="color:#24292E">  row </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> cur</span><span style="color:#24292E">:</span><span style="color:#005CC5">fetch</span><span style="color:#24292E"> (row, </span><span style="color:#032F62">"a"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">end</span></span>
+<span class="line"><span style="color:#6A737D">-- close everything</span></span>
+<span class="line"><span style="color:#6F42C1">cur</span><span style="color:#24292E">:</span><span style="color:#005CC5">close</span><span style="color:#24292E">() </span><span style="color:#6A737D">-- already closed because all the result set was consumed</span></span>
+<span class="line"><span style="color:#6F42C1">con</span><span style="color:#24292E">:</span><span style="color:#005CC5">close</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#6F42C1">env</span><span style="color:#24292E">:</span><span style="color:#005CC5">close</span><span style="color:#24292E">()</span></span></code></pre>
+<h3>Run the script with the correct env variables</h3>
+<p>The script written inside our <code>main.lua</code> file expects that we supply some postgres variables when running it.
+These are <code>PGUSER</code>, the user we want to connect to our database with. <code>PGPASSWORD</code>, the password set for the
+user. <code>PGHOST</code>, the host we will use to access the server. And finally, <code>PGPORT</code>, the port number at which we
+can access the postgres server.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>PGUSER=postgres PGPASSWORD=password PGDATABASE=lua_messages PGHOST=localhost PGPORT=5432 lua main.lua</span></span></code></pre>
+<p>Running the above script should print out the content of the messages we added to our postgres database.</p>
+</div>
+                    <footer>
+                        <p>Until next time,</p>
+                        <p>— Brian</p>
+                    </footer>
+                </article>
+            </div>
+        </main>
+        <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+        </div>
+        <script src="/scripts/chicken-and-magpie.js"></script>
+    </body>
+</html>
