@@ -96,7 +96,7 @@
 }
 
 .Robyn .mt-lg {
-  margin-top: var(--space-lg);
+    margin-top: var(--space-lg);
 }
 
 .Robyn .my-auto {
@@ -177,7 +177,12 @@
     color: var(--font-color);
 }
 
-.Robyn h1, .Robyn h2, .Robyn h3, .Robyn h4, .Robyn h5, .Robyn h6 {
+.Robyn h1,
+.Robyn h2,
+.Robyn h3,
+.Robyn h4,
+.Robyn h5,
+.Robyn h6 {
     font-family: var(--font-family-heading);
     font-weight: var(--font-weight-heading);
     line-height: var(--line-height-heading);
@@ -196,7 +201,8 @@
     color: var(--link-color-visited);
 }
 
-.Robyn code, .Robyn pre {
+.Robyn code,
+.Robyn pre {
     font-family: var(--font-family-monospace);
     border-radius: var(--pre-border-radius);
     border: 1px solid var(--pre-border-color);
@@ -223,8 +229,7 @@
     padding: var(--space-sm, 1rem);
     border-radius: var(--quote-border-radius);
     border: 1px solid var(--quote-border-color);
-    border-left: var(--quote-border-left-thickness) solid
-        var(--quote-border-color);
+    border-left: var(--quote-border-left-thickness) solid var(--quote-border-color);
 }
 
 .Robyn blockquote:before {
@@ -289,9 +294,9 @@
 }
 
 .site-header div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .site-header h1 {
@@ -299,7 +304,7 @@
 }
 
 .gray-bg {
-    background-color: #efefef;
+    background-color: #eee;
 }
 
 .post-full footer {
@@ -307,18 +312,18 @@
 }
 
 .post-item--brief {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
 }
 
 .post-item--brief h2 {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .post-list {
-  margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-lg);
 }
 
 /*custom elements*/
@@ -368,7 +373,8 @@ magpie-trinket h3 {
     margin-top: 0;
 }
 
-chicken-asks, magpie-replies {
+chicken-asks,
+magpie-replies {
     margin: 0 .25rem;
 }
 
@@ -379,7 +385,9 @@ table {
     border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ccc;
 }
 
@@ -398,20 +406,20 @@ img {
 }
 
 time {
-  font-style: italic;
+    font-style: italic;
 }
 
 .octicon {
-  fill: white;
-  vertical-align: middle;
+    fill: white;
+    vertical-align: middle;
 }
 
 body {
-  background: hsl(0, 0%, 97%);
+    background: hsl(0, 0%, 97%);
 }
 
 .wrap {
-  background: white;
-  border-left: 1px solid hsl(0, 0%, 92%);
-  border-right: 1px solid hsl(0, 0%, 92%);
+    background: white;
+    border-left: 1px solid hsl(0, 0%, 92%);
+    border-right: 1px solid hsl(0, 0%, 92%);
 }

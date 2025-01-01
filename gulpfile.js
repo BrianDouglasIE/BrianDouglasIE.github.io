@@ -8,7 +8,7 @@ import connect from "gulp-connect";
 import rename from "gulp-rename";
 import * as templateHelpers from "./template-helpers.js";
 import { generateSitemap } from "./sitemap.js";
-import {generateOGImage} from "./og-image-generator.js";
+import { Worker } from 'worker_threads';
 
 let POSTS = getPosts();
 const DIST = "./docs";
@@ -64,10 +64,22 @@ export function sitemap() {
   });
 }
 
+function runWorker(file, data) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(file, { workerData: data });
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code) => {
+      if (code !== 0) reject(new Error(`Worker stopped with exit code ${code}`));
+    });
+  });
+}
+
 export async function generateOGImages() {
-  for (const post of POSTS) {
-    await generateOGImage(post);
-  }
+  const promises = POSTS.map((post) => 
+    runWorker('./og-image-generator.worker.js', post)
+  );
+  await Promise.all(promises);
 }
 
 export const build = series([
