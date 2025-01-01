@@ -1,118 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" class="Robyn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Title -->
-        <title>Brian Douglas' Tech Blog - <%= post.data.title %></title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Meta Description -->
-        <meta name="description" content="<%= post.data.title %>" />
+    <!-- Title -->
+    <title>BrianDouglas.ie - <%= post.data.title %>
+    </title>
 
-        <!-- Keywords -->
-        <meta
-            name="keywords"
-            content="Brian Douglas, tech blog, <%= post.data.tags.join(',') %>"
-        />
+    <!-- Meta Description -->
+    <meta name="description" content="<%= post.data.title %>" />
 
-        <!-- Author -->
-        <meta name="author" content="Brian Douglas" />
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, <%= post.data.tags.join(',') %>" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="Brian Douglas' Tech Blog - <%= post.data.title %>"
-        />
-        <meta property="og:description" content="<%= post.data.title %>" />
-        <meta property="og:url" content="https://www.briandouglas.ie" />
-        <meta
-            property="og:image"
-            content="https://www.briandouglas.ie/images/og-images<%= post.slug %>.png"
-        />
-        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
 
-        <!-- Twitter Meta -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-            name="twitter:title"
-            content="Brian Douglas' Tech Blog - <%= post.data.title %>"
-        />
-        <meta name="twitter:description" content="<%= post.data.title %>" />
-        <meta
-            name="twitter:image"
-            content="https://www.briandouglas.ie/images/og-images<%= post.slug %>.png"
-        />
-        <meta name="twitter:site" content="@BrianDouglasIE" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - <%= post.data.title %>" />
+    <meta property="og:description" content="<%= post.data.title %>" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="https://www.briandouglas.ie/images/og-images<%= post.slug %>.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled '<%= post.data.title %>'" />
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://www.briandouglas.ie" />
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BrianDouglas.ie - <%= post.data.title %>" />
+    <meta name="twitter:description" content="<%= post.data.title %>" />
+    <meta name="twitter:image" content="https://www.briandouglas.ie/images/og-images<%= post.slug %>.png" />
 
-        <!-- Favicon (Optional) -->
-        <link
-            rel="icon"
-            href="https://www.briandouglas.ie/favicon.ico"
-            type="image/x-icon"
-        />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
 
-        <!-- Robots -->
-        <meta name="robots" content="index, follow" />
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
 
-        <!-- Favicon-->
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
-        <%- include('stylesheets') %>
-    </head>
-    <body class="m-0">
-        <div class="wrap content-md mx-auto">
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <%- include('stylesheets') %>
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
         <%- include('site-header') %>
-        <div class="breadcrumbs">
-            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                <ol class="list-reset m-0">
-                    <li><a href="/">Home</a></li> /
-                    <li aria-current="page"><%= post.data.title %></li>
-                </ol>
-            </nav>
-        </div>
-        <main>
-            <div class="content-md mx-auto px-sm my-md">
-                <article class="post-full">
-                    <header>
-                        <h2><%= post.data.title %></h2>
-                        <p class="post-meta">
-                            <time datetime="<%= post.data.date %>"
-                            ><%= helpers.formatDate(post.data.date) %></time>
-                        </p>
-                    </header>
-                    <div class="post-content"><%- post.html %></div>
-                    <footer>
-                        <p>Until next time,</p>
-                        <p>— Brian</p>
-                    </footer>
-                </article>
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            <%= post.data.title %>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-        </main>
-        <%- include('site-footer') %>
-        </div>
-        <script src="/scripts/chicken-and-magpie.js"></script>
-    </body>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                <%= post.data.title %>
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="<%= post.data.date %>">
+                                    <%= helpers.formatDate(post.data.date) %>
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><%- post.html %></div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <%- include('site-footer') %>
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+
 </html>
