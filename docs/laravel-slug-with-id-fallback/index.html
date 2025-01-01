@@ -1,89 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" class="Robyn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Title -->
-        <title>Brian Douglas' Tech Blog - Slugs with an ID fallback in Laravel</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Meta Description -->
-        <meta name="description" content="Slugs with an ID fallback in Laravel" />
+    <!-- Title -->
+    <title>BrianDouglas.ie - Slugs with an ID fallback in Laravel
+    </title>
 
-        <!-- Keywords -->
-        <meta
-            name="keywords"
-            content="Brian Douglas, tech blog, laravel"
-        />
+    <!-- Meta Description -->
+    <meta name="description" content="Slugs with an ID fallback in Laravel" />
 
-        <!-- Author -->
-        <meta name="author" content="Brian Douglas" />
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, laravel" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="Brian Douglas' Tech Blog - Slugs with an ID fallback in Laravel"
-        />
-        <meta property="og:description" content="Slugs with an ID fallback in Laravel" />
-        <meta property="og:url" content="https://www.briandouglas.ie" />
-        <meta
-            property="og:image"
-            content="https://www.briandouglas.ie/images/og-images/laravel-slug-with-id-fallback.png"
-        />
-        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
 
-        <!-- Twitter Meta -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-            name="twitter:title"
-            content="Brian Douglas' Tech Blog - Slugs with an ID fallback in Laravel"
-        />
-        <meta name="twitter:description" content="Slugs with an ID fallback in Laravel" />
-        <meta
-            name="twitter:image"
-            content="https://www.briandouglas.ie/images/og-images/laravel-slug-with-id-fallback.png"
-        />
-        <meta name="twitter:site" content="@BrianDouglasIE" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Slugs with an ID fallback in Laravel" />
+    <meta property="og:description" content="Slugs with an ID fallback in Laravel" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/laravel-slug-with-id-fallback.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Slugs with an ID fallback in Laravel'" />
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://www.briandouglas.ie" />
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Slugs with an ID fallback in Laravel" />
+    <meta name="twitter:description" content="Slugs with an ID fallback in Laravel" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/laravel-slug-with-id-fallback.png" />
 
-        <!-- Favicon (Optional) -->
-        <link
-            rel="icon"
-            href="https://www.briandouglas.ie/favicon.ico"
-            type="image/x-icon"
-        />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
 
-        <!-- Robots -->
-        <meta name="robots" content="index, follow" />
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
 
-        <!-- Favicon-->
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
-        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
-    </head>
-    <body class="m-0">
-        <div class="wrap content-md mx-auto">
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
         <header class="site-header">
     <div class="content-md mx-auto px-sm">
         <h1 class="m-0">Brian Douglas</h1>
@@ -96,25 +69,30 @@
     </div>
 </header>
 
-        <div class="breadcrumbs">
-            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                <ol class="list-reset m-0">
-                    <li><a href="/">Home</a></li> /
-                    <li aria-current="page">Slugs with an ID fallback in Laravel</li>
-                </ol>
-            </nav>
-        </div>
-        <main>
-            <div class="content-md mx-auto px-sm my-md">
-                <article class="post-full">
-                    <header>
-                        <h2>Slugs with an ID fallback in Laravel</h2>
-                        <p class="post-meta">
-                            <time datetime="12/06/2024"
-                            >June 12th, 2024</time>
-                        </p>
-                    </header>
-                    <div class="post-content"><p>Slugs make a URL look legit. No one wants to click on a link that reads like <code>https://mysite.com/blog/1</code>. I'd definitely get hacked if I clicked that. But what if it read <code>https://mysite.com/blog/1/some-awesome-content</code>. Now that looks trustworthy. I'm definitely gonna see some awesome content if I click that link.</p>
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Slugs with an ID fallback in Laravel
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Slugs with an ID fallback in Laravel
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="12/06/2024">
+                                    June 12th, 2024
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>Slugs make a URL look legit. No one wants to click on a link that reads like <code>https://mysite.com/blog/1</code>. I'd definitely get hacked if I clicked that. But what if it read <code>https://mysite.com/blog/1/some-awesome-content</code>. Now that looks trustworthy. I'm definitely gonna see some awesome content if I click that link.</p>
 <!-- more -->
 <h2>Naive Way</h2>
 <p>So how do we implement it? Well we could use the <code>blog</code> resource's title. Laravel provides a <code>Str::slug</code> helper which takes a string and <em>sluggifies</em> it. Meaning <code>My Awesome Blog Post</code> becomes <code>my-awesome-blog-post</code>. This seems like a great idea. Let's update our <code>Blog</code> model so that when it is saved it sets a <code>slug</code> value based on the title.</p>
@@ -180,14 +158,14 @@ Then the previous url will return a 404, which may break embedded content.
 <span class="line"><span style="color:#24292E">}</span></span></code></pre>
 <p>In the above <code>show</code> method, Laravel's route model binding is used to find the correct blog based on the id supplied. We then add an extra check to make sure the <code>$request-&gt;path()</code> matches the <code>showRoute()</code>. If it does not we redirect to the correct <code>showRoute()</code> with a status of <code>301 Moved Permanently</code> to let the browser know the slug has updated.</p>
 </div>
-                    <footer>
-                        <p>Until next time,</p>
-                        <p>— Brian</p>
-                    </footer>
-                </article>
-            </div>
-        </main>
-        <footer class="site-footer gray-bg">
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
     <div class="content-md mx-auto px-sm">
         <p class="my-auto py-sm">
             Since August 4th, 2023. All words by Brian
@@ -196,7 +174,8 @@ Then the previous url will return a 404, which may break embedded content.
     </div>
 </footer>
 
-        </div>
-        <script src="/scripts/chicken-and-magpie.js"></script>
-    </body>
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+
 </html>

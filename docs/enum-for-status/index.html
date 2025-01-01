@@ -1,89 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" class="Robyn">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Title -->
-        <title>Brian Douglas' Tech Blog - Using a PostgreSQL enum for state</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- Meta Description -->
-        <meta name="description" content="Using a PostgreSQL enum for state" />
+    <!-- Title -->
+    <title>BrianDouglas.ie - Using a PostgreSQL enum for state
+    </title>
 
-        <!-- Keywords -->
-        <meta
-            name="keywords"
-            content="Brian Douglas, tech blog, sql,postgresql"
-        />
+    <!-- Meta Description -->
+    <meta name="description" content="Using a PostgreSQL enum for state" />
 
-        <!-- Author -->
-        <meta name="author" content="Brian Douglas" />
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, sql,postgresql" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="Brian Douglas' Tech Blog - Using a PostgreSQL enum for state"
-        />
-        <meta property="og:description" content="Using a PostgreSQL enum for state" />
-        <meta property="og:url" content="https://www.briandouglas.ie" />
-        <meta
-            property="og:image"
-            content="https://www.briandouglas.ie/images/og-images/enum-for-status.png"
-        />
-        <meta property="og:site_name" content="Brian Douglas' Tech Blog" />
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
 
-        <!-- Twitter Meta -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-            name="twitter:title"
-            content="Brian Douglas' Tech Blog - Using a PostgreSQL enum for state"
-        />
-        <meta name="twitter:description" content="Using a PostgreSQL enum for state" />
-        <meta
-            name="twitter:image"
-            content="https://www.briandouglas.ie/images/og-images/enum-for-status.png"
-        />
-        <meta name="twitter:site" content="@BrianDouglasIE" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Using a PostgreSQL enum for state" />
+    <meta property="og:description" content="Using a PostgreSQL enum for state" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/enum-for-status.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Using a PostgreSQL enum for state'" />
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://www.briandouglas.ie" />
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Using a PostgreSQL enum for state" />
+    <meta name="twitter:description" content="Using a PostgreSQL enum for state" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/enum-for-status.png" />
 
-        <!-- Favicon (Optional) -->
-        <link
-            rel="icon"
-            href="https://www.briandouglas.ie/favicon.ico"
-            type="image/x-icon"
-        />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
 
-        <!-- Robots -->
-        <meta name="robots" content="index, follow" />
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
 
-        <!-- Favicon-->
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
-        <link rel="stylesheet" href="/styles/briandouglas.ie.css">
-    </head>
-    <body class="m-0">
-        <div class="wrap content-md mx-auto">
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
         <header class="site-header">
     <div class="content-md mx-auto px-sm">
         <h1 class="m-0">Brian Douglas</h1>
@@ -96,25 +69,30 @@
     </div>
 </header>
 
-        <div class="breadcrumbs">
-            <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                <ol class="list-reset m-0">
-                    <li><a href="/">Home</a></li> /
-                    <li aria-current="page">Using a PostgreSQL enum for state</li>
-                </ol>
-            </nav>
-        </div>
-        <main>
-            <div class="content-md mx-auto px-sm my-md">
-                <article class="post-full">
-                    <header>
-                        <h2>Using a PostgreSQL enum for state</h2>
-                        <p class="post-meta">
-                            <time datetime="06/10/2024"
-                            >October 6th, 2024</time>
-                        </p>
-                    </header>
-                    <div class="post-content"><p>There are lot's of occasions where I see SQL table definitions that contain
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Using a PostgreSQL enum for state
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Using a PostgreSQL enum for state
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="06/10/2024">
+                                    October 6th, 2024
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>There are lot's of occasions where I see SQL table definitions that contain
 various boolean properties to communicate state. Often in these instances it
 would be much more optimal to use an <code>enum</code>.</p>
 <!-- more -->
@@ -173,14 +151,14 @@ like so.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">ALTER</span><span style="color:#D73A49"> TYPE</span><span style="color:#24292E"> ticket_state </span><span style="color:#D73A49">ADD</span><span style="color:#D73A49"> VALUE</span><span style="color:#032F62"> 'pending_approval'</span><span style="color:#D73A49"> BEFORE</span><span style="color:#032F62"> 'completed'</span><span style="color:#24292E">;</span></span>
 <span class="line"><span style="color:#D73A49">ALTER</span><span style="color:#D73A49"> TYPE</span><span style="color:#24292E"> ticket_state </span><span style="color:#D73A49">ADD</span><span style="color:#D73A49"> VALUE</span><span style="color:#032F62"> 'pending_approval'</span><span style="color:#D73A49"> AFTER</span><span style="color:#032F62"> 'in_progress'</span><span style="color:#24292E">;</span></span></code></pre>
 </div>
-                    <footer>
-                        <p>Until next time,</p>
-                        <p>— Brian</p>
-                    </footer>
-                </article>
-            </div>
-        </main>
-        <footer class="site-footer gray-bg">
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
     <div class="content-md mx-auto px-sm">
         <p class="my-auto py-sm">
             Since August 4th, 2023. All words by Brian
@@ -189,7 +167,8 @@ like so.</p>
     </div>
 </footer>
 
-        </div>
-        <script src="/scripts/chicken-and-magpie.js"></script>
-    </body>
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+
 </html>
