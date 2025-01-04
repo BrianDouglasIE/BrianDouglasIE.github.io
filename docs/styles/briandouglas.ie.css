@@ -303,6 +303,10 @@
     color: #fff;
 }
 
+.site-header .social-links a ~ a {
+    margin-left: 16px;
+}
+
 .gray-bg {
     background-color: #eee;
 }
