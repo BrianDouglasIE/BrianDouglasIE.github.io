@@ -1,6 +1,6 @@
 async function sendPostRequest(path, title) {
   const url =
-    "http://analytics.atlantic-design.ie/websites/1/record-page-visit";
+    "https://analytics.atlantic-design.ie/websites/1/record-page-visit";
 
   const payload = {
     path,
