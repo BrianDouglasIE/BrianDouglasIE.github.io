@@ -1,6 +1,6 @@
 async function sendPostRequest(path, title) {
   const url =
-    "https://analytics.atlantic-design.ie/websites/1/record-page-visit";
+    "http://analytics.atlantic-design.ie/websites/1/record-page-visit";
 
   const payload = {
     path,
@@ -22,7 +22,9 @@ async function sendPostRequest(path, title) {
 }
 
 window.addEventListener("load", () => {
-  sendPostRequest("/example/path", "Example Title")
+  const path = window.location.pathname;
+  const title = document.title;
+  sendPostRequest(path || "/", title)
     .then((response) => console.log("Thank you for visiting"))
     .catch((error) => console.error("Failure:", error));
 });
