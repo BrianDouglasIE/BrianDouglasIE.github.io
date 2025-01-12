@@ -7,6 +7,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.briandouglas.ie/2025-resolutions</loc>
+    <lastmod>2025-01-02T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.briandouglas.ie/lua-postgres</loc>
     <lastmod>2024-12-31T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
