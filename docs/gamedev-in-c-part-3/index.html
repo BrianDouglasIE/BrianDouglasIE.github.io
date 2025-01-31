@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - GameDev in C Part 3: Drawing a Slime
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="GameDev in C Part 3: Drawing a Slime" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, c,raylib,gamedev" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - GameDev in C Part 3: Drawing a Slime" />
+    <meta property="og:description" content="GameDev in C Part 3: Drawing a Slime" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/gamedev-in-c-part-3.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'GameDev in C Part 3: Drawing a Slime'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - GameDev in C Part 3: Drawing a Slime" />
+    <meta name="twitter:description" content="GameDev in C Part 3: Drawing a Slime" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/gamedev-in-c-part-3.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://x.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-twitter v-align-middle color-fg-default"
+        >
+          <path
+            d="M22.46 6.011a8.438 8.438 0 0 1-2.356.646 4.116 4.116 0 0 0 1.804-2.27 8.195 8.195 0 0 1-2.606.986 4.108 4.108 0 0 0-7.063 3.747A11.667 11.667 0 0 1 3.122 4.697a4.107 4.107 0 0 0 1.27 5.482 4.073 4.073 0 0 1-1.862-.512v.05a4.11 4.11 0 0 0 3.292 4.028 4.1 4.1 0 0 1-1.857.07 4.11 4.11 0 0 0 3.834 2.85A8.244 8.244 0 0 1 2 19.29a11.617 11.617 0 0 0 6.29 1.846c7.548 0 11.678-6.261 11.678-11.678 0-.177-.004-.355-.012-.531a8.344 8.344 0 0 0 2.051-2.116z"
+          ></path>
+        </svg>
+      </a>
+
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            GameDev in C Part 3: Drawing a Slime
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                GameDev in C Part 3: Drawing a Slime
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="31/01/2025">
+                                    January 31st, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>It's part 3 and I am finally able to draw something meaningful on the screen.</p>
+<!-- more -->
+<p>I've decided that the game will be a DoodleJump clone, named SlimeJump. The
+goal will be to ascend to the highest platform possible. Sort of like a vertical
+endless runner. The Slime's movement will be somewhat limited to add to the
+difficulty. There will be a start menu and high score list. I will create the
+sprites and sfx myself.</p>
+<h2>The Slime</h2>
+<p>I have decided to go with pixel art. This means that the Slime will consist of
+16x16 pixel frames. Each frame will correspond to a bounding box that will be
+displayed based on the Slime's state <em>(which will be the topic of part 4)</em> and
+animation duration.</p>
+<p>I've used a really nice image editor called <a href="https://www.aseprite.org/">Aseprite</a>
+to create the pixel art for the slime. It had some preloaded color pallettes so
+I decided to go for the default <em>pico-8</em> pallette that was availabel. I really liked
+the bold popping colors. The resulting Slime sprite sheet is below. You can see that
+I added an idle, walk, jump charge, damage, and death sequence. These will correspond
+to Slime's game state.</p>
+<img alt="The slime spritesheet" src="/images/slime.png" style="width: 500px; image-rendering: pixelated; margin: 2rem 0;" />
+<magpie-trinket>
+The image above is only 144x16 pixels in size. If you are wondering how he got it to render crisply at 500px width,
+It's by adding the css rule <code>image-rendering: pixelated;</code>.
+</magpie-trinket>
+<h2>Rendering a texture</h2>
+<p>When it comes to drawing the sprite on the screen. Raylib requires the texture to be
+loaded first. Naturally this requires the <code>LoadTexture</code> method. This must be called
+after the window is initialised. Otherwise you will see some random error that is not
+at all self explanatory. The code I use to render the texture looks like this:</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> Texture2D slime_texture </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> LoadTexture</span><span style="color:#24292E">(</span><span style="color:#032F62">"assets/sprites/slime.png"</span><span style="color:#24292E">);</span></span></code></pre>
+<p>It's also important to remember that the texture needs to be unloaded. This is done like so,
+outside of the game loop.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#6F42C1">UnloadTexture</span><span style="color:#24292E">(slime_texture);</span></span></code></pre>
+<p>In order to draw a single frame of the texture to the screen the <code>DrawTexturePro</code> method is used.
+This will take a texture, along with a source (frame_rec), and dest (player_bounds). The resulting
+code looks like this.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#24292E">Rectangle frame_rec </span><span style="color:#D73A49">=</span><span style="color:#24292E"> { </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">16</span><span style="color:#24292E">, </span><span style="color:#005CC5">16</span><span style="color:#24292E"> };</span></span>
+<span class="line"><span style="color:#6F42C1">DrawTexturePro</span><span style="color:#24292E">(slime_texture, frame_rec, </span><span style="color:#6F42C1">player_get_bounds</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">player</span><span style="color:#24292E">), sprite_origin, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, WHITE);</span></span></code></pre>
+<p>If you have experience with raylib or gamedev in general, you notice that an important part is left out.
+If this code were to run now, a 16x16 pixel slime would be drawn to the screen. Which would be much
+to small to be usable. So the sprite needs to be scaled up. In order to do this a render texture must be
+created.</p>
+<p>A render texture is something that can be drawn to at a smaller scale, then drawn itself at a large scale
+on the screen. To make this work a virtual screen width and height will be defined. I want the game window
+to be 480x855 pixels in size. The virtual width of the game will be 160x285 pixels. This means that the Slime
+will take up more space on the virtual screen, eg: it will look correctly sized. I define the screen sizes as
+macros.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> SCREEN_WIDTH</span><span style="color:#005CC5"> 480.0</span><span style="color:#D73A49">f</span></span>
+<span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> SCREEN_HEIGHT</span><span style="color:#005CC5"> 855.0</span><span style="color:#D73A49">f</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> V_SCREEN_WIDTH</span><span style="color:#005CC5"> 160.0</span><span style="color:#D73A49">f</span></span>
+<span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> V_SCREEN_HEIGHT</span><span style="color:#005CC5"> 285.0</span><span style="color:#D73A49">f</span></span></code></pre>
+<p>I then create the render texture, with a source rec (the virtual screen size), and a dest rec (the scaled screen size).</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> RenderTexture2D render_texture </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> LoadRenderTexture</span><span style="color:#24292E">(V_SCREEN_WIDTH, V_SCREEN_HEIGHT);</span></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> Rectangle render_texture_src </span><span style="color:#D73A49">=</span><span style="color:#24292E"> {</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, V_SCREEN_WIDTH, </span><span style="color:#D73A49">-</span><span style="color:#24292E">V_SCREEN_HEIGHT};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#D73A49"> float</span><span style="color:#24292E"> virtual_ratio </span><span style="color:#D73A49">=</span><span style="color:#24292E"> (</span><span style="color:#D73A49">float</span><span style="color:#24292E">) SCREEN_WIDTH </span><span style="color:#D73A49">/</span><span style="color:#24292E"> (</span><span style="color:#D73A49">float</span><span style="color:#24292E">) V_SCREEN_HEIGHT;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> Rectangle render_texture_dest </span><span style="color:#D73A49">=</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    -</span><span style="color:#24292E">virtual_ratio, </span><span style="color:#D73A49">-</span><span style="color:#24292E">virtual_ratio, SCREEN_WIDTH </span><span style="color:#D73A49">+</span><span style="color:#24292E"> (virtual_ratio </span><span style="color:#D73A49">*</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">), SCREEN_HEIGHT </span><span style="color:#D73A49">+</span><span style="color:#24292E"> (virtual_ratio </span><span style="color:#D73A49">*</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">};</span></span></code></pre>
+<p>The draw loop will then need to be updated as follows to account for drawing to the render texture. Then drawing
+that render texture to the main out. Raylib provides the <code>BeginTextureMode</code> and <code>EndTextureMode</code> methods to accomodate
+this like so:</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#6F42C1">BeginTextureMode</span><span style="color:#24292E">(render_texture);</span></span>
+<span class="line"><span style="color:#6F42C1">ClearBackground</span><span style="color:#24292E">(RAYWHITE);</span></span>
+<span class="line"><span style="color:#6F42C1">DrawTexturePro</span><span style="color:#24292E">(slime_texture, frame_rec, </span><span style="color:#6F42C1">player_get_bounds</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">player</span><span style="color:#24292E">), sprite_origin, </span><span style="color:#005CC5">0</span><span style="color:#24292E">, WHITE);</span></span>
+<span class="line"><span style="color:#6F42C1">EndTextureMode</span><span style="color:#24292E">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">BeginDrawing</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6F42C1">DrawTexturePro</span><span style="color:#24292E">(render_texture.texture,</span></span>
+<span class="line"><span style="color:#24292E">        render_texture_src,</span></span>
+<span class="line"><span style="color:#24292E">        render_texture_dest,</span></span>
+<span class="line"><span style="color:#24292E">        sprite_origin,</span></span>
+<span class="line"><span style="color:#005CC5">        0</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">        WHITE);</span></span>
+<span class="line"><span style="color:#6F42C1">EndDrawing</span><span style="color:#24292E">();</span></span></code></pre>
+<p>This will result in the following. Note the screenshot contains a floor which I have left out of these code examples.</p>
+<p><img src="/images/slime-part-3.png" alt="the slime on screen"></p>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
