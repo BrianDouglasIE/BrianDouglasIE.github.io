@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - GameDev in C Part 4: A Snake Clone
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="GameDev in C Part 4: A Snake Clone" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, C,gamedev,raylib" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - GameDev in C Part 4: A Snake Clone" />
+    <meta property="og:description" content="GameDev in C Part 4: A Snake Clone" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/gamedev-in-c-part-4.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'GameDev in C Part 4: A Snake Clone'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - GameDev in C Part 4: A Snake Clone" />
+    <meta name="twitter:description" content="GameDev in C Part 4: A Snake Clone" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/gamedev-in-c-part-4.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            GameDev in C Part 4: A Snake Clone
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                GameDev in C Part 4: A Snake Clone
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="14/02/2025">
+                                    February 14th, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>Happy Valentines Day!, I made a snake clone in C.</p>
+<!-- more -->
+<p>This is a quick interlude from the regular GameDev in C posts. I was making very little progress
+on the doodle jump style game on which the series is based. So I thought I would take a quick
+break and code up a snake clone.</p>
+<p>I chose snake as I have written this type of game previously in JS and Python. So I didn't really
+have to figure much out. Just get down to writing some C. I haev included the full source code in
+this article. One nice feature that I added was smooth transitions between cells. I did this by
+growing and shortening the head and tail respectively, based on an animation timer. This makes for
+a nice animation and makes it look like the snake is moving smoothly, rather than jumping a cell at
+a time. The implementation can be seen in the <code>SnakeDrawHead</code> and <code>SnakeDrawTail</code> methods. Apart from
+this it's a regular old snake clone.</p>
+<h2>Thoughts</h2>
+<p>I really enjoyed coding this, it's the first time I have felt productive in C. I am starting to grasp
+arrays and pointers. I may even be beginning to think in a C manner. I kept everything in one file for
+convenience. This helped me think more about what the code did, and less about where the code lived.</p>
+<p>Anyway, take a look at the source code below. I'll get back to the main &quot;SlimeJump&quot; game in the next post.</p>
+<p><magpie-trinket>Source code is also available at <a href="https://github.com/BrianDouglasIE/snake-c-raylib/tree/main">BrianDouglasIE/snake-c-raylib</a></magpie-trinket></p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> "raylib.h"</span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> "math.h"</span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;stdlib.h></span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;stdio.h></span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;time.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">float</span><span style="color:#6F42C1"> percentOf</span><span style="color:#24292E">(</span><span style="color:#D73A49">float</span><span style="color:#E36209"> percent</span><span style="color:#24292E">, </span><span style="color:#D73A49">float</span><span style="color:#E36209"> number</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (percent </span><span style="color:#D73A49">/</span><span style="color:#24292E"> number) </span><span style="color:#D73A49">*</span><span style="color:#005CC5"> 100.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">float</span><span style="color:#6F42C1"> asPercentOf</span><span style="color:#24292E">(</span><span style="color:#D73A49">float</span><span style="color:#E36209"> number</span><span style="color:#24292E">, </span><span style="color:#D73A49">float</span><span style="color:#E36209"> percent</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (percent </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 100.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">) </span><span style="color:#D73A49">*</span><span style="color:#24292E"> number;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> randomInt</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> min</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> max</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (</span><span style="color:#6F42C1">rand</span><span style="color:#24292E">() </span><span style="color:#D73A49">%</span><span style="color:#24292E"> max) </span><span style="color:#D73A49">+</span><span style="color:#24292E"> min;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">enum</span><span style="color:#24292E"> Direction {</span></span>
+<span class="line"><span style="color:#24292E">    UP, DOWN, LEFT, RIGHT</span></span>
+<span class="line"><span style="color:#24292E">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake {</span></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> x;</span></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> y;</span></span>
+<span class="line"><span style="color:#D73A49">    float</span><span style="color:#24292E"> speed;</span></span>
+<span class="line"><span style="color:#D73A49">    float</span><span style="color:#24292E"> moveTimer;</span></span>
+<span class="line"><span style="color:#D73A49">    enum</span><span style="color:#24292E"> Direction direction;</span></span>
+<span class="line"><span style="color:#D73A49">    enum</span><span style="color:#24292E"> Direction nextDirection;</span></span>
+<span class="line"><span style="color:#24292E">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#6F42C1">SnakeCreate</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> x</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> y</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake) {</span></span>
+<span class="line"><span style="color:#24292E">        .x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> x,</span></span>
+<span class="line"><span style="color:#24292E">        .y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> y,</span></span>
+<span class="line"><span style="color:#24292E">        .speed </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0.2</span><span style="color:#D73A49">f</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">        .moveTimer </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">        .direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> RIGHT,</span></span>
+<span class="line"><span style="color:#24292E">        .nextDirection </span><span style="color:#D73A49">=</span><span style="color:#24292E"> RIGHT,</span></span>
+<span class="line"><span style="color:#24292E">    };</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeMoveInCurrentDirection</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    switch</span><span style="color:#24292E">(s->direction)</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> UP:</span></span>
+<span class="line"><span style="color:#24292E">            s->y </span><span style="color:#D73A49">-=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> DOWN:</span></span>
+<span class="line"><span style="color:#24292E">            s->y </span><span style="color:#D73A49">+=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> LEFT:</span></span>
+<span class="line"><span style="color:#24292E">            s->x </span><span style="color:#D73A49">-=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> RIGHT:</span></span>
+<span class="line"><span style="color:#24292E">            s->x </span><span style="color:#D73A49">+=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        default</span><span style="color:#24292E">:</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeScreenWrap</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> colCount</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> rowCount</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(s->x </span><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> colCount </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> LEFT;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(s->x </span><span style="color:#D73A49">></span><span style="color:#24292E"> colCount </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->x </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> RIGHT;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(s->y </span><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> rowCount </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> UP;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(s->y </span><span style="color:#D73A49">></span><span style="color:#24292E"> rowCount </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->y </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> DOWN;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeUpdate</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">float</span><span style="color:#E36209"> dt</span><span style="color:#24292E">, </span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">target</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#24292E">    s->moveTimer </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> dt;</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(s->moveTimer </span><span style="color:#D73A49">>=</span><span style="color:#24292E"> s->speed) {</span></span>
+<span class="line"><span style="color:#24292E">        s->moveTimer </span><span style="color:#D73A49">-=</span><span style="color:#24292E"> s->speed;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E">(target </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">            if</span><span style="color:#24292E">(s->direction </span><span style="color:#D73A49">!=</span><span style="color:#24292E"> s->nextDirection)</span></span>
+<span class="line"><span style="color:#24292E">            {</span></span>
+<span class="line"><span style="color:#24292E">                s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> s->nextDirection;</span></span>
+<span class="line"><span style="color:#24292E">            }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">            SnakeMoveInCurrentDirection</span><span style="color:#24292E">(s);</span></span>
+<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#24292E">            s->x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> target->x;</span></span>
+<span class="line"><span style="color:#24292E">            s->y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> target->y;</span></span>
+<span class="line"><span style="color:#24292E">            s->direction </span><span style="color:#D73A49">=</span><span style="color:#24292E"> target->direction;</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeSetDirection</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> dirX</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> dirY</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirX </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#24292E"> dirY) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#24292E">dirX </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#D73A49"> !</span><span style="color:#24292E">dirY) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirY </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#24292E"> (s->direction </span><span style="color:#D73A49">==</span><span style="color:#24292E"> UP </span><span style="color:#D73A49">||</span><span style="color:#24292E"> s->direction </span><span style="color:#D73A49">==</span><span style="color:#24292E"> DOWN)) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirX </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#24292E"> (s->direction </span><span style="color:#D73A49">==</span><span style="color:#24292E"> LEFT </span><span style="color:#D73A49">||</span><span style="color:#24292E"> s->direction </span><span style="color:#D73A49">==</span><span style="color:#24292E"> RIGHT)) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirX </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->nextDirection </span><span style="color:#D73A49">=</span><span style="color:#24292E"> LEFT;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirX </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->nextDirection </span><span style="color:#D73A49">=</span><span style="color:#24292E"> RIGHT;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirY </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->nextDirection </span><span style="color:#D73A49">=</span><span style="color:#24292E"> UP;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E">(dirY </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">        s->nextDirection </span><span style="color:#D73A49">=</span><span style="color:#24292E"> DOWN;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeDrawHead</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, Color </span><span style="color:#E36209">color</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> w, h;</span></span>
+<span class="line"><span style="color:#D73A49">    float</span><span style="color:#24292E"> growthPercent </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> percentOf</span><span style="color:#24292E">(s->moveTimer, s->speed);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    switch</span><span style="color:#24292E">(s->direction)</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> UP:</span></span>
+<span class="line"><span style="color:#24292E">            h </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, (s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize) </span><span style="color:#D73A49">+</span><span style="color:#24292E"> (cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> h), cellSize, h, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> DOWN:</span></span>
+<span class="line"><span style="color:#24292E">            h </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, cellSize, h, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> RIGHT:</span></span>
+<span class="line"><span style="color:#24292E">            w </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, w, cellSize, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> LEFT:</span></span>
+<span class="line"><span style="color:#24292E">            w </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">((s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize) </span><span style="color:#D73A49">+</span><span style="color:#24292E"> (cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> w), s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, w, cellSize, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        default</span><span style="color:#24292E">:</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeDrawTail</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, Color </span><span style="color:#E36209">color</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> w, h;</span></span>
+<span class="line"><span style="color:#D73A49">    float</span><span style="color:#24292E"> growthPercent </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> percentOf</span><span style="color:#24292E">(s->moveTimer, s->speed);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    switch</span><span style="color:#24292E">(s->direction)</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> UP:</span></span>
+<span class="line"><span style="color:#24292E">            h </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, cellSize, cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> h, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> DOWN:</span></span>
+<span class="line"><span style="color:#24292E">            h </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize </span><span style="color:#D73A49">+</span><span style="color:#24292E"> h, cellSize, cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> h, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> RIGHT:</span></span>
+<span class="line"><span style="color:#24292E">            w </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize </span><span style="color:#D73A49">+</span><span style="color:#24292E"> w, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> w, cellSize, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        case</span><span style="color:#24292E"> LEFT:</span></span>
+<span class="line"><span style="color:#24292E">            w </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(</span><span style="color:#6F42C1">asPercentOf</span><span style="color:#24292E">(cellSize, growthPercent));</span></span>
+<span class="line"><span style="color:#6F42C1">            DrawRectangle</span><span style="color:#24292E">(s</span><span style="color:#D73A49">-></span><span style="color:#24292E">x </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, s</span><span style="color:#D73A49">-></span><span style="color:#24292E">y </span><span style="color:#D73A49">*</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, cellSize </span><span style="color:#D73A49">-</span><span style="color:#24292E"> w, cellSize, color);</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">        default</span><span style="color:#24292E">:</span></span>
+<span class="line"><span style="color:#D73A49">            break</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SnakeDraw</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#D73A49">*</span><span style="color:#E36209">s</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, Color </span><span style="color:#E36209">color</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#6F42C1">    DrawRectangle</span><span style="color:#24292E">(s->x </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, s->y </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, cellSize, cellSize, color);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple {</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> x;</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> y;</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> active;</span></span>
+<span class="line"><span style="color:#D73A49">	float</span><span style="color:#24292E"> lifeSpan;</span></span>
+<span class="line"><span style="color:#D73A49">	float</span><span style="color:#24292E"> lifeTimer;</span></span>
+<span class="line"><span style="color:#24292E">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple </span><span style="color:#6F42C1">AppleCreate</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">	return</span><span style="color:#24292E"> (</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple) {</span></span>
+<span class="line"><span style="color:#24292E">		.x </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">		.y </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">		.active </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">		.lifeSpan </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">		.lifeTimer </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#24292E">	};</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> AppleUpdate</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple </span><span style="color:#D73A49">*</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#D73A49">float</span><span style="color:#E36209"> dt</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">	if</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#24292E">a->active) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">	a->lifeTimer </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> dt;</span></span>
+<span class="line"><span style="color:#D73A49">	if</span><span style="color:#24292E">(a->lifeTimer </span><span style="color:#D73A49">></span><span style="color:#24292E"> a->lifeSpan)</span></span>
+<span class="line"><span style="color:#24292E">	{</span></span>
+<span class="line"><span style="color:#24292E">		a->lifeTimer </span><span style="color:#D73A49">-=</span><span style="color:#24292E"> a->lifeSpan;</span></span>
+<span class="line"><span style="color:#24292E">		a->active </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">	}</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> AppleActivateAt</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple </span><span style="color:#D73A49">*</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> x</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> y</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#24292E">	a->x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> x;</span></span>
+<span class="line"><span style="color:#24292E">	a->y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> y;</span></span>
+<span class="line"><span style="color:#24292E">	a->active </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">	a->lifeTimer </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">	a->lifeSpan </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 5.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> AppleDraw</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Apple </span><span style="color:#D73A49">*</span><span style="color:#E36209">a</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> cellSize</span><span style="color:#24292E">, Color </span><span style="color:#E36209">color</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">	if</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#24292E">a->active) </span><span style="color:#D73A49">return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#6F42C1">    DrawRectangle</span><span style="color:#24292E">(a->x </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, a->y </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, cellSize, cellSize, color);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> collidesWithSnake</span><span style="color:#24292E">(</span><span style="color:#D73A49">struct</span><span style="color:#24292E"> Snake </span><span style="color:#E36209">s</span><span style="color:#D73A49">[]</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> snakeLength</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> x</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> y</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">	for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> snakeLength; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">	{</span></span>
+<span class="line"><span style="color:#D73A49">		if</span><span style="color:#24292E">(</span><span style="color:#E36209">s</span><span style="color:#24292E">[i].x </span><span style="color:#D73A49">==</span><span style="color:#24292E"> x </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#E36209"> s</span><span style="color:#24292E">[i].y </span><span style="color:#D73A49">==</span><span style="color:#24292E"> y) </span><span style="color:#D73A49">return</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	return</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">Vector2 </span><span style="color:#6F42C1">getRandomCellCoords</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> colCount</span><span style="color:#24292E">, </span><span style="color:#D73A49">int</span><span style="color:#E36209"> rowCount</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> x </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> randomInt</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, colCount);</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> y </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> randomInt</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, rowCount);</span></span>
+<span class="line"><span style="color:#D73A49">	return</span><span style="color:#24292E"> (Vector2) { x, y };</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> main</span><span style="color:#24292E">(</span><span style="color:#D73A49">void</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">{</span></span>
+<span class="line"><span style="color:#6F42C1">    srand</span><span style="color:#24292E">((</span><span style="color:#D73A49">unsigned</span><span style="color:#24292E">)</span><span style="color:#6F42C1">time</span><span style="color:#24292E">(</span><span style="color:#005CC5">NULL</span><span style="color:#24292E">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> screenSize </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 600</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> screenWidth </span><span style="color:#D73A49">=</span><span style="color:#24292E"> screenSize;</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> screenHeight </span><span style="color:#D73A49">=</span><span style="color:#24292E"> screenSize;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">    InitWindow</span><span style="color:#24292E">(screenWidth, screenHeight, </span><span style="color:#032F62">"snake"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">    SetTargetFPS</span><span style="color:#24292E">(</span><span style="color:#005CC5">60</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> gridSize </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 20</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> cellSize </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(screenSize </span><span style="color:#D73A49">/</span><span style="color:#24292E"> gridSize);</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> colCount </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(screenWidth </span><span style="color:#D73A49">/</span><span style="color:#24292E"> cellSize);</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#D73A49"> int</span><span style="color:#24292E"> rowCount </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(screenHeight </span><span style="color:#D73A49">/</span><span style="color:#24292E"> cellSize);</span></span>
+<span class="line"><span style="color:#24292E">	</span></span>
+<span class="line"><span style="color:#D73A49">	int</span><span style="color:#24292E"> gameInProgress </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> snakeLength </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 4</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">    int</span><span style="color:#24292E"> snakeMaxLength </span><span style="color:#D73A49">=</span><span style="color:#24292E"> colCount </span><span style="color:#D73A49">*</span><span style="color:#24292E"> rowCount;</span></span>
+<span class="line"><span style="color:#D73A49">    struct</span><span style="color:#24292E"> Snake </span><span style="color:#E36209">snake</span><span style="color:#24292E">[snakeMaxLength];</span></span>
+<span class="line"><span style="color:#D73A49">    for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> snakeLength; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#E36209">        snake</span><span style="color:#24292E">[i] </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> SnakeCreate</span><span style="color:#24292E">(</span><span style="color:#6F42C1">floor</span><span style="color:#24292E">(colCount </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">) </span><span style="color:#D73A49">-</span><span style="color:#24292E"> i, </span><span style="color:#6F42C1">floor</span><span style="color:#24292E">(rowCount </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	struct</span><span style="color:#24292E"> Apple apple </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> AppleCreate</span><span style="color:#24292E">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	float</span><span style="color:#24292E"> appleSpawnInterval </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 8.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">	float</span><span style="color:#24292E"> appleSpawnTimer </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    while</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#6F42C1">WindowShouldClose</span><span style="color:#24292E">())</span></span>
+<span class="line"><span style="color:#24292E">    {</span></span>
+<span class="line"><span style="color:#6A737D">        // update</span></span>
+<span class="line"><span style="color:#D73A49">		if</span><span style="color:#24292E">(gameInProgress) {</span></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> up, down, left, right, dirX, dirY;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			float</span><span style="color:#24292E"> dt </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> GetFrameTime</span><span style="color:#24292E">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">			up </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> IsKeyDown</span><span style="color:#24292E">(KEY_UP) </span><span style="color:#D73A49">?</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#D73A49"> :</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">			down </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> IsKeyDown</span><span style="color:#24292E">(KEY_DOWN) </span><span style="color:#D73A49">?</span><span style="color:#005CC5"> 1</span><span style="color:#D73A49"> :</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">			left </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> IsKeyDown</span><span style="color:#24292E">(KEY_LEFT) </span><span style="color:#D73A49">?</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#D73A49"> :</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">			right </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> IsKeyDown</span><span style="color:#24292E">(KEY_RIGHT) </span><span style="color:#D73A49">?</span><span style="color:#005CC5"> 1</span><span style="color:#D73A49"> :</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">			dirY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> up </span><span style="color:#D73A49">+</span><span style="color:#24292E"> down;</span></span>
+<span class="line"><span style="color:#24292E">			dirX </span><span style="color:#D73A49">=</span><span style="color:#24292E"> left </span><span style="color:#D73A49">+</span><span style="color:#24292E"> right;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#24292E"> snakeLength; i </span><span style="color:#D73A49">></span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i</span><span style="color:#D73A49">--</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">			{</span></span>
+<span class="line"><span style="color:#6F42C1">				SnakeUpdate</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[i], dt, </span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[i </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">]);</span></span>
+<span class="line"><span style="color:#24292E">			}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E36209">			snake</span><span style="color:#24292E">[snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">].direction </span><span style="color:#D73A49">=</span><span style="color:#E36209"> snake</span><span style="color:#24292E">[snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">].direction;</span></span>
+<span class="line"><span style="color:#6F42C1">			SnakeSetDirection</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">], dirX, dirY);</span></span>
+<span class="line"><span style="color:#6F42C1">			SnakeUpdate</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">], dt, </span><span style="color:#005CC5">NULL</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">			SnakeScreenWrap</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">], colCount, rowCount);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			if</span><span style="color:#24292E">(apple.active </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#E36209"> snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">].x </span><span style="color:#D73A49">==</span><span style="color:#24292E"> apple.x </span><span style="color:#D73A49">&#x26;&#x26;</span><span style="color:#E36209"> snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">].y </span><span style="color:#D73A49">==</span><span style="color:#24292E"> apple.y)</span></span>
+<span class="line"><span style="color:#24292E">			{</span></span>
+<span class="line"><span style="color:#24292E">				apple.active </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#E36209">				snake</span><span style="color:#24292E">[snakeLength] </span><span style="color:#D73A49">=</span><span style="color:#E36209"> snake</span><span style="color:#24292E">[snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">];</span></span>
+<span class="line"><span style="color:#24292E">				snakeLength</span><span style="color:#D73A49">++</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">			}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			if</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#24292E">apple.active)</span></span>
+<span class="line"><span style="color:#24292E">			{</span></span>
+<span class="line"><span style="color:#24292E">				appleSpawnTimer </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> dt;</span></span>
+<span class="line"><span style="color:#D73A49">				if</span><span style="color:#24292E">(appleSpawnTimer </span><span style="color:#D73A49">></span><span style="color:#24292E"> appleSpawnInterval)</span></span>
+<span class="line"><span style="color:#24292E">				{</span></span>
+<span class="line"><span style="color:#24292E">					appleSpawnTimer </span><span style="color:#D73A49">-=</span><span style="color:#24292E"> appleSpawnInterval;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">					Vector2 newPos </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> getRandomCellCoords</span><span style="color:#24292E">(colCount, rowCount);</span></span>
+<span class="line"><span style="color:#D73A49">					while</span><span style="color:#24292E">(</span><span style="color:#6F42C1">collidesWithSnake</span><span style="color:#24292E">(snake, snakeLength, newPos.x, newPos.y)) {</span></span>
+<span class="line"><span style="color:#24292E">						newPos </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> getRandomCellCoords</span><span style="color:#24292E">(colCount, rowCount);</span></span>
+<span class="line"><span style="color:#24292E">					}</span></span>
+<span class="line"><span style="color:#6F42C1">					AppleActivateAt</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">apple, newPos.x, newPos.y);</span></span>
+<span class="line"><span style="color:#24292E">				}</span></span>
+<span class="line"><span style="color:#24292E">			}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">			AppleUpdate</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">apple, dt);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> tailLength </span><span style="color:#D73A49">=</span><span style="color:#24292E"> snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">			struct</span><span style="color:#24292E"> Snake </span><span style="color:#E36209">tail</span><span style="color:#24292E">[tailLength];</span></span>
+<span class="line"><span style="color:#D73A49">			for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> tailLength; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">			{</span></span>
+<span class="line"><span style="color:#E36209">				tail</span><span style="color:#24292E">[i] </span><span style="color:#D73A49">=</span><span style="color:#E36209"> snake</span><span style="color:#24292E">[i];</span></span>
+<span class="line"><span style="color:#24292E">			}</span></span>
+<span class="line"><span style="color:#D73A49">			if</span><span style="color:#24292E">(</span><span style="color:#6F42C1">collidesWithSnake</span><span style="color:#24292E">(tail, tailLength, </span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">].x, </span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">].y))</span></span>
+<span class="line"><span style="color:#24292E">			{</span></span>
+<span class="line"><span style="color:#24292E">				gameInProgress </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">			}</span></span>
+<span class="line"><span style="color:#24292E">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // draw</span></span>
+<span class="line"><span style="color:#6F42C1">        BeginDrawing</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6F42C1">        ClearBackground</span><span style="color:#24292E">(BLACK);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> r </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; r </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> rowCount; r</span><span style="color:#D73A49">++</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">        {</span></span>
+<span class="line"><span style="color:#D73A49">            for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> c </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; c </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> colCount; c</span><span style="color:#D73A49">++</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">                Color color </span><span style="color:#D73A49">=</span><span style="color:#24292E"> ((r </span><span style="color:#D73A49">+</span><span style="color:#24292E"> c) </span><span style="color:#D73A49">%</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#D73A49"> ?</span><span style="color:#24292E"> RAYWHITE </span><span style="color:#D73A49">:</span><span style="color:#24292E"> WHITE;</span></span>
+<span class="line"><span style="color:#6F42C1">                DrawRectangle</span><span style="color:#24292E">(c </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, r </span><span style="color:#D73A49">*</span><span style="color:#24292E"> cellSize, cellSize, cellSize, color);</span></span>
+<span class="line"><span style="color:#24292E">            }</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">        {</span></span>
+<span class="line"><span style="color:#6F42C1">            SnakeDraw</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[i], cellSize, DARKGREEN);</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"><span style="color:#6F42C1">        SnakeDrawHead</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[</span><span style="color:#005CC5">0</span><span style="color:#24292E">], cellSize, DARKGREEN);</span></span>
+<span class="line"><span style="color:#6F42C1">        SnakeDrawTail</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#E36209">snake</span><span style="color:#24292E">[snakeLength </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">], cellSize, DARKGREEN);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">		AppleDraw</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">apple, cellSize, RED);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">		if</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#24292E">gameInProgress) {</span></span>
+<span class="line"><span style="color:#D73A49">			const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">gameOverText </span><span style="color:#D73A49">=</span><span style="color:#032F62"> "GAME OVER"</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> fontSize </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 40</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> textLength </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> MeasureText</span><span style="color:#24292E">(gameOverText, fontSize);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> posX </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(screenWidth </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">) </span><span style="color:#D73A49">-</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(textLength </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#D73A49">			int</span><span style="color:#24292E"> posY </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> floor</span><span style="color:#24292E">(screenHeight </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">			DrawText</span><span style="color:#24292E">(gameOverText, posX, posY, fontSize, BLACK);</span></span>
+<span class="line"><span style="color:#24292E">		}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">        EndDrawing</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">    CloseWindow</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
