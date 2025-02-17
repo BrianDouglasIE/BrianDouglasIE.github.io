@@ -9,7 +9,7 @@ I love using SQLite, but it requires a bit of configuration to get optimal resul
 <!-- more -->
 
 This is where Nuno Maduro's [nunomaduro/laravel-optimize-database](https://github.com/nunomaduro/laravel-optimize-database)
-package comes in. This packages set's up your Laravel app's sqlite database to work in a performant manner.
+package comes in. This packages sets up your Laravel app's sqlite database to work in a performant manner.
 
 It does this by setting the following PRAGMA options on your sqlite database.
 
