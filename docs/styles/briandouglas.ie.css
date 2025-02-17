@@ -212,10 +212,6 @@
     border: none;
 }
 
-.Robyn code {
-    padding: 0 var(--code-x-padding);
-}
-
 .Robyn pre {
     overflow-x: auto;
     line-height: var(--pre-line-height);
