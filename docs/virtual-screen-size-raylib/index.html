@@ -126,9 +126,10 @@ In raylib this is achieved using a <code>RenderTexture2D</code>.</p>
 <p>When opening a window with raylib I will pass in the <code>SCREEEN_WIDTH</code> and <code>SCREEN_HEIGHT</code> constants
 to the <code>InitWindow</code> method like so.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#6F42C1">InitWindow</span><span style="color:#24292E">(SCREEN_WIDTH, SCREEN_HEIGHT, </span><span style="color:#032F62">"Game Title"</span><span style="color:#24292E">);</span></span></code></pre>
-<p>This will open a correctly sizeed game window. I now want to create a <code>RenderTexture2D</code>. This
+<p>This will open a correctly sized game window. I now want to create a <code>RenderTexture2D</code>. This
 is what the game will be drawn on. It will then itself be scaled and drawn onto the actual game
-window. To create the <code>RenderTexture2D</code> I use the following code.</p>
+window.</p>
+<p>To create the <code>RenderTexture2D</code> I use the following code.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> RenderTexture2D renderTexture </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> LoadRenderTexture</span><span style="color:#24292E">(V_SCREEN_WIDTH, V_SCREEN_HEIGHT);</span></span>
 <span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> Rectangle renderTextureSrc </span><span style="color:#D73A49">=</span><span style="color:#24292E"> (Rectangle){ </span><span style="color:#005CC5">0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">, </span><span style="color:#005CC5">0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">, V_SCREEN_WIDTH, </span><span style="color:#D73A49">-</span><span style="color:#24292E">V_SCREEN_HEIGHT };</span></span>
 <span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> Rectangle renderTextureDest </span><span style="color:#D73A49">=</span><span style="color:#24292E"> (Rectangle){ </span><span style="color:#005CC5">0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">, </span><span style="color:#005CC5">0.0</span><span style="color:#D73A49">f</span><span style="color:#24292E">, SCREEN_WIDTH, SCREEN_HEIGHT };</span></span>

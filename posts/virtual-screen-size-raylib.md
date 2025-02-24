@@ -38,9 +38,11 @@ to the `InitWindow` method like so.
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game Title");
 ```
 
-This will open a correctly sizeed game window. I now want to create a `RenderTexture2D`. This 
+This will open a correctly sized game window. I now want to create a `RenderTexture2D`. This 
 is what the game will be drawn on. It will then itself be scaled and drawn onto the actual game
-window. To create the `RenderTexture2D` I use the following code.
+window. 
+
+To create the `RenderTexture2D` I use the following code.
 
 ```c
 const RenderTexture2D renderTexture = LoadRenderTexture(V_SCREEN_WIDTH, V_SCREEN_HEIGHT);
