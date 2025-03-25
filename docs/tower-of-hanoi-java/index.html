@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - Tower of Hanoi in Java
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Tower of Hanoi in Java" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, java" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Tower of Hanoi in Java" />
+    <meta property="og:description" content="Tower of Hanoi in Java" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/tower-of-hanoi-java.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Tower of Hanoi in Java'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Tower of Hanoi in Java" />
+    <meta name="twitter:description" content="Tower of Hanoi in Java" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/tower-of-hanoi-java.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Tower of Hanoi in Java
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Tower of Hanoi in Java
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="25/03/2025">
+                                    March 25th, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>The Tower of Hanoi is a commonly used coding interview question. The solution requires
+the developer to write a recursive method.</p>
+<!-- more -->
+<p><magpie-trinket>For a detailed explanation of the problem look at <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">wiki/Tower_of_Hanoi</a></magpie-trinket></p>
+<p>Whilst it's not <em>that</em> complex, it can be a tricky one to get your head around if you
+haven't seen it before, or are not familiar with recusive method calls. At an interview
+recently I was asked to write an implementation of it using Java. Well I could use any
+language, but I chose to use Java as the role was for a fullstack Spring dev.</p>
+<p>I was able to implement it successfully after struggling with parameter order for a couple
+of minutes. I had the advantage of solving this problem before, thank you <a href="https://exercism.org">exercism.io</a>.
+So I had an idea of what needed to be done.</p>
+<h2>Test Suite</h2>
+<p>Before I show you the implementation. I asked ChatGPT to generate a test suite using JUnit.
+This is one of the great use cases for AI, they can write the boring code. I had to tune the
+tests slightly to give the expected output. For example in my implementation I am writing out
+the moves as Strings. Which was the interview requirement.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">package</span><span style="color:#24292E"> ie.briandouglas.tower_of_hanoi;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">import</span><span style="color:#D73A49"> static</span><span style="color:#24292E"> org.junit.jupiter.api.Assertions.</span><span style="color:#005CC5">*</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> java.util.List;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">class</span><span style="color:#6F42C1"> TowerOfHanoiTest</span><span style="color:#24292E"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Test</span></span>
+<span class="line"><span style="color:#D73A49">    void</span><span style="color:#6F42C1"> testOneDisk</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        TowerOfHanoi hanoi </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> moves </span><span style="color:#D73A49">=</span><span style="color:#24292E"> hanoi.</span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">, </span><span style="color:#032F62">'A'</span><span style="color:#24292E">, </span><span style="color:#032F62">'C'</span><span style="color:#24292E">, </span><span style="color:#032F62">'B'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">size</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from A to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Test</span></span>
+<span class="line"><span style="color:#D73A49">    void</span><span style="color:#6F42C1"> testTwoDisks</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        TowerOfHanoi hanoi </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> moves </span><span style="color:#D73A49">=</span><span style="color:#24292E"> hanoi.</span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#005CC5">2</span><span style="color:#24292E">, </span><span style="color:#032F62">'A'</span><span style="color:#24292E">, </span><span style="color:#032F62">'C'</span><span style="color:#24292E">, </span><span style="color:#032F62">'B'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#005CC5">3</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">size</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from A to B"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 2 from A to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from B to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">2</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Test</span></span>
+<span class="line"><span style="color:#D73A49">    void</span><span style="color:#6F42C1"> testThreeDisks</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        TowerOfHanoi hanoi </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> moves </span><span style="color:#D73A49">=</span><span style="color:#24292E"> hanoi.</span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#005CC5">3</span><span style="color:#24292E">, </span><span style="color:#032F62">'A'</span><span style="color:#24292E">, </span><span style="color:#032F62">'C'</span><span style="color:#24292E">, </span><span style="color:#032F62">'B'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#005CC5">7</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">size</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from A to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 2 from A to B"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from C to B"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">2</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 3 from A to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">3</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from B to A"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">4</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 2 from B to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">5</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk 1 from A to C"</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">(</span><span style="color:#005CC5">6</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Test</span></span>
+<span class="line"><span style="color:#D73A49">    void</span><span style="color:#6F42C1"> testZeroDisks</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        TowerOfHanoi hanoi </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> moves </span><span style="color:#D73A49">=</span><span style="color:#24292E"> hanoi.</span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#032F62">'A'</span><span style="color:#24292E">, </span><span style="color:#032F62">'C'</span><span style="color:#24292E">, </span><span style="color:#032F62">'B'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">        assertTrue</span><span style="color:#24292E">(moves.</span><span style="color:#6F42C1">isEmpty</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Test</span></span>
+<span class="line"><span style="color:#D73A49">    void</span><span style="color:#6F42C1"> testFiveDisks</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        TowerOfHanoi hanoi </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> moves </span><span style="color:#D73A49">=</span><span style="color:#24292E"> hanoi.</span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#005CC5">5</span><span style="color:#24292E">, </span><span style="color:#032F62">'A'</span><span style="color:#24292E">, </span><span style="color:#032F62">'C'</span><span style="color:#24292E">, </span><span style="color:#032F62">'B'</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">        assertEquals</span><span style="color:#24292E">(</span><span style="color:#005CC5">31</span><span style="color:#24292E">, moves.</span><span style="color:#6F42C1">size</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<h2>Implementation</h2>
+<p>The implementation here is pretty much the implementation you will see everywhere else.
+The solve method recursively calls itself with <code>n - 1</code>, moving the nth largest disk, <code>from</code>,
+to <code>to</code>. Then from <code>unused</code> to <code>to</code>. In this example <code>from</code> is the origin peg, <code>to</code> is the target,
+and <code>unused</code> is the peg that is not involved.</p>
+<p>I extracted the <code>constructMoveString</code> for readability, and created a method overload so that <code>solve</code>
+could be called without instantiating an <code>ArrayList</code>.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">package</span><span style="color:#24292E"> ie.briandouglas.tower_of_hanoi;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> java.util.ArrayList;</span></span>
+<span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> java.util.List;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> TowerOfHanoi</span><span style="color:#24292E"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	public</span><span style="color:#24292E"> List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> </span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> n</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> from</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> to</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> unused</span><span style="color:#24292E">, List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> </span><span style="color:#E36209">moves</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">		if</span><span style="color:#24292E"> (n </span><span style="color:#D73A49">></span><span style="color:#005CC5"> 0</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#6F42C1">			solve</span><span style="color:#24292E">(n </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">, from, unused, to, moves);</span></span>
+<span class="line"><span style="color:#24292E">			moves.</span><span style="color:#6F42C1">add</span><span style="color:#24292E">(</span><span style="color:#6F42C1">constructMoveString</span><span style="color:#24292E">(n, from, to));</span></span>
+<span class="line"><span style="color:#6F42C1">			solve</span><span style="color:#24292E">(n </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">, unused, to, from, moves);</span></span>
+<span class="line"><span style="color:#24292E">		}</span></span>
+<span class="line"><span style="color:#D73A49">		return</span><span style="color:#24292E"> moves;</span></span>
+<span class="line"><span style="color:#24292E">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	public</span><span style="color:#24292E"> List&#x3C;</span><span style="color:#D73A49">String</span><span style="color:#24292E">> </span><span style="color:#6F42C1">solve</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> n</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> from</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> to</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> unused</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">		return</span><span style="color:#6F42C1"> solve</span><span style="color:#24292E">(n, from, to, unused, </span><span style="color:#D73A49">new</span><span style="color:#24292E"> ArrayList&#x3C;>());</span></span>
+<span class="line"><span style="color:#24292E">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">	private</span><span style="color:#24292E"> String </span><span style="color:#6F42C1">constructMoveString</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> disk</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> from</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#E36209"> to</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">		return</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> StringBuilder</span><span style="color:#24292E">().</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(</span><span style="color:#032F62">"Move disk "</span><span style="color:#24292E">).</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(disk).</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(</span><span style="color:#032F62">" from "</span><span style="color:#24292E">).</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(from).</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(</span><span style="color:#032F62">" to "</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">				.</span><span style="color:#6F42C1">append</span><span style="color:#24292E">(to).</span><span style="color:#6F42C1">toString</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
