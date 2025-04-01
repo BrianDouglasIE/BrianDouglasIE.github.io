@@ -39,7 +39,10 @@ class Post {
 export function getPosts() {
   const posts = [];
   for (const file of markdownFiles) {
-    posts.push(new Post(file));
+	  const p = new Post(file);
+	  if(p.data.published !== false) {
+		posts.push(p);
+	  }
   }
   return posts.sort((a, b) => parseDate(b.data.date) - parseDate(a.data.date));
 }
