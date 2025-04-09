@@ -4,7 +4,7 @@ date: 09/04/2025
 tags: [java]
 ---
 
-Introducing Slurp 1.0. Slurp is a task runner for Java. It allows tasks. aka `Runnable` instances to be executed.
+Introducing Slurp 1.0. Slurp is a task runner for Java. It allows tasks, aka `Runnable` instances to be executed.
 
 <!-- more -->
 
@@ -24,7 +24,7 @@ You can create a `SlurpTask` like so.
 SlurpTask printHelloWorld = new SlurpTask("HelloWorld", () -> System.out.println("Hello World!"));
 ```
 
-### Register a SlurpTask
+### Register and Execute a SlurpTask
 
 Inorder to register a `SlurpTask` for excution a `Slurp` instance is needed. The `Slurp` instance allows for tasks to be registered and
 executed.

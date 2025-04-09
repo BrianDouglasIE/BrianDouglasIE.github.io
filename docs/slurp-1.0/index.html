@@ -105,7 +105,7 @@
                                 </time>
                             </p>
                         </header>
-                        <div class="post-content"><p>Introducing Slurp 1.0. Slurp is a task runner for Java. It allows tasks. aka <code>Runnable</code> instances to be executed.</p>
+                        <div class="post-content"><p>Introducing Slurp 1.0. Slurp is a task runner for Java. It allows tasks, aka <code>Runnable</code> instances to be executed.</p>
 <!-- more -->
 <p>Slurp was created to be a super simple task runner. It has a lean feature set. Allowing you to register, execute,
 and run a sequence of tasks.</p>
@@ -115,7 +115,7 @@ and run a sequence of tasks.</p>
 <p><code>SlurpTask</code>s are Java records. They have a <code>name</code> and a <code>runnable</code> property. Neither the <code>name</code> nor <code>runnable</code> property may be null.
 You can create a <code>SlurpTask</code> like so.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">SlurpTask printHelloWorld </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> SlurpTask</span><span style="color:#24292E">(</span><span style="color:#032F62">"HelloWorld"</span><span style="color:#24292E">, () </span><span style="color:#D73A49">-></span><span style="color:#24292E"> System.out.</span><span style="color:#6F42C1">println</span><span style="color:#24292E">(</span><span style="color:#032F62">"Hello World!"</span><span style="color:#24292E">));</span></span></code></pre>
-<h3>Register a SlurpTask</h3>
+<h3>Register and Execute a SlurpTask</h3>
 <p>Inorder to register a <code>SlurpTask</code> for excution a <code>Slurp</code> instance is needed. The <code>Slurp</code> instance allows for tasks to be registered and
 executed.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">Slurp slurp </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Slurp</span><span style="color:#24292E">();</span></span>
