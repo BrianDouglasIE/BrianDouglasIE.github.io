@@ -40,7 +40,7 @@ when accessing a `Post`.
 This is a requirement for the `@PreAuthorize` annotation to work.</magpie-trinket>
 
 ```java
-@PreAuthorize("@postService.isOwner(#postId, authentication.name)")
+@PreAuthorize("isOwner(#postId, authentication.name)")
 public Post getOwnedPost(Long postId) {
     return postRepository.findById(postId)
             .orElseThrow(() -> new EntityNotFoundException("Post not found"));
