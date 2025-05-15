@@ -10,17 +10,24 @@ Say a forum user creates a post. Only that user, the owner, should be allowed to
 
 This means that in our application code a check should happen. Such a check might assert that the
 `user_id` of the post in question is that of the currently authenticated user. To facilitate this
-we might add an `isOwner` method to our `PostService`. The method will most likely look like the
-one below.
+we might add a `PostSecurity` component with an `isOwner` method. This class will be something like
+the one below.
 
 ```java
-public boolean isOwner(Long postId, String userEmail) {
-    return findById(postId)
-            .map(Post::getUser)
-            .map(AppUser::getEmail)
-            .map(it -> it.equals(userEmail))
-            .orElse(false);
+@Component
+@AllArgsConstructor
+public class PostSecurity {
+    private final PostRepository postRepository;
+
+    public boolean isOwner(Long id, String userEmail) {
+        return postRepository.findById(id)
+                .map(Post::getUser)
+                .map(AppUser::getEmail)
+                .map(it -> it.equals(userEmail))
+                .orElse(false);
+    }
 }
+
 ```
 
 This method finds the post with an id matching `postId`, gets the user attached to that post, then 
@@ -40,7 +47,7 @@ when accessing a `Post`.
 This is a requirement for the `@PreAuthorize` annotation to work.</magpie-trinket>
 
 ```java
-@PreAuthorize("isOwner(#postId, authentication.name)")
+@PreAuthorize("@postSecurity.isOwner(#postId, authentication.name)")
 public Post getOwnedPost(Long postId) {
     return postRepository.findById(postId)
             .orElseThrow(() -> new EntityNotFoundException("Post not found"));
@@ -59,4 +66,6 @@ public String editPost(@PathVariable Long postId, Model model) {
 ```
 
 By keeping the ownership logic in the `PostService` it can be reused in other controllers and methods.
-It also ensures that accessing a `Post` is done in a consistent and safe manner.
+It also ensures that accessing a `Post` is done in a consistent and safe manner. The handling of the
+ownership check has been delegated to the `PostSecurity` component which allows for a separation of
+concerns.
