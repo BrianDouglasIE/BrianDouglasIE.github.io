@@ -27,7 +27,6 @@ public class PostSecurity {
                 .orElse(false);
     }
 }
-
 ```
 
 This method finds the post with an id matching `postId`, gets the user attached to that post, then 
@@ -64,6 +63,9 @@ public String editPost(@PathVariable Long postId, Model model) {
     return "post/edit";
 }
 ```
+
+<chicken-asks>That is all well and good, but won't this require two calls to fetch the same post?</chicken-asks>
+<magpie-replies>Wow, you aren't so slow after all. Yes, it would. He provides a solution here, [spring-request-cache](/spring-request-cache)</magpie-replies>
 
 By keeping the ownership logic in the `PostService` it can be reused in other controllers and methods.
 It also ensures that accessing a `Post` is done in a consistent and safe manner. The handling of the

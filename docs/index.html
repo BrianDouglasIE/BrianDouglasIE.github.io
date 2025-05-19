@@ -133,6 +133,25 @@
     <li>
         <article class="post-item">
     <header>
+        <h2><a href="/spring-request-cache">Request cache in Spring</a></h2>
+        <time datetime="19/05/2025"
+        >May 19th, 2025</time>
+    </header>
+    <p class="post-excerpt"><p>Let's say we have a request that fetches a post stored in the database. That request may need
+to alter the fetched post in some way. Before the post is altered various checks may need to
+happen, such as an ownership check. But we want to avoid each check fetching the same post
+from the database. This is when a cache that is scoped to a request's life cycle comes in handy.</p>
+</p>
+    <footer>
+        <a href="/spring-request-cache">Read More</a>
+    </footer>
+</article>
+
+    </li>
+    
+    <li>
+        <article class="post-item">
+    <header>
         <h2><a href="/pre-auth-spring">Checking ownership in Spring</a></h2>
         <time datetime="12/05/2025"
         >May 12th, 2025</time>
@@ -162,29 +181,19 @@
 
     </li>
     
-    <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/cpu-branch-prediction">Using CPU branch prediction in Java</a></h2>
-        <time datetime="03/04/2025"
-        >April 3rd, 2025</time>
-    </header>
-    <p class="post-excerpt"><p>CPU branch prediction is when the CPU tries to guess the outcome of a conditional
-operation, eg: an <code>if</code> statement, before it is executed. If it guesses correct then
-the CPU can continue executing instructions without interuption.</p>
-</p>
-    <footer>
-        <a href="/cpu-branch-prediction">Read More</a>
-    </footer>
-</article>
-
-    </li>
-    
 </ul>
 
           <h2>Older Posts</h2>
           <hr />
           <ul class="list-reset content-md mx-auto post-list">
+    
+    <li>
+        <article class="post-item post-item--brief">
+  <time datetime="03/04/2025">03/04/2025</time>
+  <h2><a href="/cpu-branch-prediction">Using CPU branch prediction in Java</a></h2>
+</article>
+
+    </li>
     
     <li>
         <article class="post-item post-item--brief">

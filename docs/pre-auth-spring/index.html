@@ -123,8 +123,7 @@ the one below.</p>
 <span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(it </span><span style="color:#D73A49">-></span><span style="color:#24292E"> it.</span><span style="color:#6F42C1">equals</span><span style="color:#24292E">(userEmail))</span></span>
 <span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">orElse</span><span style="color:#24292E">(</span><span style="color:#005CC5">false</span><span style="color:#24292E">);</span></span>
 <span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span></code></pre>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
 <p>This method finds the post with an id matching <code>postId</code>, gets the user attached to that post, then
 asserts whether the post's user's email matches the currently authenticated user. If the
 <code>Optional&lt;Post&gt;</code> from <code>findById</code> is empty, then <code>false</code> is returned.</p>
@@ -149,6 +148,8 @@ This is a requirement for the <code>@PreAuthorize</code> annotation to work.</ma
 <span class="line"><span style="color:#24292E">    model.</span><span style="color:#6F42C1">addAttribute</span><span style="color:#24292E">(</span><span style="color:#032F62">"post"</span><span style="color:#24292E">, post);</span></span>
 <span class="line"><span style="color:#D73A49">    return</span><span style="color:#032F62"> "post/edit"</span><span style="color:#24292E">;</span></span>
 <span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p><chicken-asks>That is all well and good, but won't this require two calls to fetch the same post?</chicken-asks>
+<magpie-replies>Wow, you aren't so slow after all. Yes, it would. He provides a solution here, <a href="/spring-request-cache">spring-request-cache</a></magpie-replies></p>
 <p>By keeping the ownership logic in the <code>PostService</code> it can be reused in other controllers and methods.
 It also ensures that accessing a <code>Post</code> is done in a consistent and safe manner. The handling of the
 ownership check has been delegated to the <code>PostSecurity</code> component which allows for a separation of
