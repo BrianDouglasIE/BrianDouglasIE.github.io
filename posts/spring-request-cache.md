@@ -86,6 +86,7 @@ the various services that will use it. You will be able to see at this stage how
 extended to work with various entities, by adding a unique `RequestCache` property for each cached item.
 
 ```java
+@Getter
 @Component
 public class RequestCacheRegistry {
     public final RequestCache<Post> ownedPost = new RequestCache<>();
@@ -111,7 +112,7 @@ public class PostSecurity {
         return postRepository.findById(id)
                 .filter(it -> it.getUser().getEmail().equals(userEmail))
                 .map(it -> {
-                    requestCacheRegistry.ownedPost.set(it); // cache post
+                    requestCacheRegistry.getOwnedPost().set(it); // cache post
                     return true;
                 })
                 .orElse(false);
@@ -125,7 +126,7 @@ has the `PreAuthorize` annotation.
 ```java
 @PreAuthorize("@postSecurity.isOwner(#postId, authentication.name)")
 public Post getOwnedPost(Long postId) {
-    return requestCacheRegistry.ownedPost.get().orElseGet(() -> findById(postId));
+    return requestCacheRegistry.getOwnedPost().get().orElseGet(() -> findById(postId));
 }
 ```
 
