@@ -18,6 +18,8 @@ can be reused in any app. The details of which are below.
 
 This simple utility generates customizable placeholder images in Java using AWT. It is useful for creating mock user avatars, image placeholders in UI development, or dynamically generated image content.
 
+<magpie-trinket>View the source code on github at [BrianDouglasIE/PlaceholderImageGenerator](https://github.com/BrianDouglasIE/PlaceholderImageGenerator)</magpie-trinket>
+
 ## Features
 
 * Set image dimensions and text
