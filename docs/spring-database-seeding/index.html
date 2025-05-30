@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - Spring database seeding
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Spring database seeding" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, java" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Spring database seeding" />
+    <meta property="og:description" content="Spring database seeding" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/spring-database-seeding.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Spring database seeding'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Spring database seeding" />
+    <meta name="twitter:description" content="Spring database seeding" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/spring-database-seeding.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Spring database seeding
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Spring database seeding
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="29/05/2025">
+                                    May 29th, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>I'm working on a website that functions as an index of trades people in Ireland. It allows users to register a trade
+profile detailing their services. This trade profile can then be reviewed by other users. I have this functionality
+pretty much built out. But until recently I had very little test data, which lead me on a journey into the world of
+database seeding. Which is the generation of test data that mimics real world data. Here's how I got on.</p>
+<!-- more -->
+<h2>The goal</h2>
+<p>I wanted to generate test data that was similar to what would be seen in a real world scenario. A bunch of <em>lorem ipsum</em>
+wouldn't have been good enough. This is where the <a href="https://github.com/DiUS/java-faker">Faker</a> module came into play.</p>
+<p>Faker allows for the generation of realistic data. For example if you want to generate a user's details using Faker, it
+would look something like the following.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">Faker faker </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Faker</span><span style="color:#24292E">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">String firstName </span><span style="color:#D73A49">=</span><span style="color:#24292E"> faker.</span><span style="color:#6F42C1">name</span><span style="color:#24292E">().</span><span style="color:#6F42C1">firstName</span><span style="color:#24292E">();     </span><span style="color:#6A737D">// John</span></span>
+<span class="line"><span style="color:#24292E">String lastName </span><span style="color:#D73A49">=</span><span style="color:#24292E"> faker.</span><span style="color:#6F42C1">name</span><span style="color:#24292E">().</span><span style="color:#6F42C1">lastName</span><span style="color:#24292E">();       </span><span style="color:#6A737D">// Wayne</span></span>
+<span class="line"><span style="color:#24292E">String email </span><span style="color:#D73A49">=</span><span style="color:#24292E"> faker.</span><span style="color:#6F42C1">internet</span><span style="color:#24292E">().</span><span style="color:#6F42C1">emailAddress</span><span style="color:#24292E">();  </span><span style="color:#6A737D">// rooster.cogburn@gmail.com</span></span></code></pre>
+<p>Faker generates data for many scenarios, 79 domains as of writing, and facilitated my need for realistic looking text.</p>
+<p>But I didn't just want to generate the text, I wanted to store it in the database. This is where things got complicated.
+The Spring pattern that I usually follow for data loading is to create a <code>DataLoader</code> component class, which extends the
+<code>CommandLinerRunner</code> class. I then add some logic in the <code>run</code> method to populate my dev database. Usually this means
+generating one off objects to persist in the database via a big loop. Long story short, there was no particular method
+to the madness. That was until recently when I learned
+of <a href="https://laravel.com/docs/11.x/seeding">Laravel's approach to seeding via factory classes</a>.</p>
+<p>Laravel is a PHP framework that has some neat ideas around <em>eloquent</em> code. Which basically means developer experience.
+The gist of Laravel's approach to seeding was to use factories with overwritable <em>blueprints</em> to generate entity
+objects. Which is a good idea. The Laravel implementation however seemed a little overcomplicated to me. With many
+helper methods that could only be implemented due the looseness of PHP.</p>
+<p>My goal was to implement the same functionality in java but with a much more limited api. I wanted an abstract base
+class, <code>BlueprintFactory&lt;T&gt;</code>, which could be extended to allow the creation of objects based off a <em>blueprint</em>. I also
+wanted to limit the caller api to two methods. These methods being <code>with</code> and <code>create</code>. <code>create</code> will be used to create
+the object, and <code>with</code> will be used to supply custom setters. The latter being useful when dealing with related
+entities. With this goal in mind, I set to work.</p>
+<h2>Usage</h2>
+<p>Before implementing something like this, I like to start of by thinking about how the consumer code should look. So I
+start with how I want to use it. Allowing me to have a better idea of how to implement it. My initial thought was to
+have an abstract <code>BlueprintFactory&lt;T&gt;</code> class that would force the extending class to implement a
+<code>abstract T blueprint();</code> method. In the case of a <code>UserFactory</code> class that might look like the following.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">AllArgsConstructor</span></span>
+<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> UserFactory</span><span style="color:#D73A49"> extends</span><span style="color:#6F42C1"> BlueprintFactory</span><span style="color:#24292E">&#x3C;</span><span style="color:#D73A49">AppUser</span><span style="color:#24292E">> {</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> Faker faker;</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> PasswordEncoder passwordEncoder;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    protected</span><span style="color:#24292E"> AppUser </span><span style="color:#6F42C1">blueprint</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#D73A49">        var</span><span style="color:#24292E"> user </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> AppUser</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        user.</span><span style="color:#6F42C1">setEmail</span><span style="color:#24292E">(faker.</span><span style="color:#6F42C1">internet</span><span style="color:#24292E">().</span><span style="color:#6F42C1">emailAddress</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#24292E">        user.</span><span style="color:#6F42C1">setPassword</span><span style="color:#24292E">(passwordEncoder.</span><span style="color:#6F42C1">encode</span><span style="color:#24292E">(</span><span style="color:#032F62">"password"</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> user;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p>The above is clean and clearly gives it's intent. It's also nice and concise as the parent class will implement the
+<code>with</code> and <code>create</code> methods. The <code>blueprint</code> method will be called each time an object is created. This means that each
+object will have it's data generated by faker.</p>
+<p>I'm happy with this approach to creating the factories. So then I look at using the factories in a seeder class.</p>
+<p>The seeder will be the class that stores the objects created via the factories in a database. So I write out how I want
+my <code>UserSeeder</code> to look. In my case the <code>AppUser</code> entity also has a one to one relationship with a <code>UserProfile</code> entity.
+So I'll need to create and store that along with the <code>AppUser</code>. It's a good idea to give each entity its own factory.
+So I create the following <code>UserProfileFactory</code>.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">AllArgsConstructor</span></span>
+<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> UserProfileFactory</span><span style="color:#D73A49"> extends</span><span style="color:#6F42C1"> BlueprintFactory</span><span style="color:#24292E">&#x3C;</span><span style="color:#D73A49">UserProfile</span><span style="color:#24292E">> {</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> Faker faker;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Override</span></span>
+<span class="line"><span style="color:#D73A49">    protected</span><span style="color:#24292E"> UserProfile </span><span style="color:#6F42C1">blueprint</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">        UserProfile userProfile </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> UserProfile</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#24292E">        userProfile.</span><span style="color:#6F42C1">setFirstName</span><span style="color:#24292E">(faker.</span><span style="color:#6F42C1">name</span><span style="color:#24292E">().</span><span style="color:#6F42C1">firstName</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#24292E">        userProfile.</span><span style="color:#6F42C1">setLastName</span><span style="color:#24292E">(faker.</span><span style="color:#6F42C1">name</span><span style="color:#24292E">().</span><span style="color:#6F42C1">lastName</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> userProfile;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p><magpie-trinket>It's also a good idea not to call one factory from inside another.
+You may be tempted to create the <code>UserProfile</code> inside the <code>UserFactory</code> blueprint. This is better handled inside the
+seeder, where the related entity can be passed during object creation via the <code>with</code> method.</magpie-trinket></p>
+<p>With the <code>UserFactory</code> and <code>UserProfileFactory</code> set up. I can now go about writing the seeder. The <code>UserSeeder</code> will
+create the <code>AppUser</code> and <code>UserProfile</code> entities using the factories we created. It will also handle the relationship
+assignments. For example, we will want to set the <code>AppUser</code> that owns the <code>UserProfile</code> when it is created, using the
+<code>with</code> method. The <code>with</code> method will return a new instance of the factory, <em>with</em> the custom setter in place, to allow
+for composability. The <code>UserSeeder</code> should look as follows.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Order</span><span style="color:#24292E">(</span><span style="color:#005CC5">1</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Profile</span><span style="color:#24292E">(</span><span style="color:#032F62">"dev"</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> UserSeeder</span><span style="color:#D73A49"> implements</span><span style="color:#6F42C1"> CommandLineRunner</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> UserFactory userFactory;</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> AppUserRepository appUserRepository;</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> UserProfileFactory userProfileFactory;</span></span>
+<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> UserProfileRepository userProfileRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Override</span></span>
+<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Transactional</span></span>
+<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> run</span><span style="color:#24292E">(String... </span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> (appUserRepository.</span><span style="color:#6F42C1">count</span><span style="color:#24292E">() </span><span style="color:#D73A49">></span><span style="color:#005CC5"> 0</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">            return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">        var</span><span style="color:#24292E"> savedUsers </span><span style="color:#D73A49">=</span><span style="color:#24292E"> appUserRepository.</span><span style="color:#6F42C1">saveAll</span><span style="color:#24292E">(userFactory.</span><span style="color:#6F42C1">create</span><span style="color:#24292E">(</span><span style="color:#005CC5">50</span><span style="color:#24292E">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">        var</span><span style="color:#24292E"> userProfiles </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#24292E"> ArrayList&#x3C;</span><span style="color:#D73A49">UserProfile</span><span style="color:#24292E">>();</span></span>
+<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">var</span><span style="color:#24292E"> user </span><span style="color:#D73A49">:</span><span style="color:#24292E"> savedUsers) {</span></span>
+<span class="line"><span style="color:#24292E">            userProfiles.</span><span style="color:#6F42C1">add</span><span style="color:#24292E">(userProfileFactory.</span><span style="color:#6F42C1">with</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#24292E"> user, UserProfile</span><span style="color:#D73A49">::</span><span style="color:#24292E">setUser).</span><span style="color:#6F42C1">create</span><span style="color:#24292E">());</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">        userProfileRepository.</span><span style="color:#6F42C1">saveAll</span><span style="color:#24292E">(userProfiles);</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p>In this class we create 50 <code>AppUser</code> entities, by passing <code>50</code> to the <code>create</code> method. I then assign a <code>UserProfile</code> to
+each of those. All of which are persisted to the database.</p>
+<p>An area of note is the following for loop.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">for</span><span style="color:#24292E">(</span><span style="color:#D73A49">var</span><span style="color:#24292E"> user </span><span style="color:#D73A49">:</span><span style="color:#24292E"> savedUsers){</span></span>
+<span class="line"><span style="color:#24292E">    userProfiles.</span><span style="color:#6F42C1">add</span><span style="color:#24292E">(</span></span>
+<span class="line"><span style="color:#24292E">            userProfileFactory.</span><span style="color:#6F42C1">with</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#24292E">user,UserProfile</span><span style="color:#D73A49">::</span><span style="color:#24292E">setUser).</span><span style="color:#6F42C1">create</span><span style="color:#24292E">()</span></span>
+<span class="line"><span style="color:#24292E">    );</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<p>Here we loop through the already saved users, creating a <code>UserProfile</code> for each one. The interesting part is how the
+user is passed to the user profile. The <code>with</code> method adds a custom setter. Meaning that <code>UserProfile::setUser</code> will be
+called, and the result of <code>() -&gt; user</code> will be passed to it. Allowing that <code>AppUser</code> instance to be set on the newly
+created <code>UserProfile</code>.</p>
+<p>Some other things to note here is that I add an <code>@Order</code> annotation to specify I want this seeder to run first. As well
+as the <code>@Profile</code> annotation to say I want it only to run in dev. I also firstly check if there are any users in the
+database before running the seeder. This is to ensure the database is only seeded when empty.</p>
+<p>You may want to create a <em>test</em> user in your seeder. YOu can do this by passing a <em>variant</em> to the create method. This
+will overwrite the specified fields.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">AppUser testUser </span><span style="color:#D73A49">=</span><span style="color:#24292E"> appUserRepository.</span><span style="color:#6F42C1">save</span><span style="color:#24292E">(userFactory.</span><span style="color:#6F42C1">create</span><span style="color:#24292E">(Map.</span><span style="color:#6F42C1">of</span><span style="color:#24292E">(</span><span style="color:#032F62">"email"</span><span style="color:#24292E">, </span><span style="color:#032F62">"test@test.com"</span><span style="color:#24292E">)));</span></span></code></pre>
+<p>The above creates a test user with the email &quot;test@test.com&quot;. The factory reads the keys of the map and overwrites the
+matching value on the blueprint.</p>
+<h2>Implementation</h2>
+<p>The implementation comes down to three main areas.</p>
+<ul>
+<li><code>BlueprintFactory&lt;T&gt;</code>: the extensible base</li>
+<li><code>with</code>: allowing composable factory instances</li>
+<li><code>create</code>: construction of objects</li>
+</ul>
+<p>And there is a lot to go through in each. So I will keep it brief.</p>
+<h3><code>BlueprintFactory&lt;T&gt;</code></h3>
+<p>This is an abstract class that forces the extender to implement a <code>abstract T blueprint();</code> method. This method will get
+called each time an object is created. The result of which will then have any custom setters applied, before being
+passed to an object mapper which will apply any overwrites specified in the <code>create</code> method call.</p>
+<p>So for clarity if a custom setter is added. It will be applied before the variant/overwrite is applied via the <code>create</code>
+method.</p>
+<h3><code>with</code></h3>
+<p>This method exists to handle the setting of related entities. As I stated earlier it's good practice to not create any
+related entities inside your factory. The setting of related entities should be handled solely by the <code>with</code> method.</p>
+<p>Let's take the example of a <code>User</code> entity that can own many <code>Post</code> entities. In our seeder we may want to create the
+<code>User</code> entity first, then apply that <code>User</code> to a bunch of <code>Post</code> entities when they are created. The <code>with</code> method
+can specify the <code>Post::setUser</code> setter always set the supplied <code>User</code> like so:</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">var</span><span style="color:#24292E"> myUserPosts </span><span style="color:#D73A49">=</span><span style="color:#24292E"> postFactory.</span><span style="color:#6F42C1">with</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#24292E"> myUser, Post</span><span style="color:#D73A49">::</span><span style="color:#24292E">setUser).</span><span style="color:#6F42C1">create</span><span style="color:#24292E">(</span><span style="color:#005CC5">50</span><span style="color:#24292E">);</span></span></code></pre>
+<p>The above will create 50 posts belonging to <code>myUser</code>. As the <code>with</code> method returns a new instance of the factory with
+the custom setter applied it can also be made composable like so:</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">var</span><span style="color:#24292E"> myUserFactory </span><span style="color:#D73A49">=</span><span style="color:#24292E"> postFactory.</span><span style="color:#6F42C1">with</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#24292E"> myUser, Post</span><span style="color:#D73A49">::</span><span style="color:#24292E">setUser);</span></span>
+<span class="line"><span style="color:#D73A49">var</span><span style="color:#24292E"> myUserPosts </span><span style="color:#D73A49">=</span><span style="color:#24292E"> myUserFactory.</span><span style="color:#6F42C1">create</span><span style="color:#24292E">(</span><span style="color:#005CC5">50</span><span style="color:#24292E">);</span></span></code></pre>
+<p>This is achieved by an internal constructor, <code>protected BlueprintFactory(List&lt;Consumer&lt;T&gt;&gt; customSetters)</code>, in which
+a copy of the factory's custom setters is passed to a new instance of said factory. That new instance is then returned.
+This allows for the construction of composable factories.</p>
+<p>Inorder to facilitate applying a single entity and a list of entities method overloads are used, to match the type of
+the supplied argument.</p>
+<ul>
+<li><code>with(Supplier&lt;R&gt;, BiConsumer&lt;T, R&gt;)</code>: Injects a single related object</li>
+<li><code>with(Function&lt;Integer, List&lt;R&gt;&gt;, int, BiConsumer&lt;T, List&lt;R&gt;&gt;)</code>: Injects a list of related objects</li>
+<li><code>with(Function&lt;V, R&gt;, V, BiConsumer&lt;T, R&gt;)</code>: Injects a value based on a variant</li>
+</ul>
+<p>I made a big effort here with these overloads to keep the public api as simple as possible but still allow for
+flexibility.</p>
+<h3><code>create</code></h3>
+<p>The <code>create</code> method is self-explanatory. It creates the new object based of the object returned via the <code>blueprint</code>
+method. It will call <code>blueprint</code>, then it will apply any custom setters to the return value of blueprint, before
+passing the modified object to an object mapper which will merge any overwrites that have been passed to the <code>create</code>
+method call.</p>
+<p>Similar to the <code>with</code> method there are a number of overloads to allow for different usages of <code>create</code>.</p>
+<ul>
+<li><code>create()</code>: Builds a single instance using the blueprint and custom setters</li>
+<li><code>create(Map&lt;String, ?&gt; variation)</code>: Applies field overrides using a map</li>
+<li><code>create(T variation)</code>: Merges fields from an existing instance</li>
+<li><code>create(int count)</code>:    Batch creation of identical instances</li>
+<li><code>create(VariantList&lt;T&gt;)</code>: Batch creation using pre-defined entity variants</li>
+<li><code>create(VariantMapList)</code>: Batch creation using field maps (variant by map)</li>
+</ul>
+<p>I was forced to create some custom types here to avoid ambiguity with the type checker. The was caused by allowing
+both a <code>List&lt;Map&lt;String, ?&gt;&gt;</code> and a <code>List&lt;T&gt;</code> to be passed to <code>create</code> to allow the creation of multiple variants.
+This is called a <code>Sequence</code> in the Laravel terminology. To get the type checker to allow this I had to create some
+wrapper classes, <code>VariantMapList</code> and <code>VariantList&lt;T&gt;</code> to distinguish between the types. This creates some overhead
+but until I can find a better solution. I will put up with it to keep the concise public api.</p>
+<h2>The module</h2>
+<p><code>BlueprintFactory</code> has been uploaded to maven central. You can read the docs and learn how to use it in your own
+projects at <a href="https://github.com/BrianDouglasIE/BlueprintFactory">BrianDouglasIE/BlueprintFactory</a>.</p>
+<p>Feel free to create a github issue with any suggested improvements.</p>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+</body>
+
+</html>
