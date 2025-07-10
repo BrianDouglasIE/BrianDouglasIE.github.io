@@ -16,11 +16,7 @@ const markdownFiles = globSync(convertWinPathToUnix(globPattern));
 
 const md = MarkdownIt({ html: true });
 
-md.use(
-  await Shiki({
-    theme: "github-light",
-  }),
-);
+Shiki({ theme: "github-light" }).then((plugin) => md.use(plugin));
 
 class Post {
   constructor(filePath) {
@@ -39,10 +35,10 @@ class Post {
 export function getPosts() {
   const posts = [];
   for (const file of markdownFiles) {
-	  const p = new Post(file);
-	  if(p.data.published !== false) {
-		posts.push(p);
-	  }
+    const p = new Post(file);
+    if (p.data.published !== false) {
+      posts.push(p);
+    }
   }
   return posts.sort((a, b) => parseDate(b.data.date) - parseDate(a.data.date));
 }
