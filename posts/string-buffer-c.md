@@ -22,7 +22,7 @@ a great sense of achievement. I'm exhausted and broken, but happy.
 Anyway here is a string buffer implementation that I extracted from my project. You can see
 the up to date source code at [BrianDouglasIE/c_string_buffer](https://github.com/BrianDouglasIE/c_string_buffer).
 
-I replace and remove were particularly tricky to implement. My brain was on fire trying to figure out
+The replace and remove were particularly tricky to implement. My brain was on fire trying to figure out
 how to juggle the memory about correctly.
 
 ### Header 
