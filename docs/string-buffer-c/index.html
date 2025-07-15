@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - Making a StringBuffer in C
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Making a StringBuffer in C" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, c" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Making a StringBuffer in C" />
+    <meta property="og:description" content="Making a StringBuffer in C" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/string-buffer-c.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Making a StringBuffer in C'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Making a StringBuffer in C" />
+    <meta name="twitter:description" content="Making a StringBuffer in C" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/string-buffer-c.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Making a StringBuffer in C
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Making a StringBuffer in C
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="15/07/2025">
+                                    July 15th, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>I've been writing a lot of C. Whilst doing so I have been questioning my sanity.
+Am I an awful programmer? You know what, I think I might be.</p>
+<p>Kudos to all those devs that created monumental feats with C. Because it is not
+an easy tool to use. That said, I do enjoy writing C, just as long as I don't
+have a deadline or any business critical software to deliver. But when I say enjoy, I mean
+enjoyment in the sense of using a sycthe to cut a lawn, whilst my lawnmower watches on.
+It's lovely using the sycthe, but at the end of the day when I am exhausted and cut
+only a quarter of the grass that I could have cut with a mower in half the time, I do feel
+a great sense of achievement. I'm exhausted and broken, but happy.</p>
+<!-- more -->
+<h2>StringBuffer</h2>
+<p>Anyway here is a string buffer implementation that I extracted from my project. You can see
+the up to date source code at <a href="https://github.com/BrianDouglasIE/c_string_buffer">BrianDouglasIE/c_string_buffer</a>.</p>
+<p>I replace and remove were particularly tricky to implement. My brain was on fire trying to figure out
+how to juggle the memory about correctly.</p>
+<h3>Header</h3>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">#ifndef</span><span style="color:#6F42C1"> STRING_BUFFER_H</span></span>
+<span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> STRING_BUFFER_H</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;stddef.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> A dynamic string buffer that supports common string operations.</span></span>
+<span class="line"><span style="color:#D73A49">typedef</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> size;</span><span style="color:#6A737D">     ///&#x3C; The current size (length) of the string.</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> capacity;</span><span style="color:#6A737D"> ///&#x3C; The total allocated capacity of the buffer.</span></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">data;</span><span style="color:#6A737D">      ///&#x3C; Pointer to the character data.</span></span>
+<span class="line"><span style="color:#24292E">} StringBuffer;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Represents all positions where a match was found.</span></span>
+<span class="line"><span style="color:#D73A49">typedef</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#D73A49"> *</span><span style="color:#24292E">positions;</span><span style="color:#6A737D"> ///&#x3C; Array of match positions.</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> count;</span><span style="color:#6A737D">      ///&#x3C; Number of matches found.</span></span>
+<span class="line"><span style="color:#24292E">} MatchResult;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Represents the result of splitting a string.</span></span>
+<span class="line"><span style="color:#D73A49">typedef</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> **</span><span style="color:#24292E">parts;</span><span style="color:#6A737D"> ///&#x3C; Array of substrings resulting from the split.</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> count;</span><span style="color:#6A737D"> ///&#x3C; Number of parts.</span></span>
+<span class="line"><span style="color:#24292E">} SplitResult;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Lifecycle</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Initializes a new, empty StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@return</span><span style="color:#6A737D"> A pointer to the newly allocated StringBuffer.</span></span>
+<span class="line"><span style="color:#24292E">StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_init</span><span style="color:#24292E">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Frees memory used by the given StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer to be freed.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_free</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Clears the contents of the StringBuffer without freeing the object.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer to be cleared.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_clear</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Operations</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Prints the contents of the StringBuffer to stdout.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer to be printed.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_print</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Appends text to the end of the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> text</span><span style="color:#6A737D"> Null-terminated string to append.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_append</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Prepends text to the beginning of the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> text</span><span style="color:#6A737D"> Null-terminated string to prepend.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_prepend</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Removes the first occurrence of text from the buffer starting from a given index.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> text</span><span style="color:#6A737D"> Null-terminated string to remove.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> from</span><span style="color:#6A737D"> Index to start the search from.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_remove</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">, </span><span style="color:#D73A49">size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Replaces the first occurrence of a substring with another string, starting from a given index.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> original</span><span style="color:#6A737D"> Substring to be replaced.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> update</span><span style="color:#6A737D"> Replacement string.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> from</span><span style="color:#6A737D"> Index to start the search from.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_replace</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">original</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                          const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">update</span><span style="color:#24292E">, </span><span style="color:#D73A49">size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Search &#x26; Split</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Finds the index of the first occurrence of text starting from a given index.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> text</span><span style="color:#6A737D"> Substring to search for.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> from</span><span style="color:#6A737D"> Index to start the search from.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@return</span><span style="color:#6A737D"> The index of the first occurrence, or -1 if not found.</span></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                          size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Finds all occurrences of a substring starting from a given index.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> text</span><span style="color:#6A737D"> Substring to match.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> from</span><span style="color:#6A737D"> Index to start the search from.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@return</span><span style="color:#6A737D"> A pointer to a MatchResult containing all match positions.</span></span>
+<span class="line"><span style="color:#24292E">MatchResult </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_match_all</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                                    size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Splits the buffer into parts using the given delimiter.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> buf</span><span style="color:#6A737D"> Pointer to the StringBuffer.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> delimiter</span><span style="color:#6A737D"> String delimiter to split by.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@return</span><span style="color:#6A737D"> A pointer to a SplitResult containing the parts.</span></span>
+<span class="line"><span style="color:#24292E">SplitResult </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_split</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">delimiter</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Cleanup</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Frees the memory used by a MatchResult.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> matches</span><span style="color:#6A737D"> Pointer to the MatchResult to free.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> MatchResult_free</span><span style="color:#24292E">(MatchResult </span><span style="color:#D73A49">*</span><span style="color:#E36209">matches</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@brief</span><span style="color:#6A737D"> Frees the memory used by a SplitResult.</span></span>
+<span class="line"><span style="color:#6A737D">/// </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> split</span><span style="color:#6A737D"> Pointer to the SplitResult to free.</span></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SplitResult_free</span><span style="color:#24292E">(SplitResult </span><span style="color:#D73A49">*</span><span style="color:#E36209">split</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#endif</span></span></code></pre>
+<h2>Implementation</h2>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> "string_buffer.h"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;stdio.h></span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;stdlib.h></span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;string.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#define</span><span style="color:#6F42C1"> INITIAL_CAPACITY</span><span style="color:#005CC5"> 16</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">static</span><span style="color:#D73A49"> int</span><span style="color:#6F42C1"> ensure_capacity</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">size_t</span><span style="color:#E36209"> required</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (required </span><span style="color:#D73A49">&#x3C;=</span><span style="color:#24292E"> buf->capacity)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> new_capacity </span><span style="color:#D73A49">=</span><span style="color:#24292E"> buf->capacity </span><span style="color:#D73A49">?</span><span style="color:#24292E"> buf->capacity </span><span style="color:#D73A49">:</span><span style="color:#24292E"> INITIAL_CAPACITY;</span></span>
+<span class="line"><span style="color:#D73A49">  while</span><span style="color:#24292E"> (new_capacity </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> required) {</span></span>
+<span class="line"><span style="color:#24292E">    new_capacity </span><span style="color:#D73A49">*=</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">new_data </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> realloc</span><span style="color:#24292E">(buf->data, new_capacity);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">new_data) {</span></span>
+<span class="line"><span style="color:#6F42C1">    perror</span><span style="color:#24292E">(</span><span style="color:#032F62">"realloc"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  buf->data </span><span style="color:#D73A49">=</span><span style="color:#24292E"> new_data;</span></span>
+<span class="line"><span style="color:#24292E">  buf->capacity </span><span style="color:#D73A49">=</span><span style="color:#24292E"> new_capacity;</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_init</span><span style="color:#24292E">() {</span></span>
+<span class="line"><span style="color:#24292E">  StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#24292E">buf </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> malloc</span><span style="color:#24292E">(</span><span style="color:#D73A49">sizeof</span><span style="color:#24292E">(StringBuffer));</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf) {</span></span>
+<span class="line"><span style="color:#6F42C1">    perror</span><span style="color:#24292E">(</span><span style="color:#032F62">"malloc"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  buf->size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  buf->capacity </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  buf->data </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> buf;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_free</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(buf->data);</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(buf);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_clear</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  buf->data[</span><span style="color:#005CC5">0</span><span style="color:#24292E">] </span><span style="color:#D73A49">=</span><span style="color:#032F62"> '</span><span style="color:#005CC5">\0</span><span style="color:#032F62">'</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  buf->size </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_print</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#6F42C1">  printf</span><span style="color:#24292E">(</span><span style="color:#032F62">"size: </span><span style="color:#005CC5">%zu\n</span><span style="color:#032F62">"</span><span style="color:#24292E">, buf->size);</span></span>
+<span class="line"><span style="color:#6F42C1">  printf</span><span style="color:#24292E">(</span><span style="color:#032F62">"data: </span><span style="color:#005CC5">%s\n</span><span style="color:#032F62">"</span><span style="color:#24292E">, buf->data);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_append</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">text)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> text_len </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strlen</span><span style="color:#24292E">(text);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#6F42C1">ensure_capacity</span><span style="color:#24292E">(buf, buf->size </span><span style="color:#D73A49">+</span><span style="color:#24292E"> text_len </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">))</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  memcpy</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> buf->size, text, text_len </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">  buf->size </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> text_len;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_prepend</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">text)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> text_len </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strlen</span><span style="color:#24292E">(text);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#6F42C1">ensure_capacity</span><span style="color:#24292E">(buf, buf->size </span><span style="color:#D73A49">+</span><span style="color:#24292E"> text_len </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">))</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  memmove</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> text_len, buf->data,</span></span>
+<span class="line"><span style="color:#24292E">          buf->size </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  memcpy</span><span style="color:#24292E">(buf->data, text, text_len);</span></span>
+<span class="line"><span style="color:#24292E">  buf->size </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> text_len;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                          size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">text </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data </span><span style="color:#D73A49">||</span><span style="color:#24292E"> from </span><span style="color:#D73A49">>=</span><span style="color:#24292E"> buf->size)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">match </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strstr</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> from, text);</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> match </span><span style="color:#D73A49">?</span><span style="color:#24292E"> (</span><span style="color:#D73A49">int</span><span style="color:#24292E">)(match </span><span style="color:#D73A49">-</span><span style="color:#24292E"> buf->data) </span><span style="color:#D73A49">:</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">MatchResult </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_match_all</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                                    size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">text </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data </span><span style="color:#D73A49">||</span><span style="color:#24292E"> from </span><span style="color:#D73A49">>=</span><span style="color:#24292E"> buf->size)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  MatchResult </span><span style="color:#D73A49">*</span><span style="color:#24292E">matches </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> malloc</span><span style="color:#24292E">(</span><span style="color:#D73A49">sizeof</span><span style="color:#24292E">(MatchResult));</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">matches)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  matches->positions </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  matches->count </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  int</span><span style="color:#24292E"> index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, text, from);</span></span>
+<span class="line"><span style="color:#D73A49">  while</span><span style="color:#24292E"> (index </span><span style="color:#D73A49">!=</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    size_t</span><span style="color:#D73A49"> *</span><span style="color:#24292E">new_positions </span><span style="color:#D73A49">=</span></span>
+<span class="line"><span style="color:#6F42C1">        realloc</span><span style="color:#24292E">(matches->positions, </span><span style="color:#D73A49">sizeof</span><span style="color:#24292E">(</span><span style="color:#D73A49">size_t</span><span style="color:#24292E">) </span><span style="color:#D73A49">*</span><span style="color:#24292E"> (matches->count </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">new_positions) {</span></span>
+<span class="line"><span style="color:#6F42C1">      MatchResult_free</span><span style="color:#24292E">(matches);</span></span>
+<span class="line"><span style="color:#D73A49">      return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    matches->positions </span><span style="color:#D73A49">=</span><span style="color:#24292E"> new_positions;</span></span>
+<span class="line"><span style="color:#24292E">    matches->positions[matches->count</span><span style="color:#D73A49">++</span><span style="color:#24292E">] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> index;</span></span>
+<span class="line"><span style="color:#24292E">    index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, text, index </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> matches;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_remove</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">text</span><span style="color:#24292E">, </span><span style="color:#D73A49">size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">text </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data </span><span style="color:#D73A49">||</span><span style="color:#24292E"> from </span><span style="color:#D73A49">>=</span><span style="color:#24292E"> buf->size)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> text_len </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strlen</span><span style="color:#24292E">(text);</span></span>
+<span class="line"><span style="color:#D73A49">  int</span><span style="color:#24292E"> index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, text, from);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  while</span><span style="color:#24292E"> (index </span><span style="color:#D73A49">!=</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    size_t</span><span style="color:#24292E"> tail_len </span><span style="color:#D73A49">=</span><span style="color:#24292E"> buf->size </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> text_len);</span></span>
+<span class="line"><span style="color:#6F42C1">    memmove</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> index, buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> text_len, tail_len </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#24292E">    buf->size </span><span style="color:#D73A49">-=</span><span style="color:#24292E"> text_len;</span></span>
+<span class="line"><span style="color:#24292E">    index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, text, index);</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> StringBuffer_replace</span><span style="color:#24292E">(StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">, </span><span style="color:#D73A49">const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">original</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                          const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">update</span><span style="color:#24292E">, </span><span style="color:#D73A49">size_t</span><span style="color:#E36209"> from</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">original </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">update </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data </span><span style="color:#D73A49">||</span><span style="color:#24292E"> from </span><span style="color:#D73A49">>=</span><span style="color:#24292E"> buf->size)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> original_len </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strlen</span><span style="color:#24292E">(original);</span></span>
+<span class="line"><span style="color:#D73A49">  size_t</span><span style="color:#24292E"> update_len </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strlen</span><span style="color:#24292E">(update);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (original_len </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> update_len </span><span style="color:#D73A49">==</span><span style="color:#24292E"> (</span><span style="color:#D73A49">size_t</span><span style="color:#24292E">)</span><span style="color:#D73A49">-</span><span style="color:#005CC5">1</span><span style="color:#24292E">)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  int</span><span style="color:#24292E"> index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, original, from);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  while</span><span style="color:#24292E"> (index </span><span style="color:#D73A49">!=</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (update_len </span><span style="color:#D73A49">></span><span style="color:#24292E"> original_len) {</span></span>
+<span class="line"><span style="color:#D73A49">      if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#6F42C1">ensure_capacity</span><span style="color:#24292E">(buf, buf->size </span><span style="color:#D73A49">+</span><span style="color:#24292E"> (update_len </span><span style="color:#D73A49">-</span><span style="color:#24292E"> original_len) </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">))</span></span>
+<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">    size_t</span><span style="color:#24292E"> tail_len </span><span style="color:#D73A49">=</span><span style="color:#24292E"> buf->size </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> original_len);</span></span>
+<span class="line"><span style="color:#6F42C1">    memmove</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> update_len, buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> original_len,</span></span>
+<span class="line"><span style="color:#24292E">            tail_len </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">    memcpy</span><span style="color:#24292E">(buf->data </span><span style="color:#D73A49">+</span><span style="color:#24292E"> index, update, update_len);</span></span>
+<span class="line"><span style="color:#24292E">    buf->size </span><span style="color:#D73A49">=</span><span style="color:#24292E"> buf->size </span><span style="color:#D73A49">-</span><span style="color:#24292E"> original_len </span><span style="color:#D73A49">+</span><span style="color:#24292E"> update_len;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">    index </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_index_of</span><span style="color:#24292E">(buf, original, index </span><span style="color:#D73A49">+</span><span style="color:#24292E"> update_len);</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">SplitResult </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">StringBuffer_split</span><span style="color:#24292E">(</span><span style="color:#D73A49">const</span><span style="color:#24292E"> StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#E36209">buf</span><span style="color:#24292E">,</span></span>
+<span class="line"><span style="color:#D73A49">                                const</span><span style="color:#D73A49"> char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">delimiter</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">buf </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">delimiter </span><span style="color:#D73A49">||</span><span style="color:#D73A49"> !</span><span style="color:#24292E">buf->data)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">copy </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strdup</span><span style="color:#24292E">(buf->data);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">copy)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  SplitResult </span><span style="color:#D73A49">*</span><span style="color:#24292E">result </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> malloc</span><span style="color:#24292E">(</span><span style="color:#D73A49">sizeof</span><span style="color:#24292E">(SplitResult));</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">result) {</span></span>
+<span class="line"><span style="color:#6F42C1">    free</span><span style="color:#24292E">(copy);</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  result->parts </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  result->count </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">token </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strtok</span><span style="color:#24292E">(copy, delimiter);</span></span>
+<span class="line"><span style="color:#D73A49">  while</span><span style="color:#24292E"> (token) {</span></span>
+<span class="line"><span style="color:#D73A49">    char</span><span style="color:#D73A49"> **</span><span style="color:#24292E">tmp </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> realloc</span><span style="color:#24292E">(result->parts, </span><span style="color:#D73A49">sizeof</span><span style="color:#24292E">(</span><span style="color:#D73A49">char</span><span style="color:#D73A49"> *</span><span style="color:#24292E">) </span><span style="color:#D73A49">*</span><span style="color:#24292E"> (result->count </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">tmp) {</span></span>
+<span class="line"><span style="color:#6F42C1">      SplitResult_free</span><span style="color:#24292E">(result);</span></span>
+<span class="line"><span style="color:#6F42C1">      free</span><span style="color:#24292E">(copy);</span></span>
+<span class="line"><span style="color:#D73A49">      return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">    result->parts </span><span style="color:#D73A49">=</span><span style="color:#24292E"> tmp;</span></span>
+<span class="line"><span style="color:#24292E">    result->parts[result->count] </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strdup</span><span style="color:#24292E">(token);</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">result->parts[result->count]) {</span></span>
+<span class="line"><span style="color:#6F42C1">      SplitResult_free</span><span style="color:#24292E">(result);</span></span>
+<span class="line"><span style="color:#6F42C1">      free</span><span style="color:#24292E">(copy);</span></span>
+<span class="line"><span style="color:#D73A49">      return</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">    result->count</span><span style="color:#D73A49">++</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">    token </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> strtok</span><span style="color:#24292E">(</span><span style="color:#005CC5">NULL</span><span style="color:#24292E">, delimiter);</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(copy);</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> result;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> MatchResult_free</span><span style="color:#24292E">(MatchResult </span><span style="color:#D73A49">*</span><span style="color:#E36209">matches</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">matches)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(matches->positions);</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(matches);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">void</span><span style="color:#6F42C1"> SplitResult_free</span><span style="color:#24292E">(SplitResult </span><span style="color:#D73A49">*</span><span style="color:#E36209">split</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">split)</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#D73A49">  for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">size_t</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> split->count; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#6F42C1">    free</span><span style="color:#24292E">(split->parts[i]);</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(split->parts);</span></span>
+<span class="line"><span style="color:#6F42C1">  free</span><span style="color:#24292E">(split);</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<h2>Tests</h2>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> "string_buffer.h"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;assert.h></span></span>
+<span class="line"><span style="color:#D73A49">#include</span><span style="color:#032F62"> &#x3C;string.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">int</span><span style="color:#6F42C1"> main</span><span style="color:#24292E">(</span><span style="color:#D73A49">void</span><span style="color:#24292E">) {</span></span>
+<span class="line"><span style="color:#24292E">  StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#24292E">buf </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_init</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf </span><span style="color:#D73A49">!=</span><span style="color:#005CC5"> NULL</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_append</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 5</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(buf->data, </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_append</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">" world"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 11</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(buf->data, </span><span style="color:#032F62">"hello world"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"world"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 6</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"mars"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"llo"</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">, </span><span style="color:#005CC5">99</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">, buf->size) </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"d"</span><span style="color:#24292E">, buf->size </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span></span>
+<span class="line"><span style="color:#24292E">         (</span><span style="color:#D73A49">int</span><span style="color:#24292E">)(buf->size </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">));</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">StringBuffer_index_of</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"h"</span><span style="color:#24292E">, </span><span style="color:#005CC5">1</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  MatchResult </span><span style="color:#D73A49">*</span><span style="color:#24292E">mr </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_match_all</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"l"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#D73A49">  if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">mr) {</span></span>
+<span class="line"><span style="color:#D73A49">    return</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(mr->count </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 3</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(mr->positions[</span><span style="color:#005CC5">0</span><span style="color:#24292E">] </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(mr->positions[</span><span style="color:#005CC5">1</span><span style="color:#24292E">] </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 3</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(mr->positions[</span><span style="color:#005CC5">2</span><span style="color:#24292E">] </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 9</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  MatchResult_free</span><span style="color:#24292E">(mr);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  SplitResult </span><span style="color:#D73A49">*</span><span style="color:#24292E">sr </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_split</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">" "</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(sr->count </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(sr->parts[</span><span style="color:#005CC5">0</span><span style="color:#24292E">], </span><span style="color:#032F62">"hello"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(sr->parts[</span><span style="color:#005CC5">1</span><span style="color:#24292E">], </span><span style="color:#032F62">"world"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  SplitResult_free</span><span style="color:#24292E">(sr);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_prepend</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hello "</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 17</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(</span><span style="color:#032F62">"hello hello world"</span><span style="color:#24292E">, buf->data) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_remove</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">" "</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 15</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(</span><span style="color:#032F62">"hellohelloworld"</span><span style="color:#24292E">, buf->data) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#24292E">remove_overlap_test </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_init</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_append</span><span style="color:#24292E">(remove_overlap_test, </span><span style="color:#032F62">"lalalalala"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_remove</span><span style="color:#24292E">(remove_overlap_test, </span><span style="color:#032F62">"ala"</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(remove_overlap_test->data, </span><span style="color:#032F62">"llla"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(remove_overlap_test->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 4</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_free</span><span style="color:#24292E">(remove_overlap_test);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_replace</span><span style="color:#24292E">(buf, </span><span style="color:#032F62">"hellohello"</span><span style="color:#24292E">, </span><span style="color:#032F62">"hello "</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 11</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(</span><span style="color:#032F62">"hello world"</span><span style="color:#24292E">, buf->data) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E">  StringBuffer </span><span style="color:#D73A49">*</span><span style="color:#24292E">replace_overlap_test </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> StringBuffer_init</span><span style="color:#24292E">();</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_append</span><span style="color:#24292E">(replace_overlap_test, </span><span style="color:#032F62">"lalalalala"</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_replace</span><span style="color:#24292E">(replace_overlap_test, </span><span style="color:#032F62">"ala"</span><span style="color:#24292E">, </span><span style="color:#032F62">""</span><span style="color:#24292E">, </span><span style="color:#005CC5">0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strcmp</span><span style="color:#24292E">(replace_overlap_test->data, </span><span style="color:#032F62">"llla"</span><span style="color:#24292E">) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(replace_overlap_test->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 4</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_free</span><span style="color:#24292E">(replace_overlap_test);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_clear</span><span style="color:#24292E">(buf);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(buf->size </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"><span style="color:#6F42C1">  assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">strlen</span><span style="color:#24292E">(buf->data) </span><span style="color:#D73A49">==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1">  StringBuffer_free</span><span style="color:#24292E">(buf);</span></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            Since August 4th, 2023. All words by Brian
+            Douglas.
+        </p>
+    </div>
+</footer>
+
+    </div>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+</body>
+
+</html>
