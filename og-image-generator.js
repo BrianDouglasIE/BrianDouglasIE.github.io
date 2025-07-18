@@ -11,6 +11,9 @@ const FONT = PImage.registerFont(
 FONT.loadSync();
 
 export async function generateOGImage(post) {
+  const outFile = path.join(OUT_DIR, `${post.slug}.png`)
+  if(fs.existsSync(outFile)) return;
+
   const pImage = PImage.make(1280, 640);
   const ctx = pImage.getContext("2d");
   const image = await PImage.decodePNGFromStream(
@@ -32,7 +35,6 @@ export async function generateOGImage(post) {
     fs.mkdirSync(OUT_DIR);
   }
 
-  const outFile = path.join(OUT_DIR, `${post.slug}.png`)
   if(!fs.existsSync(outFile)) {
     await PImage.encodePNGToStream(
       pImage,
@@ -61,3 +63,4 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   }
   ctx.fillText(line, x, y);
 }
+

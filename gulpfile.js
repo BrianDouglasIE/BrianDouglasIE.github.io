@@ -83,7 +83,6 @@ export async function generateOGImages() {
 }
 
 export const build = series([
-  clean,
   buildIndex,
   buildPosts,
   copyAssets,
