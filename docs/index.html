@@ -133,6 +133,29 @@
     <li>
         <article class="post-item">
     <header>
+        <h2><a href="/trimming-strings">Trimming strings in c</a></h2>
+        <time datetime="18/07/2025"
+        >July 18th, 2025</time>
+    </header>
+    <p class="post-excerpt"><p>Strings in C. They are wonderfully intuitive and easy to work with <em>cough</em>.</p>
+<p>No, strings in C are a nightmare. Doing simple things such as trimming the
+whitespace off the start or end of a string is complicated. Because a string
+is not a string it's a <code>char *</code>. Which means that if you want to do interesting
+things you are going to have to get used to managing memory. Which means thinking,
+and if there is one thing modern programmers hate, it's thinking.</p>
+<p>Anyway, below I have added <code>ltrim_string</code>, <code>rtrim_string</code>, and <code>trim_string</code> methods.
+I've made the code as readable as I can, and documented it with tests.</p>
+</p>
+    <footer>
+        <a href="/trimming-strings">Read More</a>
+    </footer>
+</article>
+
+    </li>
+    
+    <li>
+        <article class="post-item">
+    <header>
         <h2><a href="/string-buffer-c">Making a StringBuffer in C</a></h2>
         <time datetime="15/07/2025"
         >July 15th, 2025</time>
@@ -174,30 +197,19 @@ the front page.</p>
 
     </li>
     
-    <li>
-        <article class="post-item">
-    <header>
-        <h2><a href="/use-codium">Use Codium not Code</a></h2>
-        <time datetime="14/07/2025"
-        >July 14th, 2025</time>
-    </header>
-    <p class="post-excerpt"><p>Most people I see coding these days use Visual Studio Code. But Visual Studio Code is
-a Microsoft project that tracks your usage and does all sorts of evil corporation stuff.</p>
-<p>But don't worry there is an actual open-source version called VSCodium. It works just as
-well as the Microsoft version, without stealing your soul.</p>
-</p>
-    <footer>
-        <a href="/use-codium">Read More</a>
-    </footer>
-</article>
-
-    </li>
-    
 </ul>
 
           <h2>Older Posts</h2>
           <hr />
           <ul class="list-reset content-md mx-auto post-list">
+    
+    <li>
+        <article class="post-item post-item--brief">
+  <time datetime="14/07/2025">14/07/2025</time>
+  <h2><a href="/use-codium">Use Codium not Code</a></h2>
+</article>
+
+    </li>
     
     <li>
         <article class="post-item post-item--brief">
