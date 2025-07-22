@@ -299,8 +299,12 @@
     color: #fff;
 }
 
-.site-header .social-links a ~ a {
+.site-header .social-links a~a {
     margin-left: 16px;
+}
+
+small {
+    font-size: .85rem;
 }
 
 .gray-bg {
