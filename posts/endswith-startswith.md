@@ -5,13 +5,13 @@ tags: [c]
 ---
 
 Want to know if a file path ends with _.md_ or a message starts with _hello_? Well then I have
-jsut the methods for you.
+just the methods for you.
 
 <!-- more -->
 
 ## endswith
 
-Surely you can't start with endswith? Yes, I can and I will. Cause `endsiwth` is slightly easier in C.
+Surely you can't start with endswith? Yes, I can and I will. Cause `endswith` is slightly easier in C.
 
 Using some pointer arithmetic we take the needle length off the haystack plus haystack length to get the
 end of the string. Then a quick `strcmp` finishes it off nicely.
@@ -30,9 +30,9 @@ assert(endswith(".md", "hello.md"));
 assert(!endswith(".md", "hello.txt"));
 ```
 
-## startwith
+## startswith
 
-`startwith` is slightly more involved as we must first create a `char[]` that is the length of the needle plus
+`startswith` is slightly more involved as we must first create a `char[]` that is the length of the needle plus
 one, think null terminator. We loop over the start of the haystack adding each char to you temp `char[]`, add
 a quick null terminator and pass it to `strcmp`, boom!
 
