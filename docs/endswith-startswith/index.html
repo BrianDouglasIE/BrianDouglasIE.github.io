@@ -106,10 +106,10 @@
                             </p>
                         </header>
                         <div class="post-content"><p>Want to know if a file path ends with <em>.md</em> or a message starts with <em>hello</em>? Well then I have
-jsut the methods for you.</p>
+just the methods for you.</p>
 <!-- more -->
 <h2>endswith</h2>
-<p>Surely you can't start with endswith? Yes, I can and I will. Cause <code>endsiwth</code> is slightly easier in C.</p>
+<p>Surely you can't start with endswith? Yes, I can and I will. Cause <code>endswith</code> is slightly easier in C.</p>
 <p>Using some pointer arithmetic we take the needle length off the haystack plus haystack length to get the
 end of the string. Then a quick <code>strcmp</code> finishes it off nicely.</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">bool</span><span style="color:#6F42C1"> endswith</span><span style="color:#24292E">(</span><span style="color:#D73A49">char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">needle</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">haystack</span><span style="color:#24292E">)</span></span>
@@ -123,8 +123,8 @@ end of the string. Then a quick <code>strcmp</code> finishes it off nicely.</p>
 <span class="line"></span>
 <span class="line"><span style="color:#6F42C1">assert</span><span style="color:#24292E">(</span><span style="color:#6F42C1">endswith</span><span style="color:#24292E">(</span><span style="color:#032F62">".md"</span><span style="color:#24292E">, </span><span style="color:#032F62">"hello.md"</span><span style="color:#24292E">));</span></span>
 <span class="line"><span style="color:#6F42C1">assert</span><span style="color:#24292E">(</span><span style="color:#D73A49">!</span><span style="color:#6F42C1">endswith</span><span style="color:#24292E">(</span><span style="color:#032F62">".md"</span><span style="color:#24292E">, </span><span style="color:#032F62">"hello.txt"</span><span style="color:#24292E">));</span></span></code></pre>
-<h2>startwith</h2>
-<p><code>startwith</code> is slightly more involved as we must first create a <code>char[]</code> that is the length of the needle plus
+<h2>startswith</h2>
+<p><code>startswith</code> is slightly more involved as we must first create a <code>char[]</code> that is the length of the needle plus
 one, think null terminator. We loop over the start of the haystack adding each char to you temp <code>char[]</code>, add
 a quick null terminator and pass it to <code>strcmp</code>, boom!</p>
 <pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-c"><span class="line"><span style="color:#D73A49">bool</span><span style="color:#6F42C1"> startswith</span><span style="color:#24292E">(</span><span style="color:#D73A49">char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">needle</span><span style="color:#24292E">, </span><span style="color:#D73A49">char</span><span style="color:#D73A49"> *</span><span style="color:#E36209">haystack</span><span style="color:#24292E">)</span></span>
