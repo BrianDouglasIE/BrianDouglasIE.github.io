@@ -427,3 +427,17 @@ body {
     border-left: 1px solid hsl(0, 0%, 92%);
     border-right: 1px solid hsl(0, 0%, 92%);
 }
+
+.skip-to-section {
+    background: #efefef;
+    padding: 1rem;
+    display: inline-block;
+
+    a {
+        display: block;
+    }
+
+    .subheader {
+        padding-left: 1.5rem;
+    }
+}
