@@ -15,7 +15,7 @@ as a status. So that the flag can be used to change the logic of a program. For 
 integer value that sets the session length. I believe that this is convoluted and may add unwanted _side effects_ to what should be a
 straight forward on / off switch.
 
-<magpie-trinket>The implementation in question is part of a schema collection, which can be found at [BrianDouglasIE/ExampleDatabasesSchemas](https://github.com/BrianDouglasIE/ExampleDatabasesSchemas/tree/master/feature_flags)</magpie-trinket>
+<magpie-trinket>The implementation in question is part of a schema collection, which can be found at [BrianDouglasIE/ExampleDatabasesSchemas](https://github.com/BrianDouglasIE/ExampleDatabasesSchemas)</magpie-trinket>
 
 ## Set Up
 
