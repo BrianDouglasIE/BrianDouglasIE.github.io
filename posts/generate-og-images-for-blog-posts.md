@@ -1,7 +1,7 @@
 ---
 title: Generate OG images for blog posts
 date: 07/09/2024
-tags: [node, javascript]
+tags: [node, js]
 ---
 
 When sharing an article on social media you will see a preview. The preview uses the html `og:image` meta tag. In this

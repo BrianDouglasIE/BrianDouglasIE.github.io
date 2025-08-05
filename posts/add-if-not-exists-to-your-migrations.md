@@ -1,7 +1,7 @@
 ---
 title: Add IF NOT EXISTS to your migrations
 date: 09/10/2024
-tags: [ sql, postgresql ]
+tags: [ sql ]
 ---
 
 When working on a codebase with a number of other developers migrations can cause

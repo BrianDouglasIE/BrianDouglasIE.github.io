@@ -1,7 +1,7 @@
 ---
 title: Setting up PostgreSQL and Lua in Docker
 date: 31/12/2024
-tags: [lua, docker, postgres]
+tags: [lua, docker, sql]
 ---
 
 I did a quick exploration into Lua after seeing is used in the CS50 game dev course.

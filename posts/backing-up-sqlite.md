@@ -1,7 +1,7 @@
 ---
 title: Backing up an SQLite database
 date: 16/02/2025
-tags: [sqlite]
+tags: [sqlite, sql]
 ---
 
 SQLite is a file based database. This makes common tasks like back-ups trivial.

@@ -1,7 +1,7 @@
 ---
 title: "GameDev in C Part 4: A Snake Clone"
 date: 14/02/2025
-tags: [C, gamedev, raylib]
+tags: [c, gamedev, raylib]
 ---
 
 Happy Valentines Day!, I made a snake clone in C.

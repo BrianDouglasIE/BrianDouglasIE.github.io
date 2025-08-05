@@ -195,10 +195,18 @@ just the methods for you.</p>
 
           <h2>Older Posts</h2>
           <hr />
+          <div id="tagFilters">
+            <small>Filter by tag</small>
+            <button class="tagFilter" data-value="c">C</button>
+            <button class="tagFilter" data-value="java">Java</button>
+            <button class="tagFilter" data-value="js">JS</button>
+            <button class="tagFilter" data-value="sql">SQL</button>
+            <button class="tagFilter" data-value="reset">Reset</button>
+          </div>
           <ul class="list-reset content-md mx-auto post-list">
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rant">
   <time datetime="21/07/2025">21/07/2025</time>
   <h2><a href="/stackoverflow-dieing">Stack Overflow is dieing, no wonder</a></h2>
 </article>
@@ -206,7 +214,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c">
   <time datetime="18/07/2025">18/07/2025</time>
   <h2><a href="/trimming-strings">Trimming strings in c</a></h2>
 </article>
@@ -214,7 +222,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c">
   <time datetime="15/07/2025">15/07/2025</time>
   <h2><a href="/string-buffer-c">Making a StringBuffer in C</a></h2>
 </article>
@@ -222,7 +230,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rant">
   <time datetime="15/07/2025">15/07/2025</time>
   <h2><a href="/banned-from-lobsters-and-hn">Banned from lobste.rs and Hacker News</a></h2>
 </article>
@@ -230,7 +238,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rant">
   <time datetime="14/07/2025">14/07/2025</time>
   <h2><a href="/use-codium">Use Codium not Code</a></h2>
 </article>
@@ -238,7 +246,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c">
   <time datetime="10/07/2025">10/07/2025</time>
   <h2><a href="/inode-type-c">Get inode type in C</a></h2>
 </article>
@@ -246,7 +254,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java spring">
   <time datetime="17/06/2025">17/06/2025</time>
   <h2><a href="/spring-form-errors-with-jte">Handle Spring form errors with JTE</a></h2>
 </article>
@@ -254,7 +262,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java spring">
   <time datetime="16/06/2025">16/06/2025</time>
   <h2><a href="/jte-csrf">Add a CSRF token to HTML forms with JTE</a></h2>
 </article>
@@ -262,7 +270,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="29/05/2025">29/05/2025</time>
   <h2><a href="/spring-database-seeding">Spring database seeding</a></h2>
 </article>
@@ -270,7 +278,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="28/05/2025">28/05/2025</time>
   <h2><a href="/blueprintfactory-1.0.0">New Lib: Blueprint Factory</a></h2>
 </article>
@@ -278,7 +286,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="26/05/2025">26/05/2025</time>
   <h2><a href="/placeholder-image-generator-1.0.1">New Lib: Placeholder Image Generator</a></h2>
 </article>
@@ -286,7 +294,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="spring java">
   <time datetime="19/05/2025">19/05/2025</time>
   <h2><a href="/spring-request-cache">Request cache in Spring</a></h2>
 </article>
@@ -294,7 +302,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="spring java">
   <time datetime="12/05/2025">12/05/2025</time>
   <h2><a href="/pre-auth-spring">Checking ownership in Spring</a></h2>
 </article>
@@ -302,7 +310,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="09/04/2025">09/04/2025</time>
   <h2><a href="/slurp-1.0">Slurp - A Java task runner</a></h2>
 </article>
@@ -310,7 +318,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="03/04/2025">03/04/2025</time>
   <h2><a href="/cpu-branch-prediction">Using CPU branch prediction in Java</a></h2>
 </article>
@@ -318,7 +326,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="02/04/2025">02/04/2025</time>
   <h2><a href="/install-openjdk-linux">Install OpenJDK on Ubuntu</a></h2>
 </article>
@@ -326,7 +334,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="docker linux">
   <time datetime="02/04/2025">02/04/2025</time>
   <h2><a href="/docker-on-linux-mint">Using Docker on Linux Mint</a></h2>
 </article>
@@ -334,7 +342,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c programming">
   <time datetime="01/04/2025">01/04/2025</time>
   <h2><a href="/yoda-conditions">Yoda Conditions</a></h2>
 </article>
@@ -342,7 +350,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="25/03/2025">25/03/2025</time>
   <h2><a href="/tower-of-hanoi-java">Tower of Hanoi in Java</a></h2>
 </article>
@@ -350,7 +358,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="java">
   <time datetime="06/03/2025">06/03/2025</time>
   <h2><a href="/axe-runner">AxeRunner</a></h2>
 </article>
@@ -358,7 +366,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="software">
   <time datetime="05/03/2025">05/03/2025</time>
   <h2><a href="/european-alternatives">European Alternatives</a></h2>
 </article>
@@ -366,7 +374,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c raylib gamedev">
   <time datetime="24/02/2025">24/02/2025</time>
   <h2><a href="/virtual-screen-size-raylib">Using a virtual screen size in Raylib</a></h2>
 </article>
@@ -374,7 +382,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c">
   <time datetime="18/02/2025">18/02/2025</time>
   <h2><a href="/astyle">Using astyle to format C code</a></h2>
 </article>
@@ -382,7 +390,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sqlite laravel sql">
   <time datetime="17/02/2025">17/02/2025</time>
   <h2><a href="/laravel-optimize-database">Optimise SQLite for Laravel apps</a></h2>
 </article>
@@ -390,7 +398,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sqlite sql">
   <time datetime="17/02/2025">17/02/2025</time>
   <h2><a href="/dumping-sqlite-data">Creating a database dump with SQLite</a></h2>
 </article>
@@ -398,7 +406,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sqlite sql">
   <time datetime="16/02/2025">16/02/2025</time>
   <h2><a href="/backing-up-sqlite">Backing up an SQLite database</a></h2>
 </article>
@@ -406,7 +414,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c gamedev raylib">
   <time datetime="14/02/2025">14/02/2025</time>
   <h2><a href="/gamedev-in-c-part-4">GameDev in C Part 4: A Snake Clone</a></h2>
 </article>
@@ -414,7 +422,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rant">
   <time datetime="01/02/2025">01/02/2025</time>
   <h2><a href="/off-socials">I&#39;m off social media</a></h2>
 </article>
@@ -422,7 +430,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rant">
   <time datetime="31/01/2025">31/01/2025</time>
   <h2><a href="/linters">Linting is procrastination.</a></h2>
 </article>
@@ -430,7 +438,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c raylib gamedev">
   <time datetime="31/01/2025">31/01/2025</time>
   <h2><a href="/gamedev-in-c-part-3">GameDev in C Part 3: Drawing a Slime</a></h2>
 </article>
@@ -438,7 +446,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c raylib gamedev">
   <time datetime="23/01/2025">23/01/2025</time>
   <h2><a href="/gamedev-in-c-part-2">GameDev in C Part 2: Raylib</a></h2>
 </article>
@@ -446,7 +454,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="c raylib gamedev">
   <time datetime="21/01/2025">21/01/2025</time>
   <h2><a href="/gamedev-in-c-part-1">GameDev in C Part 1: Hello World</a></h2>
 </article>
@@ -454,7 +462,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="productivity python">
   <time datetime="20/01/2025">20/01/2025</time>
   <h2><a href="/drinking-bird">Homer&#39;s Drinking Bird</a></h2>
 </article>
@@ -462,7 +470,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="twitter">
   <time datetime="04/01/2025">04/01/2025</time>
   <h2><a href="/i-joined-social-media">I joined social media</a></h2>
 </article>
@@ -470,7 +478,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="resolutions">
   <time datetime="02/01/2025">02/01/2025</time>
   <h2><a href="/2025-resolutions">2025 new year&#39;s resolutions</a></h2>
 </article>
@@ -478,7 +486,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="lua docker sql">
   <time datetime="31/12/2024">31/12/2024</time>
   <h2><a href="/lua-postgres">Setting up PostgreSQL and Lua in Docker</a></h2>
 </article>
@@ -486,7 +494,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="rust">
   <time datetime="05/12/2024">05/12/2024</time>
   <h2><a href="/rust-the-cunning-wizard">Rust, the Cunning Wizard</a></h2>
 </article>
@@ -494,7 +502,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="js">
   <time datetime="25/11/2024">25/11/2024</time>
   <h2><a href="/partial-implementation">Partial function implementation</a></h2>
 </article>
@@ -502,7 +510,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="canvas js">
   <time datetime="18/11/2024">18/11/2024</time>
   <h2><a href="/chicken-farmer">Chicken Farmer, a Snake clone</a></h2>
 </article>
@@ -510,7 +518,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="canvas js">
   <time datetime="16/11/2024">16/11/2024</time>
   <h2><a href="/useful-image-data-methods">Useful ImageData Methods</a></h2>
 </article>
@@ -518,7 +526,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="html">
   <time datetime="31/10/2024">31/10/2024</time>
   <h2><a href="/form-attribute-on-buttons">Using the form attribute on buttons</a></h2>
 </article>
@@ -526,7 +534,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="julia">
   <time datetime="21/10/2024">21/10/2024</time>
   <h2><a href="/beedeedee-julia-test-framework">I wrote a test framework in Julia</a></h2>
 </article>
@@ -534,7 +542,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sql">
   <time datetime="17/10/2024">17/10/2024</time>
   <h2><a href="/sqlite-defaults">Sensible SQLite defaults</a></h2>
 </article>
@@ -542,7 +550,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="js canvas">
   <time datetime="15/10/2024">15/10/2024</time>
   <h2><a href="/draw-pixel-art-on-canvas">Prevent pixel art blur on canvas</a></h2>
 </article>
@@ -550,7 +558,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sql">
   <time datetime="09/10/2024">09/10/2024</time>
   <h2><a href="/add-if-not-exists-to-your-migrations">Add IF NOT EXISTS to your migrations</a></h2>
 </article>
@@ -558,7 +566,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="sql">
   <time datetime="06/10/2024">06/10/2024</time>
   <h2><a href="/enum-for-status">Using a PostgreSQL enum for state</a></h2>
 </article>
@@ -566,7 +574,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="go">
   <time datetime="01/10/2024">01/10/2024</time>
   <h2><a href="/conways-game-of-life-go">Conway&#39;s Game of Life in Go</a></h2>
 </article>
@@ -574,7 +582,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="go">
   <time datetime="30/09/2024">30/09/2024</time>
   <h2><a href="/db-migrator-in-go">Writing a DB migrator in Go</a></h2>
 </article>
@@ -582,7 +590,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="go raylib">
   <time datetime="22/09/2024">22/09/2024</time>
   <h2><a href="/pong-using-raylib-and-go">Creating a Pong clone using Raylib and Go</a></h2>
 </article>
@@ -590,7 +598,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="js performance">
   <time datetime="15/09/2024">15/09/2024</time>
   <h2><a href="/bit-shifting-for-performance">Bit shifting to increase performance</a></h2>
 </article>
@@ -598,7 +606,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="node js">
   <time datetime="07/09/2024">07/09/2024</time>
   <h2><a href="/generate-og-images-for-blog-posts">Generate OG images for blog posts</a></h2>
 </article>
@@ -606,7 +614,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="js testing">
   <time datetime="17/08/2024">17/08/2024</time>
   <h2><a href="/one-assertion-per-test-please">One assertion per test please</a></h2>
 </article>
@@ -614,7 +622,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="laravel">
   <time datetime="12/06/2024">12/06/2024</time>
   <h2><a href="/laravel-slug-with-id-fallback">Slugs with an ID fallback in Laravel</a></h2>
 </article>
@@ -622,7 +630,7 @@ just the methods for you.</p>
     </li>
     
     <li>
-        <article class="post-item post-item--brief">
+        <article class="post-item post-item--brief" data-tags="laravel">
   <time datetime="06/06/2024">06/06/2024</time>
   <h2><a href="/laravel-seed-db-with-irish-counties">Seeding a Laravel DB with Irish Counties</a></h2>
 </article>
@@ -642,6 +650,6 @@ just the methods for you.</p>
     </div>
 </footer>
     </div>
-    <script src="/scripts/main.js"></script>
+    <script src="/scripts/tag-filters.js"></script>
   </body>
 </html>

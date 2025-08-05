@@ -1,7 +1,7 @@
 ---
 title: PostgresSQL full text search
 date: 31/07/2025
-tags: [postgres]
+tags: [sql]
 ---
 
 PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.

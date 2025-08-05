@@ -101,11 +101,19 @@
           <%- include('post-list', { posts: posts.slice(0, 3) }) %>
           <h2>Older Posts</h2>
           <hr />
+          <div id="tagFilters">
+            <small>Filter by tag</small>
+            <button class="tagFilter" data-value="c">C</button>
+            <button class="tagFilter" data-value="java">Java</button>
+            <button class="tagFilter" data-value="js">JS</button>
+            <button class="tagFilter" data-value="sql">SQL</button>
+            <button class="tagFilter" data-value="reset">Reset</button>
+          </div>
           <%- include('post-list-brief', { posts: posts.slice(3) }) %>
         </div>
       </main>
       <%- include('site-footer') %>
     </div>
-    <script src="/scripts/main.js"></script>
+    <script src="/scripts/tag-filters.js"></script>
   </body>
 </html>

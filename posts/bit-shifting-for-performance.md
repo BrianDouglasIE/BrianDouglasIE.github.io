@@ -1,7 +1,7 @@
 ---
 title: Bit shifting to increase performance
 date: 15/09/2024
-tags: [ javascript, performance ]
+tags: [ js, performance ]
 ---
 
 I've been watching [@Vercidium](https://www.youtube.com/@Vercidium)'s awesome content on YouTube. His videos are all

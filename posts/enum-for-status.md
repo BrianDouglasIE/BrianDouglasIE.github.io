@@ -1,7 +1,7 @@
 ---
 title: Using a PostgreSQL enum for state
 date: 06/10/2024
-tags: [ sql, postgresql ]
+tags: [ sql ]
 ---
 
 There are lot's of occasions where I see SQL table definitions that contain

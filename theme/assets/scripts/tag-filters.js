@@ -1,7 +1,3 @@
-window.addEventListener("load", () => {
-  console.log("Thank you for visiting")
-});
-
 const tagFilters = document.getElementById('tagFilters')
 
 if(tagFilters) {

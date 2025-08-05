@@ -1,7 +1,7 @@
 ---
 title: Optimise SQLite for Laravel apps
 date: 17/02/2025
-tags: [sqlite, laravel]
+tags: [sqlite, laravel, sql]
 ---
 
 I love using SQLite, but it requires a bit of configuration to get optimal results.

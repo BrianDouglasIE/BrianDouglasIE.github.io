@@ -1,7 +1,7 @@
 ---
 title: One assertion per test please
 date: 17/08/2024
-tags: [javascript, testing]
+tags: [js, testing]
 ---
 
 Please! when you are writing tests try to limit each test case to one `expect`.
