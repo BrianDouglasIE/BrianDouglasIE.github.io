@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="Robyn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Title -->
+    <title>BrianDouglas.ie - Object field validators in Typescript
+    </title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Object field validators in Typescript" />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Brian Douglas, blog, js" />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BrianDouglas.ie - Object field validators in Typescript" />
+    <meta property="og:description" content="Object field validators in Typescript" />
+    <meta property="og:url" content="https://www.briandouglas.ie" />
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/typescript-field-validators.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:site_name" content="BrianDouglas.ie" />
+    <meta property="og:image:alt" content="A preview image for the post titled 'Object field validators in Typescript'" />
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BrianDouglasIE" />
+    <meta name="twitter:title" content="BrianDouglas.ie - Object field validators in Typescript" />
+    <meta name="twitter:description" content="Object field validators in Typescript" />
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/typescript-field-validators.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie" />
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+</head>
+
+<body class="m-0">
+    <div class="wrap content-md mx-auto">
+        <header class="site-header">
+  <div class="content-md mx-auto px-sm">
+    <h1 class="m-0">Brian Douglas</h1>
+
+    <div class="social-links">
+      <a href="https://github.com/BrianDouglasIE">
+        <svg
+          height="32"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          version="1.1"
+          width="32"
+          data-view-component="true"
+          class="octicon octicon-mark-github v-align-middle color-fg-default"
+        >
+          <path
+            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+            <div class="breadcrumbs">
+                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
+                    <ol class="list-reset m-0">
+                        <li><a href="/">Home</a></li> /
+                        <li aria-current="page">
+                            Object field validators in Typescript
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <main>
+                <div class="content-md mx-auto px-sm my-md">
+                    <article class="post-full">
+                        <header>
+                            <h2>
+                                Object field validators in Typescript
+                            </h2>
+                            <p class="post-meta">
+                                <time datetime="08/08/2025">
+                                    August 8th, 2025
+                                </time>
+                            </p>
+                        </header>
+                        <div class="post-content"><p>Before you pull in the next hot new validation library. Ask yourself this question. Do I need it?
+The answer is no, field validation is quite easy. Let me show you how to create an extensible
+object field validator.</p>
+<!-- more -->
+<h2>Whats an object field validator?</h2>
+<p>Ok, so let's work with the following scenario. You have a user registration form. It's represented
+in your code as the following type.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-typescript"><span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> UserForm</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> { </span><span style="color:#E36209">email</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">, </span><span style="color:#E36209">password</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E"> }</span></span></code></pre>
+<p>Typescript will ensure that you get an error message when you try to assign a <code>number</code> instead of
+a <code>string</code> for the email field. But this object represents form data, aka user input. So it could
+be anything. We should validate that it matches our criteria. For example the email should be of a
+valid email format, and the password should be no less that 8 characters in length.</p>
+<p>This where an <em>object field validator</em> comes into play. It takes an object and applies the given
+validators to the object fields. Telling us that, <em>yes this user form contains a valid email address</em>
+etc...</p>
+<h2>Usage</h2>
+<p>Let's start by defining how we want to use it. I'd like to make a composable validator. This would be
+a function that takes a generic type and produces a validator for that type. The type in question is
+the above <code>UserForm</code>. The method used to compose the validator should take an object that contains a
+list of field validators for each of the <code>UserForm</code> fields. These <em>field validators</em> should themselves
+be composable methods.</p>
+<p>When the composed validator is called with our <code>UserForm</code> instance, it should return an object representing
+any errors that were found.</p>
+<p>The end result should be a clean api for creating <em>object field validators</em>. To me the below example is perfect.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-typescript"><span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> UserForm</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> { </span><span style="color:#E36209">email</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">, </span><span style="color:#E36209">password</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> userFormValidator</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> createFieldValidator</span><span style="color:#24292E">&#x3C;</span><span style="color:#6F42C1">UserForm</span><span style="color:#24292E">>({</span></span>
+<span class="line"><span style="color:#24292E">  email: [stringValidators.</span><span style="color:#6F42C1">email</span><span style="color:#24292E">((</span><span style="color:#E36209">email</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#032F62"> `${</span><span style="color:#24292E">email</span><span style="color:#032F62">} is not a valid email address`</span><span style="color:#24292E">)],</span></span>
+<span class="line"><span style="color:#24292E">  password: [</span></span>
+<span class="line"><span style="color:#24292E">    stringValidators.</span><span style="color:#6F42C1">min</span><span style="color:#24292E">(</span><span style="color:#005CC5">8</span><span style="color:#24292E">, () </span><span style="color:#D73A49">=></span><span style="color:#032F62"> `Password must be greater than 8 characters in length`</span><span style="color:#24292E">),</span></span>
+<span class="line"><span style="color:#24292E">    stringValidators.</span><span style="color:#6F42C1">max</span><span style="color:#24292E">(</span><span style="color:#005CC5">250</span><span style="color:#24292E">, () </span><span style="color:#D73A49">=></span><span style="color:#032F62"> `Password must be less than 8 characters in length`</span><span style="color:#24292E">),</span></span>
+<span class="line"><span style="color:#24292E">  ]</span></span>
+<span class="line"><span style="color:#24292E">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> validated</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> userFormValidator</span><span style="color:#24292E">({ email: </span><span style="color:#032F62">'not an email'</span><span style="color:#24292E">, password: </span><span style="color:#032F62">'2 short'</span><span style="color:#24292E"> })</span></span></code></pre>
+<p>The <code>validated</code> variable above will hold the following value.</p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>{</span></span>
+<span class="line"><span>  input: {</span></span>
+<span class="line"><span>    email: "not an email",</span></span>
+<span class="line"><span>    password: "2 short",</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  errors: {</span></span>
+<span class="line"><span>    email: [ "'not an email' is not a valid email address" ],</span></span>
+<span class="line"><span>    password: [ "Password must be at least 8 characters long" ],</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  hasErrors: true,</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>This makes it easy to check if there are errors present, using the <code>hasErrors</code> field, and then access a list
+of error messages for each field.</p>
+<h2>Implementation</h2>
+<p>I'd like to believe that you are a top programmer and just want to see the code, without me trying to clumsly explain it.
+The code doesn't tell lies, I do. So here is the code.</p>
+<p><chicken-asks>Why did he need to add <code>&lt;T extends Object&gt;</code>?</chicken-asks>
+<magpie-replies>Well <code>Object.entries</code> needs to take an <code>Object</code> or an <code>ArrayLike</code> entity. So it was just to tell the type checker that <code>T</code> is some sort of <code>Object</code>.</magpie-replies></p>
+<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-typescript"><span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> ErrorMap</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> { [</span><span style="color:#E36209">key</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">]</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">[] }</span></span>
+<span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> ErrorMessageCallback</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#005CC5"> string</span></span>
+<span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> ValidatorMap</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> { [</span><span style="color:#E36209">key</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">]</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> Function</span><span style="color:#24292E">[] }</span></span>
+<span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> Validated</span><span style="color:#24292E">&#x3C;</span><span style="color:#6F42C1">T</span><span style="color:#24292E">> </span><span style="color:#D73A49">=</span><span style="color:#24292E"> { </span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> T</span><span style="color:#24292E">, </span><span style="color:#E36209">errors</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> ErrorMap</span><span style="color:#24292E">, </span><span style="color:#E36209">hasErrors</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> boolean</span><span style="color:#24292E"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">export</span><span style="color:#D73A49"> const</span><span style="color:#6F42C1"> createFieldValidator</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> &#x3C;</span><span style="color:#6F42C1">T</span><span style="color:#D73A49"> extends</span><span style="color:#6F42C1"> Object</span><span style="color:#24292E">>(</span><span style="color:#E36209">validators</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> ValidatorMap</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> T</span><span style="color:#24292E">)</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> Validated</span><span style="color:#24292E">&#x3C;</span><span style="color:#6F42C1">T</span><span style="color:#24292E">> </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">  const</span><span style="color:#005CC5"> errors</span><span style="color:#D73A49">:</span><span style="color:#6F42C1"> ErrorMap</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> {}</span></span>
+<span class="line"><span style="color:#D73A49">  let</span><span style="color:#24292E"> hasErrors </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> false</span></span>
+<span class="line"><span style="color:#D73A49">  for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">const</span><span style="color:#24292E"> [</span><span style="color:#005CC5">key</span><span style="color:#24292E">, </span><span style="color:#005CC5">value</span><span style="color:#24292E">] </span><span style="color:#D73A49">of</span><span style="color:#24292E"> Object.</span><span style="color:#6F42C1">entries</span><span style="color:#24292E">(input)) {</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (validators[key]) {</span></span>
+<span class="line"><span style="color:#D73A49">      for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">const</span><span style="color:#005CC5"> validator</span><span style="color:#D73A49"> of</span><span style="color:#24292E"> validators[key]) {</span></span>
+<span class="line"><span style="color:#D73A49">        const</span><span style="color:#005CC5"> error</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> validator</span><span style="color:#24292E">(value)</span></span>
+<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> (error) {</span></span>
+<span class="line"><span style="color:#24292E">          hasErrors </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> true</span></span>
+<span class="line"><span style="color:#D73A49">          if</span><span style="color:#24292E"> (errors[key]) {</span></span>
+<span class="line"><span style="color:#24292E">            errors[key].</span><span style="color:#6F42C1">push</span><span style="color:#24292E">(error)</span></span>
+<span class="line"><span style="color:#24292E">          } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#24292E">            errors[key] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> [error]</span></span>
+<span class="line"><span style="color:#24292E">          }</span></span>
+<span class="line"><span style="color:#24292E">        }</span></span>
+<span class="line"><span style="color:#24292E">      }</span></span>
+<span class="line"><span style="color:#24292E">    }</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">  return</span><span style="color:#24292E"> { input, errors, hasErrors }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49">export</span><span style="color:#D73A49"> const</span><span style="color:#005CC5"> stringValidators</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#6F42C1">  isString</span><span style="color:#24292E">: (</span><span style="color:#E36209">msg</span><span style="color:#D73A49">?:</span><span style="color:#6F42C1"> ErrorMessageCallback</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">(</span><span style="color:#D73A49">typeof</span><span style="color:#24292E"> input </span><span style="color:#D73A49">==</span><span style="color:#032F62"> 'string'</span><span style="color:#24292E">)) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> msg </span><span style="color:#D73A49">?</span><span style="color:#6F42C1"> msg</span><span style="color:#24292E">(input) </span><span style="color:#D73A49">:</span><span style="color:#032F62"> 'Not a string'</span></span>
+<span class="line"><span style="color:#24292E">  },</span></span>
+<span class="line"><span style="color:#6F42C1">  min</span><span style="color:#24292E">: (</span><span style="color:#E36209">n</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> number</span><span style="color:#24292E">, </span><span style="color:#E36209">msg</span><span style="color:#D73A49">?:</span><span style="color:#6F42C1"> ErrorMessageCallback</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (input.</span><span style="color:#005CC5">length</span><span style="color:#D73A49"> &#x3C;</span><span style="color:#24292E"> n) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> msg </span><span style="color:#D73A49">?</span><span style="color:#6F42C1"> msg</span><span style="color:#24292E">(input) </span><span style="color:#D73A49">:</span><span style="color:#032F62"> `Must be greater than ${</span><span style="color:#24292E">n</span><span style="color:#032F62">} characters in length`</span></span>
+<span class="line"><span style="color:#24292E">  },</span></span>
+<span class="line"><span style="color:#6F42C1">  max</span><span style="color:#24292E">: (</span><span style="color:#E36209">n</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> number</span><span style="color:#24292E">, </span><span style="color:#E36209">msg</span><span style="color:#D73A49">?:</span><span style="color:#6F42C1"> ErrorMessageCallback</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (input.</span><span style="color:#005CC5">length</span><span style="color:#D73A49"> ></span><span style="color:#24292E"> n) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> msg </span><span style="color:#D73A49">?</span><span style="color:#6F42C1"> msg</span><span style="color:#24292E">(input) </span><span style="color:#D73A49">:</span><span style="color:#032F62"> `Must be less than ${</span><span style="color:#24292E">n</span><span style="color:#032F62">} characters in length`</span></span>
+<span class="line"><span style="color:#24292E">  },</span></span>
+<span class="line"><span style="color:#6F42C1">  email</span><span style="color:#24292E">: (</span><span style="color:#E36209">msg</span><span style="color:#D73A49">?:</span><span style="color:#6F42C1"> ErrorMessageCallback</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> (</span><span style="color:#E36209">input</span><span style="color:#D73A49">:</span><span style="color:#005CC5"> string</span><span style="color:#24292E">) </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
+<span class="line"><span style="color:#D73A49">    const</span><span style="color:#005CC5"> emailRe</span><span style="color:#D73A49"> =</span><span style="color:#032F62"> /</span><span style="color:#D73A49">^</span><span style="color:#032F62">((</span><span style="color:#005CC5">[</span><span style="color:#D73A49">^</span><span style="color:#005CC5">&#x3C;>()[</span><span style="color:#22863A;font-weight:bold">\]\\</span><span style="color:#005CC5">.,;:\s@"]</span><span style="color:#D73A49">+</span><span style="color:#032F62">(</span><span style="color:#22863A;font-weight:bold">\.</span><span style="color:#005CC5">[</span><span style="color:#D73A49">^</span><span style="color:#005CC5">&#x3C;>()[</span><span style="color:#22863A;font-weight:bold">\]\\</span><span style="color:#005CC5">.,;:\s@"]</span><span style="color:#D73A49">+</span><span style="color:#032F62">)</span><span style="color:#D73A49">*</span><span style="color:#032F62">)</span><span style="color:#D73A49">|</span><span style="color:#005CC5">.</span><span style="color:#032F62">("</span><span style="color:#005CC5">.</span><span style="color:#D73A49">+</span><span style="color:#032F62">"))@((</span><span style="color:#22863A;font-weight:bold">\[</span><span style="color:#005CC5">[0-9]</span><span style="color:#D73A49">{1,3}</span><span style="color:#22863A;font-weight:bold">\.</span><span style="color:#005CC5">[0-9]</span><span style="color:#D73A49">{1,3}</span><span style="color:#22863A;font-weight:bold">\.</span><span style="color:#005CC5">[0-9]</span><span style="color:#D73A49">{1,3}</span><span style="color:#22863A;font-weight:bold">\.</span><span style="color:#005CC5">[0-9]</span><span style="color:#D73A49">{1,3}</span><span style="color:#22863A;font-weight:bold">\]</span><span style="color:#032F62">)</span><span style="color:#D73A49">|</span><span style="color:#032F62">((</span><span style="color:#005CC5">[a-zA-Z\-0-9]</span><span style="color:#D73A49">+</span><span style="color:#22863A;font-weight:bold">\.</span><span style="color:#032F62">)</span><span style="color:#D73A49">+</span><span style="color:#005CC5">[a-zA-Z]</span><span style="color:#D73A49">{2,}</span><span style="color:#032F62">))</span><span style="color:#D73A49">$</span><span style="color:#032F62">/</span></span>
+<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">emailRe.</span><span style="color:#6F42C1">test</span><span style="color:#24292E">(input.</span><span style="color:#6F42C1">toLowerCase</span><span style="color:#24292E">())) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> msg </span><span style="color:#D73A49">?</span><span style="color:#6F42C1"> msg</span><span style="color:#24292E">(input) </span><span style="color:#D73A49">:</span><span style="color:#032F62"> 'Not a valid email address'</span></span>
+<span class="line"><span style="color:#24292E">  }</span></span>
+<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+</div>
+                        <footer>
+                            <p>Until next time,</p>
+                            <p>— Brian</p>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            <footer class="site-footer gray-bg">
+    <div class="content-md mx-auto px-sm">
+        <p class="my-auto py-sm">
+            <small>Since August 4th, 2023. All words by Brian
+                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+        </p>
+    </div>
+</footer>
+    </div>
+    <script src="/scripts/skip-to-section.js"></script>
+    <script src="/scripts/chicken-and-magpie.js"></script>
+</body>
+
+</html>
