@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+    ${data.posts.map(post => `
+    <url>
+        <loc>https://www.briandouglas.ie/${post.slug}</loc>
+        <lastmod>${helpers.parseDate(post.data.date).toISOString()}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    `).join('')}
+</urlset>

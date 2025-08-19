@@ -1,128 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - Creating a Pong clone using Raylib and Go
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="Creating a Pong clone using Raylib and Go" />
+    <meta name="description" content="Creating a Pong clone using Raylib and Go"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, go,raylib" />
+    <meta name="keywords" content="Brian Douglas, blog, go,raylib"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - Creating a Pong clone using Raylib and Go" />
-    <meta property="og:description" content="Creating a Pong clone using Raylib and Go" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/pong-using-raylib-and-go.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'Creating a Pong clone using Raylib and Go'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - Creating a Pong clone using Raylib and Go"/>
+    <meta property="og:description" content="Creating a Pong clone using Raylib and Go"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/pong-using-raylib-and-go.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'Creating a Pong clone using Raylib and Go'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - Creating a Pong clone using Raylib and Go" />
-    <meta name="twitter:description" content="Creating a Pong clone using Raylib and Go" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/pong-using-raylib-and-go.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - Creating a Pong clone using Raylib and Go"/>
+    <meta name="twitter:description" content="Creating a Pong clone using Raylib and Go"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/pong-using-raylib-and-go.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>Creating a Pong clone using Raylib and Go</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>Creating a Pong clone using Raylib and Go</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            Creating a Pong clone using Raylib and Go
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                Creating a Pong clone using Raylib and Go
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="22/09/2024">
-                                    September 22nd, 2024
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>As a fun exercise I implemented a rudimentary Pong clone using Raylib and Go.</p>
+    <main>
+        <article class="post">
+            <header>
+                <h1>Creating a Pong clone using Raylib and Go</h1>
+                <time datetime="22/09/2024">September 22nd, 2024</time>
+            </header>
+
+            <div class="body">
+                <p>As a fun exercise I implemented a rudimentary Pong clone using Raylib and Go.</p>
 <!-- more -->
-<chicken-asks>
+<p><chicken-asks>
 Why Go?
-</chicken-asks>
-<magpie-replies>
+</chicken-asks></p>
+<p><magpie-replies>
 So many reasons. Most notably the tooling, language simplicity, and similarity to C.
-</magpie-replies>
-<h2>My Thoughts</h2>
+</magpie-replies></p>
+<h2 id="mythoughts">My Thoughts</h2>
 <p>I have seen a couple of videos on YouTube where developers have been making games using Go.
 My understanding of Go was that it was a Web Dev Backend language for hipsters. However,
 having written this simple program in Go I have been pleasantly surprised by the features
-the language has to offer. For me the built in &quot;tools&quot; that come with Go are excellent and
+the language has to offer. For me the built in "tools" that come with Go are excellent and
 not something I was aware of. Go provides a built in code formatter, gofmt, which means I
 don't have to think about how my Go code should look. It also comes with, gopls, a language
 server developed by the Go team. This meant that I only had to install the <a href="https://github.com/fatih/vim-go">vim-go</a>
 extension to turn neovim into a Go IDE without any set up.</p>
-<p>Then it comes to the language itself. I had heard Go was &quot;simple&quot;. To my surprise this was
+<p>Then it comes to the language itself. I had heard Go was "simple". To my surprise this was
 actually true. I was able to write Go pretty much straight away due to it's familiar syntax.
 The only new aspects to me were the assignment operator <code>:=</code>, that <code>slices</code> were favoured
 over <code>arrays</code>, and that a capital letter was used to signify privacy.</p>
@@ -131,297 +109,300 @@ Go before, so I feel this is a big achievement for the language. I would say I w
 productive. Looking at the source code of my Pong implementation, I am sure you will agree
 it is clear and readable. This is owed to the simplicity of Go. A language of which I feel
 I will be using a lot more of in the future.</p>
-<h2>The Setup</h2>
+<h2 id="thesetup">The Setup</h2>
 <p>No much to it, create a Go module and install <a href="https://github.com/gen2brain/raylib-go">raylib-go</a>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>go mod init main</span></span>
-<span class="line"><span>go get github.com/gen2brain/raylib-go</span></span></code></pre>
-<h2>The Code</h2>
-<magpie-trinket>
+<pre><code>go mod init main
+go get github.com/gen2brain/raylib-go
+</code></pre>
+<h2 id="thecode">The Code</h2>
+<p><magpie-trinket>
 The source code is also available on github, <a href="https://github.com/BrianDouglasIE/raylib-go-pong">BrianDouglasIE/raylib-go-pong</a>.
-</magpie-trinket>
+</magpie-trinket></p>
 <p>I won't write out what the code is doing as I feel it is fairly self explanatory. I know you
 are an ace programmer, so you don't need your hand held.</p>
 <p>The game can be launched with <code>go run main.go</code>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-go"><span class="line"><span style="color:#D73A49">package</span><span style="color:#6F42C1"> main</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> (</span></span>
-<span class="line"><span style="color:#032F62">        "</span><span style="color:#6F42C1">fmt</span><span style="color:#032F62">"</span></span>
-<span class="line"><span style="color:#032F62">        "</span><span style="color:#6F42C1">image/color</span><span style="color:#032F62">"</span></span>
-<span class="line"><span style="color:#032F62">        "</span><span style="color:#6F42C1">math/rand</span><span style="color:#032F62">"</span></span>
-<span class="line"><span style="color:#032F62">        "</span><span style="color:#6F42C1">time</span><span style="color:#032F62">"</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        rl </span><span style="color:#032F62">"</span><span style="color:#6F42C1">github.com/gen2brain/raylib-go/raylib</span><span style="color:#032F62">"</span></span>
-<span class="line"><span style="color:#24292E">)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#24292E"> (</span></span>
-<span class="line"><span style="color:#24292E">        SCREEN_WIDTH          </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 800</span></span>
-<span class="line"><span style="color:#24292E">        SCREEN_HEIGHT         </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 450</span></span>
-<span class="line"><span style="color:#24292E">        CENTER_X              </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_WIDTH </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span></span>
-<span class="line"><span style="color:#24292E">        CENTER_Y              </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_HEIGHT </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span></span>
-<span class="line"><span style="color:#24292E">        SIDE_BUFFER_WIDTH     </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 40</span></span>
-<span class="line"><span style="color:#24292E">        INITIAL_PADDLE_HEIGHT </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 80</span></span>
-<span class="line"><span style="color:#24292E">        INITIAL_PADDLE_WIDTH  </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 20</span></span>
-<span class="line"><span style="color:#24292E">        INITIAL_PADDLE_SPEED  </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 4</span></span>
-<span class="line"><span style="color:#24292E">        INITIAL_BALL_SIZE     </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 16</span></span>
-<span class="line"><span style="color:#24292E">        INITIAL_BALL_SPEED    </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 4</span></span>
-<span class="line"><span style="color:#24292E">        RIGHT_BOUNDS          </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_WIDTH</span></span>
-<span class="line"><span style="color:#24292E">        LEFT_BOUNDS           </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">        TOP_BOUNDS            </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">        BOTTOM_BOUNDS         </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_HEIGHT</span></span>
-<span class="line"><span style="color:#24292E">)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> Paddle</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">        X      </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Y      </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        VX     </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        VY     </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Width  </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Height </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Score  </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Speed  </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Color  </span><span style="color:#6F42C1">color</span><span style="color:#24292E">.</span><span style="color:#6F42C1">RGBA</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">p </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#6F42C1">Draw</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        rl.</span><span style="color:#6F42C1">DrawRectangle</span><span style="color:#24292E">(p.X, p.Y, p.Width, p.Height, p.Color)</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">p </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#6F42C1">IncrementScore</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        p.Score </span><span style="color:#D73A49">+=</span><span style="color:#005CC5"> 1</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">p </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#6F42C1">Update</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        p.X </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> p.VX</span></span>
-<span class="line"><span style="color:#24292E">        p.Y </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> p.VY</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">type</span><span style="color:#6F42C1"> Ball</span><span style="color:#D73A49"> struct</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">        X     </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Y     </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        VX    </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        VY    </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Size  </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Serve </span><span style="color:#D73A49">int32</span></span>
-<span class="line"><span style="color:#24292E">        Color </span><span style="color:#6F42C1">color</span><span style="color:#24292E">.</span><span style="color:#6F42C1">RGBA</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">Draw</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        rl.</span><span style="color:#6F42C1">DrawRectangle</span><span style="color:#24292E">(b.X, b.Y, b.Size, b.Size, b.Color)</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">Update</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        b.X </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> b.VX</span></span>
-<span class="line"><span style="color:#24292E">        b.Y </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> b.VY</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">Reset</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        b.Size </span><span style="color:#D73A49">=</span><span style="color:#24292E"> INITIAL_BALL_SIZE</span></span>
-<span class="line"><span style="color:#24292E">        b.X </span><span style="color:#D73A49">=</span><span style="color:#24292E"> CENTER_X </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (INITIAL_BALL_SIZE </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">        b.Y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> CENTER_Y </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (INITIAL_BALL_SIZE </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">        b.Color </span><span style="color:#D73A49">=</span><span style="color:#24292E"> rl.White</span></span>
-<span class="line"><span style="color:#24292E">        b.VX </span><span style="color:#D73A49">=</span><span style="color:#24292E"> INITIAL_BALL_SPEED </span><span style="color:#D73A49">*</span><span style="color:#24292E"> b.</span><span style="color:#6F42C1">serveModifier</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">        b.VY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> INITIAL_BALL_SPEED </span><span style="color:#D73A49">*</span><span style="color:#6F42C1"> pickRandomVariant</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">        b.Serve </span><span style="color:#D73A49">+=</span><span style="color:#005CC5"> 1</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">BounceVertically</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        b.VY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> b.VY </span><span style="color:#D73A49">*</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">BounceHorizontally</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        b.VX </span><span style="color:#D73A49">=</span><span style="color:#24292E"> b.VX </span><span style="color:#D73A49">*</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#24292E"> (</span><span style="color:#E36209">b </span><span style="color:#D73A49">*</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#6F42C1">serveModifier</span><span style="color:#24292E">() </span><span style="color:#D73A49">int32</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> b.Serve</span><span style="color:#D73A49">%</span><span style="color:#005CC5">2</span><span style="color:#D73A49"> ==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">                return</span><span style="color:#005CC5"> 1</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#D73A49"> -</span><span style="color:#005CC5">1</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> isBallOutToLeft</span><span style="color:#24292E">(</span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> b.X </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> LEFT_BOUNDS</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> isBallOutToRight</span><span style="color:#24292E">(</span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> b.X</span><span style="color:#D73A49">-</span><span style="color:#24292E">b.Size </span><span style="color:#D73A49">></span><span style="color:#24292E"> RIGHT_BOUNDS</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> ballAtBottom</span><span style="color:#24292E">(</span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> b.Y </span><span style="color:#D73A49">></span><span style="color:#24292E"> SCREEN_HEIGHT</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> ballAtTop</span><span style="color:#24292E">(</span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> b.Y</span><span style="color:#D73A49">+</span><span style="color:#24292E">b.Size </span><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> paddleAtTop</span><span style="color:#24292E">(</span><span style="color:#E36209">p</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> p.Y </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> TOP_BOUNDS</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> paddleAtBottom</span><span style="color:#24292E">(</span><span style="color:#E36209">p</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> p.Y</span><span style="color:#D73A49">+</span><span style="color:#24292E">p.Height </span><span style="color:#D73A49">></span><span style="color:#24292E"> BOTTOM_BOUNDS</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> pickRandomVariant</span><span style="color:#24292E">() </span><span style="color:#D73A49">int32</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#D73A49"> int32</span><span style="color:#24292E">(rand.</span><span style="color:#6F42C1">Intn</span><span style="color:#24292E">(</span><span style="color:#005CC5">2</span><span style="color:#24292E">)</span><span style="color:#D73A49">*</span><span style="color:#005CC5">2</span><span style="color:#D73A49"> -</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> getScoreText</span><span style="color:#24292E">(</span><span style="color:#E36209">leftPaddle</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">, </span><span style="color:#E36209">rightPaddle</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#D73A49">string</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> fmt.</span><span style="color:#6F42C1">Sprintf</span><span style="color:#24292E">(</span><span style="color:#032F62">"</span><span style="color:#005CC5">%d</span><span style="color:#005CC5">   %d</span><span style="color:#032F62">"</span><span style="color:#24292E">, leftPaddle.Score, rightPaddle.Score)</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> movePaddleToInterceptBall</span><span style="color:#24292E">(</span><span style="color:#E36209">p</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">, </span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">        paddleCenter </span><span style="color:#D73A49">:=</span><span style="color:#24292E"> p.Y </span><span style="color:#D73A49">+</span><span style="color:#24292E"> p.Height</span><span style="color:#D73A49">/</span><span style="color:#005CC5">2</span></span>
-<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> b.Y </span><span style="color:#D73A49">></span><span style="color:#24292E"> paddleCenter {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> p.Speed</span></span>
-<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">else</span><span style="color:#D73A49"> if</span><span style="color:#24292E"> b.Y </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> paddleCenter {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> -</span><span style="color:#24292E">p.Speed</span></span>
-<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> movePaddleTowardsCenter</span><span style="color:#24292E">(</span><span style="color:#E36209">p</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">        paddleCenter </span><span style="color:#D73A49">:=</span><span style="color:#24292E"> p.Y </span><span style="color:#D73A49">+</span><span style="color:#24292E"> p.Height</span><span style="color:#D73A49">/</span><span style="color:#005CC5">2</span></span>
-<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> paddleCenter </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> CENTER_Y {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> p.Speed</span></span>
-<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">else</span><span style="color:#D73A49"> if</span><span style="color:#24292E"> paddleCenter </span><span style="color:#D73A49">></span><span style="color:#24292E"> CENTER_Y {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> -</span><span style="color:#24292E">p.Speed</span></span>
-<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">                p.VY </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> ballIntersectsPaddle</span><span style="color:#24292E">(</span><span style="color:#E36209">b</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Ball</span><span style="color:#24292E">, </span><span style="color:#E36209">p</span><span style="color:#D73A49"> *</span><span style="color:#6F42C1">Paddle</span><span style="color:#24292E">) </span><span style="color:#D73A49">bool</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> b.X </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> p.X</span><span style="color:#D73A49">+</span><span style="color:#24292E">p.Width </span><span style="color:#D73A49">&#x26;&#x26;</span></span>
-<span class="line"><span style="color:#24292E">                b.X</span><span style="color:#D73A49">+</span><span style="color:#24292E">b.Size </span><span style="color:#D73A49">></span><span style="color:#24292E"> p.X </span><span style="color:#D73A49">&#x26;&#x26;</span></span>
-<span class="line"><span style="color:#24292E">                b.Y</span><span style="color:#D73A49">+</span><span style="color:#24292E">b.Size </span><span style="color:#D73A49">></span><span style="color:#24292E"> p.Y </span><span style="color:#D73A49">&#x26;&#x26;</span></span>
-<span class="line"><span style="color:#24292E">                b.Y </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> p.Y</span><span style="color:#D73A49">+</span><span style="color:#24292E">p.Height</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">func</span><span style="color:#6F42C1"> main</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        rand.</span><span style="color:#6F42C1">Seed</span><span style="color:#24292E">(time.</span><span style="color:#6F42C1">Now</span><span style="color:#24292E">().</span><span style="color:#6F42C1">UnixNano</span><span style="color:#24292E">())</span></span>
-<span class="line"><span style="color:#24292E">        rl.</span><span style="color:#6F42C1">InitWindow</span><span style="color:#24292E">(SCREEN_WIDTH, SCREEN_HEIGHT, </span><span style="color:#032F62">"Pong"</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#D73A49">        defer</span><span style="color:#24292E"> rl.</span><span style="color:#6F42C1">CloseWindow</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        rl.</span><span style="color:#6F42C1">SetTargetFPS</span><span style="color:#24292E">(</span><span style="color:#005CC5">60</span><span style="color:#24292E">)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        ball </span><span style="color:#D73A49">:=</span><span style="color:#6F42C1"> Ball</span><span style="color:#24292E">{}</span></span>
-<span class="line"><span style="color:#24292E">        ball.</span><span style="color:#6F42C1">Reset</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        leftPaddle </span><span style="color:#D73A49">:=</span><span style="color:#6F42C1"> Paddle</span><span style="color:#24292E">{</span></span>
-<span class="line"><span style="color:#24292E">                Width:  INITIAL_PADDLE_WIDTH,</span></span>
-<span class="line"><span style="color:#24292E">                Height: INITIAL_PADDLE_HEIGHT,</span></span>
-<span class="line"><span style="color:#24292E">                Speed:  INITIAL_PADDLE_SPEED,</span></span>
-<span class="line"><span style="color:#24292E">                Color:  rl.White,</span></span>
-<span class="line"><span style="color:#24292E">                X:      SIDE_BUFFER_WIDTH,</span></span>
-<span class="line"><span style="color:#24292E">                Y:      CENTER_Y </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (INITIAL_PADDLE_HEIGHT </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#24292E">                Score:  </span><span style="color:#005CC5">0</span><span style="color:#24292E">,</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        rightPaddle </span><span style="color:#D73A49">:=</span><span style="color:#6F42C1"> Paddle</span><span style="color:#24292E">{</span></span>
-<span class="line"><span style="color:#24292E">                Width:  INITIAL_PADDLE_WIDTH,</span></span>
-<span class="line"><span style="color:#24292E">                Height: INITIAL_PADDLE_HEIGHT,</span></span>
-<span class="line"><span style="color:#24292E">                Speed:  INITIAL_PADDLE_SPEED,</span></span>
-<span class="line"><span style="color:#24292E">                Color:  rl.White,</span></span>
-<span class="line"><span style="color:#24292E">                X:      SCREEN_WIDTH </span><span style="color:#D73A49">-</span><span style="color:#24292E"> SIDE_BUFFER_WIDTH </span><span style="color:#D73A49">-</span><span style="color:#24292E"> INITIAL_PADDLE_WIDTH,</span></span>
-<span class="line"><span style="color:#24292E">                Y:      CENTER_Y </span><span style="color:#D73A49">-</span><span style="color:#24292E"> (INITIAL_PADDLE_HEIGHT </span><span style="color:#D73A49">/</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#24292E">                Score:  </span><span style="color:#005CC5">0</span><span style="color:#24292E">,</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        for</span><span style="color:#D73A49"> !</span><span style="color:#24292E">rl.</span><span style="color:#6F42C1">WindowShouldClose</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">                ball.</span><span style="color:#6F42C1">Update</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> isBallOutToLeft</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball) {</span></span>
-<span class="line"><span style="color:#24292E">                        rightPaddle.</span><span style="color:#6F42C1">IncrementScore</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                        ball.</span><span style="color:#6F42C1">Reset</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> isBallOutToRight</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball) {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.</span><span style="color:#6F42C1">IncrementScore</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                        ball.</span><span style="color:#6F42C1">Reset</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> ballAtTop</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball) </span><span style="color:#D73A49">||</span><span style="color:#6F42C1"> ballAtBottom</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball) {</span></span>
-<span class="line"><span style="color:#24292E">                        ball.</span><span style="color:#6F42C1">BounceVertically</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                leftPaddle.</span><span style="color:#6F42C1">Update</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                rightPaddle.</span><span style="color:#6F42C1">Update</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#24292E"> ball.VX </span><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5"> 0</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#6F42C1">                        movePaddleTowardsCenter</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle)</span></span>
-<span class="line"><span style="color:#24292E">                } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#6F42C1">                        movePaddleToInterceptBall</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle, </span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball)</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#24292E"> rl.</span><span style="color:#6F42C1">IsKeyDown</span><span style="color:#24292E">(rl.KeyUp) {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.VY </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> -</span><span style="color:#24292E">leftPaddle.Speed</span></span>
-<span class="line"><span style="color:#24292E">                } </span><span style="color:#D73A49">else</span><span style="color:#D73A49"> if</span><span style="color:#24292E"> rl.</span><span style="color:#6F42C1">IsKeyDown</span><span style="color:#24292E">(rl.KeyDown) {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.VY </span><span style="color:#D73A49">=</span><span style="color:#24292E"> leftPaddle.Speed</span></span>
-<span class="line"><span style="color:#24292E">                } </span><span style="color:#D73A49">else</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.VY </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> paddleAtTop</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle) {</span></span>
-<span class="line"><span style="color:#24292E">                        rightPaddle.Y </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> paddleAtBottom</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle) {</span></span>
-<span class="line"><span style="color:#24292E">                        rightPaddle.Y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_HEIGHT </span><span style="color:#D73A49">-</span><span style="color:#24292E"> rightPaddle.Height</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> paddleAtTop</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">leftPaddle) {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.Y </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> paddleAtBottom</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">leftPaddle) {</span></span>
-<span class="line"><span style="color:#24292E">                        leftPaddle.Y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> SCREEN_HEIGHT </span><span style="color:#D73A49">-</span><span style="color:#24292E"> leftPaddle.Height</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">                if</span><span style="color:#6F42C1"> ballIntersectsPaddle</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball, </span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">leftPaddle) </span><span style="color:#D73A49">||</span></span>
-<span class="line"><span style="color:#6F42C1">                        ballIntersectsPaddle</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">ball, </span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle) {</span></span>
-<span class="line"><span style="color:#24292E">                        ball.</span><span style="color:#6F42C1">BounceHorizontally</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                rl.</span><span style="color:#6F42C1">BeginDrawing</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                rl.</span><span style="color:#6F42C1">ClearBackground</span><span style="color:#24292E">(rl.Black)</span></span>
-<span class="line"><span style="color:#24292E">                rl.</span><span style="color:#6F42C1">DrawLine</span><span style="color:#24292E">(CENTER_X, TOP_BOUNDS, CENTER_X, BOTTOM_BOUNDS, rl.LightGray)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                scoreText </span><span style="color:#D73A49">:=</span><span style="color:#6F42C1"> getScoreText</span><span style="color:#24292E">(</span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">leftPaddle, </span><span style="color:#D73A49">&#x26;</span><span style="color:#24292E">rightPaddle)</span></span>
-<span class="line"><span style="color:#24292E">                textSize </span><span style="color:#D73A49">:=</span><span style="color:#24292E"> rl.</span><span style="color:#6F42C1">MeasureText</span><span style="color:#24292E">(scoreText, </span><span style="color:#005CC5">20</span><span style="color:#24292E">)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                rl.</span><span style="color:#6F42C1">DrawText</span><span style="color:#24292E">(scoreText, CENTER_X</span><span style="color:#D73A49">-</span><span style="color:#24292E">(textSize</span><span style="color:#D73A49">/</span><span style="color:#005CC5">2</span><span style="color:#24292E">), </span><span style="color:#005CC5">20</span><span style="color:#24292E">, </span><span style="color:#005CC5">20</span><span style="color:#24292E">, rl.White)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                leftPaddle.</span><span style="color:#6F42C1">Draw</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                rightPaddle.</span><span style="color:#6F42C1">Draw</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">                ball.</span><span style="color:#6F42C1">Draw</span><span style="color:#24292E">()</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">                rl.</span><span style="color:#6F42C1">EndDrawing</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+<pre><code class="go language-go">package main
 
+import (
+        "fmt"
+        "image/color"
+        "math/rand"
+        "time"
+
+        rl "github.com/gen2brain/raylib-go/raylib"
+)
+
+const (
+        SCREEN_WIDTH          = 800
+        SCREEN_HEIGHT         = 450
+        CENTER_X              = SCREEN_WIDTH / 2
+        CENTER_Y              = SCREEN_HEIGHT / 2
+        SIDE_BUFFER_WIDTH     = 40
+        INITIAL_PADDLE_HEIGHT = 80
+        INITIAL_PADDLE_WIDTH  = 20
+        INITIAL_PADDLE_SPEED  = 4
+        INITIAL_BALL_SIZE     = 16
+        INITIAL_BALL_SPEED    = 4
+        RIGHT_BOUNDS          = SCREEN_WIDTH
+        LEFT_BOUNDS           = 0
+        TOP_BOUNDS            = 0
+        BOTTOM_BOUNDS         = SCREEN_HEIGHT
+)
+
+type Paddle struct {
+        X      int32
+        Y      int32
+        VX     int32
+        VY     int32
+        Width  int32
+        Height int32
+        Score  int32
+        Speed  int32
+        Color  color.RGBA
+}
+
+func (p *Paddle) Draw() {
+        rl.DrawRectangle(p.X, p.Y, p.Width, p.Height, p.Color)
+}
+
+func (p *Paddle) IncrementScore() {
+        p.Score += 1
+}
+
+func (p *Paddle) Update() {
+        p.X += p.VX
+        p.Y += p.VY
+}
+
+type Ball struct {
+        X     int32
+        Y     int32
+        VX    int32
+        VY    int32
+        Size  int32
+        Serve int32
+        Color color.RGBA
+}
+
+func (b *Ball) Draw() {
+        rl.DrawRectangle(b.X, b.Y, b.Size, b.Size, b.Color)
+}
+
+func (b *Ball) Update() {
+        b.X += b.VX
+        b.Y += b.VY
+}
+
+func (b *Ball) Reset() {
+        b.Size = INITIAL_BALL_SIZE
+        b.X = CENTER_X - (INITIAL_BALL_SIZE / 2)
+        b.Y = CENTER_Y - (INITIAL_BALL_SIZE / 2)
+        b.Color = rl.White
+        b.VX = INITIAL_BALL_SPEED * b.serveModifier()
+        b.VY = INITIAL_BALL_SPEED * pickRandomVariant()
+        b.Serve += 1
+}
+
+func (b *Ball) BounceVertically() {
+        b.VY = b.VY * -1
+}
+
+func (b *Ball) BounceHorizontally() {
+        b.VX = b.VX * -1
+}
+
+func (b *Ball) serveModifier() int32 {
+        if b.Serve%2 == 0 {
+                return 1
+        }
+
+        return -1
+}
+
+func isBallOutToLeft(b *Ball) bool {
+        return b.X &lt; LEFT_BOUNDS
+}
+
+func isBallOutToRight(b *Ball) bool {
+        return b.X-b.Size &gt; RIGHT_BOUNDS
+}
+
+func ballAtBottom(b *Ball) bool {
+        return b.Y &gt; SCREEN_HEIGHT
+}
+
+func ballAtTop(b *Ball) bool {
+        return b.Y+b.Size &lt; 0
+}
+
+func paddleAtTop(p *Paddle) bool {
+        return p.Y &lt; TOP_BOUNDS
+}
+
+func paddleAtBottom(p *Paddle) bool {
+        return p.Y+p.Height &gt; BOTTOM_BOUNDS
+}
+
+func pickRandomVariant() int32 {
+        return int32(rand.Intn(2)*2 - 1)
+}
+
+func getScoreText(leftPaddle *Paddle, rightPaddle *Paddle) string {
+        return fmt.Sprintf("%d   %d", leftPaddle.Score, rightPaddle.Score)
+}
+
+func movePaddleToInterceptBall(p *Paddle, b *Ball) {
+        paddleCenter := p.Y + p.Height/2
+        if b.Y &gt; paddleCenter {
+                p.VY = p.Speed
+        } else if b.Y &lt; paddleCenter {
+                p.VY = -p.Speed
+        } else {
+                p.VY = 0
+        }
+}
+
+func movePaddleTowardsCenter(p *Paddle) {
+        paddleCenter := p.Y + p.Height/2
+        if paddleCenter &lt; CENTER_Y {
+                p.VY = p.Speed
+        } else if paddleCenter &gt; CENTER_Y {
+                p.VY = -p.Speed
+        } else {
+                p.VY = 0
+        }
+}
+
+func ballIntersectsPaddle(b *Ball, p *Paddle) bool {
+        return b.X &lt; p.X+p.Width &amp;&amp;
+                b.X+b.Size &gt; p.X &amp;&amp;
+                b.Y+b.Size &gt; p.Y &amp;&amp;
+                b.Y &lt; p.Y+p.Height
+}
+
+func main() {
+        rand.Seed(time.Now().UnixNano())
+        rl.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong")
+        defer rl.CloseWindow()
+
+        rl.SetTargetFPS(60)
+
+        ball := Ball{}
+        ball.Reset()
+
+        leftPaddle := Paddle{
+                Width:  INITIAL_PADDLE_WIDTH,
+                Height: INITIAL_PADDLE_HEIGHT,
+                Speed:  INITIAL_PADDLE_SPEED,
+                Color:  rl.White,
+                X:      SIDE_BUFFER_WIDTH,
+                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / 2),
+                Score:  0,
+        }
+
+        rightPaddle := Paddle{
+                Width:  INITIAL_PADDLE_WIDTH,
+                Height: INITIAL_PADDLE_HEIGHT,
+                Speed:  INITIAL_PADDLE_SPEED,
+                Color:  rl.White,
+                X:      SCREEN_WIDTH - SIDE_BUFFER_WIDTH - INITIAL_PADDLE_WIDTH,
+                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / 2),
+                Score:  0,
+        }
+
+        for !rl.WindowShouldClose() {
+                ball.Update()
+
+                if isBallOutToLeft(&amp;ball) {
+                        rightPaddle.IncrementScore()
+                        ball.Reset()
+                }
+
+                if isBallOutToRight(&amp;ball) {
+                        leftPaddle.IncrementScore()
+                        ball.Reset()
+                }
+
+                if ballAtTop(&amp;ball) || ballAtBottom(&amp;ball) {
+                        ball.BounceVertically()
+                }
+
+                leftPaddle.Update()
+                rightPaddle.Update()
+
+                if ball.VX &lt; 0 {
+                        movePaddleTowardsCenter(&amp;rightPaddle)
+                } else {
+                        movePaddleToInterceptBall(&amp;rightPaddle, &amp;ball)
+                }
+
+                if rl.IsKeyDown(rl.KeyUp) {
+                        leftPaddle.VY = -leftPaddle.Speed
+                } else if rl.IsKeyDown(rl.KeyDown) {
+                        leftPaddle.VY = leftPaddle.Speed
+                } else {
+                        leftPaddle.VY = 0
+                }
+
+                if paddleAtTop(&amp;rightPaddle) {
+                        rightPaddle.Y = 0
+                }
+
+                if paddleAtBottom(&amp;rightPaddle) {
+                        rightPaddle.Y = SCREEN_HEIGHT - rightPaddle.Height
+                }
+
+                if paddleAtTop(&amp;leftPaddle) {
+                        leftPaddle.Y = 0
+                }
+
+                if paddleAtBottom(&amp;leftPaddle) {
+                        leftPaddle.Y = SCREEN_HEIGHT - leftPaddle.Height
+                }
+
+                if ballIntersectsPaddle(&amp;ball, &amp;leftPaddle) ||
+                        ballIntersectsPaddle(&amp;ball, &amp;rightPaddle) {
+                        ball.BounceHorizontally()
+                }
+
+                rl.BeginDrawing()
+
+                rl.ClearBackground(rl.Black)
+                rl.DrawLine(CENTER_X, TOP_BOUNDS, CENTER_X, BOTTOM_BOUNDS, rl.LightGray)
+
+                scoreText := getScoreText(&amp;leftPaddle, &amp;rightPaddle)
+                textSize := rl.MeasureText(scoreText, 20)
+
+                rl.DrawText(scoreText, CENTER_X-(textSize/2), 20, 20, rl.White)
+
+                leftPaddle.Draw()
+                rightPaddle.Draw()
+                ball.Draw()
+
+                rl.EndDrawing()
+        }
+}
+</code></pre>
+            </div>
+
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>

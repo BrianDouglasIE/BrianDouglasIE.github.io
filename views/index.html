@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Meta Description -->
+    <meta
+            name="description"
+            content="I write about programming, thing's I've learned whilst programming, and hopefully, some useful code snippets."
+    />
+
+    <!-- Keywords -->
+    <meta
+            name="keywords"
+            content="Brian Douglas, JavaScript, PHP, Java, SQL, C, web development, programming, laravel"
+    />
+
+    <!-- Author -->
+    <meta name="author" content="Brian Douglas"/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta
+            property="og:title"
+            content="BrianDouglas.ie - Mediocre Programmer."
+    />
+    <meta
+            property="og:description"
+            content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
+    />
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta
+            property="og:image"
+            content="http://www.briandouglas.ie/images/open-graph-index.png"
+    />
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta
+            name="twitter:title"
+            content="BrianDouglas.ie - Mediocre Programmer."
+    />
+    <meta
+            name="twitter:description"
+            content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
+    />
+    <meta
+            name="twitter:image"
+            content="http://www.briandouglas.ie/images/open-graph-index.png"
+    />
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
+
+    <!-- Favicon (Optional) -->
+    <link
+            rel="icon"
+            href="https://www.briandouglas.ie/favicon.ico"
+            type="image/x-icon"
+    />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow"/>
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
+
+    <title>${ data.title ? `${data.title} - briandouglas.ie` : "briandouglas.ie" }</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="content">
+    ${helpers.include('site-header')}
+
+    <section class="about">
+        <img src="/images/me.png" alt="A photo of Brian Douglas">
+        <div>
+            <p>
+                I like to programme as close to vanilla as possible. Because abstractions are complex.
+                Seriously, why give a man a fish when you could teach him about asynchronous programming?
+            </p>
+            <p>
+                I've been paid to programme for ${new Date().getFullYear() - 2012} years.
+                People have paid me to write SQL, Java, PHP, C, and JavaScript.
+                Which is ridiculous as it's just my hobby. I love to code.
+            </p>
+        </div>
+    </section>
+
+    <main>
+        <h2>Latest Posts</h2>
+        ${ helpers.include('post-excerpt-list', { posts: data.posts.slice(0, 3)}) }
+        <h2>Older Posts <i>(${data.posts.length - 3})</i></h2>
+        ${ helpers.include('post-title-list', { posts: data.posts.slice(3) }) }
+    </main>
+
+    ${helpers.include('site-footer')}
+</div>
+
+</body>
+</html>

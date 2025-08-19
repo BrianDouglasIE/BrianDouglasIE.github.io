@@ -1,252 +1,238 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - Request cache in Spring
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="Request cache in Spring" />
+    <meta name="description" content="Request cache in Spring"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, spring,java" />
+    <meta name="keywords" content="Brian Douglas, blog, spring,java"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - Request cache in Spring" />
-    <meta property="og:description" content="Request cache in Spring" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/spring-request-cache.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'Request cache in Spring'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - Request cache in Spring"/>
+    <meta property="og:description" content="Request cache in Spring"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/spring-request-cache.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'Request cache in Spring'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - Request cache in Spring" />
-    <meta name="twitter:description" content="Request cache in Spring" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/spring-request-cache.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - Request cache in Spring"/>
+    <meta name="twitter:description" content="Request cache in Spring"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/spring-request-cache.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>Request cache in Spring</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>Request cache in Spring</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            Request cache in Spring
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                Request cache in Spring
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="19/05/2025">
-                                    May 19th, 2025
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>Let's say we have a request that fetches a post stored in the database. That request may need
+    <main>
+        <article class="post">
+            <header>
+                <h1>Request cache in Spring</h1>
+                <time datetime="19/05/2025">May 19th, 2025</time>
+            </header>
+
+            <div class="body">
+                <p>Let's say we have a request that fetches a post stored in the database. That request may need
 to alter the fetched post in some way. Before the post is altered various checks may need to
 happen, such as an ownership check. But we want to avoid each check fetching the same post
 from the database. This is when a cache that is scoped to a request's life cycle comes in handy.</p>
 <!-- more -->
 <p>In a <a href="/pre-auth-spring">previous post</a> I introduced a method for carrying out ownership checks
 using Spring Security's <code>@PreAuthorize</code> annotation. Whilst the approach was clean and maintainable
-it did introduce a performance issue. This is because <code>@PreAuthorize</code> executes before the method body.
-The post is fetched during the security check, and then again inside the method. This leads to duplicate
-fetches from the database. Once in the <code>isOwner</code> call and then again in the <code>findOwnedPost</code> call. You
+it did introduce a performance issue. This is because <code>@PreAuthorize</code> executes before the method body. 
+The post is fetched during the security check, and then again inside the method. This leads to duplicate 
+fetches from the database. Once in the <code>isOwner</code> call and then again in the <code>findOwnedPost</code> call. You 
 can see for yourself in the below code example.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
-<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">AllArgsConstructor</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> PostSecurity</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> PostRepository postRepository;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> boolean</span><span style="color:#6F42C1"> isOwner</span><span style="color:#24292E">(Long </span><span style="color:#E36209">id</span><span style="color:#24292E">, String </span><span style="color:#E36209">userEmail</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> postRepository.</span><span style="color:#6F42C1">findById</span><span style="color:#24292E">(id) </span><span style="color:#6A737D">// first fetch</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(Post</span><span style="color:#D73A49">::</span><span style="color:#24292E">getUser)</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(AppUser</span><span style="color:#D73A49">::</span><span style="color:#24292E">getEmail)</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(it </span><span style="color:#D73A49">-></span><span style="color:#24292E"> it.</span><span style="color:#6F42C1">equals</span><span style="color:#24292E">(userEmail))</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">orElse</span><span style="color:#24292E">(</span><span style="color:#005CC5">false</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">PreAuthorize</span><span style="color:#24292E">(</span><span style="color:#032F62">"@postSecurity.isOwner(#postId, authentication.name)"</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#24292E"> Post </span><span style="color:#6F42C1">getOwnedPost</span><span style="color:#24292E">(Long postId) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> postRepository.</span><span style="color:#6F42C1">findById</span><span style="color:#24292E">(postId) </span><span style="color:#6A737D">// second fetch</span></span>
-<span class="line"><span style="color:#24292E">            .</span><span style="color:#6F42C1">orElseThrow</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> EntityNotFoundException</span><span style="color:#24292E">(</span><span style="color:#032F62">"Post not found"</span><span style="color:#24292E">));</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="java language-java">@Component
+@AllArgsConstructor
+public class PostSecurity {
+    private final PostRepository postRepository;
+
+    public boolean isOwner(Long id, String userEmail) {
+        return postRepository.findById(id) // first fetch
+                .map(Post::getUser)
+                .map(AppUser::getEmail)
+                .map(it -&gt; it.equals(userEmail))
+                .orElse(false);
+    }
+}
+</code></pre>
+<pre><code class="java language-java">@PreAuthorize("@postSecurity.isOwner(#postId, authentication.name)")
+public Post getOwnedPost(Long postId) {
+    return postRepository.findById(postId) // second fetch
+            .orElseThrow(() -&gt; new EntityNotFoundException("Post not found"));
+}
+</code></pre>
 <p>One simple way to avoid this would be to do the ownership check inside the <code>getOwnedPost</code> method.
 This may seem straightforward, but it would lead to code that is harder to maintain. For example
 the authenticated <code>UserDetails</code> would need to be passed around, and a checked exceptions would need
-added to each caller... yuck.</p>
+added to each caller… yuck.</p>
 <p>A nice solution would be to cache the owned post instance for the lifecycle of the request. This would
 mean that the <code>isOwner</code> method would cache the post on look up. The post could then be retrieved from
 the cache inside the <code>getOwnedPost</code> method. Meaning that there is only one post look up. We would then
 add a request filter to clear the cache after each request.</p>
-<h2>Using a request based cache</h2>
+<h2 id="usingarequestbasedcache">Using a request based cache</h2>
 <p>Each Spring request uses it's own thread. This means that we can cache values for the current request's
 thread, without affecting any other request. To do this we'll use a plain old java object to model our
-<code>RequestCache</code>. I want to use this solution for different entity types, so I'll make it generic by making
+<code>RequestCache</code>. I want to use this solution for different entity types, so I'll make it generic by making 
 it a generic class, so it can hold any type of entity.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> RequestCache</span><span style="color:#24292E">&#x3C;</span><span style="color:#D73A49">T</span><span style="color:#24292E">> {</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> ThreadLocal&#x3C;Optional&#x3C;</span><span style="color:#D73A49">T</span><span style="color:#24292E">>> holder </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#24292E"> ThreadLocal&#x3C;>();</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> set</span><span style="color:#24292E">(T </span><span style="color:#E36209">value</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">        holder.</span><span style="color:#6F42C1">set</span><span style="color:#24292E">(Optional.</span><span style="color:#6F42C1">ofNullable</span><span style="color:#24292E">(value));</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#24292E"> Optional&#x3C;</span><span style="color:#D73A49">T</span><span style="color:#24292E">> </span><span style="color:#6F42C1">get</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> holder.</span><span style="color:#6F42C1">get</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> clear</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        holder.</span><span style="color:#6F42C1">remove</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
-<p><magpie-trinket>In some contexts like asynchronous processing, you may need <code>InheritableThreadLocal</code> or a
-more advanced request-scoped solution like Spring’s <code>@RequestScope</code>. But for typical synchronous requests,
+<pre><code class="java language-java">public class RequestCache&lt;T&gt; {
+    private final ThreadLocal&lt;Optional&lt;T&gt;&gt; holder = new ThreadLocal&lt;&gt;();
+
+    public void set(T value) {
+        holder.set(Optional.ofNullable(value));
+    }
+
+    public Optional&lt;T&gt; get() {
+        return holder.get();
+    }
+
+    public void clear() {
+        holder.remove();
+    }
+}
+</code></pre>
+<p><magpie-trinket>In some contexts like asynchronous processing, you may need <code>InheritableThreadLocal</code> or a 
+more advanced request-scoped solution like Spring’s <code>@RequestScope</code>. But for typical synchronous requests, 
 <code>ThreadLocal</code> works well.</magpie-trinket></p>
 <p>Now let's create a <code>RequestCacheRegistry</code>. This will be a <code>@Component</code> to allow it to be injected into
 the various services that will use it. You will be able to see at this stage how this approach can be
 extended to work with various entities, by adding a unique <code>RequestCache</code> property for each cached item.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Getter</span></span>
-<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> RequestCacheRegistry</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> RequestCache&#x3C;</span><span style="color:#D73A49">Post</span><span style="color:#24292E">> ownedPost </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#24292E"> RequestCache&#x3C;>();</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> clearAll</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#24292E">        ownedPost.</span><span style="color:#6F42C1">clear</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="java language-java">@Getter
+@Component
+public class RequestCacheRegistry {
+    public final RequestCache&lt;Post&gt; ownedPost = new RequestCache&lt;&gt;();
+
+    public void clearAll() {
+        ownedPost.clear();
+    }
+}
+</code></pre>
 <p>Now that our <code>RequestCacheRegistry</code> has been set up, we can use it within our <code>PostService</code>. First we'll
 need to modify the <code>PostSecurity</code> component to cache the post that is returned from the <code>PostRepository</code>.
 As the <code>PostRepository</code> returns an <code>Optional&lt;Post&gt;</code> the cache can be updated in a chained <code>map</code> call.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
-<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">AllArgsConstructor</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> PostSecurity</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> PostRepository postRepository;</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> RequestCacheRegistry requestCacheRegistry;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> boolean</span><span style="color:#6F42C1"> isOwner</span><span style="color:#24292E">(Long </span><span style="color:#E36209">id</span><span style="color:#24292E">, String </span><span style="color:#E36209">userEmail</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> postRepository.</span><span style="color:#6F42C1">findById</span><span style="color:#24292E">(id)</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">filter</span><span style="color:#24292E">(it </span><span style="color:#D73A49">-></span><span style="color:#24292E"> it.</span><span style="color:#6F42C1">getUser</span><span style="color:#24292E">().</span><span style="color:#6F42C1">getEmail</span><span style="color:#24292E">().</span><span style="color:#6F42C1">equals</span><span style="color:#24292E">(userEmail))</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">map</span><span style="color:#24292E">(it </span><span style="color:#D73A49">-></span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">                    requestCacheRegistry.</span><span style="color:#6F42C1">getOwnedPost</span><span style="color:#24292E">().</span><span style="color:#6F42C1">set</span><span style="color:#24292E">(it); </span><span style="color:#6A737D">// cache post</span></span>
-<span class="line"><span style="color:#D73A49">                    return</span><span style="color:#005CC5"> true</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#24292E">                })</span></span>
-<span class="line"><span style="color:#24292E">                .</span><span style="color:#6F42C1">orElse</span><span style="color:#24292E">(</span><span style="color:#005CC5">false</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="java language-java">@Component
+@AllArgsConstructor
+public class PostSecurity {
+    private final PostRepository postRepository;
+    private final RequestCacheRegistry requestCacheRegistry;
+
+    public boolean isOwner(Long id, String userEmail) {
+        return postRepository.findById(id)
+                .filter(it -&gt; it.getUser().getEmail().equals(userEmail))
+                .map(it -&gt; {
+                    requestCacheRegistry.getOwnedPost().set(it); // cache post
+                    return true;
+                })
+                .orElse(false);
+    }
+}
+</code></pre>
 <p>Now that the <code>requestCacheRegisty.ownedPost</code> is set. It can be access inside the <code>getOwnedPost</code> method that
 has the <code>PreAuthorize</code> annotation.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">PreAuthorize</span><span style="color:#24292E">(</span><span style="color:#032F62">"@postSecurity.isOwner(#postId, authentication.name)"</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#24292E"> Post </span><span style="color:#6F42C1">getOwnedPost</span><span style="color:#24292E">(Long postId) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> requestCacheRegistry.</span><span style="color:#6F42C1">getOwnedPost</span><span style="color:#24292E">().</span><span style="color:#6F42C1">get</span><span style="color:#24292E">().</span><span style="color:#6F42C1">orElseGet</span><span style="color:#24292E">(() </span><span style="color:#D73A49">-></span><span style="color:#6F42C1"> findById</span><span style="color:#24292E">(postId));</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="java language-java">@PreAuthorize("@postSecurity.isOwner(#postId, authentication.name)")
+public Post getOwnedPost(Long postId) {
+    return requestCacheRegistry.getOwnedPost().get().orElseGet(() -&gt; findById(postId));
+}
+</code></pre>
 <p>With all this in place there is now only one database call to fetch the required post. We have also implemented
 a pattern that will allow for other entities to be cached in the same way, using the <code>RequestCacheRegistry</code>.</p>
-<h2>Clearing the cache</h2>
+<h2 id="clearingthecache">Clearing the cache</h2>
 <p>It is important that we clear the request cache after each request completes. This will help prevent any thread
 leaks from occurring. A clean way of doing this is to implement a request filter. The following request filter
 will be called automatically on each request. Once the filter chain completes, this custom filter will call
 the <code>cacheRegistry.clearAll</code> method. Ensuring the cache registry is safely cleared after each request.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">Component</span></span>
-<span class="line"><span style="color:#24292E">@</span><span style="color:#D73A49">RequiredArgsConstructor</span></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> RequestCacheCleanUpFilter</span><span style="color:#D73A49"> extends</span><span style="color:#6F42C1"> OncePerRequestFilter</span><span style="color:#24292E"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> final</span><span style="color:#24292E"> RequestCacheRegistry cacheRegistry;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">    @</span><span style="color:#D73A49">Override</span></span>
-<span class="line"><span style="color:#D73A49">    protected</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> doFilterInternal</span><span style="color:#24292E">(HttpServletRequest </span><span style="color:#E36209">request</span><span style="color:#24292E">,</span></span>
-<span class="line"><span style="color:#24292E">                                    HttpServletResponse </span><span style="color:#E36209">response</span><span style="color:#24292E">,</span></span>
-<span class="line"><span style="color:#24292E">                                    FilterChain </span><span style="color:#E36209">filterChain</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#D73A49">            throws</span><span style="color:#24292E"> ServletException, IOException {</span></span>
-<span class="line"><span style="color:#D73A49">        try</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">            filterChain.</span><span style="color:#6F42C1">doFilter</span><span style="color:#24292E">(request, response);</span></span>
-<span class="line"><span style="color:#24292E">        } </span><span style="color:#D73A49">finally</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#24292E">            cacheRegistry.</span><span style="color:#6F42C1">clearAll</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+<pre><code class="java language-java">@Component
+@RequiredArgsConstructor
+public class RequestCacheCleanUpFilter extends OncePerRequestFilter {
 
+    private final RequestCacheRegistry cacheRegistry;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+        try {
+            filterChain.doFilter(request, response);
+        } finally {
+            cacheRegistry.clearAll();
+        }
+    }
+
+}
+</code></pre>
+            </div>
+
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>

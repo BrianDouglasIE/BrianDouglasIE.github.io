@@ -1,111 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - Using CPU branch prediction in Java
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="Using CPU branch prediction in Java" />
+    <meta name="description" content="Using CPU branch prediction in Java"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, java" />
+    <meta name="keywords" content="Brian Douglas, blog, java"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - Using CPU branch prediction in Java" />
-    <meta property="og:description" content="Using CPU branch prediction in Java" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'Using CPU branch prediction in Java'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - Using CPU branch prediction in Java"/>
+    <meta property="og:description" content="Using CPU branch prediction in Java"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'Using CPU branch prediction in Java'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - Using CPU branch prediction in Java" />
-    <meta name="twitter:description" content="Using CPU branch prediction in Java" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - Using CPU branch prediction in Java"/>
+    <meta name="twitter:description" content="Using CPU branch prediction in Java"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>Using CPU branch prediction in Java</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>Using CPU branch prediction in Java</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            Using CPU branch prediction in Java
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                Using CPU branch prediction in Java
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="03/04/2025">
-                                    April 3rd, 2025
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>CPU branch prediction is when the CPU tries to guess the outcome of a conditional
+    <main>
+        <article class="post">
+            <header>
+                <h1>Using CPU branch prediction in Java</h1>
+                <time datetime="03/04/2025">April 3rd, 2025</time>
+            </header>
+
+            <div class="body">
+                <p>CPU branch prediction is when the CPU tries to guess the outcome of a conditional
 operation, eg: an <code>if</code> statement, before it is executed. If it guesses correct then
 the CPU can continue executing instructions without interuption.</p>
 <!-- more -->
@@ -119,94 +97,96 @@ of data that from the CPU cache. This is memory located close to the CPU cores, 
 from here is often processed much quicker than from the main memory. This can be done in Java
 by accessing data from a sorted array. The idea being that sorted data may be held closer together
 in memory, and therefore can be accessed more quickly, providing a performance benefit.</p>
-<h2>Example Usage</h2>
+<h2 id="exampleusage">Example Usage</h2>
 <p>Let's see this in action with some example code. Given the following program, the sorted array will be
 processed roughly 4 times faster than the unsorted array.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-java"><span class="line"><span style="color:#D73A49">import</span><span style="color:#24292E"> java.util.Random;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">public</span><span style="color:#D73A49"> class</span><span style="color:#6F42C1"> Main</span><span style="color:#24292E"> {</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    public</span><span style="color:#D73A49"> static</span><span style="color:#D73A49"> void</span><span style="color:#6F42C1"> main</span><span style="color:#24292E">(</span><span style="color:#D73A49">String</span><span style="color:#24292E">[] </span><span style="color:#E36209">args</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">        int</span><span style="color:#24292E"> arraySize </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 10_000_000</span><span style="color:#24292E">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        int</span><span style="color:#24292E">[] sortedArray </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#D73A49"> int</span><span style="color:#24292E">[arraySize];</span></span>
-<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> arraySize; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">            sortedArray[i] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> i;</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> startTime </span><span style="color:#D73A49">=</span><span style="color:#24292E"> System.</span><span style="color:#6F42C1">nanoTime</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> sortedSum </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> evenNumberSum</span><span style="color:#24292E">(sortedArray);</span></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> sortedTime </span><span style="color:#D73A49">=</span><span style="color:#24292E"> System.</span><span style="color:#6F42C1">nanoTime</span><span style="color:#24292E">() </span><span style="color:#D73A49">-</span><span style="color:#24292E"> startTime;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        int</span><span style="color:#24292E">[] shuffledArray </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> shuffle</span><span style="color:#24292E">(sortedArray);</span></span>
-<span class="line"><span style="color:#24292E">        startTime </span><span style="color:#D73A49">=</span><span style="color:#24292E"> System.</span><span style="color:#6F42C1">nanoTime</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> unsortedSum </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> evenNumberSum</span><span style="color:#24292E">(shuffledArray);</span></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> unsortedTime </span><span style="color:#D73A49">=</span><span style="color:#24292E"> System.</span><span style="color:#6F42C1">nanoTime</span><span style="color:#24292E">() </span><span style="color:#D73A49">-</span><span style="color:#24292E"> startTime;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        if</span><span style="color:#24292E"> (unsortedSum </span><span style="color:#D73A49">!=</span><span style="color:#24292E"> sortedSum) {</span></span>
-<span class="line"><span style="color:#D73A49">            throw</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Error</span><span style="color:#24292E">(</span><span style="color:#032F62">"sortedSum and unsortedSum should match"</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">        System.out.</span><span style="color:#6F42C1">println</span><span style="color:#24292E">(</span><span style="color:#032F62">"Sorted array processing time:   "</span><span style="color:#D73A49"> +</span><span style="color:#24292E"> sortedTime </span><span style="color:#D73A49">+</span><span style="color:#032F62"> " ns"</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">        System.out.</span><span style="color:#6F42C1">println</span><span style="color:#24292E">(</span><span style="color:#032F62">"Unsorted array processing time: "</span><span style="color:#D73A49"> +</span><span style="color:#24292E"> unsortedTime </span><span style="color:#D73A49">+</span><span style="color:#032F62"> " ns"</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">        System.out.</span><span style="color:#6F42C1">println</span><span style="color:#24292E">(</span><span style="color:#032F62">"Times faster: "</span><span style="color:#D73A49"> +</span><span style="color:#24292E"> Math.</span><span style="color:#6F42C1">floorDiv</span><span style="color:#24292E">(unsortedTime, sortedTime));</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D">    /**</span></span>
-<span class="line"><span style="color:#6A737D">     * Returns a clone of the array with it's values shuffled.</span></span>
-<span class="line"><span style="color:#6A737D">     *</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> srcArray</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@return</span></span>
-<span class="line"><span style="color:#6A737D">     */</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> static</span><span style="color:#D73A49"> int</span><span style="color:#24292E">[] </span><span style="color:#6F42C1">shuffle</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E">[] </span><span style="color:#E36209">srcArray</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">        Random rand </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Random</span><span style="color:#24292E">();</span></span>
-<span class="line"><span style="color:#D73A49">        int</span><span style="color:#24292E">[] array </span><span style="color:#D73A49">=</span><span style="color:#24292E"> srcArray.</span><span style="color:#6F42C1">clone</span><span style="color:#24292E">();</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">int</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#24292E"> array.length </span><span style="color:#D73A49">-</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">; i </span><span style="color:#D73A49">></span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i</span><span style="color:#D73A49">--</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">            int</span><span style="color:#24292E"> randIndex </span><span style="color:#D73A49">=</span><span style="color:#24292E"> rand.</span><span style="color:#6F42C1">nextInt</span><span style="color:#24292E">(i </span><span style="color:#D73A49">+</span><span style="color:#005CC5"> 1</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#D73A49">            int</span><span style="color:#24292E"> randIndexValue </span><span style="color:#D73A49">=</span><span style="color:#24292E"> array[randIndex];</span></span>
-<span class="line"><span style="color:#24292E">            array[randIndex] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> array[i];</span></span>
-<span class="line"><span style="color:#24292E">            array[i] </span><span style="color:#D73A49">=</span><span style="color:#24292E"> randIndexValue;</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> array;</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D">    /**</span></span>
-<span class="line"><span style="color:#6A737D">     * Returns the sum of all the even numbers in the array.</span></span>
-<span class="line"><span style="color:#6A737D">     *</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> array</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@return</span></span>
-<span class="line"><span style="color:#6A737D">     */</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> static</span><span style="color:#D73A49"> long</span><span style="color:#6F42C1"> evenNumberSum</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#24292E">[] </span><span style="color:#E36209">array</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">        long</span><span style="color:#24292E"> sum </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#D73A49">        for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">int</span><span style="color:#24292E"> value </span><span style="color:#D73A49">:</span><span style="color:#24292E"> array) {</span></span>
-<span class="line"><span style="color:#D73A49">            if</span><span style="color:#24292E"> (</span><span style="color:#6F42C1">isEven</span><span style="color:#24292E">(value)) {</span></span>
-<span class="line"><span style="color:#24292E">                sum </span><span style="color:#D73A49">+=</span><span style="color:#24292E"> value;</span></span>
-<span class="line"><span style="color:#24292E">            }</span></span>
-<span class="line"><span style="color:#24292E">        }</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> sum;</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D">    /**</span></span>
-<span class="line"><span style="color:#6A737D">     * Returns true if n is even and false if not.</span></span>
-<span class="line"><span style="color:#6A737D">     *</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@param</span><span style="color:#E36209"> n</span></span>
-<span class="line"><span style="color:#6A737D">     * </span><span style="color:#D73A49">@return</span></span>
-<span class="line"><span style="color:#6A737D">     */</span></span>
-<span class="line"><span style="color:#D73A49">    private</span><span style="color:#D73A49"> static</span><span style="color:#D73A49"> boolean</span><span style="color:#6F42C1"> isEven</span><span style="color:#24292E">(</span><span style="color:#D73A49">int</span><span style="color:#E36209"> n</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">        return</span><span style="color:#24292E"> n </span><span style="color:#D73A49">%</span><span style="color:#005CC5"> 2</span><span style="color:#D73A49"> ==</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="java language-java">import java.util.Random;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int arraySize = 10_000_000;
+
+        int[] sortedArray = new int[arraySize];
+        for (int i = 0; i &lt; arraySize; i++) {
+            sortedArray[i] = i;
+        }
+
+        long startTime = System.nanoTime();
+        long sortedSum = evenNumberSum(sortedArray);
+        long sortedTime = System.nanoTime() - startTime;
+
+        int[] shuffledArray = shuffle(sortedArray);
+        startTime = System.nanoTime();
+        long unsortedSum = evenNumberSum(shuffledArray);
+        long unsortedTime = System.nanoTime() - startTime;
+
+        if (unsortedSum != sortedSum) {
+            throw new Error("sortedSum and unsortedSum should match");
+        }
+
+        System.out.println("Sorted array processing time:   " + sortedTime + " ns");
+        System.out.println("Unsorted array processing time: " + unsortedTime + " ns");
+        System.out.println("Times faster: " + Math.floorDiv(unsortedTime, sortedTime));
+    }
+
+    /**
+     * Returns a clone of the array with it's values shuffled.
+     *
+     * @param srcArray
+     * @return
+     */
+    private static int[] shuffle(int[] srcArray) {
+        Random rand = new Random();
+        int[] array = srcArray.clone();
+
+        for (int i = array.length - 1; i &gt; 0; i--) {
+            int randIndex = rand.nextInt(i + 1);
+            int randIndexValue = array[randIndex];
+            array[randIndex] = array[i];
+            array[i] = randIndexValue;
+        }
+
+        return array;
+    }
+
+    /**
+     * Returns the sum of all the even numbers in the array.
+     *
+     * @param array
+     * @return
+     */
+    private static long evenNumberSum(int[] array) {
+        long sum = 0;
+        for (int value : array) {
+            if (isEven(value)) {
+                sum += value;
+            }
+        }
+        return sum;
+    }
+
+    /**
+     * Returns true if n is even and false if not.
+     *
+     * @param n
+     * @return
+     */
+    private static boolean isEven(int n) {
+        return n % 2 == 0;
+    }
+}
+</code></pre>
 <p>The above program creates an array of 10 million ints, sorted. It then iterates through that array to get
 the sum of all the even ints, measuring the execution time. It then does the same thing with a shuffled
 version of the initial sorted array. Running the program you should see that the sorted array is processed
 much quicker than the unsorted array. Demonstrating the advantage of CPU branch prediction and cache optimisation.
 Below is the result I get when running it locally.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>Sorted array processing time:   8745547 ns</span></span>
-<span class="line"><span>Unsorted array processing time: 37145149 ns</span></span>
-<span class="line"><span>Times faster: 4</span></span></code></pre>
-<h2>Drawbacks</h2>
+<pre><code>Sorted array processing time:   8745547 ns
+Unsorted array processing time: 37145149 ns
+Times faster: 4
+</code></pre>
+<h2 id="drawbacks">Drawbacks</h2>
 <p>While I can't think of a drawback, other than the time spent sorting the array before processing it. There is
 a caveat. It may not always give a benefit.</p>
 <p>For example, if when processing the array, you ran something that wasn't easily predictable, eg: testing if a
@@ -214,30 +194,31 @@ number is a prime, you may not see much difference. While the sorted array would
 in practice the benefit of the prediction would be less significant as the majority of the numbers are likely
 non prime and the check would fail early. So there will likely be use cases where you see a great benefit from
 processing a sorted array, and some cases there you don't really see any benefit.</p>
-<h2>Summary</h2>
+<h2 id="summary">Summary</h2>
 <p>Sorted arrays in Java benefit from CPU branch prediction and cache optimisation due to predictable
 patterns and memory location.</p>
 <p>In contrast, unsorted arrays suffer from the lack of predictability and random
 memory access patterns.</p>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+            </div>
 
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>

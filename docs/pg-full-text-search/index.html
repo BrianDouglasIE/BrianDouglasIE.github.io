@@ -1,214 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - PostgresSQL full text search
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="PostgresSQL full text search" />
+    <meta name="description" content="PostgresSQL full text search"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, sql" />
+    <meta name="keywords" content="Brian Douglas, blog, sql"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - PostgresSQL full text search" />
-    <meta property="og:description" content="PostgresSQL full text search" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'PostgresSQL full text search'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - PostgresSQL full text search"/>
+    <meta property="og:description" content="PostgresSQL full text search"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'PostgresSQL full text search'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - PostgresSQL full text search" />
-    <meta name="twitter:description" content="PostgresSQL full text search" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - PostgresSQL full text search"/>
+    <meta name="twitter:description" content="PostgresSQL full text search"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>PostgresSQL full text search</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>PostgresSQL full text search</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            PostgresSQL full text search
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                PostgresSQL full text search
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="31/07/2025">
-                                    July 31st, 2025
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.</p>
+    <main>
+        <article class="post">
+            <header>
+                <h1>PostgresSQL full text search</h1>
+                <time datetime="31/07/2025">July 31st, 2025</time>
+            </header>
+
+            <div class="body">
+                <p>PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.</p>
 <!-- more -->
 <p><magpie-trinket>The database used in the below examples is the <em>netflix</em> database from <a href="https://github.com/neondatabase-labs/postgres-sample-dbs">neondatabase-labs/postgres-sample-dbs</a></magpie-trinket></p>
-<h2>Search by title</h2>
+<h2 id="searchbytitle">Search by title</h2>
 <p>Let's start off with a basic search. We are going to use the <code>@@</code> operator to search the <code>title</code> column for the text <code>'Python'</code>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">SELECT</span><span style="color:#24292E"> title, release_year </span></span>
-<span class="line"><span style="color:#D73A49">FROM</span><span style="color:#24292E"> netflix_shows </span></span>
-<span class="line"><span style="color:#D73A49">WHERE</span><span style="color:#24292E"> to_tsvector(title) @@ to_tsquery(</span><span style="color:#032F62">'Python'</span><span style="color:#24292E">) </span></span>
-<span class="line"><span style="color:#D73A49">AND</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">&#x3C;</span><span style="color:#005CC5"> 2000</span><span style="color:#24292E"> </span></span>
-<span class="line"><span style="color:#D73A49">ORDER BY</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">DESC</span><span style="color:#24292E">;</span></span></code></pre>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>                          title                           | release_year</span></span>
-<span class="line"><span>----------------------------------------------------------+--------------</span></span>
-<span class="line"><span> Monty Python: Live at Aspen                              |         1998</span></span>
-<span class="line"><span> Parrot Sketch Not Included: Twenty Years of Monty Python |         1989</span></span>
-<span class="line"><span> Monty Python: Live at The Hollywood Bowl                 |         1982</span></span>
-<span class="line"><span> Monty Python's Life of Brian                             |         1979</span></span>
-<span class="line"><span> Monty Python and the Holy Grail                          |         1975</span></span>
-<span class="line"><span> Monty Python's Flying Circus                             |         1974</span></span>
-<span class="line"><span> Monty Python's Fliegender Zirkus                         |         1972</span></span>
-<span class="line"><span>(7 rows)</span></span></code></pre>
-<h2>Search by title and release_year</h2>
+<pre><code class="sql language-sql">SELECT title, release_year 
+FROM netflix_shows 
+WHERE to_tsvector(title) @@ to_tsquery('Python') 
+AND release_year &lt; 2000 
+ORDER BY release_year DESC;
+</code></pre>
+<pre><code>                          title                           | release_year
+----------------------------------------------------------+--------------
+ Monty Python: Live at Aspen                              |         1998
+ Parrot Sketch Not Included: Twenty Years of Monty Python |         1989
+ Monty Python: Live at The Hollywood Bowl                 |         1982
+ Monty Python's Life of Brian                             |         1979
+ Monty Python and the Holy Grail                          |         1975
+ Monty Python's Flying Circus                             |         1974
+ Monty Python's Fliegender Zirkus                         |         1972
+(7 rows)
+</code></pre>
+<h2 id="searchbytitleandrelease_year">Search by title and release_year</h2>
 <p>Now let's say we want to find all titles including 'Python' released in 1972. To do this we add the <code>release_year</code> column. Note,
 that it needs transformed to a text value in order to by processed.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">SELECT</span><span style="color:#24292E"> title, release_year </span></span>
-<span class="line"><span style="color:#D73A49">FROM</span><span style="color:#24292E"> netflix_shows </span></span>
-<span class="line"><span style="color:#D73A49">WHERE</span><span style="color:#24292E"> </span></span>
-<span class="line"><span style="color:#24292E">	to_tsvector(title </span><span style="color:#D73A49">||</span><span style="color:#032F62"> ' '</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> release_year::</span><span style="color:#D73A49">text</span><span style="color:#24292E">) @@ </span></span>
-<span class="line"><span style="color:#24292E">	to_tsquery(</span><span style="color:#032F62">'Python &#x26; 1972'</span><span style="color:#24292E">) </span></span>
-<span class="line"><span style="color:#D73A49">ORDER BY</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">DESC</span><span style="color:#24292E">;</span></span></code></pre>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>              title               | release_year</span></span>
-<span class="line"><span>----------------------------------+--------------</span></span>
-<span class="line"><span> Monty Python's Fliegender Zirkus |         1972</span></span>
-<span class="line"><span>(1 row)</span></span></code></pre>
-<h2>Search using a full sentence</h2>
+<pre><code class="sql language-sql">SELECT title, release_year 
+FROM netflix_shows 
+WHERE 
+    to_tsvector(title || ' ' || release_year::text) @@ 
+    to_tsquery('Python &amp; 1972') 
+ORDER BY release_year DESC;
+</code></pre>
+<pre><code>              title               | release_year
+----------------------------------+--------------
+ Monty Python's Fliegender Zirkus |         1972
+(1 row)
+</code></pre>
+<h2 id="searchusingafullsentence">Search using a full sentence</h2>
 <p>You will notice the in the previous example that <code>&amp;</code> was used to seperate the words in the query. Removing this would result in an error.
 Likely when using this feature in the real world you will be passing a string from a user into the query. Each word must be seperated by an
 ampersand. A quick way to ensure this is to use a <code>regexp_replace</code> to insert the <code>&amp;</code> sumbol between each word.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">SELECT</span><span style="color:#24292E"> title, release_year </span></span>
-<span class="line"><span style="color:#D73A49">FROM</span><span style="color:#24292E"> netflix_shows </span></span>
-<span class="line"><span style="color:#D73A49">WHERE</span><span style="color:#24292E"> </span></span>
-<span class="line"><span style="color:#24292E">	to_tsvector(title </span><span style="color:#D73A49">||</span><span style="color:#032F62"> ' '</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> release_year::</span><span style="color:#D73A49">text</span><span style="color:#24292E">) @@ </span></span>
-<span class="line"><span style="color:#24292E">	to_tsquery(regexp_replace(</span><span style="color:#032F62">'Monty Python 1972'</span><span style="color:#24292E">, </span><span style="color:#032F62">'\s+'</span><span style="color:#24292E">, </span><span style="color:#032F62">' &#x26; '</span><span style="color:#24292E">, </span><span style="color:#032F62">'g'</span><span style="color:#24292E">)) </span></span>
-<span class="line"><span style="color:#D73A49">ORDER BY</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">DESC</span><span style="color:#24292E">;</span></span></code></pre>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>              title               | release_year</span></span>
-<span class="line"><span>----------------------------------+--------------</span></span>
-<span class="line"><span> Monty Python's Fliegender Zirkus |         1972</span></span>
-<span class="line"><span>(1 row)</span></span></code></pre>
-<h2>Adding an index for performance</h2>
+<pre><code class="sql language-sql">SELECT title, release_year 
+FROM netflix_shows 
+WHERE 
+    to_tsvector(title || ' ' || release_year::text) @@ 
+    to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g')) 
+ORDER BY release_year DESC;
+</code></pre>
+<pre><code>              title               | release_year
+----------------------------------+--------------
+ Monty Python's Fliegender Zirkus |         1972
+(1 row)
+</code></pre>
+<h2 id="addinganindexforperformance">Adding an index for performance</h2>
 <p>Let's say it's regular for a user to search by a title and a year. For example <em>Monty Python 1972</em>. This search
 corresponds to the <code>title</code> and <code>release_year</code> column. Adding an index for that search will increase the performance
 of the query and can be done like so.</p>
 <p><chicken-asks>What's <em>fts</em>?</chicken-asks>
 <magpie-replies>Full Text Search</magpie-replies></p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">CREATE</span><span style="color:#D73A49"> INDEX</span><span style="color:#6F42C1"> idx_netflix_fts</span></span>
-<span class="line"><span style="color:#D73A49">ON</span><span style="color:#24292E"> netflix_shows</span></span>
-<span class="line"><span style="color:#D73A49">USING</span><span style="color:#24292E"> GIN (</span></span>
-<span class="line"><span style="color:#24292E">	to_tsvector(</span><span style="color:#032F62">'english'</span><span style="color:#24292E">, title </span><span style="color:#D73A49">||</span><span style="color:#032F62"> ' '</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> release_year::</span><span style="color:#D73A49">text</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">);</span></span></code></pre>
+<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts
+ON netflix_shows
+USING GIN (
+    to_tsvector('english', title || ' ' || release_year::text)
+);
+</code></pre>
 <p>The above index can be used as per the following example.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">SELECT</span><span style="color:#24292E"> title, release_year</span></span>
-<span class="line"><span style="color:#D73A49">FROM</span><span style="color:#24292E"> netflix_shows</span></span>
-<span class="line"><span style="color:#D73A49">WHERE</span></span>
-<span class="line"><span style="color:#24292E">	to_tsvector(</span><span style="color:#032F62">'english'</span><span style="color:#24292E">, title </span><span style="color:#D73A49">||</span><span style="color:#032F62"> ' '</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> release_year::</span><span style="color:#D73A49">text</span><span style="color:#24292E">) @@</span></span>
-<span class="line"><span style="color:#24292E">	to_tsquery(</span><span style="color:#032F62">'english'</span><span style="color:#24292E">, regexp_replace(</span><span style="color:#032F62">'Monty Python 1972'</span><span style="color:#24292E">, </span><span style="color:#032F62">'\s+'</span><span style="color:#24292E">, </span><span style="color:#032F62">' &#x26; '</span><span style="color:#24292E">, </span><span style="color:#032F62">'g'</span><span style="color:#24292E">))</span></span>
-<span class="line"><span style="color:#D73A49">ORDER BY</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">DESC</span><span style="color:#24292E">;</span></span></code></pre>
+<pre><code class="sql language-sql">SELECT title, release_year
+FROM netflix_shows
+WHERE
+    to_tsvector('english', title || ' ' || release_year::text) @@
+    to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
+ORDER BY release_year DESC;
+</code></pre>
 <p>This results in the following speed up when run with <code>EXPLAIN</code>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>Before Index: (cost=5057.67..5057.67 rows=1 width=22)</span></span>
-<span class="line"><span>After Index:  (cost=30.20..34.48 rows=1 width=22)</span></span></code></pre>
+<pre><code>Before Index: (cost=5057.67..5057.67 rows=1 width=22)
+After Index:  (cost=30.20..34.48 rows=1 width=22)
+</code></pre>
 <p>The cost drops drastically from 5057 to ~30–34 units of work. Before it was likely a sequential scan, checking every row.
 Now it's using a GIN index and skipping most rows, which is nearly 150 times faster.</p>
-<h2>Adding an index on a <code>tsvector</code> column</h2>
-<p>As we stated above, searching based on <em>title</em> and <em>release_year</em> is a regular occurence. So this may justify adding
+<h2 id="addinganindexonatsvectorcolumn">Adding an index on a <code>tsvector</code> column</h2>
+<p>As we stated above, searching based on <em>title</em> and <em>release</em>year_ is a regular occurence. So this may justify adding
 a generated <em>tsvector</em> column. Let's alter the table to add an <code>fts</code> column that creates a <code>tsvector</code> based off the
-<em>title</em> and <em>release_year</em>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">ALTER</span><span style="color:#D73A49"> TABLE</span><span style="color:#24292E"> netflix_shows </span></span>
-<span class="line"><span style="color:#D73A49">ADD</span><span style="color:#24292E"> COLUMN fts tsvector </span><span style="color:#D73A49">GENERATED</span><span style="color:#D73A49"> ALWAYS</span><span style="color:#D73A49"> AS</span><span style="color:#24292E"> (</span></span>
-<span class="line"><span style="color:#24292E">	to_tsvector(</span><span style="color:#032F62">'english'</span><span style="color:#24292E">, title </span><span style="color:#D73A49">||</span><span style="color:#032F62"> ' '</span><span style="color:#D73A49"> ||</span><span style="color:#24292E"> release_year::</span><span style="color:#D73A49">text</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">) STORED;</span></span></code></pre>
+<em>title</em> and <em>release</em>year_.</p>
+<pre><code class="sql language-sql">ALTER TABLE netflix_shows 
+ADD COLUMN fts tsvector GENERATED ALWAYS AS (
+    to_tsvector('english', title || ' ' || release_year::text)
+) STORED;
+</code></pre>
 <p>Then create the index.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">CREATE</span><span style="color:#D73A49"> INDEX</span><span style="color:#6F42C1"> idx_netflix_fts</span><span style="color:#D73A49"> ON</span><span style="color:#24292E"> netflix_shows </span><span style="color:#D73A49">USING</span><span style="color:#24292E"> GIN (fts);</span></span></code></pre>
+<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts ON netflix_shows USING GIN (fts);
+</code></pre>
 <p>The <code>tsvector</code> column <code>fts</code> can now be used with the <code>@@</code> operator when searching.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-sql"><span class="line"><span style="color:#D73A49">SELECT</span><span style="color:#24292E"> title, release_year</span></span>
-<span class="line"><span style="color:#D73A49">FROM</span><span style="color:#24292E"> netflix_shows</span></span>
-<span class="line"><span style="color:#D73A49">WHERE</span><span style="color:#24292E"> fts @@ to_tsquery(</span><span style="color:#032F62">'english'</span><span style="color:#24292E">, regexp_replace(</span><span style="color:#032F62">'Monty Python 1972'</span><span style="color:#24292E">, </span><span style="color:#032F62">'\s+'</span><span style="color:#24292E">, </span><span style="color:#032F62">' &#x26; '</span><span style="color:#24292E">, </span><span style="color:#032F62">'g'</span><span style="color:#24292E">))</span></span>
-<span class="line"><span style="color:#D73A49">ORDER BY</span><span style="color:#24292E"> release_year </span><span style="color:#D73A49">DESC</span><span style="color:#24292E">;</span></span></code></pre>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+<pre><code class="sql language-sql">SELECT title, release_year
+FROM netflix_shows
+WHERE fts @@ to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
+ORDER BY release_year DESC;
+</code></pre>
+            </div>
 
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>

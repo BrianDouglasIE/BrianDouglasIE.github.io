@@ -1,172 +1,154 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - Using Docker on Linux Mint
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="Using Docker on Linux Mint" />
+    <meta name="description" content="Using Docker on Linux Mint"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, docker,linux" />
+    <meta name="keywords" content="Brian Douglas, blog, docker,linux"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - Using Docker on Linux Mint" />
-    <meta property="og:description" content="Using Docker on Linux Mint" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/docker-on-linux-mint.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'Using Docker on Linux Mint'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - Using Docker on Linux Mint"/>
+    <meta property="og:description" content="Using Docker on Linux Mint"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/docker-on-linux-mint.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'Using Docker on Linux Mint'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - Using Docker on Linux Mint" />
-    <meta name="twitter:description" content="Using Docker on Linux Mint" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/docker-on-linux-mint.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - Using Docker on Linux Mint"/>
+    <meta name="twitter:description" content="Using Docker on Linux Mint"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/docker-on-linux-mint.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>Using Docker on Linux Mint</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>Using Docker on Linux Mint</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            Using Docker on Linux Mint
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                Using Docker on Linux Mint
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="02/04/2025">
-                                    April 2nd, 2025
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>Surely using Docker on Linux Mint is the same as Ubuntu? I can just follow the official Ubuntu
+    <main>
+        <article class="post">
+            <header>
+                <h1>Using Docker on Linux Mint</h1>
+                <time datetime="02/04/2025">April 2nd, 2025</time>
+            </header>
+
+            <div class="body">
+                <p>Surely using Docker on Linux Mint is the same as Ubuntu? I can just follow the official Ubuntu
 install guide.</p>
 <!-- more -->
 <p>Well this is not quite true. Yes, Linux Mint is built on Ubuntu and using Docker should be the
 same. <em>BUT</em> the official install guide will not work for you. There is a minor tweak that is required.
 And that is why this article exists.</p>
-<h2>The &quot;Official&quot; install command (02/04/2025)</h2>
+<h2 id="theofficialinstallcommand02042025">The "Official" install command (02/04/2025)</h2>
 <p>Here is the official install command from the Ubuntu docker guide (<a href="https://docs.docker.com/engine/install/ubuntu/">install/ubuntu</a>).</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span># Add Docker's official GPG key:</span></span>
-<span class="line"><span>sudo apt-get update</span></span>
-<span class="line"><span>sudo apt-get install ca-certificates curl</span></span>
-<span class="line"><span>sudo install -m 0755 -d /etc/apt/keyrings</span></span>
-<span class="line"><span>sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span></span>
-<span class="line"><span>sudo chmod a+r /etc/apt/keyrings/docker.asc</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span># Add the repository to Apt sources:</span></span>
-<span class="line"><span>echo \</span></span>
-<span class="line"><span>  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \</span></span>
-<span class="line"><span>  $(. /etc/os-release &#x26;&#x26; echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \</span></span>
-<span class="line"><span>  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</span></span>
-<span class="line"><span>sudo apt-get update</span></span></code></pre>
-<p>When you run this it will complain. You will see the following error.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>E: The repository 'https://download.docker.com/linux/ubuntu vera Release' does not have a Release file.</span></span></code></pre>
-<p>Notice the <em>&quot;vera&quot;</em> release. Ubuntu has no release named <em>vera</em>. That is the Linux Mint release version. This is the crux
-of the issue.</p>
-<h2>The install command you are looking for</h2>
-<p>The fix here is to use the Debian download passing in the latest Debian release name. This is currently <em>&quot;bookworm&quot;</em>.</p>
-<p>The updated command is below. I have hard coded the release name as <em>bookworm</em> and updated the download url to use
-<em>debian</em> instead of <em>ubuntu</em>.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span># Add Docker's official GPG key:</span></span>
-<span class="line"><span>sudo apt-get update</span></span>
-<span class="line"><span>sudo apt-get install ca-certificates curl</span></span>
-<span class="line"><span>sudo install -m 0755 -d /etc/apt/keyrings</span></span>
-<span class="line"><span>sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span></span>
-<span class="line"><span>sudo chmod a+r /etc/apt/keyrings/docker.asc</span></span>
-<span class="line"><span></span></span>
-<span class="line"><span># Add the repository to Apt sources:</span></span>
-<span class="line"><span>echo \</span></span>
-<span class="line"><span>  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \</span></span>
-<span class="line"><span>  bookworm stable" | \</span></span>
-<span class="line"><span>  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</span></span>
-<span class="line"><span>sudo apt-get update</span></span></code></pre>
-<p>I hope this solves your issue, and that docker is now running on your lovely Linux Mint instance.</p>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+<pre><code># Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;&amp; echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+</code></pre>
+<p>When you run this it will complain. You will see the following error.</p>
+<pre><code>E: The repository 'https://download.docker.com/linux/ubuntu vera Release' does not have a Release file.
+</code></pre>
+<p>Notice the <em>"vera"</em> release. Ubuntu has no release named <em>vera</em>. That is the Linux Mint release version. This is the crux
+of the issue.</p>
+<h2 id="theinstallcommandyouarelookingfor">The install command you are looking for</h2>
+<p>The fix here is to use the Debian download passing in the latest Debian release name. This is currently <em>"bookworm"</em>.</p>
+<p>The updated command is below. I have hard coded the release name as <em>bookworm</em> and updated the download url to use 
+<em>debian</em> instead of <em>ubuntu</em>.</p>
+<pre><code># Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  bookworm stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+</code></pre>
+<p>I hope this solves your issue, and that docker is now running on your lovely Linux Mint instance.</p>
+            </div>
+
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>

@@ -1,119 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" class="Robyn">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Title -->
-    <title>BrianDouglas.ie - Bit shifting to increase performance
-    </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="Bit shifting to increase performance" />
+    <meta name="description" content="Bit shifting to increase performance"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, js,performance" />
+    <meta name="keywords" content="Brian Douglas, blog, js,performance"/>
 
     <!-- Author -->
-    <meta name="author" content="Brian Douglas" />
+    <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BrianDouglas.ie - Bit shifting to increase performance" />
-    <meta property="og:description" content="Bit shifting to increase performance" />
-    <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/bit-shifting-for-performance.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:site_name" content="BrianDouglas.ie" />
-    <meta property="og:image:alt" content="A preview image for the post titled 'Bit shifting to increase performance'" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="BrianDouglas.ie - Bit shifting to increase performance"/>
+    <meta property="og:description" content="Bit shifting to increase performance"/>
+    <meta property="og:url" content="https://www.briandouglas.ie"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/bit-shifting-for-performance.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1280"/>
+    <meta property="og:image:height" content="640"/>
+    <meta property="og:site_name" content="BrianDouglas.ie"/>
+    <meta property="og:image:alt" content="A preview image for the post titled 'Bit shifting to increase performance'"/>
 
     <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@BrianDouglasIE" />
-    <meta name="twitter:title" content="BrianDouglas.ie - Bit shifting to increase performance" />
-    <meta name="twitter:description" content="Bit shifting to increase performance" />
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/bit-shifting-for-performance.png" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@BrianDouglasIE"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - Bit shifting to increase performance"/>
+    <meta name="twitter:description" content="Bit shifting to increase performance"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/bit-shifting-for-performance.png"/>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie" />
+    <link rel="canonical" href="https://www.briandouglas.ie"/>
 
     <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow"/>
 
     <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
 
-    <link rel="stylesheet" href="/styles/briandouglas.ie.css">
+    <title>Bit shifting to increase performance</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+<body>
 
-<body class="m-0">
-    <div class="wrap content-md mx-auto">
-        <header class="site-header">
-  <div class="content-md mx-auto px-sm">
-    <h1 class="m-0">Brian Douglas</h1>
+<div class="content">
+    <header class="site-header">
+    <a href="/" class="home">Brian Douglas</a>
 
-    <div class="social-links">
-      <a href="https://github.com/BrianDouglasIE">
+    <a href="https://github.com/BrianDouglasIE" class="github">
         <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
+                height="32"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="32"
+                data-view-component="true"
         >
-          <path
-            d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-          ></path>
+            <path
+                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
+            ></path>
         </svg>
-      </a>
-    </div>
-  </div>
+    </a>
 </header>
+    <div class="breadcrumbs">
+        <a href="/">Home</a> / <span>Bit shifting to increase performance</span>
+    </div>
 
-            <div class="breadcrumbs">
-                <nav aria-label="Breadcrumb" class="content-md mx-auto px-sm">
-                    <ol class="list-reset m-0">
-                        <li><a href="/">Home</a></li> /
-                        <li aria-current="page">
-                            Bit shifting to increase performance
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <main>
-                <div class="content-md mx-auto px-sm my-md">
-                    <article class="post-full">
-                        <header>
-                            <h2>
-                                Bit shifting to increase performance
-                            </h2>
-                            <p class="post-meta">
-                                <time datetime="15/09/2024">
-                                    September 15th, 2024
-                                </time>
-                            </p>
-                        </header>
-                        <div class="post-content"><p>I've been watching <a href="https://www.youtube.com/@Vercidium">@Vercidium</a>'s awesome content on YouTube. His videos are all
+    <main>
+        <article class="post">
+            <header>
+                <h1>Bit shifting to increase performance</h1>
+                <time datetime="15/09/2024">September 15th, 2024</time>
+            </header>
+
+            <div class="body">
+                <p>I've been watching <a href="https://www.youtube.com/@Vercidium">@Vercidium</a>'s awesome content on YouTube. His videos are all
 about performance optimization in regards to game development, and I learned a nifty performance optimization for my
 JS code as a result.</p>
 <!-- more -->
-<p>In his <a href="https://youtu.be/40JzyaOYJeY?si=5J97q3bm7MsJ3I6k">&quot;I Optimised My Game Engine Up To 12000 FPS&quot;</a> video Vercidium
+<p>In his <a href="https://youtu.be/40JzyaOYJeY?si=5J97q3bm7MsJ3I6k">"I Optimised My Game Engine Up To 12000 FPS"</a> video Vercidium
 shows a <em>bit-shifting</em> technique which he has used to store information about his voxel based scene. This got me
 thinking
 <em>could the same technique be used to save memory in JS code?</em>.</p>
-<magpie-trinket>
+<p><magpie-trinket></p>
 <p><strong>TLDR;</strong> Storing a vector (x, y, z) as a 32-bit number uses a seventh of the memory compared to storing
 it as an object in this example.</p>
 <table class="pure-table">
@@ -152,20 +130,21 @@ it as an object in this example.</p>
         </tr>
     </tbody>
 </table>
-</magpie-trinket>
-<h2>The Plan</h2>
+<p></magpie-trinket></p>
+<h2 id="theplan">The Plan</h2>
 <p>When creating games and rendering scenes on canvas I often start by creating a <code>Vector</code> class like the one below.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">class</span><span style="color:#6F42C1"> Vector3</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#E36209">    x</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#E36209">    y</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#E36209">    z</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    constructor</span><span style="color:#24292E">(</span><span style="color:#E36209">x</span><span style="color:#24292E">, </span><span style="color:#E36209">y</span><span style="color:#24292E">, </span><span style="color:#E36209">z</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> x</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> y</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.z </span><span style="color:#D73A49">=</span><span style="color:#24292E"> z</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="javascript language-javascript">class Vector3 {
+    x = 0
+    y = 0
+    z = 0
+
+    constructor(x, y, z) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+}
+</code></pre>
 <p>You'll see varying implementations of this in pretty much every game engine. It's used to define where something
 exists with in the game world. In my JS games I'll sometimes create tens of thousands of these at a time. I've often
 thought about the performance impact of this, but never really came up with a good solution. The games I make are
@@ -179,161 +158,166 @@ written the following method. Which breaks down the results as follows:</p>
 <li>external: Memory used by C++ objects bound to JavaScript objects.</li>
 <li>arrayBuffers: Memory allocated for ArrayBuffers and SharedArrayBuffers.</li>
 </ul>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> logMemoryUsage</span><span style="color:#24292E">() {</span></span>
-<span class="line"><span style="color:#D73A49">    const</span><span style="color:#005CC5"> memoryUsage</span><span style="color:#D73A49"> =</span><span style="color:#24292E"> process.</span><span style="color:#6F42C1">memoryUsage</span><span style="color:#24292E">();</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#24292E">    console.</span><span style="color:#6F42C1">log</span><span style="color:#24292E">(</span><span style="color:#032F62">`Memory Usage:</span></span>
-<span class="line"><span style="color:#032F62">        RSS: ${</span><span style="color:#24292E">memoryUsage</span><span style="color:#032F62">.</span><span style="color:#24292E">rss</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#032F62">} MB</span></span>
-<span class="line"><span style="color:#032F62">        Heap Total: ${</span><span style="color:#24292E">memoryUsage</span><span style="color:#032F62">.</span><span style="color:#24292E">heapTotal</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#032F62">} MB</span></span>
-<span class="line"><span style="color:#032F62">        Heap Used: ${</span><span style="color:#24292E">memoryUsage</span><span style="color:#032F62">.</span><span style="color:#24292E">heapUsed</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#032F62">} MB</span></span>
-<span class="line"><span style="color:#032F62">        External: ${</span><span style="color:#24292E">memoryUsage</span><span style="color:#032F62">.</span><span style="color:#24292E">external</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#032F62">} MB</span></span>
-<span class="line"><span style="color:#032F62">        Array Buffers: ${</span><span style="color:#24292E">memoryUsage</span><span style="color:#032F62">.</span><span style="color:#24292E">arrayBuffers</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#D73A49"> /</span><span style="color:#005CC5"> 1024</span><span style="color:#032F62">} MB</span></span>
-<span class="line"><span style="color:#032F62">    `</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">}</span></span></code></pre>
+<pre><code class="javascript language-javascript">function logMemoryUsage() {
+    const memoryUsage = process.memoryUsage();
+
+    console.log(`Memory Usage:
+        RSS: ${memoryUsage.rss / 1024 / 1024} MB
+        Heap Total: ${memoryUsage.heapTotal / 1024 / 1024} MB
+        Heap Used: ${memoryUsage.heapUsed / 1024 / 1024} MB
+        External: ${memoryUsage.external / 1024 / 1024} MB
+        Array Buffers: ${memoryUsage.arrayBuffers / 1024 / 1024} MB
+    `);
+}
+</code></pre>
 <p>The below script creates <strong>10 million</strong> <code>Vector3</code> objects and updates the <code>x</code> and <code>y</code> co-ordinates of each randomly
 every
 millisecond for 2 seconds.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">class</span><span style="color:#6F42C1"> Vector3</span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#E36209">    x</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#E36209">    y</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"><span style="color:#E36209">    z</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 0</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">    constructor</span><span style="color:#24292E">(</span><span style="color:#E36209">x</span><span style="color:#24292E">, </span><span style="color:#E36209">y</span><span style="color:#24292E">, </span><span style="color:#E36209">z</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.x </span><span style="color:#D73A49">=</span><span style="color:#24292E"> x</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.y </span><span style="color:#D73A49">=</span><span style="color:#24292E"> y</span></span>
-<span class="line"><span style="color:#005CC5">        this</span><span style="color:#24292E">.z </span><span style="color:#D73A49">=</span><span style="color:#24292E"> z</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#E36209">min</span><span style="color:#24292E">, </span><span style="color:#E36209">max</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> Math.</span><span style="color:#6F42C1">floor</span><span style="color:#24292E">(Math.</span><span style="color:#6F42C1">random</span><span style="color:#24292E">() </span><span style="color:#D73A49">*</span><span style="color:#24292E"> max) </span><span style="color:#D73A49">+</span><span style="color:#24292E"> min;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> maxVectors</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 10_000_000</span></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> vectors</span><span style="color:#D73A49"> =</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Array</span><span style="color:#24292E">(maxVectors)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">let</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> maxVectors; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">    vectors[i] </span><span style="color:#D73A49">=</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Vector3</span><span style="color:#24292E">(</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">    )</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> demoLengthInSeconds </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> updateInterval</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> setInterval</span><span style="color:#24292E">(() </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">    for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">const</span><span style="color:#005CC5"> v</span><span style="color:#D73A49"> of</span><span style="color:#24292E"> vectors) {</span></span>
-<span class="line"><span style="color:#24292E">        v.x </span><span style="color:#D73A49">+=</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#D73A49">-</span><span style="color:#005CC5">2</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">        v.y </span><span style="color:#D73A49">+=</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#D73A49">-</span><span style="color:#005CC5">2</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}, </span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6F42C1">setTimeout</span><span style="color:#24292E">(() </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#6F42C1">    logMemoryUsage</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#6F42C1">    clearInterval</span><span style="color:#24292E">(updateInterval)</span></span>
-<span class="line"><span style="color:#24292E">}, demoLengthInSeconds </span><span style="color:#D73A49">*</span><span style="color:#005CC5"> 1000</span><span style="color:#24292E">)</span></span></code></pre>
+<pre><code class="javascript language-javascript">class Vector3 {
+    x = 0
+    y = 0
+    z = 0
+
+    constructor(x, y, z) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * max) + min;
+}
+
+const maxVectors = 10_000_000
+const vectors = new Array(maxVectors)
+
+for (let i = 0; i &lt; maxVectors; i++) {
+    vectors[i] = new Vector3(
+        randomNumber(0, 1000),
+        randomNumber(0, 1000),
+        randomNumber(0, 1000)
+    )
+}
+
+let demoLengthInSeconds = 2;
+
+const updateInterval = setInterval(() =&gt; {
+    for (const v of vectors) {
+        v.x += randomNumber(-2, 2)
+        v.y += randomNumber(-2, 2)
+    }
+}, 1);
+
+setTimeout(() =&gt; {
+    logMemoryUsage()
+    clearInterval(updateInterval)
+}, demoLengthInSeconds * 1000)
+</code></pre>
 <p>For the purposes of this article I will run the script with node. Which gives the following results.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>Memory Usage:</span></span>
-<span class="line"><span>        RSS: 646.12109375 MB</span></span>
-<span class="line"><span>        Heap Total: 576.828125 MB</span></span>
-<span class="line"><span>        Heap Used: 545.6746520996094 MB</span></span>
-<span class="line"><span>        External: 0.9788284301757812 MB</span></span>
-<span class="line"><span>        Array Buffers: 0.009958267211914062 MB</span></span></code></pre>
+<pre><code>Memory Usage:
+        RSS: 646.12109375 MB
+        Heap Total: 576.828125 MB
+        Heap Used: 545.6746520996094 MB
+        External: 0.9788284301757812 MB
+        Array Buffers: 0.009958267211914062 MB
+</code></pre>
 <p>Using the above object based implementation as baseline, let's now look at the bit-shifter variant.</p>
-<h2>The Bit Shifter Implementation</h2>
+<h2 id="thebitshifterimplementation">The Bit Shifter Implementation</h2>
 <p>The bit-shifting implementation is going to work along the same lines. However, some boilerplate code is needed to <code>pack</code>
 and <code>unpack</code> our vector's values. Essentially what we are doing with the <code>pack</code> method is a mask and shift of <code>x</code>, <code>y</code>,
 and <code>z</code> to pack them efficiently into a single 32-bit number. The idea here being that a 32-bit number will be stored
 with less memory than the class used in the object based run.</p>
 <p>Putting these concepts into practice we have the below script.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-javascript"><span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(</span><span style="color:#E36209">n</span><span style="color:#24292E">, </span><span style="color:#E36209">offset</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">offset) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> (n </span><span style="color:#D73A49">&#x26;</span><span style="color:#005CC5"> 0x3FF</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (n </span><span style="color:#D73A49">&#x26;</span><span style="color:#005CC5"> 0x3FF</span><span style="color:#24292E">) </span><span style="color:#D73A49">&#x3C;&#x3C;</span><span style="color:#24292E"> offset;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> Vector3</span><span style="color:#24292E">(</span><span style="color:#E36209">x</span><span style="color:#24292E">, </span><span style="color:#E36209">y</span><span style="color:#24292E">, </span><span style="color:#E36209">z</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (</span><span style="color:#6F42C1">pack</span><span style="color:#24292E">(x, </span><span style="color:#005CC5">20</span><span style="color:#24292E">) </span><span style="color:#D73A49">|</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(y, </span><span style="color:#005CC5">10</span><span style="color:#24292E">) </span><span style="color:#D73A49">|</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(z));</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> unpack</span><span style="color:#24292E">(</span><span style="color:#E36209">packed</span><span style="color:#24292E">, </span><span style="color:#E36209">offset</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    if</span><span style="color:#24292E"> (</span><span style="color:#D73A49">!</span><span style="color:#24292E">offset) </span><span style="color:#D73A49">return</span><span style="color:#24292E"> packed </span><span style="color:#D73A49">&#x26;</span><span style="color:#005CC5"> 0x3FF</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> (packed </span><span style="color:#D73A49">>></span><span style="color:#24292E"> offset) </span><span style="color:#D73A49">&#x26;</span><span style="color:#005CC5"> 0x3FF</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> getX</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#6F42C1"> unpack</span><span style="color:#24292E">(vector3, </span><span style="color:#005CC5">20</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> getY</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#6F42C1"> unpack</span><span style="color:#24292E">(vector3, </span><span style="color:#005CC5">10</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> getZ</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#6F42C1"> unpack</span><span style="color:#24292E">(vector3);</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> setX</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">, </span><span style="color:#E36209">x</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">&#x26;=</span><span style="color:#D73A49"> ~</span><span style="color:#24292E">(</span><span style="color:#005CC5">0x3FF</span><span style="color:#D73A49"> &#x3C;&#x3C;</span><span style="color:#005CC5"> 20</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">|=</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(x, </span><span style="color:#005CC5">20</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> vector3;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> setY</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">, </span><span style="color:#E36209">y</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">&#x26;=</span><span style="color:#D73A49"> ~</span><span style="color:#24292E">(</span><span style="color:#005CC5">0x3FF</span><span style="color:#D73A49"> &#x3C;&#x3C;</span><span style="color:#005CC5"> 10</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">|=</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(y, </span><span style="color:#005CC5">10</span><span style="color:#24292E">);</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> vector3;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> setZ</span><span style="color:#24292E">(</span><span style="color:#E36209">vector3</span><span style="color:#24292E">, </span><span style="color:#E36209">z</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">&#x26;=</span><span style="color:#D73A49"> ~</span><span style="color:#005CC5">0x3FF</span><span style="color:#24292E">;</span></span>
-<span class="line"><span style="color:#24292E">    vector3 </span><span style="color:#D73A49">|=</span><span style="color:#6F42C1"> pack</span><span style="color:#24292E">(z);</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> vector3;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">function</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#E36209">min</span><span style="color:#24292E">, </span><span style="color:#E36209">max</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#D73A49">    return</span><span style="color:#24292E"> Math.</span><span style="color:#6F42C1">floor</span><span style="color:#24292E">(Math.</span><span style="color:#6F42C1">random</span><span style="color:#24292E">() </span><span style="color:#D73A49">*</span><span style="color:#24292E"> max) </span><span style="color:#D73A49">+</span><span style="color:#24292E"> min;</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> maxVectors</span><span style="color:#D73A49"> =</span><span style="color:#005CC5"> 10_000_000</span></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> vectors</span><span style="color:#D73A49"> =</span><span style="color:#D73A49"> new</span><span style="color:#6F42C1"> Array</span><span style="color:#24292E">(maxVectors)</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">let</span><span style="color:#24292E"> i </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 0</span><span style="color:#24292E">; i </span><span style="color:#D73A49">&#x3C;</span><span style="color:#24292E"> maxVectors; i</span><span style="color:#D73A49">++</span><span style="color:#24292E">) {</span></span>
-<span class="line"><span style="color:#24292E">    vectors[i] </span><span style="color:#D73A49">=</span><span style="color:#6F42C1"> Vector3</span><span style="color:#24292E">(</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">),</span></span>
-<span class="line"><span style="color:#6F42C1">        randomNumber</span><span style="color:#24292E">(</span><span style="color:#005CC5">0</span><span style="color:#24292E">, </span><span style="color:#005CC5">1000</span><span style="color:#24292E">)</span></span>
-<span class="line"><span style="color:#24292E">    )</span></span>
-<span class="line"><span style="color:#24292E">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">let</span><span style="color:#24292E"> demoLengthInSeconds </span><span style="color:#D73A49">=</span><span style="color:#005CC5"> 2</span><span style="color:#24292E">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#D73A49">const</span><span style="color:#005CC5"> updateInterval</span><span style="color:#D73A49"> =</span><span style="color:#6F42C1"> setInterval</span><span style="color:#24292E">(() </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#D73A49">    for</span><span style="color:#24292E"> (</span><span style="color:#D73A49">const</span><span style="color:#005CC5"> v</span><span style="color:#D73A49"> of</span><span style="color:#24292E"> vectors) {</span></span>
-<span class="line"><span style="color:#6F42C1">        setX</span><span style="color:#24292E">(v, </span><span style="color:#6F42C1">getX</span><span style="color:#24292E">(v) </span><span style="color:#D73A49">+</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#D73A49">-</span><span style="color:#005CC5">2</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">))</span></span>
-<span class="line"><span style="color:#6F42C1">        setY</span><span style="color:#24292E">(v, </span><span style="color:#6F42C1">getY</span><span style="color:#24292E">(v) </span><span style="color:#D73A49">+</span><span style="color:#6F42C1"> randomNumber</span><span style="color:#24292E">(</span><span style="color:#D73A49">-</span><span style="color:#005CC5">2</span><span style="color:#24292E">, </span><span style="color:#005CC5">2</span><span style="color:#24292E">))</span></span>
-<span class="line"><span style="color:#24292E">    }</span></span>
-<span class="line"><span style="color:#24292E">}, </span><span style="color:#005CC5">1</span><span style="color:#24292E">);</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6F42C1">setTimeout</span><span style="color:#24292E">(() </span><span style="color:#D73A49">=></span><span style="color:#24292E"> {</span></span>
-<span class="line"><span style="color:#6F42C1">    logMemoryUsage</span><span style="color:#24292E">()</span></span>
-<span class="line"><span style="color:#6F42C1">    clearInterval</span><span style="color:#24292E">(updateInterval)</span></span>
-<span class="line"><span style="color:#24292E">}, demoLengthInSeconds </span><span style="color:#D73A49">*</span><span style="color:#005CC5"> 1000</span><span style="color:#24292E">)</span></span></code></pre>
-<chicken-asks>
-Will the calls to `pack` and `unpack` affect the performance?
-</chicken-asks>
-<magpie-replies>
-Good question, there may be a more efficient way of doing this. But in regard to this test, the impact of calling `pack`
-and `unpack` seem to be negligible.
-</magpie-replies>
+<pre><code class="javascript language-javascript">function pack(n, offset) {
+    if (!offset) return (n &amp; 0x3FF);
+    return (n &amp; 0x3FF) &lt;&lt; offset;
+}
+
+function Vector3(x, y, z) {
+    return (pack(x, 20) | pack(y, 10) | pack(z));
+}
+
+function unpack(packed, offset) {
+    if (!offset) return packed &amp; 0x3FF;
+    return (packed &gt;&gt; offset) &amp; 0x3FF;
+}
+
+function getX(vector3) {
+    return unpack(vector3, 20);
+}
+
+function getY(vector3) {
+    return unpack(vector3, 10);
+}
+
+function getZ(vector3) {
+    return unpack(vector3);
+}
+
+function setX(vector3, x) {
+    vector3 &amp;= ~(0x3FF &lt;&lt; 20);
+    vector3 |= pack(x, 20);
+    return vector3;
+}
+
+function setY(vector3, y) {
+    vector3 &amp;= ~(0x3FF &lt;&lt; 10);
+    vector3 |= pack(y, 10);
+    return vector3;
+}
+
+function setZ(vector3, z) {
+    vector3 &amp;= ~0x3FF;
+    vector3 |= pack(z);
+    return vector3;
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * max) + min;
+}
+
+const maxVectors = 10_000_000
+const vectors = new Array(maxVectors)
+
+for (let i = 0; i &lt; maxVectors; i++) {
+    vectors[i] = Vector3(
+        randomNumber(0, 1000),
+        randomNumber(0, 1000),
+        randomNumber(0, 1000)
+    )
+}
+
+let demoLengthInSeconds = 2;
+
+const updateInterval = setInterval(() =&gt; {
+    for (const v of vectors) {
+        setX(v, getX(v) + randomNumber(-2, 2))
+        setY(v, getY(v) + randomNumber(-2, 2))
+    }
+}, 1);
+
+setTimeout(() =&gt; {
+    logMemoryUsage()
+    clearInterval(updateInterval)
+}, demoLengthInSeconds * 1000)
+</code></pre>
+<p><chicken-asks>
+Will the calls to <code>pack</code> and <code>unpack</code> affect the performance?
+</chicken-asks></p>
+<p><magpie-replies>
+Good question, there may be a more efficient way of doing this. But in regard to this test, the impact of calling <code>pack</code>
+and <code>unpack</code> seem to be negligible.
+</magpie-replies></p>
 <p>Again this is run with node, <code>v18.19.0</code>. The resulting memory usage is as follows.</p>
-<pre class="shiki github-light" style="background-color:#fff;color:#24292e" tabindex="0"><code class="language-text"><span class="line"><span>Memory Usage:</span></span>
-<span class="line"><span>        RSS: 132.28515625 MB</span></span>
-<span class="line"><span>        Heap Total: 87.578125 MB</span></span>
-<span class="line"><span>        Heap Used: 82.33492279052734 MB</span></span>
-<span class="line"><span>        External: 0.9788284301757812 MB</span></span>
-<span class="line"><span>        Array Buffers: 0.009958267211914062 MB</span></span></code></pre>
-<h2>The Results</h2>
+<pre><code>Memory Usage:
+        RSS: 132.28515625 MB
+        Heap Total: 87.578125 MB
+        Heap Used: 82.33492279052734 MB
+        External: 0.9788284301757812 MB
+        Array Buffers: 0.009958267211914062 MB
+</code></pre>
+<h2 id="theresults">The Results</h2>
 <table class="pure-table">
     <thead>
         <tr>
@@ -374,25 +358,26 @@ and `unpack` seem to be negligible.
 shifted example.</p>
 <p>When it comes to creating my next game I will certainly be using this technique. While it does require extra code, the
 code required is still fairly minimal. Especially seeing as it uses a seventh of the memory.</p>
-</div>
-                        <footer>
-                            <p>Until next time,</p>
-                            <p>— Brian</p>
-                        </footer>
-                    </article>
-                </div>
-            </main>
-            <footer class="site-footer gray-bg">
-    <div class="content-md mx-auto px-sm">
-        <p class="my-auto py-sm">
-            <small>Since August 4th, 2023. All words by Brian
-                    Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-        </p>
-    </div>
-</footer>
-    </div>
-    <script src="/scripts/skip-to-section.js"></script>
-    <script src="/scripts/chicken-and-magpie.js"></script>
-</body>
+            </div>
 
+            <footer>
+                <p><i>Until next time,</i></p>
+                <p><i>Brian</i></p>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+    <p>
+        <small>Since August 4th, 2023. All words by Brian
+            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
+    </p>
+</footer>
+
+</div>
+
+<script src="/scripts/chicken-and-magpie.js"></script>
+<script src="/scripts/skip-to-section.js"></script>
+<script src="/scripts/code-highlighter.js"></script>
+</body>
 </html>
