@@ -109,7 +109,7 @@ async function generateOgImage(post) {
                 }
             ])
             .resize(metadata.width, metadata.height)
-            .toFile(join(targetDir, post.data.title + '.png'));
+            .toFile(join(targetDir, post.slug + '.png'));
     } catch (error) {
         console.error('❌ Error processing image:', error);
     }
