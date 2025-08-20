@@ -4,7 +4,7 @@ tags: [js]
 date: 20/08/2025
 ---
 
-I been thinking some more about using template strings as a view engine. This blog for
+I've been thinking some more about using template strings as a view engine. This blog for
 example now uses the template engine shown below. It's quite simple to implement and it's
 usage in html files is super intuitive. You just need to remember that the html you are
 writing will be intepretted as a template string, and you already know how to use template
