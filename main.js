@@ -74,7 +74,7 @@ for (const entry of await readdir(postsDir)) {
     if (!existsSync(targetDir)) await mkdir(targetDir)
 
     postWriteQueue.push(writeFile(join(targetDir, 'index.html'), view('post', post)))
-    ogImageQueue.push(generateOgImage(post))
+    if(!existsSync(getOgImagePath(post))) ogImageQueue.push(generateOgImage(post))
 }
 
 await Promise.all([...ogImageQueue, ...postWriteQueue])
@@ -109,9 +109,9 @@ async function generateOgImage(post) {
                 }
             ])
             .resize(metadata.width, metadata.height)
-            .toFile(join(targetDir, post.slug + '.png'));
+            .toFile(getOgImagePath(post));
     } catch (error) {
-        console.error('❌ Error processing image:', error);
+        console.error('Error processing image:', error);
     }
 }
 
@@ -190,4 +190,8 @@ function createWrappedSvg(text, width, height) {
       </text>
     </svg>
   `;
+}
+
+function getOgImagePath(post) {
+    return join(outDir, 'images/og-images', post.slug + '.png')
 }
