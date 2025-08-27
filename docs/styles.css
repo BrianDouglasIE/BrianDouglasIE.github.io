@@ -16,7 +16,12 @@ body {
     font-family: var(--font-family), sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-family-heading), sans-serif;
 }
 
@@ -24,11 +29,18 @@ img {
     max-width: 100%;
 }
 
-main, .site-footer, .site-header, .breadcrumbs, .about {
+main,
+.site-footer,
+.site-header,
+.breadcrumbs,
+.about {
     padding: .5rem 1rem;
 }
 
-main, .site-footer, .breadcrumbs, .about {
+main,
+.site-footer,
+.breadcrumbs,
+.about {
     border-right: 1px solid #ddd;
     border-left: 1px solid #ddd;
 }
@@ -50,7 +62,7 @@ main, .site-footer, .breadcrumbs, .about {
         fill: white;
     }
 
-    > a {
+    >a {
         margin: 0;
         line-height: 1;
         color: white;
@@ -60,7 +72,8 @@ main, .site-footer, .breadcrumbs, .about {
     }
 }
 
-.post-excerpt-list, .post-title-list {
+.post-excerpt-list,
+.post-title-list {
     list-style: none;
     padding: 0;
 }
@@ -98,7 +111,7 @@ pre {
 .site-footer {
     background: #efefef;
 
-    p  {
+    p {
         margin: 0;
     }
 }
@@ -197,6 +210,10 @@ time {
     img {
         max-width: 12rem;
         max-height: fit-content;
+    }
+
+    div>p {
+        margin-top: 0;
     }
 }
 
