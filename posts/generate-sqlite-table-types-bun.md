@@ -16,15 +16,17 @@ generate Typescript types for table definitions.
 
 ## Implementation
 
-The goal here is not to have to write type to model db tables. So the end result is running a query like so,
+The goal here is not to have to write types that model db tables. So the end goal is to run a query like so,
 where `projects_table` is a type that has been generated from the db schema.
 
 ```typescript
-const projects = db.query<projects_table, []>('SELECT * FROM projects WHERE id = 1').get()
+const project = db.query<projects_table, []>('SELECT * FROM projects WHERE id = 1').get()
 ```
 
 In order to generate the table definition types I use the below scripts. Which I call on each db migration.
-These currently only generate types for table definitions, but I am sure views and function return types could
+This means that the generated types stay up to date with my database.
+
+The below only generates types for table definitions, but I am sure views and function return types could
 also be modelled.
 
 ```typescript
@@ -104,9 +106,6 @@ export function mapSqliteTypeToTs(type: string): string {
 ```
 
 ## Generated Types
-
-When I run a migration I use the above code to auto generate the table definition types. This means
-that the generated types stay up to date with my database.
 
 The generated output is as follows:
 

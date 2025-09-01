@@ -91,12 +91,13 @@ generate Typescript types for table definitions.</p>
 <p><chicken-asks>Why not <em>just use an ORM</em>?</chicken-asks>
 <magpie-replies>SQL is the best way to interface with a DB. ORMs add too many complex abstractions.</magpie-replies></p>
 <h2 id="implementation">Implementation</h2>
-<p>The goal here is not to have to write type to model db tables. So the end result is running a query like so,
+<p>The goal here is not to have to write types that model db tables. So the end goal is to run a query like so,
 where <code>projects_table</code> is a type that has been generated from the db schema.</p>
-<pre><code class="typescript language-typescript">const projects = db.query&lt;projects_table, []&gt;('SELECT * FROM projects WHERE id = 1').get()
+<pre><code class="typescript language-typescript">const project = db.query&lt;projects_table, []&gt;('SELECT * FROM projects WHERE id = 1').get()
 </code></pre>
 <p>In order to generate the table definition types I use the below scripts. Which I call on each db migration.
-These currently only generate types for table definitions, but I am sure views and function return types could
+This means that the generated types stay up to date with my database.</p>
+<p>The below only generates types for table definitions, but I am sure views and function return types could
 also be modelled.</p>
 <pre><code class="typescript language-typescript">import { writeFileSync } from "node:fs";
 import { db } from "./db/db";
@@ -170,8 +171,6 @@ export function mapSqliteTypeToTs(type: string): string {
 }
 </code></pre>
 <h2 id="generatedtypes">Generated Types</h2>
-<p>When I run a migration I use the above code to auto generate the table definition types. This means
-that the generated types stay up to date with my database.</p>
 <p>The generated output is as follows:</p>
 <pre><code class="typescript language-typescript">/* GENERATED FILE CONTENT DO NOT EDIT */
 
