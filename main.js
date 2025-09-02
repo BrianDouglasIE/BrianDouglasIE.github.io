@@ -57,7 +57,7 @@ function view(name, data) {
 
 if (!existsSync(outDir)) await mkdir(outDir)
 
-const posts = []
+export const posts = []
 const ogImageQueue = []
 const postWriteQueue = []
 for (const entry of await readdir(postsDir)) {

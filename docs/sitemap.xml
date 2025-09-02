@@ -163,14 +163,14 @@
     </url>
     
     <url>
-        <loc>https://www.briandouglas.ie/docker-on-linux-mint</loc>
+        <loc>https://www.briandouglas.ie/install-openjdk-linux</loc>
         <lastmod>2025-04-02T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://www.briandouglas.ie/install-openjdk-linux</loc>
+        <loc>https://www.briandouglas.ie/docker-on-linux-mint</loc>
         <lastmod>2025-04-02T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -226,14 +226,14 @@
     </url>
     
     <url>
-        <loc>https://www.briandouglas.ie/dumping-sqlite-data</loc>
+        <loc>https://www.briandouglas.ie/laravel-optimize-database</loc>
         <lastmod>2025-02-17T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://www.briandouglas.ie/laravel-optimize-database</loc>
+        <loc>https://www.briandouglas.ie/dumping-sqlite-data</loc>
         <lastmod>2025-02-17T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
