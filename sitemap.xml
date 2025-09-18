@@ -2,7 +2,7 @@
 <urlset>
     ${data.posts.map(post => `
     <url>
-        <loc>https://www.briandouglas.ie/${post.slug}</loc>
+        <loc>https://briandouglas.ie/${post.slug}</loc>
         <lastmod>${helpers.parseDate(post.data.date).toISOString()}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
