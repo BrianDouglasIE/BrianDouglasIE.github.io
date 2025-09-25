@@ -1,0 +1,18 @@
+<ul class="post-excerpt-list">
+    {{#posts}}
+        <li>
+            <article>
+                <header>
+                    <a href="{{slug}}"><h3>{{data.title}}</h3></a>
+                    <time datetime="{{data.date}}">{{formattedDate}}</time>
+                </header>
+
+                <div>{{{excerptHtml}}}</div>
+
+                <footer>
+                    <a href="{{slug}}">Read more</a>
+                </footer>
+            </article>
+        </li>
+    {{/posts}}
+</ul>

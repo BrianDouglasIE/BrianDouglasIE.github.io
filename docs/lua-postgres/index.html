@@ -1,116 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-    <!-- Meta Description -->
-    <meta name="description" content="Setting up PostgreSQL and Lua in Docker"/>
-
-    <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, lua,docker,sql"/>
-
-    <!-- Author -->
-    <meta name="author" content="Brian Douglas"/>
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="BrianDouglas.ie - Setting up PostgreSQL and Lua in Docker"/>
-    <meta property="og:description" content="Setting up PostgreSQL and Lua in Docker"/>
-    <meta property="og:url" content="https://www.briandouglas.ie"/>
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/lua-postgres.png"/>
-    <meta property="og:image:type" content="image/png"/>
-    <meta property="og:image:width" content="1280"/>
-    <meta property="og:image:height" content="640"/>
-    <meta property="og:site_name" content="BrianDouglas.ie"/>
-    <meta property="og:image:alt" content="A preview image for the post titled 'Setting up PostgreSQL and Lua in Docker'"/>
-
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:site" content="@BrianDouglasIE"/>
-    <meta name="twitter:title" content="BrianDouglas.ie - Setting up PostgreSQL and Lua in Docker"/>
-    <meta name="twitter:description" content="Setting up PostgreSQL and Lua in Docker"/>
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/lua-postgres.png"/>
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie"/>
-
-    <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
-
-    <!-- Robots -->
-    <meta name="robots" content="index, follow"/>
-
-    <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-    <link rel="manifest" href="/site.webmanifest"/>
-
-    <title>Setting up PostgreSQL and Lua in Docker</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-
-<div class="content">
-    <header class="site-header">
-    <a href="/" class="home">Brian Douglas</a>
-
-    <a href="https://github.com/BrianDouglasIE" class="github">
-        <svg
-                height="32"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="32"
-                data-view-component="true"
-        >
-            <path
-                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-            ></path>
-        </svg>
-    </a>
-</header>
-    <div class="breadcrumbs">
-        <a href="/">Home</a> / <span>Setting up PostgreSQL and Lua in Docker</span>
-    </div>
-
-    <main>
-        <article class="post">
-            <header>
-                <h1>Setting up PostgreSQL and Lua in Docker</h1>
-                <time datetime="31/12/2024">December 31st, 2024</time>
-            </header>
-
-            <div class="body">
-                <p>I did a quick exploration into Lua after seeing is used in the CS50 game dev course.</p>
-<!-- more -->
-<p><magpie-trinket>
-The environment used for this tutorial is Ubuntu running inside WSL.
-</magpie-trinket></p>
-<h2 id="creatingthepostgresqlcontainer">Creating the PostgreSQL container</h2>
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8"/>    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>    <!-- Meta Description -->    <meta name="description" content=" Setting up PostgreSQL and Lua in Docker"/>    <!-- Keywords -->    <meta name="keywords" content="Brian Douglas, blog,  lua, docker, sql"/>    <!-- Author -->    <meta name="author" content="Brian Douglas"/>    <!-- Open Graph / Facebook -->    <meta property="og:type" content="website"/>    <meta property="og:title" content="BrianDouglas.ie -  Setting up PostgreSQL and Lua in Docker"/>    <meta property="og:description" content=" Setting up PostgreSQL and Lua in Docker"/>    <meta property="og:url" content="https://www.briandouglas.ie"/>    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <meta property="og:image:type" content="image/png"/>    <meta property="og:image:width" content="1280"/>    <meta property="og:image:height" content="640"/>    <meta property="og:site_name" content="BrianDouglas.ie"/>    <meta property="og:image:alt" content="A preview image for the post titled ' Setting up PostgreSQL and Lua in Docker'"/>    <!-- Twitter Meta -->    <meta name="twitter:card" content="summary_large_image"/>    <meta name="twitter:site" content="@BrianDouglasIE"/>    <meta name="twitter:title" content="BrianDouglas.ie -  Setting up PostgreSQL and Lua in Docker"/>    <meta name="twitter:description" content=" Setting up PostgreSQL and Lua in Docker"/>    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <!-- Canonical URL -->    <link rel="canonical" href="https://www.briandouglas.ie"/>    <!-- Favicon (Optional) -->    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>    <!-- Robots -->    <meta name="robots" content="index, follow"/>    <!-- Favicon-->    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>    <link rel="manifest" href="/site.webmanifest"/>    <title> Setting up PostgreSQL and Lua in Docker</title>    <link rel="stylesheet" href="/styles.css"></head><body><div class="content">    <header class="site-header">    <a href="/" class="home">Brian Douglas</a>    <a href="https://github.com/BrianDouglasIE" class="github">        <svg                height="32"                aria-hidden="true"                viewBox="0 0 24 24"                width="32"                data-view-component="true"        >            <path                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"            ></path>        </svg>    </a></header>    <div class="breadcrumbs">        <a href="/">Home</a> / <span> Setting up PostgreSQL and Lua in Docker</span>    </div>    <main>        <article class="post">            <header>                <h1> Setting up PostgreSQL and Lua in Docker</h1>                <time datetime=" 31/12/2024"> 31/12/2024</time>            </header>            <div class="body">                <p>I did a quick exploration into Lua after seeing is used in the CS50 game dev course.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2>Creating the PostgreSQL container</h2>
 <pre><code>docker run --name postgres-1 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
 </code></pre>
 <p>This command creates an instance of the <code>postgres:alpine</code> container. The <code>--name</code> flag is used to assign a name to the container.
 The <code>-e</code> flag passes in the required environment variables. In this case a <code>POSTGRES_PASSWORD</code> is required. This will be used to
 authenticate the <code>postgres</code> user. <code>-d</code> tells docker to run the command as a background process. Finally <code>-p</code> is used to expose
 the port that postgres is running on. The default is <code>5432</code>, so we map the container's <code>5432</code> to <code>localhost:5432</code>.</p>
-<h2 id="createadatabaseandaddsomecontent">Create a database and add some content</h2>
-<h3 id="accessthepostgresqlinstancerunninginsidethedockercontainer">Access the PostgreSQL instance running inside the Docker container</h3>
+<h2>Create a database and add some content</h2>
+<h3>Access the PostgreSQL instance running inside the Docker container</h3>
 <pre><code>docker exec -it postgres-1 psql -h localhost -p 5432 -U postgres
 </code></pre>
-<p>This command can be broken into two parts. The first part <code>docker exec -it postgres-1</code>, tells docker the execute the following 
-command inside our previously created container. The <code>-it</code> flag is a combination of <code>--interactive</code> and<code>--tty</code>. This tells 
+<p>This command can be broken into two parts. The first part <code>docker exec -it postgres-1</code>, tells docker the execute the following
+command inside our previously created container. The <code>-it</code> flag is a combination of <code>--interactive</code> and<code>--tty</code>. This tells
 docker to take you straight inside the container.</p>
-<p>The second part of the command <code>psql -h localhost -p 5432 -U postgres</code> takes us inside the postgres server. The <code>-h</code> flag 
+<p>The second part of the command <code>psql -h localhost -p 5432 -U postgres</code> takes us inside the postgres server. The <code>-h</code> flag
 specifies the the host, <code>-p</code> specifies the port, and <code>-U</code> the user we want to login as.</p>
 <p>Once the initial command is run you should see the postgres prompt. We can now create a database and populate it with some information.</p>
-<h3 id="createandmodifydatabase">Create and modify database</h3>
+<h3>Create and modify database</h3>
 <p>Once inside the postgres instance we can use the following commands to create a database, add a table to
 that database, and finally insert data into the table.</p>
 <pre><code>create database test;
 </code></pre>
-<p>The above command creates a database named "test". We can then connect to that database using the following command.</p>
+<p>The above command creates a database named &quot;test&quot;. We can then connect to that database using the following command.</p>
 <pre><code>\c test;
 </code></pre>
 <p>Once connected we can run the following to add the <code>messages</code> table to the test database.</p>
@@ -120,14 +33,14 @@ alter table messages add column content varchar(255);
 insert into messages (id, content) values (uuid_generate_v4(), 'Hi, from postgres');
 </code></pre>
 <blockquote>
-  <p>Install the <code>uuid-ossp</code> extension with the following command <code>create extension if not exists "uuid-ossp";</code></p>
+<p>Install the <code>uuid-ossp</code> extension with the following command <code>create extension if not exists &quot;uuid-ossp&quot;;</code></p>
 </blockquote>
 <p>After successfully running the above our <code>test</code> database will now have some content which we will fetch with lua.</p>
-<h2 id="queryingthedatabasewithlua">Querying the database with Lua</h2>
-<h3 id="installingluasqlvialuarocks">Installing luasql via LuaRocks</h3>
+<h2>Querying the database with Lua</h2>
+<h3>Installing luasql via LuaRocks</h3>
 <p>In order to connect to our postgres database with Lua, we will use the <code>luasql.postgres</code> rock.
 To install this rock run the following command <code>luarocks install luasql-postgres</code>.</p>
-<h4 id="fixingthelibpqfehinstallerroronubuntu">Fixing the <code>libpq-fe.h</code> install error on Ubuntu</h4>
+<h4>Fixing the <code>libpq-fe.h</code> install error on Ubuntu</h4>
 <p>If you are using Ubuntu to follow this tutorial, you may see the following error when running <code>luarocks install luasql-postgres</code>.</p>
 <pre><code>Error: Could not find header file for PGSQL
   No file libpq-fe.h in /usr/local/include
@@ -135,35 +48,35 @@ To install this rock run the following command <code>luarocks install luasql-pos
   No file libpq-fe.h in /include
 You may have to install PGSQL in your system and/or pass PGSQL_DIR or PGSQL_INCDIR to the luarocks command.
 </code></pre>
-<p>This can be solved by passing the <code>PGSQL_INCDIR</code> property to the progam. Commonly the required value is 
+<p>This can be solved by passing the <code>PGSQL_INCDIR</code> property to the progam. Commonly the required value is
 <code>/usr/include/postgresql/</code>. As that is the directory containing the <code>libpg-fe.h</code>.</p>
 <p>Run the command as follows to successfully install <code>luasql-postgres</code>.</p>
 <pre><code>luarocks install luasql-postgres PGSQL_INCDIR=/usr/include/postgresql
 </code></pre>
-<h3 id="writingaluascripttoprintthemessages">Writing a lua script to print the messages</h3>
+<h3>Writing a lua script to print the messages</h3>
 <p>Once <code>luasql-postgres</code> has successfully been installed, we can then write a Lua program to fetch records
 from the database we created earlier.</p>
 <p>Create a <code>main.lua</code> file and add the following.</p>
-<pre><code class="lua language-lua">-- load driver
-local driver = require "luasql.postgres"
+<pre><code class="language-lua">-- load driver
+local driver = require &quot;luasql.postgres&quot;
 -- create environment object
 env = assert (driver.postgres())
 -- connect to data source
-con = assert (env:connect("test"))
+con = assert (env:connect(&quot;test&quot;))
 -- reset our table
-cur = con:execute"SELECT * FROM messages;"
-row = cur:fetch ({}, "a")
+cur = con:execute&quot;SELECT * FROM messages;&quot;
+row = cur:fetch ({}, &quot;a&quot;)
 while row do
-  print(string.format("MESSAGE: %s", row.content))
+  print(string.format(&quot;MESSAGE: %s&quot;, row.content))
   -- reusing the table of results
-  row = cur:fetch (row, "a")
+  row = cur:fetch (row, &quot;a&quot;)
 end
 -- close everything
 cur:close() -- already closed because all the result set was consumed
 con:close()
 env:close()
 </code></pre>
-<h3 id="runthescriptwiththecorrectenvvariables">Run the script with the correct env variables</h3>
+<h3>Run the script with the correct env variables</h3>
 <p>The script written inside our <code>main.lua</code> file expects that we supply some postgres variables when running it.
 These are <code>PGUSER</code>, the user we want to connect to our database with. <code>PGPASSWORD</code>, the password set for the
 user. <code>PGHOST</code>, the host we will use to access the server. And finally, <code>PGPORT</code>, the port number at which we
@@ -171,26 +84,4 @@ can access the postgres server.</p>
 <pre><code>PGUSER=postgres PGPASSWORD=password PGDATABASE=lua_messages PGHOST=localhost PGPORT=5432 lua main.lua
 </code></pre>
 <p>Running the above script should print out the content of the messages we added to our postgres database.</p>
-            </div>
-
-            <footer>
-                <p><i>Until next time,</i></p>
-                <p><i>Brian</i></p>
-            </footer>
-        </article>
-    </main>
-
-    <footer class="site-footer">
-    <p>
-        <small>Since August 4th, 2023. All words by Brian
-            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-    </p>
-</footer>
-
-</div>
-
-<script src="/scripts/chicken-and-magpie.js"></script>
-<script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
-</body>
-</html>
+            </div>            <footer>                <p><i>Until next time,</i></p>                <p><i>Brian</i></p>            </footer>        </article>    </main>    <footer class="site-footer">    <p>        <small>Since August 4th, 2023. All words by Brian            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>    </p></footer></div><script src="/scripts/chicken-and-magpie.js"></script><script src="/scripts/skip-to-section.js"></script><script src="/scripts/code-highlighter.js"></script></body></html>

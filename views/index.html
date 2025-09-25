@@ -7,14 +7,14 @@
 
     <!-- Meta Description -->
     <meta
-            name="description"
-            content="I write about programming, thing's I've learned whilst programming, and hopefully, some useful code snippets."
+        name="description"
+        content="I write about programming, thing's I've learned whilst programming, and hopefully, some useful code snippets."
     />
 
     <!-- Keywords -->
     <meta
-            name="keywords"
-            content="Brian Douglas, JavaScript, PHP, Java, SQL, C, web development, programming, laravel"
+        name="keywords"
+        content="Brian Douglas, JavaScript, PHP, Java, SQL, C, web development, programming, laravel"
     />
 
     <!-- Author -->
@@ -23,33 +23,33 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
     <meta
-            property="og:title"
-            content="BrianDouglas.ie - Mediocre Programmer."
+        property="og:title"
+        content="BrianDouglas.ie - Mediocre Programmer."
     />
     <meta
-            property="og:description"
-            content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
+        property="og:description"
+        content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
     />
     <meta property="og:url" content="https://www.briandouglas.ie"/>
     <meta
-            property="og:image"
-            content="http://www.briandouglas.ie/images/open-graph-index.png"
+        property="og:image"
+        content="http://www.briandouglas.ie/images/open-graph-index.png"
     />
     <meta property="og:site_name" content="BrianDouglas.ie"/>
 
     <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta
-            name="twitter:title"
-            content="BrianDouglas.ie - Mediocre Programmer."
+        name="twitter:title"
+        content="BrianDouglas.ie - Mediocre Programmer."
     />
     <meta
-            name="twitter:description"
-            content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
+        name="twitter:description"
+        content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
     />
     <meta
-            name="twitter:image"
-            content="http://www.briandouglas.ie/images/open-graph-index.png"
+        name="twitter:image"
+        content="http://www.briandouglas.ie/images/open-graph-index.png"
     />
     <meta name="twitter:site" content="@BrianDouglasIE"/>
 
@@ -58,9 +58,9 @@
 
     <!-- Favicon (Optional) -->
     <link
-            rel="icon"
-            href="https://www.briandouglas.ie/favicon.ico"
-            type="image/x-icon"
+        rel="icon"
+        href="https://www.briandouglas.ie/favicon.ico"
+        type="image/x-icon"
     />
 
     <!-- Robots -->
@@ -72,13 +72,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
     <link rel="manifest" href="/site.webmanifest"/>
 
-    <title>${ data.title ? `${data.title} - briandouglas.ie` : "briandouglas.ie" }</title>
+    <title>{{#title}}{{title}} - briandouglas.ie{{/title}}{{^title}}briandouglas.ie{{/title}}</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
 <div class="content">
-    ${helpers.include('site-header')}
+    {{> site-header}}
 
     <section class="about">
         <img src="/images/me.png" alt="A photo of Brian Douglas">
@@ -88,7 +88,7 @@
                 Seriously, why give a man a fish when you could teach him about asynchronous programming?
             </p>
             <p>
-                I've been paid to program for ${new Date().getFullYear() - 2012} years.
+                I've been paid to program for {{yearsOfExperience}} years.
                 People have paid me to write SQL, Java, Python, PHP, C, and JavaScript.
                 Which is ridiculous as it's just my hobby. I love to code.
             </p>
@@ -97,12 +97,13 @@
 
     <main>
         <h2>Latest Posts</h2>
-        ${ helpers.include('post-excerpt-list', { posts: data.posts.slice(0, 3)}) }
-        <h2>Older Posts <i>(${data.posts.length - 3})</i></h2>
-        ${ helpers.include('post-title-list', { posts: data.posts.slice(3) }) }
+        {{> post-excerpt-list posts=latestPosts}}
+
+        <h2>Older Posts <i>({{olderCount}})</i></h2>
+        {{> post-title-list posts=olderPosts}}
     </main>
 
-    ${helpers.include('site-footer')}
+    {{> site-footer}}
 </div>
 
 </body>

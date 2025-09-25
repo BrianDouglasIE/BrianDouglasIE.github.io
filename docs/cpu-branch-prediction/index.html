@@ -1,106 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-    <!-- Meta Description -->
-    <meta name="description" content="Using CPU branch prediction in Java"/>
-
-    <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, java"/>
-
-    <!-- Author -->
-    <meta name="author" content="Brian Douglas"/>
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="BrianDouglas.ie - Using CPU branch prediction in Java"/>
-    <meta property="og:description" content="Using CPU branch prediction in Java"/>
-    <meta property="og:url" content="https://www.briandouglas.ie"/>
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png"/>
-    <meta property="og:image:type" content="image/png"/>
-    <meta property="og:image:width" content="1280"/>
-    <meta property="og:image:height" content="640"/>
-    <meta property="og:site_name" content="BrianDouglas.ie"/>
-    <meta property="og:image:alt" content="A preview image for the post titled 'Using CPU branch prediction in Java'"/>
-
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:site" content="@BrianDouglasIE"/>
-    <meta name="twitter:title" content="BrianDouglas.ie - Using CPU branch prediction in Java"/>
-    <meta name="twitter:description" content="Using CPU branch prediction in Java"/>
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/cpu-branch-prediction.png"/>
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie"/>
-
-    <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
-
-    <!-- Robots -->
-    <meta name="robots" content="index, follow"/>
-
-    <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-    <link rel="manifest" href="/site.webmanifest"/>
-
-    <title>Using CPU branch prediction in Java</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-
-<div class="content">
-    <header class="site-header">
-    <a href="/" class="home">Brian Douglas</a>
-
-    <a href="https://github.com/BrianDouglasIE" class="github">
-        <svg
-                height="32"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="32"
-                data-view-component="true"
-        >
-            <path
-                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-            ></path>
-        </svg>
-    </a>
-</header>
-    <div class="breadcrumbs">
-        <a href="/">Home</a> / <span>Using CPU branch prediction in Java</span>
-    </div>
-
-    <main>
-        <article class="post">
-            <header>
-                <h1>Using CPU branch prediction in Java</h1>
-                <time datetime="03/04/2025">April 3rd, 2025</time>
-            </header>
-
-            <div class="body">
-                <p>CPU branch prediction is when the CPU tries to guess the outcome of a conditional
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8"/>    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>    <!-- Meta Description -->    <meta name="description" content=" Using CPU branch prediction in Java"/>    <!-- Keywords -->    <meta name="keywords" content="Brian Douglas, blog,  java"/>    <!-- Author -->    <meta name="author" content="Brian Douglas"/>    <!-- Open Graph / Facebook -->    <meta property="og:type" content="website"/>    <meta property="og:title" content="BrianDouglas.ie -  Using CPU branch prediction in Java"/>    <meta property="og:description" content=" Using CPU branch prediction in Java"/>    <meta property="og:url" content="https://www.briandouglas.ie"/>    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <meta property="og:image:type" content="image/png"/>    <meta property="og:image:width" content="1280"/>    <meta property="og:image:height" content="640"/>    <meta property="og:site_name" content="BrianDouglas.ie"/>    <meta property="og:image:alt" content="A preview image for the post titled ' Using CPU branch prediction in Java'"/>    <!-- Twitter Meta -->    <meta name="twitter:card" content="summary_large_image"/>    <meta name="twitter:site" content="@BrianDouglasIE"/>    <meta name="twitter:title" content="BrianDouglas.ie -  Using CPU branch prediction in Java"/>    <meta name="twitter:description" content=" Using CPU branch prediction in Java"/>    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <!-- Canonical URL -->    <link rel="canonical" href="https://www.briandouglas.ie"/>    <!-- Favicon (Optional) -->    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>    <!-- Robots -->    <meta name="robots" content="index, follow"/>    <!-- Favicon-->    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>    <link rel="manifest" href="/site.webmanifest"/>    <title> Using CPU branch prediction in Java</title>    <link rel="stylesheet" href="/styles.css"></head><body><div class="content">    <header class="site-header">    <a href="/" class="home">Brian Douglas</a>    <a href="https://github.com/BrianDouglasIE" class="github">        <svg                height="32"                aria-hidden="true"                viewBox="0 0 24 24"                width="32"                data-view-component="true"        >            <path                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"            ></path>        </svg>    </a></header>    <div class="breadcrumbs">        <a href="/">Home</a> / <span> Using CPU branch prediction in Java</span>    </div>    <main>        <article class="post">            <header>                <h1> Using CPU branch prediction in Java</h1>                <time datetime=" 03/04/2025"> 03/04/2025</time>            </header>            <div class="body">                <p>CPU branch prediction is when the CPU tries to guess the outcome of a conditional
 operation, eg: an <code>if</code> statement, before it is executed. If it guesses correct then
 the CPU can continue executing instructions without interuption.</p>
-<!-- more -->
+<!-- raw HTML omitted -->
 <p>When applied to Java this can be used to get a performance benefit. In particular
 when looping through a large array that runs some condtional operation on each value.</p>
-<p><chicken-asks>So how do you make loop conditionals predictable?</chicken-asks>
-<magpie-replies>Well we could sort the array before processing it</magpie-replies></p>
+<p><!-- raw HTML omitted -->So how do you make loop conditionals predictable?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Well we could sort the array before processing it<!-- raw HTML omitted --></p>
 <p>Sorting the values of an array before processing it will help with CPU branch prediction.
 It may also help with cpu cache optimisation. CPU cache optimisation being the accessing
 of data that from the CPU cache. This is memory located close to the CPU cores, data accessed
 from here is often processed much quicker than from the main memory. This can be done in Java
 by accessing data from a sorted array. The idea being that sorted data may be held closer together
 in memory, and therefore can be accessed more quickly, providing a performance benefit.</p>
-<h2 id="exampleusage">Example Usage</h2>
+<h2>Example Usage</h2>
 <p>Let's see this in action with some example code. Given the following program, the sorted array will be
 processed roughly 4 times faster than the unsorted array.</p>
-<pre><code class="java language-java">import java.util.Random;
+<pre><code class="language-java">import java.util.Random;
 
 public class Main {
 
@@ -122,12 +37,12 @@ public class Main {
         long unsortedTime = System.nanoTime() - startTime;
 
         if (unsortedSum != sortedSum) {
-            throw new Error("sortedSum and unsortedSum should match");
+            throw new Error(&quot;sortedSum and unsortedSum should match&quot;);
         }
 
-        System.out.println("Sorted array processing time:   " + sortedTime + " ns");
-        System.out.println("Unsorted array processing time: " + unsortedTime + " ns");
-        System.out.println("Times faster: " + Math.floorDiv(unsortedTime, sortedTime));
+        System.out.println(&quot;Sorted array processing time:   &quot; + sortedTime + &quot; ns&quot;);
+        System.out.println(&quot;Unsorted array processing time: &quot; + unsortedTime + &quot; ns&quot;);
+        System.out.println(&quot;Times faster: &quot; + Math.floorDiv(unsortedTime, sortedTime));
     }
 
     /**
@@ -186,7 +101,7 @@ Below is the result I get when running it locally.</p>
 Unsorted array processing time: 37145149 ns
 Times faster: 4
 </code></pre>
-<h2 id="drawbacks">Drawbacks</h2>
+<h2>Drawbacks</h2>
 <p>While I can't think of a drawback, other than the time spent sorting the array before processing it. There is
 a caveat. It may not always give a benefit.</p>
 <p>For example, if when processing the array, you ran something that wasn't easily predictable, eg: testing if a
@@ -194,31 +109,9 @@ number is a prime, you may not see much difference. While the sorted array would
 in practice the benefit of the prediction would be less significant as the majority of the numbers are likely
 non prime and the check would fail early. So there will likely be use cases where you see a great benefit from
 processing a sorted array, and some cases there you don't really see any benefit.</p>
-<h2 id="summary">Summary</h2>
+<h2>Summary</h2>
 <p>Sorted arrays in Java benefit from CPU branch prediction and cache optimisation due to predictable
 patterns and memory location.</p>
 <p>In contrast, unsorted arrays suffer from the lack of predictability and random
 memory access patterns.</p>
-            </div>
-
-            <footer>
-                <p><i>Until next time,</i></p>
-                <p><i>Brian</i></p>
-            </footer>
-        </article>
-    </main>
-
-    <footer class="site-footer">
-    <p>
-        <small>Since August 4th, 2023. All words by Brian
-            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-    </p>
-</footer>
-
-</div>
-
-<script src="/scripts/chicken-and-magpie.js"></script>
-<script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
-</body>
-</html>
+            </div>            <footer>                <p><i>Until next time,</i></p>                <p><i>Brian</i></p>            </footer>        </article>    </main>    <footer class="site-footer">    <p>        <small>Since August 4th, 2023. All words by Brian            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>    </p></footer></div><script src="/scripts/chicken-and-magpie.js"></script><script src="/scripts/skip-to-section.js"></script><script src="/scripts/code-highlighter.js"></script></body></html>

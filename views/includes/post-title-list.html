@@ -1,8 +1,0 @@
-<ul class="post-title-list">
-    ${data.posts.map(post => `
-    <li>
-        <time datetime="${post.data.date}">${post.data.date}</time>
-        <a href="${post.slug}">${post.data.title}</a>
-    </li>
-    `).join('')}
-</ul>

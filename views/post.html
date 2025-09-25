@@ -6,32 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <!-- Meta Description -->
-    <meta name="description" content="${data.data.title}"/>
+    <meta name="description" content="{{title}}"/>
 
     <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, ${ data.data.tags.join(',') }"/>
+    <meta name="keywords" content="Brian Douglas, blog, {{tags}}"/>
 
     <!-- Author -->
     <meta name="author" content="Brian Douglas"/>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="BrianDouglas.ie - ${data.data.title}"/>
-    <meta property="og:description" content="${data.data.title}"/>
+    <meta property="og:title" content="BrianDouglas.ie - {{title}}"/>
+    <meta property="og:description" content="{{title}}"/>
     <meta property="og:url" content="https://www.briandouglas.ie"/>
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/${data.slug}.png"/>
+    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/{{slug}}.png"/>
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="1280"/>
     <meta property="og:image:height" content="640"/>
     <meta property="og:site_name" content="BrianDouglas.ie"/>
-    <meta property="og:image:alt" content="A preview image for the post titled '${data.data.title}'"/>
+    <meta property="og:image:alt" content="A preview image for the post titled '{{title}}'"/>
 
     <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="@BrianDouglasIE"/>
-    <meta name="twitter:title" content="BrianDouglas.ie - ${data.data.title}"/>
-    <meta name="twitter:description" content="${data.data.title}"/>
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/${data.slug}.png"/>
+    <meta name="twitter:title" content="BrianDouglas.ie - {{title}}"/>
+    <meta name="twitter:description" content="{{title}}"/>
+    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/{{slug}}.png"/>
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.briandouglas.ie"/>
@@ -48,26 +48,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
     <link rel="manifest" href="/site.webmanifest"/>
 
-    <title>${ data.data.title }</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
 <div class="content">
-    ${helpers.include('site-header')}
+    {{>site-header}}
+
     <div class="breadcrumbs">
-        <a href="/">Home</a> / <span>${data.data.title}</span>
+        <a href="/">Home</a> / <span>{{title}}</span>
     </div>
 
     <main>
         <article class="post">
             <header>
-                <h1>${data.data.title}</h1>
-                <time datetime="${data.data.date}">${helpers.formatDate(data.data.date)}</time>
+                <h1>{{title}}</h1>
+                <time datetime="{{date}}">{{date}}</time>
             </header>
 
             <div class="body">
-                ${ data.html }
+                {{{content}}}
             </div>
 
             <footer>
@@ -77,7 +78,7 @@
         </article>
     </main>
 
-    ${helpers.include('site-footer')}
+    {{>site-footer}}
 </div>
 
 <script src="/scripts/chicken-and-magpie.js"></script>

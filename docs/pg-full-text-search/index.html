@@ -1,94 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-    <!-- Meta Description -->
-    <meta name="description" content="PostgresSQL full text search"/>
-
-    <!-- Keywords -->
-    <meta name="keywords" content="Brian Douglas, blog, sql"/>
-
-    <!-- Author -->
-    <meta name="author" content="Brian Douglas"/>
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="BrianDouglas.ie - PostgresSQL full text search"/>
-    <meta property="og:description" content="PostgresSQL full text search"/>
-    <meta property="og:url" content="https://www.briandouglas.ie"/>
-    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png"/>
-    <meta property="og:image:type" content="image/png"/>
-    <meta property="og:image:width" content="1280"/>
-    <meta property="og:image:height" content="640"/>
-    <meta property="og:site_name" content="BrianDouglas.ie"/>
-    <meta property="og:image:alt" content="A preview image for the post titled 'PostgresSQL full text search'"/>
-
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:site" content="@BrianDouglasIE"/>
-    <meta name="twitter:title" content="BrianDouglas.ie - PostgresSQL full text search"/>
-    <meta name="twitter:description" content="PostgresSQL full text search"/>
-    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/pg-full-text-search.png"/>
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.briandouglas.ie"/>
-
-    <!-- Favicon (Optional) -->
-    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>
-
-    <!-- Robots -->
-    <meta name="robots" content="index, follow"/>
-
-    <!-- Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-    <link rel="manifest" href="/site.webmanifest"/>
-
-    <title>PostgresSQL full text search</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-
-<div class="content">
-    <header class="site-header">
-    <a href="/" class="home">Brian Douglas</a>
-
-    <a href="https://github.com/BrianDouglasIE" class="github">
-        <svg
-                height="32"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                width="32"
-                data-view-component="true"
-        >
-            <path
-                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"
-            ></path>
-        </svg>
-    </a>
-</header>
-    <div class="breadcrumbs">
-        <a href="/">Home</a> / <span>PostgresSQL full text search</span>
-    </div>
-
-    <main>
-        <article class="post">
-            <header>
-                <h1>PostgresSQL full text search</h1>
-                <time datetime="31/07/2025">July 31st, 2025</time>
-            </header>
-
-            <div class="body">
-                <p>PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.</p>
-<!-- more -->
-<p><magpie-trinket>The database used in the below examples is the <em>netflix</em> database from <a href="https://github.com/neondatabase-labs/postgres-sample-dbs">neondatabase-labs/postgres-sample-dbs</a></magpie-trinket></p>
-<h2 id="searchbytitle">Search by title</h2>
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8"/>    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>    <!-- Meta Description -->    <meta name="description" content=" PostgresSQL full text search"/>    <!-- Keywords -->    <meta name="keywords" content="Brian Douglas, blog,  sql"/>    <!-- Author -->    <meta name="author" content="Brian Douglas"/>    <!-- Open Graph / Facebook -->    <meta property="og:type" content="website"/>    <meta property="og:title" content="BrianDouglas.ie -  PostgresSQL full text search"/>    <meta property="og:description" content=" PostgresSQL full text search"/>    <meta property="og:url" content="https://www.briandouglas.ie"/>    <meta property="og:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <meta property="og:image:type" content="image/png"/>    <meta property="og:image:width" content="1280"/>    <meta property="og:image:height" content="640"/>    <meta property="og:site_name" content="BrianDouglas.ie"/>    <meta property="og:image:alt" content="A preview image for the post titled ' PostgresSQL full text search'"/>    <!-- Twitter Meta -->    <meta name="twitter:card" content="summary_large_image"/>    <meta name="twitter:site" content="@BrianDouglasIE"/>    <meta name="twitter:title" content="BrianDouglas.ie -  PostgresSQL full text search"/>    <meta name="twitter:description" content=" PostgresSQL full text search"/>    <meta name="twitter:image" content="http://www.briandouglas.ie/images/og-images/.png"/>    <!-- Canonical URL -->    <link rel="canonical" href="https://www.briandouglas.ie"/>    <!-- Favicon (Optional) -->    <link rel="icon" href="https://www.briandouglas.ie/favicon.ico" type="image/x-icon"/>    <!-- Robots -->    <meta name="robots" content="index, follow"/>    <!-- Favicon-->    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>    <link rel="manifest" href="/site.webmanifest"/>    <title> PostgresSQL full text search</title>    <link rel="stylesheet" href="/styles.css"></head><body><div class="content">    <header class="site-header">    <a href="/" class="home">Brian Douglas</a>    <a href="https://github.com/BrianDouglasIE" class="github">        <svg                height="32"                aria-hidden="true"                viewBox="0 0 24 24"                width="32"                data-view-component="true"        >            <path                    d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"            ></path>        </svg>    </a></header>    <div class="breadcrumbs">        <a href="/">Home</a> / <span> PostgresSQL full text search</span>    </div>    <main>        <article class="post">            <header>                <h1> PostgresSQL full text search</h1>                <time datetime=" 31/07/2025"> 31/07/2025</time>            </header>            <div class="body">                <p>PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->The database used in the below examples is the <em>netflix</em> database from <a href="https://github.com/neondatabase-labs/postgres-sample-dbs">neondatabase-labs/postgres-sample-dbs</a><!-- raw HTML omitted --></p>
+<h2>Search by title</h2>
 <p>Let's start off with a basic search. We are going to use the <code>@@</code> operator to search the <code>title</code> column for the text <code>'Python'</code>.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
+<pre><code class="language-sql">SELECT title, release_year 
 FROM netflix_shows 
 WHERE to_tsvector(title) @@ to_tsquery('Python') 
 AND release_year &lt; 2000 
@@ -105,14 +20,14 @@ ORDER BY release_year DESC;
  Monty Python's Fliegender Zirkus                         |         1972
 (7 rows)
 </code></pre>
-<h2 id="searchbytitleandrelease_year">Search by title and release_year</h2>
+<h2>Search by title and release_year</h2>
 <p>Now let's say we want to find all titles including 'Python' released in 1972. To do this we add the <code>release_year</code> column. Note,
 that it needs transformed to a text value in order to by processed.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
+<pre><code class="language-sql">SELECT title, release_year 
 FROM netflix_shows 
 WHERE 
-    to_tsvector(title || ' ' || release_year::text) @@ 
-    to_tsquery('Python &amp; 1972') 
+	to_tsvector(title || ' ' || release_year::text) @@ 
+	to_tsquery('Python &amp; 1972') 
 ORDER BY release_year DESC;
 </code></pre>
 <pre><code>              title               | release_year
@@ -120,15 +35,15 @@ ORDER BY release_year DESC;
  Monty Python's Fliegender Zirkus |         1972
 (1 row)
 </code></pre>
-<h2 id="searchusingafullsentence">Search using a full sentence</h2>
+<h2>Search using a full sentence</h2>
 <p>You will notice the in the previous example that <code>&amp;</code> was used to seperate the words in the query. Removing this would result in an error.
 Likely when using this feature in the real world you will be passing a string from a user into the query. Each word must be seperated by an
 ampersand. A quick way to ensure this is to use a <code>regexp_replace</code> to insert the <code>&amp;</code> sumbol between each word.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
+<pre><code class="language-sql">SELECT title, release_year 
 FROM netflix_shows 
 WHERE 
-    to_tsvector(title || ' ' || release_year::text) @@ 
-    to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g')) 
+	to_tsvector(title || ' ' || release_year::text) @@ 
+	to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g')) 
 ORDER BY release_year DESC;
 </code></pre>
 <pre><code>              title               | release_year
@@ -136,24 +51,24 @@ ORDER BY release_year DESC;
  Monty Python's Fliegender Zirkus |         1972
 (1 row)
 </code></pre>
-<h2 id="addinganindexforperformance">Adding an index for performance</h2>
+<h2>Adding an index for performance</h2>
 <p>Let's say it's regular for a user to search by a title and a year. For example <em>Monty Python 1972</em>. This search
 corresponds to the <code>title</code> and <code>release_year</code> column. Adding an index for that search will increase the performance
 of the query and can be done like so.</p>
-<p><chicken-asks>What's <em>fts</em>?</chicken-asks>
-<magpie-replies>Full Text Search</magpie-replies></p>
-<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts
+<p><!-- raw HTML omitted -->What's <em>fts</em>?<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Full Text Search<!-- raw HTML omitted --></p>
+<pre><code class="language-sql">CREATE INDEX idx_netflix_fts
 ON netflix_shows
 USING GIN (
-    to_tsvector('english', title || ' ' || release_year::text)
+	to_tsvector('english', title || ' ' || release_year::text)
 );
 </code></pre>
 <p>The above index can be used as per the following example.</p>
-<pre><code class="sql language-sql">SELECT title, release_year
+<pre><code class="language-sql">SELECT title, release_year
 FROM netflix_shows
 WHERE
-    to_tsvector('english', title || ' ' || release_year::text) @@
-    to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
+	to_tsvector('english', title || ' ' || release_year::text) @@
+	to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
 ORDER BY release_year DESC;
 </code></pre>
 <p>This results in the following speed up when run with <code>EXPLAIN</code>.</p>
@@ -162,44 +77,22 @@ After Index:  (cost=30.20..34.48 rows=1 width=22)
 </code></pre>
 <p>The cost drops drastically from 5057 to ~30–34 units of work. Before it was likely a sequential scan, checking every row.
 Now it's using a GIN index and skipping most rows, which is nearly 150 times faster.</p>
-<h2 id="addinganindexonatsvectorcolumn">Adding an index on a <code>tsvector</code> column</h2>
-<p>As we stated above, searching based on <em>title</em> and <em>release</em>year_ is a regular occurence. So this may justify adding
+<h2>Adding an index on a <code>tsvector</code> column</h2>
+<p>As we stated above, searching based on <em>title</em> and <em>release_year</em> is a regular occurence. So this may justify adding
 a generated <em>tsvector</em> column. Let's alter the table to add an <code>fts</code> column that creates a <code>tsvector</code> based off the
-<em>title</em> and <em>release</em>year_.</p>
-<pre><code class="sql language-sql">ALTER TABLE netflix_shows 
+<em>title</em> and <em>release_year</em>.</p>
+<pre><code class="language-sql">ALTER TABLE netflix_shows 
 ADD COLUMN fts tsvector GENERATED ALWAYS AS (
-    to_tsvector('english', title || ' ' || release_year::text)
+	to_tsvector('english', title || ' ' || release_year::text)
 ) STORED;
 </code></pre>
 <p>Then create the index.</p>
-<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts ON netflix_shows USING GIN (fts);
+<pre><code class="language-sql">CREATE INDEX idx_netflix_fts ON netflix_shows USING GIN (fts);
 </code></pre>
 <p>The <code>tsvector</code> column <code>fts</code> can now be used with the <code>@@</code> operator when searching.</p>
-<pre><code class="sql language-sql">SELECT title, release_year
+<pre><code class="language-sql">SELECT title, release_year
 FROM netflix_shows
 WHERE fts @@ to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
 ORDER BY release_year DESC;
 </code></pre>
-            </div>
-
-            <footer>
-                <p><i>Until next time,</i></p>
-                <p><i>Brian</i></p>
-            </footer>
-        </article>
-    </main>
-
-    <footer class="site-footer">
-    <p>
-        <small>Since August 4th, 2023. All words by Brian
-            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>
-    </p>
-</footer>
-
-</div>
-
-<script src="/scripts/chicken-and-magpie.js"></script>
-<script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
-</body>
-</html>
+            </div>            <footer>                <p><i>Until next time,</i></p>                <p><i>Brian</i></p>            </footer>        </article>    </main>    <footer class="site-footer">    <p>        <small>Since August 4th, 2023. All words by Brian            Douglas. <a href="mailto:brianwdouglas@proton.me">Have a comment?</a></small>    </p></footer></div><script src="/scripts/chicken-and-magpie.js"></script><script src="/scripts/skip-to-section.js"></script><script src="/scripts/code-highlighter.js"></script></body></html>
