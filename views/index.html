@@ -31,10 +31,6 @@
       content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
     />
     <meta property="og:url" content="https://www.briandouglas.ie" />
-    <meta
-      property="og:image"
-      content="http://www.briandouglas.ie/images/open-graph-index.png"
-    />
     <meta property="og:site_name" content="BrianDouglas.ie" />
 
     <!-- Twitter Meta -->
@@ -46,10 +42,6 @@
     <meta
       name="twitter:description"
       content="I write about programming, thing's I've learned whilst programming, and also some useful code snippets."
-    />
-    <meta
-      name="twitter:image"
-      content="http://www.briandouglas.ie/images/open-graph-index.png"
     />
     <meta name="twitter:site" content="@BrianDouglasIE" />
 
@@ -99,9 +91,18 @@
       </section>
 
       <main>
-        <h2>Recent Posts</h2>
-        <ul>
-          {{#newer_posts}}
+        <h2>All Posts ({{ post_count }})</h2>
+        <div class="search-container">
+          <input
+            type="text"
+            id="post-search"
+            placeholder="Search posts..."
+            aria-label="Search posts"
+          />
+          <span id="match-count">0 matches</span>
+        </div>
+        <ul id="posts">
+          {{#posts}}
           <li>
             <article>
               <h3>{{ title }}</h3>
@@ -110,21 +111,13 @@
               <a href="{{slug}}">Read more</a>
             </article>
           </li>
-          {{/newer_posts}}
-        </ul>
-
-        <h2>Older Posts</h2>
-        <ul>
-          {{#older_posts}}
-          <li>
-            <time datetime="{{date}}">{{date}}</time>
-            <a href="{{slug}}">{{title}}</a>
-          </li>
-          {{/older_posts}}
+          {{/posts}}
         </ul>
       </main>
 
       {{> site-footer}}
     </div>
+
+    <script src="/scripts/post-search.js"></script>
   </body>
 </html>

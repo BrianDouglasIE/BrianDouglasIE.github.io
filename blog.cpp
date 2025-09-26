@@ -1,6 +1,7 @@
 #include "mustache.hpp"
 #include <algorithm>
 #include <cmark.h>
+#include <cstdlib>
 #include <ctime>
 #include <filesystem>
 #include <fstream>
@@ -123,7 +124,7 @@ public:
 
     bool in_excerpt = true;
     while (getline(file, line)) {
-      if ("<!-- more -->" == trim(line)) {
+      if (line.find("<!-- more -->") != string::npos) {
         in_excerpt = false;
         continue;
       }
@@ -166,13 +167,9 @@ int main() {
   const string partials_dir = "./views/partials/";
   string site_header = read_file(partials_dir + "site-header.html");
   string site_footer = read_file(partials_dir + "site-footer.html");
-  string post_excerpt_list = read_file(partials_dir + "post-excerpt-list.html");
-  string post_title_list = read_file(partials_dir + "post-title-list.html");
 
   tmpl::partial site_header_partial{[&]() { return site_header; }};
   tmpl::partial site_footer_partial{[&]() { return site_footer; }};
-  tmpl::partial post_excerpt_list_partial{[&]() { return post_excerpt_list; }};
-  tmpl::partial post_title_list_partial{[&]() { return post_title_list; }};
 
   tmpl::data global_data;
   global_data["site-header"] = tmpl::data{site_header_partial};
@@ -201,14 +198,14 @@ int main() {
     write_file("./docs/" + post.slug() + "/index.html", post_tmpl.render(d));
   }
 
-  tmpl::data d = global_data;
-
-  tmpl::data newer_posts = tmpl::data::type::list;
-  tmpl::data older_posts = tmpl::data::type::list;
-
   sort(posts.begin(), posts.end(), [](BlogPost const &a, BlogPost const &b) {
     return a.date() > b.date();
   });
+
+  tmpl::data d = global_data;
+  d.set("post_count", to_string(posts.size()));
+
+  tmpl::data tmpl_posts = tmpl::data::type::list;
 
   int newer_post_count = 3;
   for (int i = 0; i < posts.size(); ++i) {
@@ -219,15 +216,10 @@ int main() {
     d["excerpt"] = post.excerpt();
     d["date"] = post.date_string();
 
-    if (i <= newer_post_count - 1) {
-      newer_posts.push_back(d);
-    } else {
-      older_posts.push_back(d);
-    }
+    tmpl_posts.push_back(d);
   }
 
-  d.set("newer_posts", newer_posts);
-  d.set("older_posts", older_posts);
+  d.set("posts", tmpl_posts);
 
   write_file("./docs/index.html", index_tmpl.render(d));
 
