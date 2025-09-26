@@ -6,7 +6,6 @@ things you are going to have to get used to managing memory. Which means thinkin
 and if there is one thing modern programmers hate, it's thinking.</p>
 <p>Anyway, below I have added <code>ltrim_string</code>, <code>rtrim_string</code>, and <code>trim_string</code> methods.
 I've made the code as readable as I can, and documented it with tests.</p>
-<!-- more -->
 <h2>Code</h2>
 <p>The trim methods below will return an pointer to a new <code>char *</code>. So the result of
 these methods will need freeing. I've opted to return a <code>nullptr</code> when the supplied

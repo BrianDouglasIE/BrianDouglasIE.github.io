@@ -4,7 +4,6 @@ that the form submission is legitimate and not malicious. The token is required 
 to protect against CSRF attacks. So when your user is submitting information, the form used to submit said information
 will need to contain a valid csrf token. This means adding a hidden field to the form that contains the token. In this
 post I'll demonstrate my reusable solution to this when using Spring and JTE.</p>
-<!-- more -->
 <h2>Adding the hidden field</h2>
 <p>In the below example logout form jte template, the csrf param is used to create the hidden field. In this scenario the
 controller will be required to set the <code>csrf</code> param as a model attribute.</p>

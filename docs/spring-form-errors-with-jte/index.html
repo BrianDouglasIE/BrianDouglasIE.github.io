@@ -2,7 +2,6 @@
 feel like a more <em>modern</em> alternative to Thymeleaf templates. With Spring however there are some integrations that a
 Thymeleaf user would expect, that are missing when using JTE. Automatic form error association being one. So I have
 documented how to pass form errors to your jte templates below.</p>
-<!-- more -->
 <h2>The problem</h2>
 <p>Let's say we have a <code>RegistrationForm</code> class, that has various validator annotations. When one of these validators fails
 we expect the <code>RegistrationController</code> to return the registration form view with the errors present, such as the below

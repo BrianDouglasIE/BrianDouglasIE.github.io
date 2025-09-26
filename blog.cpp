@@ -74,17 +74,17 @@ string read_file(string file_path) {
 }
 
 void write_file(const std::string &file_path, const std::string &content) {
-    std::ofstream file(file_path, std::ios::out | std::ios::trunc);
+  std::ofstream file(file_path, std::ios::out | std::ios::trunc);
 
-    if (!file.is_open()) {
-        throw std::runtime_error("Failed to open file for writing: " + file_path);
-    }
+  if (!file.is_open()) {
+    throw std::runtime_error("Failed to open file for writing: " + file_path);
+  }
 
-    file << content;
+  file << content;
 
-    if (!file) {
-        throw std::runtime_error("Failed to write content to file: " + file_path);
-    }
+  if (!file) {
+    throw std::runtime_error("Failed to write content to file: " + file_path);
+  }
 }
 
 string trim(string input) {
@@ -121,12 +121,23 @@ public:
     _date = parse_date_string(tokens[1], "%d/%m/%Y");
     _tags = split(remove_chars_from_string(tokens[2], "[]"), ",");
 
+    bool in_excerpt = true;
     while (getline(file, line)) {
+      if ("<!-- more -->" == trim(line)) {
+        in_excerpt = false;
+        continue;
+      }
+
+      if (in_excerpt) {
+        _excerpt += line + newline;
+      }
+
       _markdown += line + newline;
     }
   }
 
   const string title() const { return _title; }
+  const string excerpt() const { return _excerpt; }
   const string markdown() const { return _markdown; }
   const string date_string() const { return _date_string; }
   time_t date() const { return _date; }
@@ -140,6 +151,7 @@ public:
 private:
   string _src_file;
   string _title;
+  string _excerpt;
   time_t _date;
   string _date_string;
   string _markdown;
@@ -162,28 +174,62 @@ int main() {
   tmpl::partial post_excerpt_list_partial{[&]() { return post_excerpt_list; }};
   tmpl::partial post_title_list_partial{[&]() { return post_title_list; }};
 
+  tmpl::data global_data;
+  global_data["site-header"] = tmpl::data{site_header_partial};
+  global_data["site-footer"] = tmpl::data{site_footer_partial};
+
   vector<BlogPost> posts;
   for (const auto &entry : fs::directory_iterator(posts_dir)) {
     BlogPost post(entry.path());
     posts.push_back(post);
 
-    char *html = cmark_markdown_to_html(post.markdown().c_str(), post.markdown().size(), CMARK_OPT_UNSAFE);
+    char *html = cmark_markdown_to_html(
+        post.markdown().c_str(), post.markdown().size(), CMARK_OPT_UNSAFE);
 
-    tmpl::data d;
-    d["site-header"] = tmpl::data{site_header_partial};
-    d["site-footer"] = tmpl::data{site_footer_partial};
-    d["post-excerpt-list"] = tmpl::data{post_excerpt_list_partial};
-    d["post-title-list"] = tmpl::data{post_title_list_partial};
+    tmpl::data d = global_data;
     d["date"] = post.date_string();
     d["title"] = post.title();
+    d["excerpt"] = post.excerpt();
+    d["content"] = string(html);
 
     tmpl::data tags = tmpl::data::type::list;
-    for(auto tag : post.tags()) tags.push_back(tag);
+    for (auto tag : post.tags()) {
+      tags.push_back(tag);
+    }
     d.set("tags", tags);
-    d["content"] = string(html);
 
     write_file("./docs/" + post.slug() + "/index.html", post_tmpl.render(d));
   }
+
+  tmpl::data d = global_data;
+
+  tmpl::data newer_posts = tmpl::data::type::list;
+  tmpl::data older_posts = tmpl::data::type::list;
+
+  sort(posts.begin(), posts.end(), [](BlogPost const &a, BlogPost const &b) {
+    return a.date() > b.date();
+  });
+
+  int newer_post_count = 3;
+  for (int i = 0; i < posts.size(); ++i) {
+    auto post = posts[i];
+    tmpl::data d = tmpl::data::type::object;
+    d["title"] = post.title();
+    d["slug"] = post.slug();
+    d["excerpt"] = post.excerpt();
+    d["date"] = post.date_string();
+
+    if (i <= newer_post_count - 1) {
+      newer_posts.push_back(d);
+    } else {
+      older_posts.push_back(d);
+    }
+  }
+
+  d.set("newer_posts", newer_posts);
+  d.set("older_posts", older_posts);
+
+  write_file("./docs/index.html", index_tmpl.render(d));
 
   return 0;
 }

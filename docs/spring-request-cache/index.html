@@ -2,7 +2,6 @@
 to alter the fetched post in some way. Before the post is altered various checks may need to
 happen, such as an ownership check. But we want to avoid each check fetching the same post
 from the database. This is when a cache that is scoped to a request's life cycle comes in handy.</p>
-<!-- more -->
 <p>In a <a href="/pre-auth-spring">previous post</a> I introduced a method for carrying out ownership checks
 using Spring Security's <code>@PreAuthorize</code> annotation. Whilst the approach was clean and maintainable
 it did introduce a performance issue. This is because <code>@PreAuthorize</code> executes before the method body.
