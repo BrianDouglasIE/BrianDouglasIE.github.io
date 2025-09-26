@@ -1,12 +1,11 @@
----
-title: Generate SQLite table types for Typescript
-date: 01/09/2025
-tags: [js]
+Generate SQLite table types for Typescript
+01/09/2025
+js
 ---
 
 Bun has an sqlite interface built in. It make for some great dev-ex. One thing that ircks me when dealing with
 sql and Typescript however, is that when I run queries I often have to model the db table that I am querying in
-Typescript. This usually involves a manual effort, but not anymore. I have written a short script to auto 
+Typescript. This usually involves a manual effort, but not anymore. I have written a short script to auto
 generate Typescript types for table definitions.
 
 <!-- more -->
@@ -112,38 +111,38 @@ The generated output is as follows:
 ```typescript
 /* GENERATED FILE CONTENT DO NOT EDIT */
 
-export type migrations_table = { 
+export type migrations_table = {
   id: number;
   name: string;
   created_at: string
 }
 
-export type sqlite_sequence_table = { 
+export type sqlite_sequence_table = {
   name: any;
   seq: any
 }
 
-export type users_table = { 
+export type users_table = {
   id: number;
   email: string;
   password: string;
   created_at: string
 }
 
-export type projects_table = { 
+export type projects_table = {
   id: number;
   name: string;
   created_at: string
 }
 
-export type project_users_table = { 
+export type project_users_table = {
   project_id: number;
   user_id: number;
   role: string;
   created_at: string
 }
 
-export type questions_table = { 
+export type questions_table = {
   id: number;
   text: string;
   project_id: number;
@@ -151,7 +150,7 @@ export type questions_table = {
   created_at: string
 }
 
-export type answers_table = { 
+export type answers_table = {
   id: number;
   text: string;
   question_id: number;

@@ -1,7 +1,6 @@
----
-title: Tower of Hanoi in Java
-date: 25/03/2025
-tags: [java]
+Tower of Hanoi in Java
+25/03/2025
+java
 ---
 
 The Tower of Hanoi is a commonly used coding interview question. The solution requires
@@ -11,13 +10,13 @@ the developer to write a recursive method.
 
 <magpie-trinket>For a detailed explanation of the problem look at [wiki/Tower_of_Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi)</magpie-trinket>
 
-Whilst it's not _that_ complex, it can be a tricky one to get your head around if you 
+Whilst it's not _that_ complex, it can be a tricky one to get your head around if you
 haven't seen it before, or are not familiar with recusive method calls. At an interview
 recently I was asked to write an implementation of it using Java. Well I could use any
-language, but I chose to use Java as the role was for a fullstack Spring dev. 
+language, but I chose to use Java as the role was for a fullstack Spring dev.
 
 I was able to implement it successfully after struggling with parameter order for a couple
-of minutes. I had the advantage of solving this problem before, thank you [exercism.io](https://exercism.org). 
+of minutes. I had the advantage of solving this problem before, thank you [exercism.io](https://exercism.org).
 So I had an idea of what needed to be done.
 
 ## Test Suite

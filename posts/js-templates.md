@@ -1,7 +1,6 @@
----
-title: Template strings as a view engine
-date: 17/08/2025
-tags: [js]
+Template strings as a view engine
+17/08/2025
+js
 ---
 
 Template strings in JS can be used to create a view engine without adding any extra libraries.
@@ -29,7 +28,7 @@ const body = compileTemplate(await bodyFile.text(), ['name', 'hobbies'])
 const layout = compileTemplate(await layoutFile.text(), ['data'])
 
 const rendereredHTML = layout({
-    title:'my page', 
+    title:'my page',
     body: body('brian', ['a', 'b', 'c'])
 })
 ```

@@ -1,7 +1,6 @@
----
-title: Homer's Drinking Bird
-tags: [productivity, python]
-date: 20/01/2025
+Homer's Drinking Bird
+20/01/2025
+productivity,python
 ---
 
 Do you work for a large multinational? Do you have a minimal amount of work to do

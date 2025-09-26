@@ -1,10 +1,9 @@
----
-title: Literal templates
-tags: [js]
-date: 21/08/2025
+Literal templates
+21/08/2025
+js
 ---
 
-I introduce to you "literal-templates", a lightweight, flexible template engine for Node.js. 
+I introduce to you "literal-templates", a lightweight, flexible template engine for Node.js.
 Offering dynamic registration and rendering of template views, includes, and helpers.
 
 <!-- more -->

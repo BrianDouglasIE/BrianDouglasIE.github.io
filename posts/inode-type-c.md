@@ -1,7 +1,6 @@
----
-title: Get inode type in C
-tags: [c]
-date: 10/07/2025
+Get inode type in C
+10/07/2025
+c
 ---
 
 Here is a string representation of a path. But tell me, is it a directory? is it a file? maybe it's a symlink?

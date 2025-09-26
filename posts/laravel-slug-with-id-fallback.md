@@ -1,7 +1,6 @@
----
-title: Slugs with an ID fallback in Laravel
-date: 12/06/2024
-tags: [laravel]
+Slugs with an ID fallback in Laravel
+12/06/2024
+laravel
 ---
 
 Slugs make a URL look legit. No one wants to click on a link that reads like `https://mysite.com/blog/1`. I'd definitely get hacked if I clicked that. But what if it read `https://mysite.com/blog/1/some-awesome-content`. Now that looks trustworthy. I'm definitely gonna see some awesome content if I click that link.

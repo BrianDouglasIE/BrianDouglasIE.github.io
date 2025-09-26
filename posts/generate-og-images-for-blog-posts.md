@@ -1,7 +1,6 @@
----
-title: Generate OG images for blog posts
-date: 07/09/2024
-tags: [node, js]
+Generate OG images for blog posts
+07/09/2024
+node,js
 ---
 
 When sharing an article on social media you will see a preview. The preview uses the html `og:image` meta tag. In this
@@ -33,7 +32,7 @@ He probably leaves out a load of detail in the next section. But the general gis
 </ul>
 </magpie-trinket>
 
-### Gotcha 1 - Loading the font 
+### Gotcha 1 - Loading the font
 
 The first gotcha when using `PureImage` is that there are no fonts loaded by default. So in order to draw text to our image
 we must first load the font like so.
@@ -93,7 +92,7 @@ type Post = {
     slug: string
     html: string
     excerpt: string
-    data: { title: string, date: string, tags: string[] }
+    data: { title: string, date:string, tags:string[] }
 }
 ```
 
@@ -170,7 +169,7 @@ below image.
 
 <img class="pure-img" src="/images/og-images/generate-og-images-for-blog-posts.png"  alt="the og:image for this blog"/>
 
-Unfortunately as you can see from the image, the library we used (`PureImage`) isn't great at rendering fonts. So the font 
-looks a little choppy. Potentially a different library would do a better job. Alternatively we could use a tool like 
+Unfortunately as you can see from the image, the library we used (`PureImage`) isn't great at rendering fonts. So the font
+looks a little choppy. Potentially a different library would do a better job. Alternatively we could use a tool like
 webdriver.io or selenium to render the template as html and save it as an image which may yield better results. For me
 however, the current implementation will suffice.

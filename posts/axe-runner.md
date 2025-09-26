@@ -1,7 +1,6 @@
----
-title: AxeRunner
-tags: [java]
-date: 06/03/2025
+AxeRunner
+06/03/2025
+java
 ---
 
 AxeRunner is used to run accessibility tests on web pages using the [axe-core](https://www.deque.com/axe/) library in Java.
@@ -10,8 +9,8 @@ AxeRunner is used to run accessibility tests on web pages using the [axe-core](h
 
 <magpie-trinket>Source code available at [BrianDouglasIE/AxeRunner](https://github.com/BrianDouglasIE/AxeRunner)</magpie-trinket>
 
-It integrates with Selenium WebDriver to automate web accessibility testing, providing detailed reports on accessibility 
-violations, passes, and other relevant results. The resulting axe-core report is converted into Java classes so that it 
+It integrates with Selenium WebDriver to automate web accessibility testing, providing detailed reports on accessibility
+violations, passes, and other relevant results. The resulting axe-core report is converted into Java classes so that it
 can be used within a Java project and allows for type hinting.
 
 Quick synopsis of the package.

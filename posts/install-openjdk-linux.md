@@ -1,7 +1,6 @@
----
-title: Install OpenJDK on Ubuntu
-date: 02/04/2025
-tags: [java]
+Install OpenJDK on Ubuntu
+02/04/2025
+java
 ---
 
 Let's install OpenJDK 21 LTS on Ubuntu.

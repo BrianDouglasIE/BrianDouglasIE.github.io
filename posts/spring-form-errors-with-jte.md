@@ -1,7 +1,6 @@
----
-title: Handle Spring form errors with JTE
-date: 17/06/2025
-tags: [ java, spring ]
+Handle Spring form errors with JTE
+17/06/2025
+java,spring
 ---
 
 I've been working with JTE (Java Template Engine) templates in my latest Spring app. They are a joy to work with and

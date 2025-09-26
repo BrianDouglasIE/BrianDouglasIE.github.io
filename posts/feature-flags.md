@@ -1,7 +1,6 @@
----
-title: Feature flags db schema
-date: 05/08/2025
-tags: [sql]
+Feature flags db schema
+05/08/2025
+sql
 ---
 
 Feature flags are simple _on_ / _off_ flags that can be used to toggle application features without needing a production release.

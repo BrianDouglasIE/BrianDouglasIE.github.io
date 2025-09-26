@@ -1,7 +1,6 @@
----
-title: Sensible SQLite defaults
-tags: [sql]
-date: 17/10/2024
+Sensible SQLite defaults
+17/10/2024
+sql
 ---
 
 SQLite is cool now. DHH uses it, Laravel defaults to it. Here is a list of

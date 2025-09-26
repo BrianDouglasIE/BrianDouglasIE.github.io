@@ -1,7 +1,6 @@
----
-title: "Linting is procrastination."
-date: 31/01/2025
-tags: [rant]
+Linting is procrastination.
+31/01/2025
+rant
 ---
 
 Imagine this scenario. A developer has an opinion. They feel that it is vitally important that code
@@ -9,7 +8,7 @@ adhere to an arbitrary style guide.
 
 <!-- more -->
 
-The rules of the style guide do not in anyway impact the function of the code. They do not benefit the 
+The rules of the style guide do not in anyway impact the function of the code. They do not benefit the
 end user in any way. But our imaginary developer feels that these rules, and the enforcement there of,
 are top priority. The product that they are working on may require new features or performance improvements.
 The company that owns the product may have tight deadlines and financial incentives. These are simply not
@@ -26,7 +25,7 @@ time. Because a javascript string used the incorrect, BUT PERFECTLY VALID, quota
 
 Then to waste even more time, enforcement of rules and style guides are brought up in scrum meetings.
 Where countless hours are lost arguing about opinions that do not benefit the end user in any way.
-Countless hours wasted, countless money wasted, no features delivered. 
+Countless hours wasted, countless money wasted, no features delivered.
 
 Procrastination is "the action of delaying or postponing something". In this case the concept of style guides
 and linters are delaying the delivery of features. Developers are postponing actual work, in favour of

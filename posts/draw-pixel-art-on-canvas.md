@@ -1,7 +1,6 @@
----
-title: Prevent pixel art blur on canvas
-tags: [js, canvas]
-date: 15/10/2024
+Prevent pixel art blur on canvas
+15/10/2024
+js,canvas
 ---
 
 Nobody wants to see blurry pixel art rendered in a game. So let's investigate
@@ -17,7 +16,7 @@ Full source code for this article is available at <a href="https://github.com/Br
 
 So for this demo let's say we want to render the sprite of our game's hero character
 on a canvas. The sprite sheet that I will be using is from KenneyNL, it's the 1-Bit
-monochrome asset pack. Each sprite in the canvas is 16x16 pixels in dimension. This 
+monochrome asset pack. Each sprite in the canvas is 16x16 pixels in dimension. This
 will be scaled up to around 4 times it's original size.
 
 I want my canvas to be 640x480 pixels in dimension. If I were to draw a sprite
@@ -34,7 +33,7 @@ Before I even get as far as rendering my pixel art character on a canvas there i
 initial boilerplate code that is needed.
 
 Firstly I'll need to create a canvas element to render the game on. I can do that with
-the following code. Which creates the canvas and appends it to the document's body. I 
+the following code. Which creates the canvas and appends it to the document's body. I
 also set the canvas' width and height to be a quarter of the intended size. I will scale
 this up later.
 
@@ -116,5 +115,3 @@ canvas.style.imageRendering = "pixelated"
 The canvas now renders a crisp sprite.
 
 ![crisp sprite render](/images/crisp-sprite-render.png)
-
-

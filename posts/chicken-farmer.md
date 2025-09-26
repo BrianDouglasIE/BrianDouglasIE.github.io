@@ -1,7 +1,6 @@
----
-title: Chicken Farmer, a Snake clone
-tags: [canvas, js]
-date: 18/11/2024
+Chicken Farmer, a Snake clone
+18/11/2024
+canvas,js
 ---
 
 I set myself a goal, make a game in 3 hours. The results, a snake

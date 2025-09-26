@@ -1,7 +1,6 @@
----
-title: Spring database seeding
-date: 29/05/2025
-tags: [ java ]
+Spring database seeding
+29/05/2025
+java
 ---
 
 I'm working on a website that functions as an index of trades people in Ireland. It allows users to register a trade

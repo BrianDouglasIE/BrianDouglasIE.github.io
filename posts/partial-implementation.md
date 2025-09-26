@@ -1,7 +1,6 @@
----
-title: Partial function implementation
-date: 25/11/2024
-tags: [js]
+Partial function implementation
+25/11/2024
+js
 ---
 
 Partial function implementation is a functional programming technique that
@@ -10,7 +9,7 @@ can be used to create many functions from one, by binding fixed arguments.
 <!-- more -->
 
 <magpie-trinket>
-Another name for this is <i>currying</i>. You can read more about it at 
+Another name for this is <i>currying</i>. You can read more about it at
 <a href="https://en.wikipedia.org/wiki/Currying">wiki/currying</a>.
 </magpie-trinket>
 
@@ -56,4 +55,3 @@ function partial<T, U extends any[], V extends any[]>(
 There is possibly a nicer way to type this, that does not use `any`. However I don't
 feel like wrestling with the type system. Mainly because the use of `partial` implementation
 lends itself better to loosely typed programming.
-

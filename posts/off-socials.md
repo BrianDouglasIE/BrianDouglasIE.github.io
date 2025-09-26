@@ -1,7 +1,6 @@
----
-title: "I'm off social media"
-date: 01/02/2025
-tags: [rant]
+I'm off social media
+01/02/2025
+rant
 ---
 
 It didn't last long, only a month.

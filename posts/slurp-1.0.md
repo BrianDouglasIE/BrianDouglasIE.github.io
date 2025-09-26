@@ -1,7 +1,6 @@
----
-title: Slurp - A Java task runner
-date: 09/04/2025
-tags: [java]
+Slurp - A Java task runner
+09/04/2025
+java
 ---
 
 Introducing Slurp 1.0. Slurp is a task runner for Java. It allows tasks, aka `Runnable` instances to be executed.

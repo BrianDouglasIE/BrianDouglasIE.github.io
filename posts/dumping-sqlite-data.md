@@ -1,7 +1,6 @@
----
-title: Creating a database dump with SQLite
-date: 17/02/2025
-tags: [sqlite, sql]
+Creating a database dump with SQLite
+17/02/2025
+sqlite,sql
 ---
 
 For one reason or another you may want to _dump_ your sqlite data into an sql file.

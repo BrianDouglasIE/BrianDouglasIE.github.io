@@ -1,23 +1,22 @@
----
-title: "GameDev in C Part 3: Drawing a Slime"
-date: 31/01/2025
-tags: [c, raylib, gamedev]
+GameDev in C Part 3: Drawing a Slime
+31/01/2025
+c,raylib,gamedev
 ---
 
 It's part 3 and I am finally able to draw something meaningful on the screen.
 
 <!-- more -->
 
-I've decided that the game will be a DoodleJump clone, named SlimeJump. The 
+I've decided that the game will be a DoodleJump clone, named SlimeJump. The
 goal will be to ascend to the highest platform possible. Sort of like a vertical
-endless runner. The Slime's movement will be somewhat limited to add to the 
+endless runner. The Slime's movement will be somewhat limited to add to the
 difficulty. There will be a start menu and high score list. I will create the
 sprites and sfx myself.
 
 ## The Slime
 
 I have decided to go with pixel art. This means that the Slime will consist of
-16x16 pixel frames. Each frame will correspond to a bounding box that will be 
+16x16 pixel frames. Each frame will correspond to a bounding box that will be
 displayed based on the Slime's state _(which will be the topic of part 4)_ and
 animation duration.
 
@@ -38,7 +37,7 @@ It's by adding the css rule <code>image-rendering: pixelated;</code>.
 ## Rendering a texture
 
 When it comes to drawing the sprite on the screen. Raylib requires the texture to be
-loaded first. Naturally this requires the `LoadTexture` method. This must be called 
+loaded first. Naturally this requires the `LoadTexture` method. This must be called
 after the window is initialised. Otherwise you will see some random error that is not
 at all self explanatory. The code I use to render the texture looks like this:
 

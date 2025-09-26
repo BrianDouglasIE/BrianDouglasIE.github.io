@@ -1,12 +1,11 @@
----
-title: "New Lib: Blueprint Factory"
-date: 28/05/2025
-tags: [java]
+New Lib: Blueprint Factory
+28/05/2025
+java
 ---
 
 I'm working on an app that requires a large amount of seed data. In order to achieve this I created a factory pattern
-that mimics Laravel's approach. This allows objects to be generated with ease and uses Faker to supply test data. I 
-have extracted it into a package and uploaded it to Maven Central. I plan to use this approach in future projects. 
+that mimics Laravel's approach. This allows objects to be generated with ease and uses Faker to supply test data. I
+have extracted it into a package and uploaded it to Maven Central. I plan to use this approach in future projects.
 Details of the library are below.
 
 <!-- more -->
@@ -176,5 +175,5 @@ User user = userFactory
 
 ## LICENSE
 
-Copyright (c) 2025 Brian Douglas.  
+Copyright (c) 2025 Brian Douglas.
 See the LICENSE file for license rights and limitations.

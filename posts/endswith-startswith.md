@@ -1,7 +1,6 @@
----
-title: startswith and endswith
-date: 27/07/2025
-tags: [c]
+startswith and endswith
+27/07/2025
+c
 ---
 
 Want to know if a file path ends with _.md_ or a message starts with _hello_? Well then I have

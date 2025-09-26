@@ -1,7 +1,6 @@
----
-title: Using a PostgreSQL enum for state
-date: 06/10/2024
-tags: [ sql ]
+Using a PostgreSQL enum for state
+06/10/2024
+sql
 ---
 
 There are lot's of occasions where I see SQL table definitions that contain
@@ -13,7 +12,7 @@ would be much more optimal to use an `enum`.
 ## Using an Enum for State
 
 Let's look at the migration for a `tickets` table. In this example we can think
-of a `ticket` as an item of work that may go through various states. Let's 
+of a `ticket` as an item of work that may go through various states. Let's
 start by naively adding a `boolean` property for each state that the ticket
 might go through.
 
@@ -31,7 +30,7 @@ CREATE TABLE IF NOT EXISTS tickets {
 }
 ```
 
-We can tell from the above migration that a ticket has four known states `open`, 
+We can tell from the above migration that a ticket has four known states `open`,
 `completed`, `in_progress`, and `on_hold`. I say _known_ states as in the future
 another state may appear, for example `pending_approval`. Using the above pattern
 this would require yet another property to be added. But really all these properties
@@ -40,7 +39,7 @@ would add value.
 
 By using an `enum` all the properties used to communicate state can be combined
 into one `state` property. This will also remove any logic needed to ensure that
-a ticket is only in one state at any given time, which would be needed in the 
+a ticket is only in one state at any given time, which would be needed in the
 previous example.
 
 An `enum` can be added as follows.
@@ -87,4 +86,3 @@ like so.
 ALTER TYPE ticket_state ADD VALUE 'pending_approval' BEFORE 'completed';
 ALTER TYPE ticket_state ADD VALUE 'pending_approval' AFTER 'in_progress';
 ```
-

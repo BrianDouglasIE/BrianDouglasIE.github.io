@@ -1,7 +1,6 @@
----
-title: Use Codium not Code
-tags: [rant]
-date: 14/07/2025
+Use Codium not Code
+14/07/2025
+rant
 ---
 
 Most people I see coding these days use Visual Studio Code. But Visual Studio Code is

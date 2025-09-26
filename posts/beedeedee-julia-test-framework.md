@@ -1,7 +1,6 @@
----
-title: I wrote a test framework in Julia
-date: 21/10/2024
-tags: [julia]
+I wrote a test framework in Julia
+21/10/2024
+julia
 ---
 
 I didn't set out to write a test framework in Julia. But I ended up
@@ -43,14 +42,14 @@ function greet(person::Student)
 end
 ```
 
-The correct variant of greet get's called based on the type of `struct` that is 
+The correct variant of greet get's called based on the type of `struct` that is
 passed to the method. A `struct` being the way to define a custom data type.
 This takes a little bit of getting used to. But once I got my head around the fact
 that Julia operators were methods it started to make sense. This clicked when
 it came to writing comparators for [BeeDeeDee.jl](https://github.com/BrianDouglasIE/BeeDeeDee.jl/tree/main) the test framework I ended up writing.
 
 But __why__ did I end up writing a test framework? I hear you ask. Well because the built
-in Julia test framework lacked features that I wanted and would expect every test 
+in Julia test framework lacked features that I wanted and would expect every test
 framework to have. For example hooks, like `before_each` and `after_all`, as well
 as human readable methods. The latter being something that the Julia community
 seem to readily reject. Opting to use mathematic operators where they can. Which
@@ -79,7 +78,7 @@ In BeeDeeDee the `expect` method takes a value and creates an `Expectation` stru
 that value. The _comparators_, which are methods that are called against the assertion, then
 take the value of the assertion and apply their own logic. These are essentially methods which
 check for the correct `boolean` value when comparing their own value with the assertion. I say
-_correct_ `boolean` value as an `Expectation` may be negated using the `not` comparator. Which 
+_correct_ `boolean` value as an `Expectation` may be negated using the `not` comparator. Which
 essentially reverses the expected `boolean` value from `True` to `False`.
 
 The `Expectation` struct itself holds it's own value as well as it's comparator function and
@@ -101,7 +100,7 @@ end
 The test framework allows for tests to be grouped and hooks to be applied to those groups.
 Implementing this was difficult and my solution was not ideal. In order to keep track of
 what the current test suite was I used a global variable that stored the current test suite's
-id. The id belonged to a `Suite` struct that was created when either `testgroup` or `describe` 
+id. The id belonged to a `Suite` struct that was created when either `testgroup` or `describe`
 was called. This struct would then be used to hold information such as the tests which were
 run inside the suite, the results of those tests, as well as the hooks that should be run before
 and after each test. The definition of these structs are below.
@@ -138,7 +137,7 @@ end
 I mentioned that this was not a _good_ solution. This is because it would not allow for concurrent
 test files to be run. Because a global variable is used to store the current suite, the tests
 must be executed in order. Otherwise their results could end up in the wrong `Suite` struct.
-I'm still not entirely sure how this could be solved. I would have to take a look at other 
+I'm still not entirely sure how this could be solved. I would have to take a look at other
 frameworks for some inspiration.
 
 The final noteworthy part of the implementation was the use of Julia's built in operators to create
@@ -166,8 +165,8 @@ Julia. There are some real opportunities to write beautiful code. The use of the
 pipe operator allow for concise and readable code. Even if it took me a while to understand the
 argument order required for the `do` keyword.
 
-It's a shame however that the _beautiful_ and readable syntax which Julia can offer is contrasted 
-with some awkward syntax such as how default arguments are assigned in a struct. For example, the 
+It's a shame however that the _beautiful_ and readable syntax which Julia can offer is contrasted
+with some awkward syntax such as how default arguments are assigned in a struct. For example, the
 `Suite` struct in BeeDeeDee.jl.
 
 ```julia
@@ -190,7 +189,7 @@ techniques. They are used frequently, but I've only ever found them to add compl
 Another example of Julia being awkward is in it's use of `modules` and `exports`. I still don't
 fully understand how `modules` work. One might think of them sort of like a `class` in OOP. They act
 like a container for code, which can export certain members. Unfortunately though Julia forces
-the developer to export each method individually. Leading to some verbose code. Below is the 
+the developer to export each method individually. Leading to some verbose code. Below is the
 comparators export for BeeDeeDee. A `public` keyword on the method definition would be much nicer.
 
 ```julia
@@ -217,17 +216,16 @@ to_throw
 Imports are equally awkward. Every time a module is imported it is imported fresh. Meaning that
 if A.jl and B.jl are in the same application and import C.jl. There will be a conflict and an error
 with Julia complaining that C.jl is already imported. To get around this Julia developers import
-modules into a common parent and access them using a path like syntax. With `using ..C` meaning 
+modules into a common parent and access them using a path like syntax. With `using ..C` meaning
 import the C.jl module that was required in my parent's scope... yikes.
 
 ### Will Julia become a mainstream language?
 
-In data science and academia, yes. Maybe third or fourth for popularity at it's height. But only 
-because there seems to be a lot of money behind it. Well at least I assume there must be if 
+In data science and academia, yes. Maybe third or fourth for popularity at it's height. But only
+because there seems to be a lot of money behind it. Well at least I assume there must be if
 Formula 1 cars are being sponsored by JuliaHub.
 
 In anything else, no. I was not convinced that Julia would help me solve any problems on the web or
 in game dev. It did introduce me to some novel concepts. But ultimately there was nothing there to
 convert me into a Julia developer. The main annoyances being around how modules work. I could never
 imagine building a large complicated system in a language that has such confusing code interop.
-

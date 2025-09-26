@@ -1,7 +1,6 @@
----
-title: "Checking ownership in Spring"
-date: 12/05/2025
-tags: [spring, java]
+Checking ownership in Spring
+12/05/2025
+spring,java
 ---
 
 Say a forum user creates a post. Only that user, the owner, should be allowed to alter said post.
@@ -29,11 +28,11 @@ public class PostSecurity {
 }
 ```
 
-This method finds the post with an id matching `postId`, gets the user attached to that post, then 
+This method finds the post with an id matching `postId`, gets the user attached to that post, then
 asserts whether the post's user's email matches the currently authenticated user. If the
 `Optional<Post>` from `findById` is empty, then `false` is returned.
 
-But now the question is, where should this method be called? Certainly it's not the 
+But now the question is, where should this method be called? Certainly it's not the
 `PostController` and calling it inside other `PostService` methods will lead to repetition and the
 passing around of arguments unnecessarily.
 

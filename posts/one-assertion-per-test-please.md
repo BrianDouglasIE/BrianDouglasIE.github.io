@@ -1,11 +1,10 @@
----
-title: One assertion per test please
-date: 17/08/2024
-tags: [js, testing]
+One assertion per test please
+17/08/2024
+js,testing
 ---
 
 Please! when you are writing tests try to limit each test case to one `expect`.
-Let's refactor the monstrosity below to understand why fewer expects and more 
+Let's refactor the monstrosity below to understand why fewer expects and more
 tests are better.
 
 <!-- more -->
@@ -57,7 +56,7 @@ a form where the user can submit their name. The test technically works, but it 
 not communicate it's intent.
 
 I see code like this all the time. Especially when working with UI frameworks like
-React, Angular, and Vue. Developers pile assertion upon assertion into one large 
+React, Angular, and Vue. Developers pile assertion upon assertion into one large
 test case. And when a new requirement comes along? they just add in yet another
 assertion.
 
@@ -133,7 +132,7 @@ describe('User Name Submit Form', () => {
 In the above refactor any shared test set up is broken out into a `beforeEach` hook
 and each assertion is given its own test case.
 
-The advantage of doing this becomes immediately clear. The tests now read like a 
+The advantage of doing this becomes immediately clear. The tests now read like a
 story. We know exactly what the intent of each test case is, and  we only have to
 read a small amount of code to understand the test's logic. To accentuate my point
 about read ability. If we were to take the name of each test case and list it out
@@ -159,6 +158,6 @@ User Name Submit Form
 
 Yea, not as descriptive. Who knows what that test does. Not me.
 
-So in summary, try your best to write your test cases as if they were telling a 
+So in summary, try your best to write your test cases as if they were telling a
 story. Try to stick to one assertion per test, and split out any shared logic into
 hooks, like `beforeEach` and `beforeAll`.

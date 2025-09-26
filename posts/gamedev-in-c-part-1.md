@@ -1,7 +1,6 @@
----
-title: "GameDev in C Part 1: Hello World"
-date: 21/01/2025
-tags: [c, raylib, gamedev]
+GameDev in C Part 1: Hello World
+21/01/2025
+c,raylib,gamedev
 ---
 
 This is the start of a new blog series. I will be documenting
@@ -90,8 +89,8 @@ At line:1 char:1
     + FullyQualifiedErrorId : NativeCommandFailed
 ```
 
-Ok, so the error is telling me that the specified executable is not correct for the OS. 
-So do I add `-m64` and make the command `gcc -m64 -c main.c -o build.exe`? Nope same 
+Ok, so the error is telling me that the specified executable is not correct for the OS.
+So do I add `-m64` and make the command `gcc -m64 -c main.c -o build.exe`? Nope same
 error. So fast forward 2 hours, and I figure it out.
 
 ```
@@ -114,7 +113,7 @@ build : main.o
 main.o : main.c
 	gcc -c main.c
 
-clean : 
+clean :
 	powershell Remove-Item *.exe, *.o
 ```
 

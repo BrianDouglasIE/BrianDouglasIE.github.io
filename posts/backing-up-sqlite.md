@@ -1,14 +1,13 @@
----
-title: Backing up an SQLite database
-date: 16/02/2025
-tags: [sqlite, sql]
+Backing up an SQLite database
+16/02/2025
+sqlite,sql
 ---
 
 SQLite is a file based database. This makes common tasks like back-ups trivial.
 
 <!-- more -->
 
-A database backup is essentially a snapshot of the database's current state. This 
+A database backup is essentially a snapshot of the database's current state. This
 is a useful thing to have, just in case you need to restore a database to an old state.
 Depending on the activity on your app you may want to back it up frequently.
 

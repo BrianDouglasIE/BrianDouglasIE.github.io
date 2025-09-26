@@ -1,7 +1,6 @@
----
-title: Rust, the Cunning Wizard
-date: 05/12/2024
-tags: [rust]
+Rust, the Cunning Wizard
+05/12/2024
+rust
 ---
 
 Oh wise ai of the gippity.

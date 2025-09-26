@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-using namespace kainjow::mustache;
+namespace tmpl = kainjow::mustache;
 
 using namespace std;
 namespace fs = filesystem;
@@ -22,15 +22,15 @@ constexpr const char *newline = "\r\n";
 constexpr const char *newline = "\n";
 #endif
 
-struct BlogPost {
-  string src_file_path;
-  string raw_content;
-  string html;
-  string title;
-  string date;
-  string tags;
-  string slug;
-};
+time_t parse_date_string(string input, string fmt) {
+  tm tm = {};
+  istringstream ss(input);
+  ss >> get_time(&tm, "%d/%m/%Y");
+  if (ss.fail()) {
+    cout << "Failed to parse date string: " << input << endl;
+  }
+  return mktime(&tm);
+}
 
 vector<string> split(string input, string del) {
   vector<string> tokens;
@@ -60,18 +60,12 @@ string remove_from_string(string s, const string &sub) {
   return s;
 }
 
-time_t parse_date_string(string input, string fmt) {
-  tm tm = {};
-  istringstream ss(input);
-  ss >> get_time(&tm, "%d/%m/%Y");
-  if (ss.fail()) {
-    cout << "Failed to parse date string: " << input << endl;
-  }
-  return mktime(&tm);
-}
-
 string read_file(string file_path) {
   ifstream file(file_path);
+  if (!file) {
+    cerr << "Could not read: " << file_path << endl;
+  }
+
   string result;
   string line;
   while (getline(file, line))
@@ -79,88 +73,116 @@ string read_file(string file_path) {
   return result;
 }
 
-void write_file(string file_path, string content) {
-  ofstream file;
-  file.open(file_path);
-  file << content;
-  file.close();
+void write_file(const std::string &file_path, const std::string &content) {
+    std::ofstream file(file_path, std::ios::out | std::ios::trunc);
+
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to open file for writing: " + file_path);
+    }
+
+    file << content;
+
+    if (!file) {
+        throw std::runtime_error("Failed to write content to file: " + file_path);
+    }
 }
+
+string trim(string input) {
+  input.erase(0, input.find_first_not_of(" \t"));
+  input.erase(input.find_last_not_of(" \t") + 1);
+  return input;
+}
+
+class BlogPost {
+public:
+  BlogPost(string src_file) : _src_file{src_file} {
+    if (!fs::exists(_src_file)) {
+      throw runtime_error("Source file does not exist: " + _src_file);
+    }
+
+    ifstream file(_src_file);
+    if (!file) {
+      cerr << "Could not read: " << _src_file << endl;
+      return;
+    }
+
+    string line;
+    vector<string> tokens;
+    while (getline(file, line)) {
+      if (line == "---" || tokens.size() >= 3) {
+        break;
+      }
+
+      tokens.push_back(trim(line));
+    }
+
+    _title = tokens[0];
+    _date_string = tokens[1];
+    _date = parse_date_string(tokens[1], "%d/%m/%Y");
+    _tags = split(remove_chars_from_string(tokens[2], "[]"), ",");
+
+    while (getline(file, line)) {
+      _markdown += line + newline;
+    }
+  }
+
+  const string title() const { return _title; }
+  const string markdown() const { return _markdown; }
+  const string date_string() const { return _date_string; }
+  time_t date() const { return _date; }
+  const vector<string> tags() const { return _tags; }
+
+  string slug() {
+    fs::path fs_path(_src_file);
+    return fs_path.stem().string();
+  }
+
+private:
+  string _src_file;
+  string _title;
+  time_t _date;
+  string _date_string;
+  string _markdown;
+  vector<string> _tags;
+};
 
 int main() {
   const string posts_dir = "./posts";
-  mustache index_tmpl(read_file("./views/index.html"));
-  mustache post_tmpl(read_file("./views/post.html"));
+  tmpl::mustache index_tmpl(read_file("./views/index.html"));
+  tmpl::mustache post_tmpl(read_file("./views/post.html"));
 
-  std::string site_header     = read_file("./views/partials/site-header.html");
-  std::string site_footer     = read_file("./views/partials/site-footer.html");
-  std::string post_excerpt_list = read_file("./views/partials/post-excerpt-list.html");
-  std::string post_title_list   = read_file("./views/partials/post-title-list.html");
+  const string partials_dir = "./views/partials/";
+  string site_header = read_file(partials_dir + "site-header.html");
+  string site_footer = read_file(partials_dir + "site-footer.html");
+  string post_excerpt_list = read_file(partials_dir + "post-excerpt-list.html");
+  string post_title_list = read_file(partials_dir + "post-title-list.html");
 
-  // Wrap them into `partial` objects
-  kainjow::mustache::partial site_header_partial{[&]() { return site_header; }};
-  kainjow::mustache::partial site_footer_partial{[&]() { return site_footer; }};
-  kainjow::mustache::partial post_excerpt_list_partial{[&]() { return post_excerpt_list; }};
-  kainjow::mustache::partial post_title_list_partial{[&]() { return post_title_list; }};
-
+  tmpl::partial site_header_partial{[&]() { return site_header; }};
+  tmpl::partial site_footer_partial{[&]() { return site_footer; }};
+  tmpl::partial post_excerpt_list_partial{[&]() { return post_excerpt_list; }};
+  tmpl::partial post_title_list_partial{[&]() { return post_title_list; }};
 
   vector<BlogPost> posts;
   for (const auto &entry : fs::directory_iterator(posts_dir)) {
-    BlogPost post;
-    post.src_file_path = entry.path();
-    ifstream file(post.src_file_path);
-    string line;
-    int i = 0;
-    bool in_frontmatter = false;
-    while (getline(file, line)) {
-      if (line == "---" && i == 0) {
-        in_frontmatter = true;
-      } else if (line == "---" && i != 0) {
-        in_frontmatter = false;
-      }
-
-      if (in_frontmatter) {
-        vector<string> tokens = split(line, ":");
-        string field = tokens[0];
-        string value = tokens[tokens.size() - 1];
-
-        if (field == "title") {
-          post.title = value;
-        }
-
-        if (field == "date") {
-          post.date = value;
-        }
-
-        if (field == "tags") {
-          post.tags = remove_chars_from_string(value, "[]");
-        }
-      } else if (line != "---") {
-        post.raw_content += (line + newline);
-      }
-
-      i++;
-    }
-    char *html = cmark_markdown_to_html(post.raw_content.c_str(),
-                                        post.raw_content.size(), 0);
-
-    kainjow::mustache::data data;
-    data["site-header"]       = kainjow::mustache::data{site_header_partial};
-    data["site-footer"]       = kainjow::mustache::data{site_footer_partial};
-    data["post-excerpt-list"] = kainjow::mustache::data{post_excerpt_list_partial};
-    data["post-title-list"]   = kainjow::mustache::data{post_title_list_partial};
-    data["date"] = post.date;
-    data["title"] = post.title;
-    data["tags"] = post.tags;
-    data["content"] = string(html);
-
-    post.html = post_tmpl.render(data);
-
-    auto slug = remove_from_string(post.src_file_path, "./posts");
-    post.slug = remove_from_string(slug, ".md");
-
-    write_file("./docs" + post.slug + "/index.html", post.html);
-
+    BlogPost post(entry.path());
     posts.push_back(post);
+
+    char *html = cmark_markdown_to_html(post.markdown().c_str(), post.markdown().size(), CMARK_OPT_UNSAFE);
+
+    tmpl::data d;
+    d["site-header"] = tmpl::data{site_header_partial};
+    d["site-footer"] = tmpl::data{site_footer_partial};
+    d["post-excerpt-list"] = tmpl::data{post_excerpt_list_partial};
+    d["post-title-list"] = tmpl::data{post_title_list_partial};
+    d["date"] = post.date_string();
+    d["title"] = post.title();
+
+    tmpl::data tags = tmpl::data::type::list;
+    for(auto tag : post.tags()) tags.push_back(tag);
+    d.set("tags", tags);
+    d["content"] = string(html);
+
+    write_file("./docs/" + post.slug() + "/index.html", post_tmpl.render(d));
   }
 
   return 0;

@@ -1,12 +1,11 @@
----
-title: Object field validators in Typescript
-tags: [js]
-date: 08/08/2025
+Object field validators in Typescript
+08/08/2025
+js
 ---
 
 Before you pull in the next hot new validation library. Ask yourself this question. Do I need it?
 The answer is no, field validation is quite easy. Let me show you how to create an extensible
-object field validator. 
+object field validator.
 
 <!-- more -->
 
@@ -24,8 +23,8 @@ a `string` for the email field. But this object represents form data, aka user i
 be anything. We should validate that it matches our criteria. For example the email should be of a
 valid email format, and the password should be no less that 8 characters in length.
 
-This where an _object field validator_ comes into play. It takes an object and applies the given 
-validators to the object fields. Telling us that, _yes this user form contains a valid email address_ 
+This where an _object field validator_ comes into play. It takes an object and applies the given
+validators to the object fields. Telling us that, _yes this user form contains a valid email address_
 etc...
 
 ## Usage

@@ -1,11 +1,10 @@
----
-title: Add IF NOT EXISTS to your migrations
-date: 09/10/2024
-tags: [ sql ]
+Add IF NOT EXISTS to your migrations
+09/10/2024
+sql
 ---
 
 When working on a codebase with a number of other developers migrations can cause
-database conflicts. One simple step to stop migrations failing when switching 
+database conflicts. One simple step to stop migrations failing when switching
 between development branches is to add `IF NOT EXISTS` when creating a table.
 
 <!-- more -->

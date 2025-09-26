@@ -1,7 +1,6 @@
----
-title: Banned from lobste.rs and Hacker News
-tags: [rant]
-date: 15/07/2025
+Banned from lobste.rs and Hacker News
+15/07/2025
+rant
 ---
 
 For some reason the good people at Hacker News have shadow banned my blog.
@@ -30,4 +29,3 @@ That is not the case anymore. If you are not instantly shadow banned now, your c
 drown under a flood of bot traffic and garbage.
 
 Dead is the age of the internet troll, long live the bot.
-

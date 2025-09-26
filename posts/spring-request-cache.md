@@ -1,7 +1,6 @@
----
-title: "Request cache in Spring"
-date: 19/05/2025
-tags: [ spring, java ]
+Request cache in Spring
+19/05/2025
+spring,java
 ---
 
 Let's say we have a request that fetches a post stored in the database. That request may need
@@ -13,9 +12,9 @@ from the database. This is when a cache that is scoped to a request's life cycle
 
 In a [previous post](/pre-auth-spring) I introduced a method for carrying out ownership checks
 using Spring Security's `@PreAuthorize` annotation. Whilst the approach was clean and maintainable
-it did introduce a performance issue. This is because `@PreAuthorize` executes before the method body. 
-The post is fetched during the security check, and then again inside the method. This leads to duplicate 
-fetches from the database. Once in the `isOwner` call and then again in the `findOwnedPost` call. You 
+it did introduce a performance issue. This is because `@PreAuthorize` executes before the method body.
+The post is fetched during the security check, and then again inside the method. This leads to duplicate
+fetches from the database. Once in the `isOwner` call and then again in the `findOwnedPost` call. You
 can see for yourself in the below code example.
 
 ```java
@@ -56,7 +55,7 @@ add a request filter to clear the cache after each request.
 
 Each Spring request uses it's own thread. This means that we can cache values for the current request's
 thread, without affecting any other request. To do this we'll use a plain old java object to model our
-`RequestCache`. I want to use this solution for different entity types, so I'll make it generic by making 
+`RequestCache`. I want to use this solution for different entity types, so I'll make it generic by making
 it a generic class, so it can hold any type of entity.
 
 ```java
@@ -77,8 +76,8 @@ public class RequestCache<T> {
 }
 ```
 
-<magpie-trinket>In some contexts like asynchronous processing, you may need `InheritableThreadLocal` or a 
-more advanced request-scoped solution like Spring’s `@RequestScope`. But for typical synchronous requests, 
+<magpie-trinket>In some contexts like asynchronous processing, you may need `InheritableThreadLocal` or a
+more advanced request-scoped solution like Spring’s `@RequestScope`. But for typical synchronous requests,
 `ThreadLocal` works well.</magpie-trinket>
 
 Now let's create a `RequestCacheRegistry`. This will be a `@Component` to allow it to be injected into

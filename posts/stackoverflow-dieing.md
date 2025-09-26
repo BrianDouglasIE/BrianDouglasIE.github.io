@@ -1,7 +1,6 @@
----
-title: Stack Overflow is dieing, no wonder
-tags: [rant]
-date: 21/07/2025
+Stack Overflow is dieing, no wonder
+21/07/2025
+rant
 ---
 
 Below is a screenshot of what I see when I land on Stack Overflow. Bear in mind this is after

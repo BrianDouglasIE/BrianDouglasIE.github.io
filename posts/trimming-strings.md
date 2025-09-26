@@ -1,7 +1,6 @@
----
-title: Trimming strings in c
-date: 18/07/2025
-tags: [c]
+Trimming strings in c
+18/07/2025
+c
 ---
 
 Strings in C. They are wonderfully intuitive and easy to work with *cough*.
@@ -97,7 +96,7 @@ char *trim_string(char *str)
 
   size_t start = 0;
   while(isspace(str[start])) start++;
-  
+
   size_t end = len - 1;
   if(start >= end) return empty_string();
   while(end && isspace(str[end])) end--;
@@ -170,5 +169,4 @@ int main(void)
 
   return 0;
 }
- ``` 
-
+ ```

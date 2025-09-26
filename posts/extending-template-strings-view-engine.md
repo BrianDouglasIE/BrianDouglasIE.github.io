@@ -1,7 +1,6 @@
----
-title: Template strings as a view engine - Part 2
-tags: [js]
-date: 20/08/2025
+Template strings as a view engine - Part 2
+20/08/2025
+js
 ---
 
 I've been thinking some more about using template strings as a view engine. This blog for

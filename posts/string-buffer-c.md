@@ -1,7 +1,6 @@
----
-title: Making a StringBuffer in C
-tags: [c]
-date: 15/07/2025
+Making a StringBuffer in C
+15/07/2025
+c
 ---
 
 I've been writing a lot of C. Whilst doing so I have been questioning my sanity.
@@ -25,7 +24,7 @@ the up to date source code at [BrianDouglasIE/c_string_buffer](https://github.co
 The replace and remove were particularly tricky to implement. My brain was on fire trying to figure out
 how to juggle the memory about correctly.
 
-### Header 
+### Header
 
 ```c
 #ifndef STRING_BUFFER_H

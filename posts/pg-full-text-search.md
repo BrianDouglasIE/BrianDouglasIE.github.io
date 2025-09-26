@@ -1,7 +1,6 @@
----
-title: PostgresSQL full text search
-date: 31/07/2025
-tags: [sql]
+PostgresSQL full text search
+31/07/2025
+sql
 ---
 
 PostgresSQL provides a builtin full text search feature. Here is how I use it with examples.
@@ -16,10 +15,10 @@ PostgresSQL provides a builtin full text search feature. Here is how I use it wi
 Let's start off with a basic search. We are going to use the `@@` operator to search the `title` column for the text `'Python'`.
 
 ```sql
-SELECT title, release_year 
-FROM netflix_shows 
-WHERE to_tsvector(title) @@ to_tsquery('Python') 
-AND release_year < 2000 
+SELECT title, release_year
+FROM netflix_shows
+WHERE to_tsvector(title) @@ to_tsquery('Python')
+AND release_year < 2000
 ORDER BY release_year DESC;
 ```
 
@@ -42,11 +41,11 @@ Now let's say we want to find all titles including 'Python' released in 1972. To
 that it needs transformed to a text value in order to by processed.
 
 ```sql
-SELECT title, release_year 
-FROM netflix_shows 
-WHERE 
-	to_tsvector(title || ' ' || release_year::text) @@ 
-	to_tsquery('Python & 1972') 
+SELECT title, release_year
+FROM netflix_shows
+WHERE
+	to_tsvector(title || ' ' || release_year::text) @@
+	to_tsquery('Python & 1972')
 ORDER BY release_year DESC;
 ```
 
@@ -64,11 +63,11 @@ Likely when using this feature in the real world you will be passing a string fr
 ampersand. A quick way to ensure this is to use a `regexp_replace` to insert the `&` sumbol between each word.
 
 ```sql
-SELECT title, release_year 
-FROM netflix_shows 
-WHERE 
-	to_tsvector(title || ' ' || release_year::text) @@ 
-	to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' & ', 'g')) 
+SELECT title, release_year
+FROM netflix_shows
+WHERE
+	to_tsvector(title || ' ' || release_year::text) @@
+	to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' & ', 'g'))
 ORDER BY release_year DESC;
 ```
 
@@ -125,7 +124,7 @@ _title_ and _release_year_.
 
 
 ```sql
-ALTER TABLE netflix_shows 
+ALTER TABLE netflix_shows
 ADD COLUMN fts tsvector GENERATED ALWAYS AS (
 	to_tsvector('english', title || ' ' || release_year::text)
 ) STORED;

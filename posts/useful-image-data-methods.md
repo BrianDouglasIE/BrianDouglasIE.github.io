@@ -1,7 +1,6 @@
----
-title: Useful ImageData Methods
-tags: [canvas, js]
-date: 16/11/2024
+Useful ImageData Methods
+16/11/2024
+canvas,js
 ---
 
 When creating a 2d game on canvas I like to render the sprites on an offscreen canvas and access them

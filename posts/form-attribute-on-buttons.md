@@ -1,7 +1,6 @@
----
-title: Using the form attribute on buttons
-tags: [html]
-date: 31/10/2024
+Using the form attribute on buttons
+31/10/2024
+html
 ---
 
 HTML buttons have a form attribute that can be used with buttons of `type="submit"`.

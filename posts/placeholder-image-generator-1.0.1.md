@@ -1,7 +1,6 @@
----
-title: "New Lib: Placeholder Image Generator"
-date: 26/05/2025
-tags: [java]
+New Lib: Placeholder Image Generator
+26/05/2025
+java
 ---
 
 I've recently had the need to generate placeholder images for a webapp. User's of this app are not required

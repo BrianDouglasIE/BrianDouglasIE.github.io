@@ -1,12 +1,10 @@
----
-title: Deploy a website, you can.
-date: 26/03/2025
-tags: [apache]
-published: false
+Deploy a website, you can.
+26/03/2025
+apache
 ---
 
-It's 2025, and you cannot deploy a website. Sure you can write a mind boggling React app. 
-But you have no idea how to get a dynamic website live. Not without some service that automates 
+It's 2025, and you cannot deploy a website. Sure you can write a mind boggling React app.
+But you have no idea how to get a dynamic website live. Not without some service that automates
 the process for you, whilst robbing you of the knowledge you need to do it yourself.
 
 <!-- more -->

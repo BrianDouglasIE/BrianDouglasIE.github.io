@@ -1,7 +1,6 @@
----
-title: "GameDev in C Part 4: A Snake Clone"
-date: 14/02/2025
-tags: [c, gamedev, raylib]
+GameDev in C Part 4: A Snake Clone
+14/02/2025
+c,gamedev,raylib
 ---
 
 Happy Valentines Day!, I made a snake clone in C.
@@ -300,7 +299,7 @@ int main(void)
     const int cellSize = floor(screenSize / gridSize);
     const int colCount = floor(screenWidth / cellSize);
     const int rowCount = floor(screenHeight / cellSize);
-	
+
 	int gameInProgress = 1;
 
     int snakeLength = 4;
@@ -415,4 +414,3 @@ int main(void)
     CloseWindow();
 }
 ```
-

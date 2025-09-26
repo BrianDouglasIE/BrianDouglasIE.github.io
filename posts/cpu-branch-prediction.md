@@ -1,7 +1,6 @@
----
-title: Using CPU branch prediction in Java
-tags: [java]
-date: 03/04/2025
+Using CPU branch prediction in Java
+03/04/2025
+java
 ---
 
 CPU branch prediction is when the CPU tries to guess the outcome of a conditional

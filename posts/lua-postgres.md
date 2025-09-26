@@ -1,7 +1,6 @@
----
-title: Setting up PostgreSQL and Lua in Docker
-date: 31/12/2024
-tags: [lua, docker, sql]
+Setting up PostgreSQL and Lua in Docker
+31/12/2024
+lua,docker,sql
 ---
 
 I did a quick exploration into Lua after seeing is used in the CS50 game dev course.
@@ -31,11 +30,11 @@ the port that postgres is running on. The default is `5432`, so we map the conta
 docker exec -it postgres-1 psql -h localhost -p 5432 -U postgres
 ```
 
-This command can be broken into two parts. The first part `docker exec -it postgres-1`, tells docker the execute the following 
-command inside our previously created container. The `-it` flag is a combination of `--interactive` and`--tty`. This tells 
+This command can be broken into two parts. The first part `docker exec -it postgres-1`, tells docker the execute the following
+command inside our previously created container. The `-it` flag is a combination of `--interactive` and`--tty`. This tells
 docker to take you straight inside the container.
 
-The second part of the command `psql -h localhost -p 5432 -U postgres` takes us inside the postgres server. The `-h` flag 
+The second part of the command `psql -h localhost -p 5432 -U postgres` takes us inside the postgres server. The `-h` flag
 specifies the the host, `-p` specifies the port, and `-U` the user we want to login as.
 
 Once the initial command is run you should see the postgres prompt. We can now create a database and populate it with some information.
@@ -87,7 +86,7 @@ Error: Could not find header file for PGSQL
 You may have to install PGSQL in your system and/or pass PGSQL_DIR or PGSQL_INCDIR to the luarocks command.
 ```
 
-This can be solved by passing the `PGSQL_INCDIR` property to the progam. Commonly the required value is 
+This can be solved by passing the `PGSQL_INCDIR` property to the progam. Commonly the required value is
 `/usr/include/postgresql/`. As that is the directory containing the `libpg-fe.h`.
 
 Run the command as follows to successfully install `luasql-postgres`.

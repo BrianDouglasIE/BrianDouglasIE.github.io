@@ -1,12 +1,11 @@
----
-title: Using a virtual screen size in Raylib
-tags: [c, raylib, gamedev]
-date: 24/02/2025
+Using a virtual screen size in Raylib
+24/02/2025
+c,raylib,gamedev
 ---
 
 When working with pixel art it is common to create a virtual screen size. For example
 if my sprites are 16x16 pixels and my game world is 256x256. I would want to scale the
-size up to fit my computer's screen size. If the art was not scaled it would look 
+size up to fit my computer's screen size. If the art was not scaled it would look
 really tiny, on a 1920x1080 monitor.
 
 <!-- more -->
@@ -27,8 +26,8 @@ First off I like to define some constants.
 #define SCREEN_HEIGHT V_SCREEN_HEIGHT * V_SCALE
 ```
 
-In the above code the prefix `V_` refers to virtual. So I am setting my virtual screen size to 
-256x256 pixels and applying the `V_SCALE` to get the actual window size. In this instance 
+In the above code the prefix `V_` refers to virtual. So I am setting my virtual screen size to
+256x256 pixels and applying the `V_SCALE` to get the actual window size. In this instance
 `256 x 2 = 512`.
 
 When opening a window with raylib I will pass in the `SCREEEN_WIDTH` and `SCREEN_HEIGHT` constants
@@ -38,9 +37,9 @@ to the `InitWindow` method like so.
 InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game Title");
 ```
 
-This will open a correctly sized game window. I now want to create a `RenderTexture2D`. This 
+This will open a correctly sized game window. I now want to create a `RenderTexture2D`. This
 is what the game will be drawn on. It will then itself be scaled and drawn onto the actual game
-window. 
+window.
 
 To create the `RenderTexture2D` I use the following code.
 
@@ -80,4 +79,3 @@ EndDrawing();
 ```
 
 This results in the small 16x16 pixel art being drawn at the correct scale, without loss of fidelity.
-

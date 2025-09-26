@@ -1,7 +1,6 @@
----
-title: Writing a DB migrator in Go
-date: 30/09/2024
-tags: [ go ]
+Writing a DB migrator in Go
+30/09/2024
+go
 ---
 
 A database migrator applies database migrations. These are usually SQL scripts that
@@ -10,7 +9,7 @@ versions to be rolled back and pushed forward.
 
 <!-- more -->
 
-I feel that these should be simple tools, with simple commands. Migrate up a version, 
+I feel that these should be simple tools, with simple commands. Migrate up a version,
 migrate down a version, migrate to version x, migrate all pending migrations, and also
 a reset command to remove all migrations. This is all I want. So I decided to make my
 own, no bloat, no complexity, just simple useful commands.
@@ -111,24 +110,24 @@ type Migration struct {
 
 This can then be used to sort migrations by version. Getting the latest migration from our `migrations`
 table will tell us our current DB version. When running the `up` or `down` commands we need only concern
-ourselves with the migrations that have a version that is higher or lower than the current db version 
+ourselves with the migrations that have a version that is higher or lower than the current db version
 respectively. If a migration should be applied then execute the `UpFile` if it should be reverted then
 execute the `DownFile`.
 
 ## Using transactions with context
 
 Transactions in go can be used to commit or rollback multiple grouped sql queries.
-The go docs at [database/execute-transactions](https://go.dev/doc/database/execute-transactions) sum up 
+The go docs at [database/execute-transactions](https://go.dev/doc/database/execute-transactions) sum up
 transactions like so.
 
 > A database transaction groups multiple operations as part of a larger goal.
 
-The migrator program is doing just that. It takes a bunch of sql statements and runs them to create a 
+The migrator program is doing just that. It takes a bunch of sql statements and runs them to create a
 new database state. Should one of the migrations fail, we can use the go transaction to rollback the
 state of the database to how it was before the migrator ran. Alternatively we can also commit the transaction
 if all migrations run successfully.
 
-We'll use the transaction along with a context. Using a Go `context.Context` with a database transaction helps 
+We'll use the transaction along with a context. Using a Go `context.Context` with a database transaction helps
 manage timeouts, cancellations, and ensures that long-running database operations are cleaned up with the context.
 If the context is canceled any ongoing database transactions can be rolled back. This prevents partial data writes
 or inconsistencies.

@@ -1,7 +1,6 @@
----
-title: Conway's Game of Life in Go
-date: 01/10/2024
-tags: [ go ]
+Conway's Game of Life in Go
+01/10/2024
+go
 ---
 
 Conway's _Game of Life_ is a relatively straight forward cellular automata.

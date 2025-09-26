@@ -1,7 +1,6 @@
----
-title: Using Docker on Linux Mint
-date: 02/04/2025
-tags: [docker, linux]
+Using Docker on Linux Mint
+02/04/2025
+docker,linux
 ---
 
 Surely using Docker on Linux Mint is the same as Ubuntu? I can just follow the official Ubuntu
@@ -46,7 +45,7 @@ of the issue.
 
 The fix here is to use the Debian download passing in the latest Debian release name. This is currently _"bookworm"_.
 
-The updated command is below. I have hard coded the release name as _bookworm_ and updated the download url to use 
+The updated command is below. I have hard coded the release name as _bookworm_ and updated the download url to use
 _debian_ instead of _ubuntu_.
 
 ```

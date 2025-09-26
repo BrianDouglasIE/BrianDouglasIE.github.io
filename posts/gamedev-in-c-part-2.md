@@ -1,7 +1,6 @@
----
-title: "GameDev in C Part 2: Raylib"
-date: 23/01/2025
-tags: [c, raylib, gamedev]
+GameDev in C Part 2: Raylib
+23/01/2025
+c,raylib,gamedev
 ---
 
 This installment mimics the previous, in that most of time is spent
@@ -102,7 +101,7 @@ build : main.o
 main.o : main.c
 	gcc -c main.c $(CFLAGS)
 
-clean : 
+clean :
 	powershell Remove-Item *.exe, *.o
 ```
 

@@ -1,7 +1,6 @@
----
-title: Yoda Conditions
-date: 01/04/2025
-tags: [c, programming]
+Yoda Conditions
+01/04/2025
+c,programming
 ---
 
 When I write a comparison statement I nearly always write it variable first, value second.
@@ -36,7 +35,7 @@ Well look at this code:
 if(animal = "dog") { /* wag tail */ }
 ```
 
-This checks if the animal is a dog, and then does something. 
+This checks if the animal is a dog, and then does something.
 
 Oh actually, no it doesn't. It assigns the value of animal to be "dog". Which is not what
 I wanted. But it's a mistake that wouldn't be imediately obvious to me either.

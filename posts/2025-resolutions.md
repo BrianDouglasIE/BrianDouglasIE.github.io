@@ -1,7 +1,6 @@
----
-title: "2025 new year's resolutions"
-date: 02/01/2025
-tags: [resolutions]
+2025 new year's resolutions
+02/01/2025
+resolutions
 ---
 
 In 2024 I started this blog. I was somewhat successful in that I churned out 21 posts
