@@ -104,12 +104,14 @@
         <ul id="posts">
           {{#posts}}
           <li>
+            <a href="{{slug}}">
             <article>
               <h3>{{ title }}</h3>
               <time datetime="{{date}}">{{date}}</time>
               <div>{{{ excerpt}}}</div>
-              <a href="{{slug}}">Read more</a>
+              <i>Read more...</i>
             </article>
+            </a>
           </li>
           {{/posts}}
         </ul>

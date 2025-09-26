@@ -1,5 +1,5 @@
 const header = document.querySelector('.post header');
-const headerTags = document.querySelectorAll('.post .body h2, .post .body h3')
+const headerTags = document.querySelectorAll('.post .article-body h2, .post .article-body h3')
 
 const anchors = []
 

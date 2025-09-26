@@ -3,7 +3,7 @@ Generate SQLite table types for Typescript
 js
 ---
 
-Bun has an sqlite interface built in. It make for some great dev-ex. One thing that ircks me when dealing with
+Bun has an sqlite interface built in. It makes for some great dev-ex. One thing that ircks me when dealing with
 sql and Typescript however, is that when I run queries I often have to model the db table that I am querying in
 Typescript. This usually involves a manual effort, but not anymore. I have written a short script to auto
 generate Typescript types for table definitions.
