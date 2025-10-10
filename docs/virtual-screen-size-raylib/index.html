@@ -50,6 +50,126 @@
 
     <title>Using a virtual screen size in Raylib</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -93,29 +213,29 @@ my game to use a small screen size, and then scale that up to match the target <
 In raylib this is achieved using a <code>RenderTexture2D</code>.</p>
 <h2 id="implementation">Implementation</h2>
 <p>First off I like to define some constants.</p>
-<pre><code class="c language-c">#define V_SCREEN_WIDTH 256
-#define V_SCREEN_HEIGHT 256
-#define V_SCALE 2
-#define SCREEN_WIDTH  V_SCREEN_WIDTH * V_SCALE
-#define SCREEN_HEIGHT V_SCREEN_HEIGHT * V_SCALE
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> V_SCREEN_WIDTH 256</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> V_SCREEN_HEIGHT 256</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> V_SCALE 2</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SCREEN_WIDTH  V_SCREEN_WIDTH * V_SCALE</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SCREEN_HEIGHT V_SCREEN_HEIGHT * V_SCALE</span>
 </code></pre>
 <p>In the above code the prefix <code>V_</code> refers to virtual. So I am setting my virtual screen size to 
 256x256 pixels and applying the <code>V_SCALE</code> to get the actual window size. In this instance 
 <code>256 x 2 = 512</code>.</p>
 <p>When opening a window with raylib I will pass in the <code>SCREEEN_WIDTH</code> and <code>SCREEN_HEIGHT</code> constants
 to the <code>InitWindow</code> method like so.</p>
-<pre><code class="c language-c">InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Game Title");
+<pre class="c language-c"><code class="hljs c language-c">InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, <span class="hljs-string">&quot;Game Title&quot;</span>);
 </code></pre>
 <p>This will open a correctly sized game window. I now want to create a <code>RenderTexture2D</code>. This 
 is what the game will be drawn on. It will then itself be scaled and drawn onto the actual game
 window. </p>
 <p>To create the <code>RenderTexture2D</code> I use the following code.</p>
-<pre><code class="c language-c">const RenderTexture2D renderTexture = LoadRenderTexture(V_SCREEN_WIDTH, V_SCREEN_HEIGHT);
-const Rectangle renderTextureSrc = (Rectangle){ 0.0f, 0.0f, V_SCREEN_WIDTH, -V_SCREEN_HEIGHT };
-const Rectangle renderTextureDest = (Rectangle){ 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT };
-const Vector2 renderTextureOrig = {0};
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-type">const</span> RenderTexture2D renderTexture = LoadRenderTexture(V_SCREEN_WIDTH, V_SCREEN_HEIGHT);
+<span class="hljs-type">const</span> Rectangle renderTextureSrc = (Rectangle){ <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, V_SCREEN_WIDTH, -V_SCREEN_HEIGHT };
+<span class="hljs-type">const</span> Rectangle renderTextureDest = (Rectangle){ <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, SCREEN_WIDTH, SCREEN_HEIGHT };
+<span class="hljs-type">const</span> Vector2 renderTextureOrig = {<span class="hljs-number">0</span>};
 
-// remember to unload the texture when finished using it
+<span class="hljs-comment">// remember to unload the texture when finished using it</span>
 UnloadRenderTexture(renderTexture);
 </code></pre>
 <p><magpie-trinket>
@@ -124,16 +244,16 @@ This is to prevent the texture from being drawn on upside down. The reasoning is
 in the <a href="https://github.com/raysan5/raylib/wiki/Frequently-Asked-Questions#why-is-my-render-texture-upside-down">raylib docs</a>.
 </magpie-trinket></p>
 <p>The render texture can then be drawn on to by creating a new texture mode.</p>
-<pre><code class="c language-c">BeginTextureMode(renderTexture);
+<pre class="c language-c"><code class="hljs c language-c">BeginTextureMode(renderTexture);
     ClearBackground(BG_COLOR);
     DrawTextureRec(spritesheet, playerFrame, playerPos, WHITE);
 EndTextureMode();
 </code></pre>
 <p>After this code is run the <code>RenderTexture2D</code>'s texture is then drawn on to the main draw context at the
 correct scale.</p>
-<pre><code class="c language-c">BeginDrawing();
+<pre class="c language-c"><code class="hljs c language-c">BeginDrawing();
     ClearBackground(BG_COLOR);
-    DrawTexturePro(renderTexture.texture, renderTextureSrc, renderTextureDest, renderTextureOrig, 0, WHITE);
+    DrawTexturePro(renderTexture.texture, renderTextureSrc, renderTextureDest, renderTextureOrig, <span class="hljs-number">0</span>, WHITE);
 EndDrawing();
 </code></pre>
 <p>This results in the small 16x16 pixel art being drawn at the correct scale, without loss of fidelity.</p>
@@ -157,6 +277,5 @@ EndDrawing();
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

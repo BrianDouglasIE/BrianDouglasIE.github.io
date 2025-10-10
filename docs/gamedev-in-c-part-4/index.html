@@ -50,6 +50,126 @@
 
     <title>GameDev in C Part 4: A Snake Clone</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -101,107 +221,107 @@ arrays and pointers. I may even be beginning to think in a C manner. I kept ever
 convenience. This helped me think more about what the code did, and less about where the code lived.</p>
 <p>Anyway, take a look at the source code below. I'll get back to the main "SlimeJump" game in the next post.</p>
 <p><magpie-trinket>Source code is also available at <a href="https://github.com/BrianDouglasIE/snake-c-raylib/tree/main">BrianDouglasIE/snake-c-raylib</a></magpie-trinket></p>
-<pre><code class="c language-c">#include "raylib.h"
-#include "math.h"
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;time.h&gt;
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;raylib.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;math.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span></span>
 
-float percentOf(float percent, float number)
+<span class="hljs-type">float</span> <span class="hljs-title function_">percentOf</span><span class="hljs-params">(<span class="hljs-type">float</span> percent, <span class="hljs-type">float</span> number)</span>
 {
-    return (percent / number) * 100.0f;
+    <span class="hljs-keyword">return</span> (percent / number) * <span class="hljs-number">100.0f</span>;
 }
 
-float asPercentOf(float number, float percent)
+<span class="hljs-type">float</span> <span class="hljs-title function_">asPercentOf</span><span class="hljs-params">(<span class="hljs-type">float</span> number, <span class="hljs-type">float</span> percent)</span>
 {
-    return (percent / 100.0f) * number;
+    <span class="hljs-keyword">return</span> (percent / <span class="hljs-number">100.0f</span>) * number;
 }
 
-int randomInt(int min, int max)
+<span class="hljs-type">int</span> <span class="hljs-title function_">randomInt</span><span class="hljs-params">(<span class="hljs-type">int</span> min, <span class="hljs-type">int</span> max)</span>
 {
-    return (rand() % max) + min;
+    <span class="hljs-keyword">return</span> (rand() % max) + min;
 }
 
-enum Direction {
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Direction</span> {</span>
     UP, DOWN, LEFT, RIGHT
 };
 
-struct Snake {
-    int x;
-    int y;
-    float speed;
-    float moveTimer;
-    enum Direction direction;
-    enum Direction nextDirection;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Snake</span> {</span>
+    <span class="hljs-type">int</span> x;
+    <span class="hljs-type">int</span> y;
+    <span class="hljs-type">float</span> speed;
+    <span class="hljs-type">float</span> moveTimer;
+    <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Direction</span> <span class="hljs-title">direction</span>;</span>
+    <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Direction</span> <span class="hljs-title">nextDirection</span>;</span>
 };
 
-struct Snake SnakeCreate(int x, int y)
+<span class="hljs-keyword">struct</span> Snake <span class="hljs-title function_">SnakeCreate</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span>
 {
-    return (struct Snake) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">struct</span> Snake) {
         .x = x,
         .y = y,
-        .speed = 0.2f,
-        .moveTimer = 0,
+        .speed = <span class="hljs-number">0.2f</span>,
+        .moveTimer = <span class="hljs-number">0</span>,
         .direction = RIGHT,
         .nextDirection = RIGHT,
     };
 }
 
-void SnakeMoveInCurrentDirection(struct Snake *s)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeMoveInCurrentDirection</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s)</span>
 {
-    switch(s-&gt;direction)
+    <span class="hljs-keyword">switch</span>(s-&gt;direction)
     {
-        case UP:
-            s-&gt;y -= 1;
-            break;
-        case DOWN:
-            s-&gt;y += 1;
-            break;
-        case LEFT:
-            s-&gt;x -= 1;
-            break;
-        case RIGHT:
-            s-&gt;x += 1;
-            break;
-        default:
-            break;
+        <span class="hljs-keyword">case</span> UP:
+            s-&gt;y -= <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> DOWN:
+            s-&gt;y += <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LEFT:
+            s-&gt;x -= <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> RIGHT:
+            s-&gt;x += <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">break</span>;
     }
 }
 
-void SnakeScreenWrap(struct Snake *s, int colCount, int rowCount)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeScreenWrap</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">int</span> colCount, <span class="hljs-type">int</span> rowCount)</span>
 {
-    if(s-&gt;x &lt; 0) {
-        s-&gt;x = colCount - 1;
+    <span class="hljs-keyword">if</span>(s-&gt;x &lt; <span class="hljs-number">0</span>) {
+        s-&gt;x = colCount - <span class="hljs-number">1</span>;
         s-&gt;direction = LEFT;
     }
-    if(s-&gt;x &gt; colCount - 1) {
-        s-&gt;x = 0;
+    <span class="hljs-keyword">if</span>(s-&gt;x &gt; colCount - <span class="hljs-number">1</span>) {
+        s-&gt;x = <span class="hljs-number">0</span>;
         s-&gt;direction = RIGHT;
     }
-    if(s-&gt;y &lt; 0) {
-        s-&gt;y = rowCount - 1;
+    <span class="hljs-keyword">if</span>(s-&gt;y &lt; <span class="hljs-number">0</span>) {
+        s-&gt;y = rowCount - <span class="hljs-number">1</span>;
         s-&gt;direction = UP;
     }
-    if(s-&gt;y &gt; rowCount - 1) {
-        s-&gt;y = 0;
+    <span class="hljs-keyword">if</span>(s-&gt;y &gt; rowCount - <span class="hljs-number">1</span>) {
+        s-&gt;y = <span class="hljs-number">0</span>;
         s-&gt;direction = DOWN;
     }
 }
 
-void SnakeUpdate(struct Snake *s, float dt, struct Snake *target)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeUpdate</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">float</span> dt, <span class="hljs-keyword">struct</span> Snake *target)</span>
 {
     s-&gt;moveTimer += dt;
-    if(s-&gt;moveTimer &gt;= s-&gt;speed) {
+    <span class="hljs-keyword">if</span>(s-&gt;moveTimer &gt;= s-&gt;speed) {
         s-&gt;moveTimer -= s-&gt;speed;
 
-        if(target == NULL) {
-            if(s-&gt;direction != s-&gt;nextDirection)
+        <span class="hljs-keyword">if</span>(target == <span class="hljs-literal">NULL</span>) {
+            <span class="hljs-keyword">if</span>(s-&gt;direction != s-&gt;nextDirection)
             {
                 s-&gt;direction = s-&gt;nextDirection;
             }
 
             SnakeMoveInCurrentDirection(s);
-        } else {
+        } <span class="hljs-keyword">else</span> {
             s-&gt;x = target-&gt;x;
             s-&gt;y = target-&gt;y;
             s-&gt;direction = target-&gt;direction;
@@ -209,224 +329,224 @@ void SnakeUpdate(struct Snake *s, float dt, struct Snake *target)
     }
 }
 
-void SnakeSetDirection(struct Snake *s, int dirX, int dirY)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeSetDirection</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">int</span> dirX, <span class="hljs-type">int</span> dirY)</span>
 {
-    if(dirX &amp;&amp; dirY) return;
-    if(!dirX &amp;&amp; !dirY) return;
-    if(dirY &amp;&amp; (s-&gt;direction == UP || s-&gt;direction == DOWN)) return;
-    if(dirX &amp;&amp; (s-&gt;direction == LEFT || s-&gt;direction == RIGHT)) return;
+    <span class="hljs-keyword">if</span>(dirX &amp;&amp; dirY) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span>(!dirX &amp;&amp; !dirY) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span>(dirY &amp;&amp; (s-&gt;direction == UP || s-&gt;direction == DOWN)) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span>(dirX &amp;&amp; (s-&gt;direction == LEFT || s-&gt;direction == RIGHT)) <span class="hljs-keyword">return</span>;
 
-    if(dirX == -1) {
+    <span class="hljs-keyword">if</span>(dirX == <span class="hljs-number">-1</span>) {
         s-&gt;nextDirection = LEFT;
     }
-    if(dirX == 1) {
+    <span class="hljs-keyword">if</span>(dirX == <span class="hljs-number">1</span>) {
         s-&gt;nextDirection = RIGHT;
     }
-    if(dirY == -1) {
+    <span class="hljs-keyword">if</span>(dirY == <span class="hljs-number">-1</span>) {
         s-&gt;nextDirection = UP;
     }
-    if(dirY == 1) {
+    <span class="hljs-keyword">if</span>(dirY == <span class="hljs-number">1</span>) {
         s-&gt;nextDirection = DOWN;
     }
 }
 
-void SnakeDrawHead(struct Snake *s, int cellSize, Color color)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeDrawHead</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">int</span> cellSize, Color color)</span>
 {
-    int w, h;
-    float growthPercent = percentOf(s-&gt;moveTimer, s-&gt;speed);
+    <span class="hljs-type">int</span> w, h;
+    <span class="hljs-type">float</span> growthPercent = percentOf(s-&gt;moveTimer, s-&gt;speed);
 
-    switch(s-&gt;direction)
+    <span class="hljs-keyword">switch</span>(s-&gt;direction)
     {
-        case UP:
-            h = floor(asPercentOf(cellSize, growthPercent));
+        <span class="hljs-keyword">case</span> UP:
+            h = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, (s-&gt;y * cellSize) + (cellSize - h), cellSize, h, color);
-            break;
-        case DOWN:
-            h = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> DOWN:
+            h = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize, cellSize, h, color);
-            break;
-        case RIGHT:
-            w = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> RIGHT:
+            w = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize, w, cellSize, color);
-            break;
-        case LEFT:
-            w = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LEFT:
+            w = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle((s-&gt;x * cellSize) + (cellSize - w), s-&gt;y * cellSize, w, cellSize, color);
-            break;
-        default:
-            break;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">break</span>;
     }
 }
 
-void SnakeDrawTail(struct Snake *s, int cellSize, Color color)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeDrawTail</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">int</span> cellSize, Color color)</span>
 {
-    int w, h;
-    float growthPercent = percentOf(s-&gt;moveTimer, s-&gt;speed);
+    <span class="hljs-type">int</span> w, h;
+    <span class="hljs-type">float</span> growthPercent = percentOf(s-&gt;moveTimer, s-&gt;speed);
 
-    switch(s-&gt;direction)
+    <span class="hljs-keyword">switch</span>(s-&gt;direction)
     {
-        case UP:
-            h = floor(asPercentOf(cellSize, growthPercent));
+        <span class="hljs-keyword">case</span> UP:
+            h = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize, cellSize, cellSize - h, color);
-            break;
-        case DOWN:
-            h = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> DOWN:
+            h = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize + h, cellSize, cellSize - h, color);
-            break;
-        case RIGHT:
-            w = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> RIGHT:
+            w = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize + w, s-&gt;y * cellSize, cellSize - w, cellSize, color);
-            break;
-        case LEFT:
-            w = floor(asPercentOf(cellSize, growthPercent));
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LEFT:
+            w = <span class="hljs-built_in">floor</span>(asPercentOf(cellSize, growthPercent));
             DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize, cellSize - w, cellSize, color);
-            break;
-        default:
-            break;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">break</span>;
     }
 }
 
-void SnakeDraw(struct Snake *s, int cellSize, Color color)
+<span class="hljs-type">void</span> <span class="hljs-title function_">SnakeDraw</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake *s, <span class="hljs-type">int</span> cellSize, Color color)</span>
 {
     DrawRectangle(s-&gt;x * cellSize, s-&gt;y * cellSize, cellSize, cellSize, color);
 }
 
-struct Apple {
-    int x;
-    int y;
-    int active;
-    float lifeSpan;
-    float lifeTimer;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Apple</span> {</span>
+    <span class="hljs-type">int</span> x;
+    <span class="hljs-type">int</span> y;
+    <span class="hljs-type">int</span> active;
+    <span class="hljs-type">float</span> lifeSpan;
+    <span class="hljs-type">float</span> lifeTimer;
 };
 
-struct Apple AppleCreate()
+<span class="hljs-keyword">struct</span> Apple <span class="hljs-title function_">AppleCreate</span><span class="hljs-params">()</span>
 {
-    return (struct Apple) {
-        .x = 0,
-        .y = 0,
-        .active = 0,
-        .lifeSpan = 0.0f,
-        .lifeTimer = 0.0f,
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">struct</span> Apple) {
+        .x = <span class="hljs-number">0</span>,
+        .y = <span class="hljs-number">0</span>,
+        .active = <span class="hljs-number">0</span>,
+        .lifeSpan = <span class="hljs-number">0.0f</span>,
+        .lifeTimer = <span class="hljs-number">0.0f</span>,
     };
 }
 
-void AppleUpdate(struct Apple *a, float dt)
+<span class="hljs-type">void</span> <span class="hljs-title function_">AppleUpdate</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Apple *a, <span class="hljs-type">float</span> dt)</span>
 {
-    if(!a-&gt;active) return;
+    <span class="hljs-keyword">if</span>(!a-&gt;active) <span class="hljs-keyword">return</span>;
 
     a-&gt;lifeTimer += dt;
-    if(a-&gt;lifeTimer &gt; a-&gt;lifeSpan)
+    <span class="hljs-keyword">if</span>(a-&gt;lifeTimer &gt; a-&gt;lifeSpan)
     {
         a-&gt;lifeTimer -= a-&gt;lifeSpan;
-        a-&gt;active = 0;
+        a-&gt;active = <span class="hljs-number">0</span>;
     }
 }
 
-void AppleActivateAt(struct Apple *a, int x, int y)
+<span class="hljs-type">void</span> <span class="hljs-title function_">AppleActivateAt</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Apple *a, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span>
 {
     a-&gt;x = x;
     a-&gt;y = y;
-    a-&gt;active = 1;
-    a-&gt;lifeTimer = 0;
-    a-&gt;lifeSpan = 5.0f;
+    a-&gt;active = <span class="hljs-number">1</span>;
+    a-&gt;lifeTimer = <span class="hljs-number">0</span>;
+    a-&gt;lifeSpan = <span class="hljs-number">5.0f</span>;
 }
 
-void AppleDraw(struct Apple *a, int cellSize, Color color)
+<span class="hljs-type">void</span> <span class="hljs-title function_">AppleDraw</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Apple *a, <span class="hljs-type">int</span> cellSize, Color color)</span>
 {
-    if(!a-&gt;active) return;
+    <span class="hljs-keyword">if</span>(!a-&gt;active) <span class="hljs-keyword">return</span>;
     DrawRectangle(a-&gt;x * cellSize, a-&gt;y * cellSize, cellSize, cellSize, color);
 }
 
-int collidesWithSnake(struct Snake s[], int snakeLength, int x, int y)
+<span class="hljs-type">int</span> <span class="hljs-title function_">collidesWithSnake</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Snake s[], <span class="hljs-type">int</span> snakeLength, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span>
 {
-    for(int i = 0; i &lt; snakeLength; i++)
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; snakeLength; i++)
     {
-        if(s[i].x == x &amp;&amp; s[i].y == y) return 1;
+        <span class="hljs-keyword">if</span>(s[i].x == x &amp;&amp; s[i].y == y) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     }
 
-    return 0;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 
-Vector2 getRandomCellCoords(int colCount, int rowCount)
+Vector2 <span class="hljs-title function_">getRandomCellCoords</span><span class="hljs-params">(<span class="hljs-type">int</span> colCount, <span class="hljs-type">int</span> rowCount)</span>
 {
-    int x = randomInt(0, colCount);
-    int y = randomInt(0, rowCount);
-    return (Vector2) { x, y };
+    <span class="hljs-type">int</span> x = randomInt(<span class="hljs-number">0</span>, colCount);
+    <span class="hljs-type">int</span> y = randomInt(<span class="hljs-number">0</span>, rowCount);
+    <span class="hljs-keyword">return</span> (Vector2) { x, y };
 }
 
-int main(void)
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>
 {
-    srand((unsigned)time(NULL));
+    srand((<span class="hljs-type">unsigned</span>)time(<span class="hljs-literal">NULL</span>));
 
-    const int screenSize = 600;
-    const int screenWidth = screenSize;
-    const int screenHeight = screenSize;
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> screenSize = <span class="hljs-number">600</span>;
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> screenWidth = screenSize;
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> screenHeight = screenSize;
 
-    InitWindow(screenWidth, screenHeight, "snake");
-    SetTargetFPS(60);
+    InitWindow(screenWidth, screenHeight, <span class="hljs-string">&quot;snake&quot;</span>);
+    SetTargetFPS(<span class="hljs-number">60</span>);
 
-    const int gridSize = 20;
-    const int cellSize = floor(screenSize / gridSize);
-    const int colCount = floor(screenWidth / cellSize);
-    const int rowCount = floor(screenHeight / cellSize);
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> gridSize = <span class="hljs-number">20</span>;
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> cellSize = <span class="hljs-built_in">floor</span>(screenSize / gridSize);
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> colCount = <span class="hljs-built_in">floor</span>(screenWidth / cellSize);
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> rowCount = <span class="hljs-built_in">floor</span>(screenHeight / cellSize);
 
-    int gameInProgress = 1;
+    <span class="hljs-type">int</span> gameInProgress = <span class="hljs-number">1</span>;
 
-    int snakeLength = 4;
-    int snakeMaxLength = colCount * rowCount;
-    struct Snake snake[snakeMaxLength];
-    for(int i = 0; i &lt; snakeLength; i++)
+    <span class="hljs-type">int</span> snakeLength = <span class="hljs-number">4</span>;
+    <span class="hljs-type">int</span> snakeMaxLength = colCount * rowCount;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Snake</span> <span class="hljs-title">snake</span>[<span class="hljs-title">snakeMaxLength</span>];</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; snakeLength; i++)
     {
-        snake[i] = SnakeCreate(floor(colCount / 2) - i, floor(rowCount / 2));
+        snake[i] = SnakeCreate(<span class="hljs-built_in">floor</span>(colCount / <span class="hljs-number">2</span>) - i, <span class="hljs-built_in">floor</span>(rowCount / <span class="hljs-number">2</span>));
     }
 
-    struct Apple apple = AppleCreate();
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Apple</span> <span class="hljs-title">apple</span> =</span> AppleCreate();
 
-    float appleSpawnInterval = 8.0f;
-    float appleSpawnTimer = 0.0f;
+    <span class="hljs-type">float</span> appleSpawnInterval = <span class="hljs-number">8.0f</span>;
+    <span class="hljs-type">float</span> appleSpawnTimer = <span class="hljs-number">0.0f</span>;
 
-    while(!WindowShouldClose())
+    <span class="hljs-keyword">while</span>(!WindowShouldClose())
     {
-        // update
-        if(gameInProgress) {
-            int up, down, left, right, dirX, dirY;
+        <span class="hljs-comment">// update</span>
+        <span class="hljs-keyword">if</span>(gameInProgress) {
+            <span class="hljs-type">int</span> up, down, left, right, dirX, dirY;
 
-            float dt = GetFrameTime();
+            <span class="hljs-type">float</span> dt = GetFrameTime();
 
-            up = IsKeyDown(KEY_UP) ? -1 : 0;
-            down = IsKeyDown(KEY_DOWN) ? 1 : 0;
-            left = IsKeyDown(KEY_LEFT) ? -1 : 0;
-            right = IsKeyDown(KEY_RIGHT) ? 1 : 0;
+            up = IsKeyDown(KEY_UP) ? <span class="hljs-number">-1</span> : <span class="hljs-number">0</span>;
+            down = IsKeyDown(KEY_DOWN) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+            left = IsKeyDown(KEY_LEFT) ? <span class="hljs-number">-1</span> : <span class="hljs-number">0</span>;
+            right = IsKeyDown(KEY_RIGHT) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
 
             dirY = up + down;
             dirX = left + right;
 
-            for(int i = snakeLength; i &gt; 0; i--)
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = snakeLength; i &gt; <span class="hljs-number">0</span>; i--)
             {
-                SnakeUpdate(&amp;snake[i], dt, &amp;snake[i - 1]);
+                SnakeUpdate(&amp;snake[i], dt, &amp;snake[i - <span class="hljs-number">1</span>]);
             }
 
-            snake[snakeLength - 1].direction = snake[snakeLength - 2].direction;
-            SnakeSetDirection(&amp;snake[0], dirX, dirY);
-            SnakeUpdate(&amp;snake[0], dt, NULL);
-            SnakeScreenWrap(&amp;snake[0], colCount, rowCount);
+            snake[snakeLength - <span class="hljs-number">1</span>].direction = snake[snakeLength - <span class="hljs-number">2</span>].direction;
+            SnakeSetDirection(&amp;snake[<span class="hljs-number">0</span>], dirX, dirY);
+            SnakeUpdate(&amp;snake[<span class="hljs-number">0</span>], dt, <span class="hljs-literal">NULL</span>);
+            SnakeScreenWrap(&amp;snake[<span class="hljs-number">0</span>], colCount, rowCount);
 
-            if(apple.active &amp;&amp; snake[0].x == apple.x &amp;&amp; snake[0].y == apple.y)
+            <span class="hljs-keyword">if</span>(apple.active &amp;&amp; snake[<span class="hljs-number">0</span>].x == apple.x &amp;&amp; snake[<span class="hljs-number">0</span>].y == apple.y)
             {
-                apple.active = 0;
-                snake[snakeLength] = snake[snakeLength - 1];
+                apple.active = <span class="hljs-number">0</span>;
+                snake[snakeLength] = snake[snakeLength - <span class="hljs-number">1</span>];
                 snakeLength++;
             }
 
-            if(!apple.active)
+            <span class="hljs-keyword">if</span>(!apple.active)
             {
                 appleSpawnTimer += dt;
-                if(appleSpawnTimer &gt; appleSpawnInterval)
+                <span class="hljs-keyword">if</span>(appleSpawnTimer &gt; appleSpawnInterval)
                 {
                     appleSpawnTimer -= appleSpawnInterval;
 
                     Vector2 newPos = getRandomCellCoords(colCount, rowCount);
-                    while(collidesWithSnake(snake, snakeLength, newPos.x, newPos.y)) {
+                    <span class="hljs-keyword">while</span>(collidesWithSnake(snake, snakeLength, newPos.x, newPos.y)) {
                         newPos = getRandomCellCoords(colCount, rowCount);
                     }
                     AppleActivateAt(&amp;apple, newPos.x, newPos.y);
@@ -435,46 +555,46 @@ int main(void)
 
             AppleUpdate(&amp;apple, dt);
 
-            int tailLength = snakeLength - 1;
-            struct Snake tail[tailLength];
-            for(int i = 1; i &lt; tailLength; i++)
+            <span class="hljs-type">int</span> tailLength = snakeLength - <span class="hljs-number">1</span>;
+            <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Snake</span> <span class="hljs-title">tail</span>[<span class="hljs-title">tailLength</span>];</span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; tailLength; i++)
             {
                 tail[i] = snake[i];
             }
-            if(collidesWithSnake(tail, tailLength, snake[0].x, snake[0].y))
+            <span class="hljs-keyword">if</span>(collidesWithSnake(tail, tailLength, snake[<span class="hljs-number">0</span>].x, snake[<span class="hljs-number">0</span>].y))
             {
-                gameInProgress = 0;
+                gameInProgress = <span class="hljs-number">0</span>;
             }
         }
 
-        // draw
+        <span class="hljs-comment">// draw</span>
         BeginDrawing();
         ClearBackground(BLACK);
 
-        for(int r = 0; r &lt; rowCount; r++)
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> r = <span class="hljs-number">0</span>; r &lt; rowCount; r++)
         {
-            for(int c = 0; c &lt; colCount; c++) {
-                Color color = ((r + c) % 2) == 0 ? RAYWHITE : WHITE;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; colCount; c++) {
+                Color color = ((r + c) % <span class="hljs-number">2</span>) == <span class="hljs-number">0</span> ? RAYWHITE : WHITE;
                 DrawRectangle(c * cellSize, r * cellSize, cellSize, cellSize, color);
             }
         }
 
-        for(int i = 1; i &lt; snakeLength - 1; i++)
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; snakeLength - <span class="hljs-number">1</span>; i++)
         {
             SnakeDraw(&amp;snake[i], cellSize, DARKGREEN);
         }
-        SnakeDrawHead(&amp;snake[0], cellSize, DARKGREEN);
-        SnakeDrawTail(&amp;snake[snakeLength - 1], cellSize, DARKGREEN);
+        SnakeDrawHead(&amp;snake[<span class="hljs-number">0</span>], cellSize, DARKGREEN);
+        SnakeDrawTail(&amp;snake[snakeLength - <span class="hljs-number">1</span>], cellSize, DARKGREEN);
 
         AppleDraw(&amp;apple, cellSize, RED);
 
-        if(!gameInProgress) {
-            const char *gameOverText = "GAME OVER";
-            int fontSize = 40;
-            int textLength = MeasureText(gameOverText, fontSize);
+        <span class="hljs-keyword">if</span>(!gameInProgress) {
+            <span class="hljs-type">const</span> <span class="hljs-type">char</span> *gameOverText = <span class="hljs-string">&quot;GAME OVER&quot;</span>;
+            <span class="hljs-type">int</span> fontSize = <span class="hljs-number">40</span>;
+            <span class="hljs-type">int</span> textLength = MeasureText(gameOverText, fontSize);
 
-            int posX = floor(screenWidth / 2) - floor(textLength / 2);
-            int posY = floor(screenHeight / 2);
+            <span class="hljs-type">int</span> posX = <span class="hljs-built_in">floor</span>(screenWidth / <span class="hljs-number">2</span>) - <span class="hljs-built_in">floor</span>(textLength / <span class="hljs-number">2</span>);
+            <span class="hljs-type">int</span> posY = <span class="hljs-built_in">floor</span>(screenHeight / <span class="hljs-number">2</span>);
             DrawText(gameOverText, posX, posY, fontSize, BLACK);
         }
 
@@ -504,6 +624,5 @@ int main(void)
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

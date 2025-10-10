@@ -50,6 +50,126 @@
 
     <title>Partial function implementation</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -95,10 +215,10 @@ Another name for this is <i>currying</i>. You can read more about it at
 Say we have a function called <code>add(a: number, b: number)</code>. We could use this
 to create a function called <code>addOne</code> by binding one as the first argument
 like so:</p>
-<pre><code class="typescript language-typescript">const add = (a: number, b: number) =&gt; a + b
-const addOne = partial(add, 1)
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">add</span> = (<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">number</span></span>) =&gt; a + b
+<span class="hljs-keyword">const</span> addOne = <span class="hljs-title function_">partial</span>(add, <span class="hljs-number">1</span>)
 
-addOne(2) // 3
+<span class="hljs-title function_">addOne</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">// 3</span>
 </code></pre>
 <p>The above is a naive example, but I'm sure that you can see how this would
 be of benefit in more complex examples. Perhaps it could be use to build
@@ -108,15 +228,15 @@ certain instance of an object, where you cannot modify the source code.</p>
 <p>Implementing a method that can partially apply arguments to other methods is
 somewhat trivial thanks to ECMAScript's syntactic sugar.</p>
 <p>Below is a Typed and untyped example.</p>
-<pre><code class="typescript language-typescript">// Untyped
-const partial = (fn, ...fixedArgs) =&gt; (...args) =&gt; fn(...fixedArgs, ...args)
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-comment">// Untyped</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">partial</span> = (<span class="hljs-params">fn, ...fixedArgs</span>) =&gt; <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> <span class="hljs-title function_">fn</span>(...fixedArgs, ...args)
 
-// Typed... and ugly
-function partial&lt;T, U extends any[], V extends any[]&gt;(
-  fn: (...args: [...U, ...V]) =&gt; any,
-  ...fixedargs: U
-): (...args: V) =&gt; any {
-  return (...args: V) =&gt; fn(...fixedargs, ...args);
+<span class="hljs-comment">// Typed... and ugly</span>
+<span class="hljs-keyword">function</span> partial&lt;T, U <span class="hljs-keyword">extends</span> <span class="hljs-built_in">any</span>[], V <span class="hljs-keyword">extends</span> <span class="hljs-built_in">any</span>[]&gt;(
+  <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">...<span class="hljs-attr">args</span>: [...U, ...V]</span>) =&gt;</span> <span class="hljs-built_in">any</span>,
+  ...<span class="hljs-attr">fixedargs</span>: U
+): <span class="hljs-function">(<span class="hljs-params">...<span class="hljs-attr">args</span>: V</span>) =&gt;</span> <span class="hljs-built_in">any</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...<span class="hljs-attr">args</span>: V</span>) =&gt;</span> <span class="hljs-title function_">fn</span>(...fixedargs, ...args);
 }
 </code></pre>
 <p>There is possibly a nicer way to type this, that does not use <code>any</code>. However I don't
@@ -142,6 +262,5 @@ lends itself better to loosely typed programming.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

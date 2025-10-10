@@ -50,6 +50,126 @@
 
     <title>Tower of Hanoi in Java</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -99,58 +219,58 @@ So I had an idea of what needed to be done.</p>
 This is one of the great use cases for AI, they can write the boring code. I had to tune the
 tests slightly to give the expected output. For example in my implementation I am writing out
 the moves as Strings. Which was the interview requirement.</p>
-<pre><code class="java language-java">package ie.briandouglas.tower_of_hanoi;
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-keyword">package</span> ie.briandouglas.tower_of_hanoi;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import java.util.List;
+<span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions.*;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+<span class="hljs-keyword">import</span> java.util.List;
 
-class TowerOfHanoiTest {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">TowerOfHanoiTest</span> {
 
-    @Test
-    void testOneDisk() {
-        TowerOfHanoi hanoi = new TowerOfHanoi();
-        List&lt;String&gt; moves = hanoi.solve(1, 'A', 'C', 'B');
-        assertEquals(1, moves.size());
-        assertEquals("Move disk 1 from A to C", moves.get(0));
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testOneDisk</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">TowerOfHanoi</span> <span class="hljs-variable">hanoi</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TowerOfHanoi</span>();
+        List&lt;String&gt; moves = hanoi.solve(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>);
+        assertEquals(<span class="hljs-number">1</span>, moves.size());
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from A to C&quot;</span>, moves.get(<span class="hljs-number">0</span>));
     }
 
-    @Test
-    void testTwoDisks() {
-        TowerOfHanoi hanoi = new TowerOfHanoi();
-        List&lt;String&gt; moves = hanoi.solve(2, 'A', 'C', 'B');
-        assertEquals(3, moves.size());
-        assertEquals("Move disk 1 from A to B", moves.get(0));
-        assertEquals("Move disk 2 from A to C", moves.get(1));
-        assertEquals("Move disk 1 from B to C", moves.get(2));
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testTwoDisks</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">TowerOfHanoi</span> <span class="hljs-variable">hanoi</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TowerOfHanoi</span>();
+        List&lt;String&gt; moves = hanoi.solve(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>);
+        assertEquals(<span class="hljs-number">3</span>, moves.size());
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from A to B&quot;</span>, moves.get(<span class="hljs-number">0</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 2 from A to C&quot;</span>, moves.get(<span class="hljs-number">1</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from B to C&quot;</span>, moves.get(<span class="hljs-number">2</span>));
     }
 
-    @Test
-    void testThreeDisks() {
-        TowerOfHanoi hanoi = new TowerOfHanoi();
-        List&lt;String&gt; moves = hanoi.solve(3, 'A', 'C', 'B');
-        assertEquals(7, moves.size());
-        assertEquals("Move disk 1 from A to C", moves.get(0));
-        assertEquals("Move disk 2 from A to B", moves.get(1));
-        assertEquals("Move disk 1 from C to B", moves.get(2));
-        assertEquals("Move disk 3 from A to C", moves.get(3));
-        assertEquals("Move disk 1 from B to A", moves.get(4));
-        assertEquals("Move disk 2 from B to C", moves.get(5));
-        assertEquals("Move disk 1 from A to C", moves.get(6));
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testThreeDisks</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">TowerOfHanoi</span> <span class="hljs-variable">hanoi</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TowerOfHanoi</span>();
+        List&lt;String&gt; moves = hanoi.solve(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>);
+        assertEquals(<span class="hljs-number">7</span>, moves.size());
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from A to C&quot;</span>, moves.get(<span class="hljs-number">0</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 2 from A to B&quot;</span>, moves.get(<span class="hljs-number">1</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from C to B&quot;</span>, moves.get(<span class="hljs-number">2</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 3 from A to C&quot;</span>, moves.get(<span class="hljs-number">3</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from B to A&quot;</span>, moves.get(<span class="hljs-number">4</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 2 from B to C&quot;</span>, moves.get(<span class="hljs-number">5</span>));
+        assertEquals(<span class="hljs-string">&quot;Move disk 1 from A to C&quot;</span>, moves.get(<span class="hljs-number">6</span>));
     }
 
-    @Test
-    void testZeroDisks() {
-        TowerOfHanoi hanoi = new TowerOfHanoi();
-        List&lt;String&gt; moves = hanoi.solve(0, 'A', 'C', 'B');
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testZeroDisks</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">TowerOfHanoi</span> <span class="hljs-variable">hanoi</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TowerOfHanoi</span>();
+        List&lt;String&gt; moves = hanoi.solve(<span class="hljs-number">0</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>);
         assertTrue(moves.isEmpty());
     }
 
-    @Test
-    void testFiveDisks() {
-        TowerOfHanoi hanoi = new TowerOfHanoi();
-        List&lt;String&gt; moves = hanoi.solve(5, 'A', 'C', 'B');
-        assertEquals(31, moves.size());
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">testFiveDisks</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">TowerOfHanoi</span> <span class="hljs-variable">hanoi</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TowerOfHanoi</span>();
+        List&lt;String&gt; moves = hanoi.solve(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>);
+        assertEquals(<span class="hljs-number">31</span>, moves.size());
     }
 }
 </code></pre>
@@ -161,28 +281,28 @@ to <code>to</code>. Then from <code>unused</code> to <code>to</code>. In this ex
 and <code>unused</code> is the peg that is not involved.</p>
 <p>I extracted the <code>constructMoveString</code> for readability, and created a method overload so that <code>solve</code>
 could be called without instantiating an <code>ArrayList</code>.</p>
-<pre><code class="java language-java">package ie.briandouglas.tower_of_hanoi;
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-keyword">package</span> ie.briandouglas.tower_of_hanoi;
 
-import java.util.ArrayList;
-import java.util.List;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
 
-public class TowerOfHanoi {
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TowerOfHanoi</span> {
 
-    public List&lt;String&gt; solve(int n, char from, char to, char unused, List&lt;String&gt; moves) {
-        if (n &gt; 0) {
-            solve(n - 1, from, unused, to, moves);
+    <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">solve</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">char</span> from, <span class="hljs-type">char</span> to, <span class="hljs-type">char</span> unused, List&lt;String&gt; moves)</span> {
+        <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">0</span>) {
+            solve(n - <span class="hljs-number">1</span>, from, unused, to, moves);
             moves.add(constructMoveString(n, from, to));
-            solve(n - 1, unused, to, from, moves);
+            solve(n - <span class="hljs-number">1</span>, unused, to, from, moves);
         }
-        return moves;
+        <span class="hljs-keyword">return</span> moves;
     }
 
-    public List&lt;String&gt; solve(int n, char from, char to, char unused) {
-        return solve(n, from, to, unused, new ArrayList&lt;&gt;());
+    <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">solve</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">char</span> from, <span class="hljs-type">char</span> to, <span class="hljs-type">char</span> unused)</span> {
+        <span class="hljs-keyword">return</span> solve(n, from, to, unused, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());
     }
 
-    private String constructMoveString(int disk, char from, char to) {
-        return new StringBuilder().append("Move disk ").append(disk).append(" from ").append(from).append(" to ")
+    <span class="hljs-keyword">private</span> String <span class="hljs-title function_">constructMoveString</span><span class="hljs-params">(<span class="hljs-type">int</span> disk, <span class="hljs-type">char</span> from, <span class="hljs-type">char</span> to)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>().append(<span class="hljs-string">&quot;Move disk &quot;</span>).append(disk).append(<span class="hljs-string">&quot; from &quot;</span>).append(from).append(<span class="hljs-string">&quot; to &quot;</span>)
                 .append(to).toString();
     }
 
@@ -208,6 +328,5 @@ public class TowerOfHanoi {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

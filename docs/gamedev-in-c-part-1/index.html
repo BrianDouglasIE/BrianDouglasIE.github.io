@@ -50,6 +50,126 @@
 
     <title>GameDev in C Part 1: Hello World</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -111,34 +231,34 @@ There is no sudo here.</p>
 <p>Now I bet you are thinking I just run <code>choco  install gcc</code>. Well you would be wrong.
 In windows <code>gcc</code> is made available through <a href="https://www.mingw-w64.org/">MingW</a>. So
 the command we run to  install <code>gcc</code> is:</p>
-<pre><code>choco install mingw
+<pre><code class="hljs">choco <span class="hljs-keyword">install</span> mingw
 </code></pre>
 <h2 id="makebuild">make build</h2>
 <p>It's entirely possible to compile and run a simple program using <code>gcc</code> alone. But I
 want some sort of build system. So let's install make:</p>
-<pre><code>choco install make
+<pre><code class="hljs">choco <span class="hljs-keyword">install</span> make
 </code></pre>
 <p>The first program I want to run is as follows.</p>
-<pre><code class="c language-c">// main.c
-#include &lt;stdio.h&gt;
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-comment">// main.c</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
-int main() {
-   printf("Hello, World!");
-   return 0;
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
 <p>Now it's here I make a time costing mistake. I use the following command to compile
 the program.</p>
-<pre><code>gcc main.c -o build.exe
+<pre><code class="hljs">gcc <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span> -o build<span class="hljs-selector-class">.exe</span>
 </code></pre>
 <p>A seasoned C programmer will see the problem straight away. Not me. The command generates
 <code>build.exe</code>. Now I run it with <code>./build.exe</code>. I should see "Hello, World!" printed to the
 console. Instead I see the following.</p>
-<pre><code>Program 'build.exe' failed to run: The specified executable is not a valid application for this OS platform.At line:1
-char:1
+<pre><code class="hljs">Program <span class="hljs-string">&#x27;build.exe&#x27;</span> failed <span class="hljs-built_in">to</span> run: The specified executable is <span class="hljs-keyword">not</span> <span class="hljs-keyword">a</span> valid application <span class="hljs-keyword">for</span> this OS <span class="hljs-built_in">platform</span>.At <span class="hljs-built_in">line</span>:<span class="hljs-number">1</span>
+<span class="hljs-keyword">char</span>:<span class="hljs-number">1</span>
 + .\build.exe
 + ~~~~~~~~~~~.
-At line:1 char:1
+At <span class="hljs-built_in">line</span>:<span class="hljs-number">1</span> <span class="hljs-keyword">char</span>:<span class="hljs-number">1</span>
 + .\build.exe
 + ~~~~~~~~~~~
     + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
@@ -147,21 +267,21 @@ At line:1 char:1
 <p>Ok, so the error is telling me that the specified executable is not correct for the OS. 
 So do I add <code>-m64</code> and make the command <code>gcc -m64 -c main.c -o build.exe</code>? Nope same 
 error. So fast forward 2 hours, and I figure it out.</p>
-<pre><code>-c                       Compile and assemble, but do not link.
+<pre><code class="hljs">-c                       Compile and assemble, but <span class="hljs-keyword">do</span> not <span class="hljs-built_in">link</span>.
 </code></pre>
 <p>The <code>-c</code> flag is not needed. So I run:</p>
-<pre><code>gcc -c main.c -o build.exe
+<pre><code class="hljs">gcc -c <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span> -o build<span class="hljs-selector-class">.exe</span>
 </code></pre>
 <p>And voila <code>build.exe</code> prints "Hello, World!" to the console. Now I add the following
 content to my make file.</p>
-<pre><code>build : main.o
-    gcc -o build.exe main.o
+<pre><code class="hljs">build : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span>
+    gcc -o build<span class="hljs-selector-class">.exe</span> <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span>
 
-main.o : main.c
-    gcc -c main.c
+<span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span>
+    gcc -c <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span>
 
 clean : 
-    powershell Remove-Item *.exe, *.o
+    powershell Remove-Item *<span class="hljs-selector-class">.exe</span>, *<span class="hljs-selector-class">.o</span>
 </code></pre>
 <p>This allows me to run useful commands like <code>make clean</code>, and <code>make build</code>.</p>
 <p>And that's a wrap for part 1. Tomorrow I will look at adding raylib to the project.</p>
@@ -185,6 +305,5 @@ clean :
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

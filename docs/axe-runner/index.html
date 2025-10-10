@@ -50,6 +50,126 @@
 
     <title>AxeRunner</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -107,36 +227,36 @@ can be used within a Java project and allows for type hinting.</p>
 <h2 id="installation">Installation</h2>
 <p>To use <code>AxeRunner</code>, include the following dependencies in your project:</p>
 <h3 id="maven">Maven</h3>
-<pre><code class="xml language-xml">&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
-        &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
-        &lt;version&gt;4.x.x&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;ie.briandouglas&lt;/groupId&gt;
-        &lt;artifactId&gt;axe_runner&lt;/artifactId&gt;
-        &lt;version&gt;0.0.1&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
+<pre class="xml language-xml"><code class="hljs xml language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.seleniumhq.selenium<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>selenium-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.x.x<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ie.briandouglas<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>axe_runner<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
 </code></pre>
 <h2 id="usage">Usage</h2>
 <h3 id="creatinganinstance">Creating an Instance</h3>
-<pre><code class="java language-java">WebDriver driver = new ChromeDriver(); // or any other WebDriver instance
-AxeRunner axeRunner = new AxeRunner(driver);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">WebDriver</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChromeDriver</span>(); <span class="hljs-comment">// or any other WebDriver instance</span>
+<span class="hljs-type">AxeRunner</span> <span class="hljs-variable">axeRunner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AxeRunner</span>(driver);
 </code></pre>
 <h3 id="runningaccessibilitytests">Running Accessibility Tests</h3>
-<pre><code class="java language-java">String url = "https://example.com";
-AxeResults results = axeRunner.getAxeResults(url);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;https://example.com&quot;</span>;
+<span class="hljs-type">AxeResults</span> <span class="hljs-variable">results</span> <span class="hljs-operator">=</span> axeRunner.getAxeResults(url);
 </code></pre>
 <h3 id="runningwithcustomconfigurations">Running with Custom Configurations</h3>
-<pre><code class="java language-java">AxeSpec spec = new AxeSpec(); // Define accessibility testing specifications
-AxeRunOptions options = new AxeRunOptions(); // Define run options
-AxeResults results = axeRunner.getAxeResults(url, spec, options);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">AxeSpec</span> <span class="hljs-variable">spec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AxeSpec</span>(); <span class="hljs-comment">// Define accessibility testing specifications</span>
+<span class="hljs-type">AxeRunOptions</span> <span class="hljs-variable">options</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AxeRunOptions</span>(); <span class="hljs-comment">// Define run options</span>
+<span class="hljs-type">AxeResults</span> <span class="hljs-variable">results</span> <span class="hljs-operator">=</span> axeRunner.getAxeResults(url, spec, options);
 </code></pre>
 <h3 id="accessingresults">Accessing Results</h3>
-<pre><code class="java language-java">System.out.println("Violations: " + results.violations.size());
-System.out.println("Passes: " + results.passes.size());
+<pre class="java language-java"><code class="hljs java language-java">System.out.println(<span class="hljs-string">&quot;Violations: &quot;</span> + results.violations.size());
+System.out.println(<span class="hljs-string">&quot;Passes: &quot;</span> + results.passes.size());
 </code></pre>
 <h2 id="errorhandling">Error Handling</h2>
 <ul>
@@ -172,6 +292,5 @@ System.out.println("Passes: " + results.passes.size());
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

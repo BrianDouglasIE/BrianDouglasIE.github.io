@@ -50,6 +50,126 @@
 
     <title>Creating a Pong clone using Raylib and Go</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -111,8 +231,8 @@ it is clear and readable. This is owed to the simplicity of Go. A language of wh
 I will be using a lot more of in the future.</p>
 <h2 id="thesetup">The Setup</h2>
 <p>No much to it, create a Go module and install <a href="https://github.com/gen2brain/raylib-go">raylib-go</a>.</p>
-<pre><code>go mod init main
-go get github.com/gen2brain/raylib-go
+<pre><code class="hljs"><span class="hljs-keyword">go</span> <span class="hljs-keyword">mod</span> init main
+<span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> github.<span class="hljs-keyword">com</span>/gen2brain/raylib-<span class="hljs-keyword">go</span>
 </code></pre>
 <h2 id="thecode">The Code</h2>
 <p><magpie-trinket>
@@ -121,171 +241,171 @@ The source code is also available on github, <a href="https://github.com/BrianDo
 <p>I won't write out what the code is doing as I feel it is fairly self explanatory. I know you
 are an ace programmer, so you don't need your hand held.</p>
 <p>The game can be launched with <code>go run main.go</code>.</p>
-<pre><code class="go language-go">package main
+<pre class="go language-go"><code class="hljs go language-go"><span class="hljs-keyword">package</span> main
 
-import (
-        "fmt"
-        "image/color"
-        "math/rand"
-        "time"
+<span class="hljs-keyword">import</span> (
+        <span class="hljs-string">&quot;fmt&quot;</span>
+        <span class="hljs-string">&quot;image/color&quot;</span>
+        <span class="hljs-string">&quot;math/rand&quot;</span>
+        <span class="hljs-string">&quot;time&quot;</span>
 
-        rl "github.com/gen2brain/raylib-go/raylib"
+        rl <span class="hljs-string">&quot;github.com/gen2brain/raylib-go/raylib&quot;</span>
 )
 
-const (
-        SCREEN_WIDTH          = 800
-        SCREEN_HEIGHT         = 450
-        CENTER_X              = SCREEN_WIDTH / 2
-        CENTER_Y              = SCREEN_HEIGHT / 2
-        SIDE_BUFFER_WIDTH     = 40
-        INITIAL_PADDLE_HEIGHT = 80
-        INITIAL_PADDLE_WIDTH  = 20
-        INITIAL_PADDLE_SPEED  = 4
-        INITIAL_BALL_SIZE     = 16
-        INITIAL_BALL_SPEED    = 4
+<span class="hljs-keyword">const</span> (
+        SCREEN_WIDTH          = <span class="hljs-number">800</span>
+        SCREEN_HEIGHT         = <span class="hljs-number">450</span>
+        CENTER_X              = SCREEN_WIDTH / <span class="hljs-number">2</span>
+        CENTER_Y              = SCREEN_HEIGHT / <span class="hljs-number">2</span>
+        SIDE_BUFFER_WIDTH     = <span class="hljs-number">40</span>
+        INITIAL_PADDLE_HEIGHT = <span class="hljs-number">80</span>
+        INITIAL_PADDLE_WIDTH  = <span class="hljs-number">20</span>
+        INITIAL_PADDLE_SPEED  = <span class="hljs-number">4</span>
+        INITIAL_BALL_SIZE     = <span class="hljs-number">16</span>
+        INITIAL_BALL_SPEED    = <span class="hljs-number">4</span>
         RIGHT_BOUNDS          = SCREEN_WIDTH
-        LEFT_BOUNDS           = 0
-        TOP_BOUNDS            = 0
+        LEFT_BOUNDS           = <span class="hljs-number">0</span>
+        TOP_BOUNDS            = <span class="hljs-number">0</span>
         BOTTOM_BOUNDS         = SCREEN_HEIGHT
 )
 
-type Paddle struct {
-        X      int32
-        Y      int32
-        VX     int32
-        VY     int32
-        Width  int32
-        Height int32
-        Score  int32
-        Speed  int32
+<span class="hljs-keyword">type</span> Paddle <span class="hljs-keyword">struct</span> {
+        X      <span class="hljs-type">int32</span>
+        Y      <span class="hljs-type">int32</span>
+        VX     <span class="hljs-type">int32</span>
+        VY     <span class="hljs-type">int32</span>
+        Width  <span class="hljs-type">int32</span>
+        Height <span class="hljs-type">int32</span>
+        Score  <span class="hljs-type">int32</span>
+        Speed  <span class="hljs-type">int32</span>
         Color  color.RGBA
 }
 
-func (p *Paddle) Draw() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Paddle)</span></span> Draw() {
         rl.DrawRectangle(p.X, p.Y, p.Width, p.Height, p.Color)
 }
 
-func (p *Paddle) IncrementScore() {
-        p.Score += 1
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Paddle)</span></span> IncrementScore() {
+        p.Score += <span class="hljs-number">1</span>
 }
 
-func (p *Paddle) Update() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Paddle)</span></span> Update() {
         p.X += p.VX
         p.Y += p.VY
 }
 
-type Ball struct {
-        X     int32
-        Y     int32
-        VX    int32
-        VY    int32
-        Size  int32
-        Serve int32
+<span class="hljs-keyword">type</span> Ball <span class="hljs-keyword">struct</span> {
+        X     <span class="hljs-type">int32</span>
+        Y     <span class="hljs-type">int32</span>
+        VX    <span class="hljs-type">int32</span>
+        VY    <span class="hljs-type">int32</span>
+        Size  <span class="hljs-type">int32</span>
+        Serve <span class="hljs-type">int32</span>
         Color color.RGBA
 }
 
-func (b *Ball) Draw() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> Draw() {
         rl.DrawRectangle(b.X, b.Y, b.Size, b.Size, b.Color)
 }
 
-func (b *Ball) Update() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> Update() {
         b.X += b.VX
         b.Y += b.VY
 }
 
-func (b *Ball) Reset() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> Reset() {
         b.Size = INITIAL_BALL_SIZE
-        b.X = CENTER_X - (INITIAL_BALL_SIZE / 2)
-        b.Y = CENTER_Y - (INITIAL_BALL_SIZE / 2)
+        b.X = CENTER_X - (INITIAL_BALL_SIZE / <span class="hljs-number">2</span>)
+        b.Y = CENTER_Y - (INITIAL_BALL_SIZE / <span class="hljs-number">2</span>)
         b.Color = rl.White
         b.VX = INITIAL_BALL_SPEED * b.serveModifier()
         b.VY = INITIAL_BALL_SPEED * pickRandomVariant()
-        b.Serve += 1
+        b.Serve += <span class="hljs-number">1</span>
 }
 
-func (b *Ball) BounceVertically() {
-        b.VY = b.VY * -1
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> BounceVertically() {
+        b.VY = b.VY * <span class="hljs-number">-1</span>
 }
 
-func (b *Ball) BounceHorizontally() {
-        b.VX = b.VX * -1
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> BounceHorizontally() {
+        b.VX = b.VX * <span class="hljs-number">-1</span>
 }
 
-func (b *Ball) serveModifier() int32 {
-        if b.Serve%2 == 0 {
-                return 1
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Ball)</span></span> serveModifier() <span class="hljs-type">int32</span> {
+        <span class="hljs-keyword">if</span> b.Serve%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
         }
 
-        return -1
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
 }
 
-func isBallOutToLeft(b *Ball) bool {
-        return b.X &lt; LEFT_BOUNDS
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isBallOutToLeft</span><span class="hljs-params">(b *Ball)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> b.X &lt; LEFT_BOUNDS
 }
 
-func isBallOutToRight(b *Ball) bool {
-        return b.X-b.Size &gt; RIGHT_BOUNDS
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isBallOutToRight</span><span class="hljs-params">(b *Ball)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> b.X-b.Size &gt; RIGHT_BOUNDS
 }
 
-func ballAtBottom(b *Ball) bool {
-        return b.Y &gt; SCREEN_HEIGHT
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ballAtBottom</span><span class="hljs-params">(b *Ball)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> b.Y &gt; SCREEN_HEIGHT
 }
 
-func ballAtTop(b *Ball) bool {
-        return b.Y+b.Size &lt; 0
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ballAtTop</span><span class="hljs-params">(b *Ball)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> b.Y+b.Size &lt; <span class="hljs-number">0</span>
 }
 
-func paddleAtTop(p *Paddle) bool {
-        return p.Y &lt; TOP_BOUNDS
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">paddleAtTop</span><span class="hljs-params">(p *Paddle)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> p.Y &lt; TOP_BOUNDS
 }
 
-func paddleAtBottom(p *Paddle) bool {
-        return p.Y+p.Height &gt; BOTTOM_BOUNDS
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">paddleAtBottom</span><span class="hljs-params">(p *Paddle)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> p.Y+p.Height &gt; BOTTOM_BOUNDS
 }
 
-func pickRandomVariant() int32 {
-        return int32(rand.Intn(2)*2 - 1)
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">pickRandomVariant</span><span class="hljs-params">()</span></span> <span class="hljs-type">int32</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-type">int32</span>(rand.Intn(<span class="hljs-number">2</span>)*<span class="hljs-number">2</span> - <span class="hljs-number">1</span>)
 }
 
-func getScoreText(leftPaddle *Paddle, rightPaddle *Paddle) string {
-        return fmt.Sprintf("%d   %d", leftPaddle.Score, rightPaddle.Score)
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getScoreText</span><span class="hljs-params">(leftPaddle *Paddle, rightPaddle *Paddle)</span></span> <span class="hljs-type">string</span> {
+        <span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;%d   %d&quot;</span>, leftPaddle.Score, rightPaddle.Score)
 }
 
-func movePaddleToInterceptBall(p *Paddle, b *Ball) {
-        paddleCenter := p.Y + p.Height/2
-        if b.Y &gt; paddleCenter {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">movePaddleToInterceptBall</span><span class="hljs-params">(p *Paddle, b *Ball)</span></span> {
+        paddleCenter := p.Y + p.Height/<span class="hljs-number">2</span>
+        <span class="hljs-keyword">if</span> b.Y &gt; paddleCenter {
                 p.VY = p.Speed
-        } else if b.Y &lt; paddleCenter {
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> b.Y &lt; paddleCenter {
                 p.VY = -p.Speed
-        } else {
-                p.VY = 0
+        } <span class="hljs-keyword">else</span> {
+                p.VY = <span class="hljs-number">0</span>
         }
 }
 
-func movePaddleTowardsCenter(p *Paddle) {
-        paddleCenter := p.Y + p.Height/2
-        if paddleCenter &lt; CENTER_Y {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">movePaddleTowardsCenter</span><span class="hljs-params">(p *Paddle)</span></span> {
+        paddleCenter := p.Y + p.Height/<span class="hljs-number">2</span>
+        <span class="hljs-keyword">if</span> paddleCenter &lt; CENTER_Y {
                 p.VY = p.Speed
-        } else if paddleCenter &gt; CENTER_Y {
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> paddleCenter &gt; CENTER_Y {
                 p.VY = -p.Speed
-        } else {
-                p.VY = 0
+        } <span class="hljs-keyword">else</span> {
+                p.VY = <span class="hljs-number">0</span>
         }
 }
 
-func ballIntersectsPaddle(b *Ball, p *Paddle) bool {
-        return b.X &lt; p.X+p.Width &amp;&amp;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ballIntersectsPaddle</span><span class="hljs-params">(b *Ball, p *Paddle)</span></span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> b.X &lt; p.X+p.Width &amp;&amp;
                 b.X+b.Size &gt; p.X &amp;&amp;
                 b.Y+b.Size &gt; p.Y &amp;&amp;
                 b.Y &lt; p.Y+p.Height
 }
 
-func main() {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
         rand.Seed(time.Now().UnixNano())
-        rl.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong")
-        defer rl.CloseWindow()
+        rl.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, <span class="hljs-string">&quot;Pong&quot;</span>)
+        <span class="hljs-keyword">defer</span> rl.CloseWindow()
 
-        rl.SetTargetFPS(60)
+        rl.SetTargetFPS(<span class="hljs-number">60</span>)
 
         ball := Ball{}
         ball.Reset()
@@ -296,8 +416,8 @@ func main() {
                 Speed:  INITIAL_PADDLE_SPEED,
                 Color:  rl.White,
                 X:      SIDE_BUFFER_WIDTH,
-                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / 2),
-                Score:  0,
+                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / <span class="hljs-number">2</span>),
+                Score:  <span class="hljs-number">0</span>,
         }
 
         rightPaddle := Paddle{
@@ -306,61 +426,61 @@ func main() {
                 Speed:  INITIAL_PADDLE_SPEED,
                 Color:  rl.White,
                 X:      SCREEN_WIDTH - SIDE_BUFFER_WIDTH - INITIAL_PADDLE_WIDTH,
-                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / 2),
-                Score:  0,
+                Y:      CENTER_Y - (INITIAL_PADDLE_HEIGHT / <span class="hljs-number">2</span>),
+                Score:  <span class="hljs-number">0</span>,
         }
 
-        for !rl.WindowShouldClose() {
+        <span class="hljs-keyword">for</span> !rl.WindowShouldClose() {
                 ball.Update()
 
-                if isBallOutToLeft(&amp;ball) {
+                <span class="hljs-keyword">if</span> isBallOutToLeft(&amp;ball) {
                         rightPaddle.IncrementScore()
                         ball.Reset()
                 }
 
-                if isBallOutToRight(&amp;ball) {
+                <span class="hljs-keyword">if</span> isBallOutToRight(&amp;ball) {
                         leftPaddle.IncrementScore()
                         ball.Reset()
                 }
 
-                if ballAtTop(&amp;ball) || ballAtBottom(&amp;ball) {
+                <span class="hljs-keyword">if</span> ballAtTop(&amp;ball) || ballAtBottom(&amp;ball) {
                         ball.BounceVertically()
                 }
 
                 leftPaddle.Update()
                 rightPaddle.Update()
 
-                if ball.VX &lt; 0 {
+                <span class="hljs-keyword">if</span> ball.VX &lt; <span class="hljs-number">0</span> {
                         movePaddleTowardsCenter(&amp;rightPaddle)
-                } else {
+                } <span class="hljs-keyword">else</span> {
                         movePaddleToInterceptBall(&amp;rightPaddle, &amp;ball)
                 }
 
-                if rl.IsKeyDown(rl.KeyUp) {
+                <span class="hljs-keyword">if</span> rl.IsKeyDown(rl.KeyUp) {
                         leftPaddle.VY = -leftPaddle.Speed
-                } else if rl.IsKeyDown(rl.KeyDown) {
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> rl.IsKeyDown(rl.KeyDown) {
                         leftPaddle.VY = leftPaddle.Speed
-                } else {
-                        leftPaddle.VY = 0
+                } <span class="hljs-keyword">else</span> {
+                        leftPaddle.VY = <span class="hljs-number">0</span>
                 }
 
-                if paddleAtTop(&amp;rightPaddle) {
-                        rightPaddle.Y = 0
+                <span class="hljs-keyword">if</span> paddleAtTop(&amp;rightPaddle) {
+                        rightPaddle.Y = <span class="hljs-number">0</span>
                 }
 
-                if paddleAtBottom(&amp;rightPaddle) {
+                <span class="hljs-keyword">if</span> paddleAtBottom(&amp;rightPaddle) {
                         rightPaddle.Y = SCREEN_HEIGHT - rightPaddle.Height
                 }
 
-                if paddleAtTop(&amp;leftPaddle) {
-                        leftPaddle.Y = 0
+                <span class="hljs-keyword">if</span> paddleAtTop(&amp;leftPaddle) {
+                        leftPaddle.Y = <span class="hljs-number">0</span>
                 }
 
-                if paddleAtBottom(&amp;leftPaddle) {
+                <span class="hljs-keyword">if</span> paddleAtBottom(&amp;leftPaddle) {
                         leftPaddle.Y = SCREEN_HEIGHT - leftPaddle.Height
                 }
 
-                if ballIntersectsPaddle(&amp;ball, &amp;leftPaddle) ||
+                <span class="hljs-keyword">if</span> ballIntersectsPaddle(&amp;ball, &amp;leftPaddle) ||
                         ballIntersectsPaddle(&amp;ball, &amp;rightPaddle) {
                         ball.BounceHorizontally()
                 }
@@ -371,9 +491,9 @@ func main() {
                 rl.DrawLine(CENTER_X, TOP_BOUNDS, CENTER_X, BOTTOM_BOUNDS, rl.LightGray)
 
                 scoreText := getScoreText(&amp;leftPaddle, &amp;rightPaddle)
-                textSize := rl.MeasureText(scoreText, 20)
+                textSize := rl.MeasureText(scoreText, <span class="hljs-number">20</span>)
 
-                rl.DrawText(scoreText, CENTER_X-(textSize/2), 20, 20, rl.White)
+                rl.DrawText(scoreText, CENTER_X-(textSize/<span class="hljs-number">2</span>), <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, rl.White)
 
                 leftPaddle.Draw()
                 rightPaddle.Draw()
@@ -403,6 +523,5 @@ func main() {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

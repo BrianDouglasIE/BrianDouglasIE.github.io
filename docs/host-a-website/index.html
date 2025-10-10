@@ -50,6 +50,126 @@
 
     <title>Deploy a website, you can.</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -96,45 +216,45 @@ that yourself. These companies have gaslit you into thinking that you <em>CANNOT
 <h2 id="linux">Linux</h2>
 <h2 id="apache">Apache</h2>
 <p><code>man apt</code></p>
-<pre><code>sudo apt update
-sudo apt upgrade
-sudo apt install apache2 apache2-dev
+<pre><code class="hljs"><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt upgrade
+<span class="hljs-built_in">sudo</span> apt install apache2 apache2-dev
 </code></pre>
 <p><code>man systemctl</code></p>
-<pre><code>sudo systemctl enable apache2
-sudo systemctl status apache2
+<pre><code class="hljs"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> apache2
+<span class="hljs-built_in">sudo</span> systemctl status apache2
 </code></pre>
 <h3 id="ssl">SSL</h3>
 <p>Earlier you installed Ubuntu 24.4 LTS, this comes with <code>openssl</code> installed. This means you do not have to fetch
 it via <code>apt</code>. If, for some reason it's not present, install it with <code>sudo apt install openssl</code>.</p>
 <p>Now let's enable the ssl module and restart apache.</p>
-<pre><code>sudo a2enmod ssl
-sudo systemctl restart apache2
+<pre><code class="hljs"><span class="hljs-built_in">sudo</span> a2enmod ssl
+<span class="hljs-built_in">sudo</span> systemctl restart apache2
 </code></pre>
 <p>With the ssl module enabled, the next step is to generate a self signed ssl cert. To do this run the command below.
 It will create the <code>/etc/apache2/ssl</code> folder where the generated <code>.key</code> and <code>.crt</code> files will be stored. Then run
 openssl specifying those folders. You will be prompted to answer some questions. Use your common sense here.</p>
-<pre><code>sudo mkdir -p /etc/apache2/ssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+<pre><code class="hljs"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /etc/apache2/ssl
+<span class="hljs-built_in">sudo</span> openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
 </code></pre>
 <h2 id="mysql">MySQL</h2>
 <h2 id="php">PHP</h2>
-<pre><code>/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
+<pre><code class="hljs">/bin/bash -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://php.new/install/linux/8.3)</span>&quot;</span>
 </code></pre>
-<pre><code>apachectl -M | grep php
+<pre><code class="hljs">apachectl <span class="hljs-punctuation">-</span>M <span class="hljs-string">| grep php</span>
 </code></pre>
-<pre><code>sudo apt install libapache2-mod-php8.3
-sudo a2enmod php8.3
+<pre><code class="hljs"><span class="hljs-attribute">sudo</span> apt install libapache2-mod-php8.<span class="hljs-number">3</span>
+<span class="hljs-attribute">sudo</span> a2enmod php8.<span class="hljs-number">3</span>
 </code></pre>
 <p><chicken-asks>Isn't <code>php-fpm</code> faster and more flexible?</chicken-asks>
 <magpie-replies>Yes, and it allows you to serve sites with different php versions. But untill our needs <em>actually</em> surpass <code>php_mod</code>, it's perfectly acceptable to use.</magpie-replies>
 <chicken-asks>You are right, chances are our site will never have high traffic.</chicken-asks>
 <magpie-replies>If it did you'd never cross the road.</magpie-replies></p>
-<pre><code>cd /var/www/html
-sudo chown $(whoami) -R .
-touch info.php
+<pre><code class="hljs"><span class="hljs-built_in">cd</span> /var/www/html
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> $(<span class="hljs-built_in">whoami</span>) -R .
+<span class="hljs-built_in">touch</span> info.php
 </code></pre>
-<pre><code class="php language-php">&lt;?php phpinfo(); ?&gt;
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-title function_ invoke__">phpinfo</span>(); <span class="hljs-meta">?&gt;</span>
 </code></pre>
 <h2 id="enlightenment">Enlightenment</h2>
 <p>That was a lot. But you got through it. You now have a website that is <em>live</em>. You did all the steps yourself.
@@ -163,6 +283,5 @@ skills you need to succeed. Have confidence, do it yourself. I assure you, you <
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

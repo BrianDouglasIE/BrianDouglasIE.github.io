@@ -50,6 +50,126 @@
 
     <title>Get inode type in C</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -94,89 +214,89 @@ not it will return <code>NULL</code>. As you will see in the test cases the <cod
 the path points to a directory, file, or symlink. It also tells you if the symlink points to a directory or
 file. Which is good to know.</p>
 <h2 id="header">Header</h2>
-<pre><code class="c language-c">#ifndef INODE_TYPE_H
-#define INODE_TYPE_H
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> INODE_TYPE_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> INODE_TYPE_H</span>
 
-#include &lt;stddef.h&gt;
-typedef const char *Path;
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stddef.h&gt;</span></span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span> *Path;
 
-typedef struct {
-    int is_file;
-    int is_dir;
-    int is_link;
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+    <span class="hljs-type">int</span> is_file;
+    <span class="hljs-type">int</span> is_dir;
+    <span class="hljs-type">int</span> is_link;
 } inode_type;
 
-inode_type *get_inode_type(Path path);
+inode_type *<span class="hljs-title function_">get_inode_type</span><span class="hljs-params">(Path path)</span>;
 
-#define INODE_TYPE_H
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> INODE_TYPE_H</span>
 </code></pre>
 <h2 id="implementation">Implementation</h2>
-<pre><code class="c language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;sys/stat.h&gt;
-#include "inode_type.h"
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/stat.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;inode_type.h&quot;</span></span>
 
-inode_type *get_inode_type(Path path) {
-    inode_type *type = malloc(sizeof(inode_type));
-    if(type == NULL) {
-        perror("malloc");
-        return NULL;
+inode_type *<span class="hljs-title function_">get_inode_type</span><span class="hljs-params">(Path path)</span> {
+    inode_type *type = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(inode_type));
+    <span class="hljs-keyword">if</span>(type == <span class="hljs-literal">NULL</span>) {
+        perror(<span class="hljs-string">&quot;malloc&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
 
-    struct stat link_stat;
-    if(lstat(path, &amp;link_stat) == -1) {
-        perror("lstat");
-        free(type);
-        return NULL;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stat</span> <span class="hljs-title">link_stat</span>;</span>
+    <span class="hljs-keyword">if</span>(lstat(path, &amp;link_stat) == <span class="hljs-number">-1</span>) {
+        perror(<span class="hljs-string">&quot;lstat&quot;</span>);
+        <span class="hljs-built_in">free</span>(type);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
 
     type-&gt;is_link = S_ISLNK(link_stat.st_mode);
 
-    struct stat st;
-    if(stat(path, &amp;st) == -1) {
-        perror("stat");
-        free(type);
-        return NULL;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stat</span> <span class="hljs-title">st</span>;</span>
+    <span class="hljs-keyword">if</span>(stat(path, &amp;st) == <span class="hljs-number">-1</span>) {
+        perror(<span class="hljs-string">&quot;stat&quot;</span>);
+        <span class="hljs-built_in">free</span>(type);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
 
     type-&gt;is_dir = S_ISDIR(st.st_mode);
     type-&gt;is_file = S_ISREG(st.st_mode);
 
-    return type;
+    <span class="hljs-keyword">return</span> type;
 }
 </code></pre>
 <h2 id="usage">Usage</h2>
-<pre><code class="c language-c">#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;assert.h&gt;
-#include "inode_type.h"
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;inode_type.h&quot;</span></span>
 
-int main() {
-  inode_type *test_dir = get_inode_type("./example_files");
-  inode_type *test_file = get_inode_type("./example_files/hello_world.txt");
-  inode_type *test_link = get_inode_type("./example_files/slink");
-  inode_type *test_empty = get_inode_type("/does/not/exist");
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+  inode_type *test_dir = get_inode_type(<span class="hljs-string">&quot;./example_files&quot;</span>);
+  inode_type *test_file = get_inode_type(<span class="hljs-string">&quot;./example_files/hello_world.txt&quot;</span>);
+  inode_type *test_link = get_inode_type(<span class="hljs-string">&quot;./example_files/slink&quot;</span>);
+  inode_type *test_empty = get_inode_type(<span class="hljs-string">&quot;/does/not/exist&quot;</span>);
 
-  assert(test_dir-&gt;is_dir == 1);
-  assert(test_dir-&gt;is_file == 0);
-  assert(test_dir-&gt;is_link == 0);
+  assert(test_dir-&gt;is_dir == <span class="hljs-number">1</span>);
+  assert(test_dir-&gt;is_file == <span class="hljs-number">0</span>);
+  assert(test_dir-&gt;is_link == <span class="hljs-number">0</span>);
 
-  assert(test_file-&gt;is_dir == 0);
-  assert(test_file-&gt;is_file == 1);
-  assert(test_file-&gt;is_link == 0);
+  assert(test_file-&gt;is_dir == <span class="hljs-number">0</span>);
+  assert(test_file-&gt;is_file == <span class="hljs-number">1</span>);
+  assert(test_file-&gt;is_link == <span class="hljs-number">0</span>);
 
-  assert(test_link-&gt;is_dir == 0);
-  assert(test_link-&gt;is_file == 1);
-  assert(test_link-&gt;is_link == 1);
+  assert(test_link-&gt;is_dir == <span class="hljs-number">0</span>);
+  assert(test_link-&gt;is_file == <span class="hljs-number">1</span>);
+  assert(test_link-&gt;is_link == <span class="hljs-number">1</span>);
 
-  assert(test_empty == NULL);
+  assert(test_empty == <span class="hljs-literal">NULL</span>);
 
-  free(test_dir);
-  free(test_file);
-  free(test_link);
-  free(test_empty);
+  <span class="hljs-built_in">free</span>(test_dir);
+  <span class="hljs-built_in">free</span>(test_file);
+  <span class="hljs-built_in">free</span>(test_link);
+  <span class="hljs-built_in">free</span>(test_empty);
 
-  return 0;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
             </div>
@@ -199,6 +319,5 @@ int main() {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

@@ -50,6 +50,126 @@
 
     <title>Optimise SQLite for Laravel apps</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -88,29 +208,29 @@
 <p>This is where Nuno Maduro's <a href="https://github.com/nunomaduro/laravel-optimize-database">nunomaduro/laravel-optimize-database</a>
 package comes in. This packages sets up your Laravel app's sqlite database to work in a performant manner.</p>
 <p>It does this by setting the following PRAGMA options on your sqlite database.</p>
-<pre><code> ┌───────────────────────────┬─────────────┬───────────┐
+<pre><code class="hljs"> ┌───────────────────────────┬─────────────┬───────────┐
  │ Setting                   │ Value       │ Via       │
  ├───────────────────────────┼─────────────┼───────────┤
- │ PRAGMA auto_vacuum        │ incremental │ Migration │
- │ PRAGMA journal_mode       │ WAL         │ Migration │
- │ PRAGMA page_size          │ 32768       │ Migration │
- │ PRAGMA busy_timeout       │ 5000        │ Runtime   │
- │ PRAGMA cache_size         │ -20000      │ Runtime   │
- │ PRAGMA foreign_keys       │ ON          │ Runtime   │
- │ PRAGMA incremental_vacuum │ (enabled)   │ Runtime   │
- │ PRAGMA mmap_size          │ 2147483648  │ Runtime   │
- │ PRAGMA temp_store         │ MEMORY      │ Runtime   │
- │ PRAGMA synchronous        │ NORMAL      │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> auto_vacuum        │ incremental │ Migration │
+ │ <span class="hljs-keyword">PRAGMA</span> journal_mode       │ WAL         │ Migration │
+ │ <span class="hljs-keyword">PRAGMA</span> page_size          │ <span class="hljs-number">32768</span>       │ Migration │
+ │ <span class="hljs-keyword">PRAGMA</span> busy_timeout       │ <span class="hljs-number">5000</span>        │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> cache_size         │ -<span class="hljs-number">20000</span>      │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> foreign_keys       │ ON          │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> incremental_vacuum │ (enabled)   │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> mmap_size          │ <span class="hljs-number">2147483648</span>  │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> temp_store         │ MEMORY      │ Runtime   │
+ │ <span class="hljs-keyword">PRAGMA</span> synchronous        │ NORMAL      │ Runtime   │
  └───────────────────────────┴─────────────┴───────────┘
 </code></pre>
 <p><magpie-trinket>Brian wrote a post detailing some of these PRAGMAs. He called it "<a href="/sqlite-defaults">Sensible SQLite defaults</a>", it's his most popular post to date.</magpie-trinket></p>
 <h2 id="usage">Usage</h2>
 <p>Nuno always makes things easy. You can install and integrate the package with these three commands.</p>
-<pre><code>composer require nunomaduro/laravel-optimize-database
+<pre><code class="hljs"><span class="hljs-symbol">composer</span> <span class="hljs-meta">require</span> nunomaduro/laravel-optimize-database
 </code></pre>
-<pre><code>php artisan db:optimize
+<pre><code class="hljs">php artisan db:<span class="hljs-built_in">optimize</span>
 </code></pre>
-<pre><code>php artisan migrate
+<pre><code class="hljs"><span class="hljs-attribute">php artisan migrate</span>
 </code></pre>
 <p>After that you SQLite db is ready to use.</p>
             </div>
@@ -133,6 +253,5 @@ package comes in. This packages sets up your Laravel app's sqlite database to wo
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

@@ -50,6 +50,126 @@
 
     <title>Seeding a Laravel DB with Irish Counties</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -86,147 +206,147 @@
                 <p>This is a step-by-step guide on how to seed your database with Irish Counties grouped by their Province.</p>
 <!-- more -->
 <h2 id="step1provincemigration">Step 1 - Province Migration</h2>
-<pre><code>php artisan make:migration create_provinces_table
+<pre><code class="hljs">php artisan <span class="hljs-built_in">make</span>:migration create_provinces_table
 </code></pre>
 <p>All we need from a <code>Province</code> is it's name.</p>
-<pre><code class="php language-php">Schema::create('provinces', function (Blueprint $table) {
-    $table-&gt;id();
-    $table-&gt;string('name');
-    $table-&gt;timestamps();
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;provinces&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;name&#x27;</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamps</span>();
 });
 </code></pre>
 <h2 id="step2countymigration">Step 2 - County Migration</h2>
-<pre><code>php artisan make:migration create_counties_table
+<pre><code class="hljs">php artisan <span class="hljs-built_in">make</span>:migration create_counties_table
 </code></pre>
 <p>As well as a name a <code>County</code> will hold a reference to the <code>Province</code> it belongs to.</p>
-<pre><code class="php language-php">Schema::create('counties', function (Blueprint $table) {
-    $table-&gt;id();
-    $table-&gt;string('name');
-    $table-&gt;foreignIdFor(Province::class);
-    $table-&gt;timestamps();
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-title class_">Schema</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&#x27;counties&#x27;</span>, function (Blueprint <span class="hljs-variable">$table</span>) {
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">id</span>();
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-keyword">string</span>(<span class="hljs-string">&#x27;name&#x27;</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">foreignIdFor</span>(<span class="hljs-title class_">Province</span>::<span class="hljs-variable language_">class</span>);
+    <span class="hljs-variable">$table</span>-&gt;<span class="hljs-title function_ invoke__">timestamps</span>();
 });
 </code></pre>
 <h2 id="step3provincemodel">Step 3 - Province Model</h2>
-<pre><code>php artisan make:model Province
+<pre><code class="hljs">php artisan make:<span class="hljs-keyword">model</span> Province
 </code></pre>
 <p>Here we add <code>name</code> as a fillable property and set up the <code>HasMany</code> relationship with <code>County</code>.</p>
-<pre><code class="php language-php">&lt;?php
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-meta">&lt;?php</span>
 
-namespace App\Models;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Factories</span>\<span class="hljs-title">HasFactory</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Relations</span>\<span class="hljs-title">HasMany</span>;
 
-class Province extends Model
-{
-    use HasFactory;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Province</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">use</span> <span class="hljs-title">HasFactory</span>;
 
-    protected $fillable = ['name'];
+    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$fillable</span> = [<span class="hljs-string">&#x27;name&#x27;</span>];
 
-    public function counties(): HasMany
-    {
-        return $this-&gt;hasMany(County::class);
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">counties</span>(<span class="hljs-params"></span>): <span class="hljs-title">HasMany</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">hasMany</span>(<span class="hljs-title class_">County</span>::<span class="hljs-variable language_">class</span>);
     }
 }
 </code></pre>
 <h2 id="step4countymodel">Step 4 - County Model</h2>
-<pre><code>php artisan make:model County
+<pre><code class="hljs">php artisan make:<span class="hljs-keyword">model</span> County
 </code></pre>
 <p>Here we add <code>name</code> and <code>province_id</code> as a fillable property and set up the <code>BelongsTo</code> relationship with <code>Province</code>.</p>
-<pre><code class="php language-php">&lt;?php
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-meta">&lt;?php</span>
 
-namespace App\Models;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title class_">App</span>\<span class="hljs-title class_">Models</span>;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Factories</span>\<span class="hljs-title">HasFactory</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Relations</span>\<span class="hljs-title">BelongsTo</span>;
 
-class County extends Model
-{
-    use HasFactory;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">County</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">use</span> <span class="hljs-title">HasFactory</span>;
 
-    protected $fillable = ['name', 'province_id'];
+    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$fillable</span> = [<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;province_id&#x27;</span>];
 
-    public function province(): BelongsTo
-    {
-        return $this-&gt;belongsTo(Province::class);
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">province</span>(<span class="hljs-params"></span>): <span class="hljs-title">BelongsTo</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">belongsTo</span>(<span class="hljs-title class_">Province</span>::<span class="hljs-variable language_">class</span>);
     }
 }
 </code></pre>
 <h2 id="step5provinceseeder">Step 5 - Province Seeder</h2>
-<pre><code>php artisan make:seeder ProvinceSeeder
+<pre><code class="hljs">php artisan <span class="hljs-built_in">make</span>:seeder ProvinceSeeder
 </code></pre>
 <p>The <code>ProvinceSeeder</code> will create a record for each of Ireland's provinces and will attach the relevant counties.</p>
-<pre><code class="php language-php">&lt;?php
+<pre class="php language-php"><code class="hljs php language-php"><span class="hljs-meta">&lt;?php</span>
 
-namespace Database\Seeders;
+<span class="hljs-keyword">namespace</span> <span class="hljs-title class_">Database</span>\<span class="hljs-title class_">Seeders</span>;
 
-use App\Models\Province;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Models</span>\<span class="hljs-title">Province</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Console</span>\<span class="hljs-title">Seeds</span>\<span class="hljs-title">WithoutModelEvents</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Seeder</span>;
 
-class ProvinceSeeder extends Seeder
-{
-    /**
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProvinceSeeder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Seeder</span>
+</span>{
+    <span class="hljs-comment">/**
      * Run the database seeds.
-     */
-    public function run(): void
-    {
-        $irishCounties = [
-            'Leinster' =&gt; [
-                'Carlow',
-                'Dublin',
-                'Kildare',
-                'Kilkenny',
-                'Laois',
-                'Longford',
-                'Louth',
-                'Meath',
-                'Offaly',
-                'Westmeath',
-                'Wexford',
-                'Wicklow'
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+    </span>{
+        <span class="hljs-variable">$irishCounties</span> = [
+            <span class="hljs-string">&#x27;Leinster&#x27;</span> =&gt; [
+                <span class="hljs-string">&#x27;Carlow&#x27;</span>,
+                <span class="hljs-string">&#x27;Dublin&#x27;</span>,
+                <span class="hljs-string">&#x27;Kildare&#x27;</span>,
+                <span class="hljs-string">&#x27;Kilkenny&#x27;</span>,
+                <span class="hljs-string">&#x27;Laois&#x27;</span>,
+                <span class="hljs-string">&#x27;Longford&#x27;</span>,
+                <span class="hljs-string">&#x27;Louth&#x27;</span>,
+                <span class="hljs-string">&#x27;Meath&#x27;</span>,
+                <span class="hljs-string">&#x27;Offaly&#x27;</span>,
+                <span class="hljs-string">&#x27;Westmeath&#x27;</span>,
+                <span class="hljs-string">&#x27;Wexford&#x27;</span>,
+                <span class="hljs-string">&#x27;Wicklow&#x27;</span>
             ],
-            'Munster' =&gt; [
-                'Clare',
-                'Cork',
-                'Kerry',
-                'Limerick',
-                'Tipperary',
-                'Waterford'
+            <span class="hljs-string">&#x27;Munster&#x27;</span> =&gt; [
+                <span class="hljs-string">&#x27;Clare&#x27;</span>,
+                <span class="hljs-string">&#x27;Cork&#x27;</span>,
+                <span class="hljs-string">&#x27;Kerry&#x27;</span>,
+                <span class="hljs-string">&#x27;Limerick&#x27;</span>,
+                <span class="hljs-string">&#x27;Tipperary&#x27;</span>,
+                <span class="hljs-string">&#x27;Waterford&#x27;</span>
             ],
-            'Connacht' =&gt; [
-                'Galway',
-                'Leitrim',
-                'Mayo',
-                'Roscommon',
-                'Sligo'
+            <span class="hljs-string">&#x27;Connacht&#x27;</span> =&gt; [
+                <span class="hljs-string">&#x27;Galway&#x27;</span>,
+                <span class="hljs-string">&#x27;Leitrim&#x27;</span>,
+                <span class="hljs-string">&#x27;Mayo&#x27;</span>,
+                <span class="hljs-string">&#x27;Roscommon&#x27;</span>,
+                <span class="hljs-string">&#x27;Sligo&#x27;</span>
             ],
-            'Ulster' =&gt; [
-                'Antrim',
-                'Armagh',
-                'Cavan',
-                'Derry',
-                'Donegal',
-                'Down',
-                'Fermanagh',
-                'Monaghan',
-                'Tyrone'
+            <span class="hljs-string">&#x27;Ulster&#x27;</span> =&gt; [
+                <span class="hljs-string">&#x27;Antrim&#x27;</span>,
+                <span class="hljs-string">&#x27;Armagh&#x27;</span>,
+                <span class="hljs-string">&#x27;Cavan&#x27;</span>,
+                <span class="hljs-string">&#x27;Derry&#x27;</span>,
+                <span class="hljs-string">&#x27;Donegal&#x27;</span>,
+                <span class="hljs-string">&#x27;Down&#x27;</span>,
+                <span class="hljs-string">&#x27;Fermanagh&#x27;</span>,
+                <span class="hljs-string">&#x27;Monaghan&#x27;</span>,
+                <span class="hljs-string">&#x27;Tyrone&#x27;</span>
             ]
         ];
 
-        foreach ($irishCounties as $provinceName =&gt; $countyNames) {
-            $province = Province::firstOrCreate(['name' =&gt; $provinceName]);
-            foreach ($countyNames as $countyName) {
-                $province-&gt;counties()-&gt;firstOrCreate(['name' =&gt; $countyName]);
+        <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$irishCounties</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$provinceName</span> =&gt; <span class="hljs-variable">$countyNames</span>) {
+            <span class="hljs-variable">$province</span> = <span class="hljs-title class_">Province</span>::<span class="hljs-title function_ invoke__">firstOrCreate</span>([<span class="hljs-string">&#x27;name&#x27;</span> =&gt; <span class="hljs-variable">$provinceName</span>]);
+            <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$countyNames</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$countyName</span>) {
+                <span class="hljs-variable">$province</span>-&gt;<span class="hljs-title function_ invoke__">counties</span>()-&gt;<span class="hljs-title function_ invoke__">firstOrCreate</span>([<span class="hljs-string">&#x27;name&#x27;</span> =&gt; <span class="hljs-variable">$countyName</span>]);
             }
         }
     }
 }
 </code></pre>
 <h2 id="step6runseeder">Step 6 - Run Seeder</h2>
-<pre><code>php artisan db:seed --class=ProvinceSeeder
+<pre><code class="hljs">php artisan db:seed --<span class="hljs-keyword">class</span>=<span class="hljs-symbol">ProvinceSeeder</span>
 </code></pre>
 <p>As the provinces and counties will not change, the seeder will only need run once.</p>
             </div>
@@ -249,6 +369,5 @@ class ProvinceSeeder extends Seeder
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

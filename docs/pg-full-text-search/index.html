@@ -50,6 +50,126 @@
 
     <title>PostgresSQL full text search</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -88,52 +208,52 @@
 <p><magpie-trinket>The database used in the below examples is the <em>netflix</em> database from <a href="https://github.com/neondatabase-labs/postgres-sample-dbs">neondatabase-labs/postgres-sample-dbs</a></magpie-trinket></p>
 <h2 id="searchbytitle">Search by title</h2>
 <p>Let's start off with a basic search. We are going to use the <code>@@</code> operator to search the <code>title</code> column for the text <code>'Python'</code>.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
-FROM netflix_shows 
-WHERE to_tsvector(title) @@ to_tsquery('Python') 
-AND release_year &lt; 2000 
-ORDER BY release_year DESC;
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span> title, release_year 
+<span class="hljs-keyword">FROM</span> netflix_shows 
+<span class="hljs-keyword">WHERE</span> to_tsvector(title) @@ to_tsquery(<span class="hljs-string">&#x27;Python&#x27;</span>) 
+<span class="hljs-keyword">AND</span> release_year <span class="hljs-operator">&lt;</span> <span class="hljs-number">2000</span> 
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> release_year <span class="hljs-keyword">DESC</span>;
 </code></pre>
-<pre><code>                          title                           | release_year
-----------------------------------------------------------+--------------
- Monty Python: Live at Aspen                              |         1998
- Parrot Sketch Not Included: Twenty Years of Monty Python |         1989
- Monty Python: Live at The Hollywood Bowl                 |         1982
- Monty Python's Life of Brian                             |         1979
- Monty Python and the Holy Grail                          |         1975
- Monty Python's Flying Circus                             |         1974
- Monty Python's Fliegender Zirkus                         |         1972
+<pre><code class="hljs"><span class="hljs-section">                          title                           | release_year
+----------------------------------------------------------+--------------</span>
+<span class="hljs-code"> Monty Python: Live at Aspen                              |         1998</span>
+<span class="hljs-code"> Parrot Sketch Not Included: Twenty Years of Monty Python |         1989</span>
+<span class="hljs-code"> Monty Python: Live at The Hollywood Bowl                 |         1982</span>
+<span class="hljs-code"> Monty Python&#x27;s Life of Brian                             |         1979</span>
+<span class="hljs-code"> Monty Python and the Holy Grail                          |         1975</span>
+<span class="hljs-code"> Monty Python&#x27;s Flying Circus                             |         1974</span>
+<span class="hljs-code"> Monty Python&#x27;s Fliegender Zirkus                         |         1972</span>
 (7 rows)
 </code></pre>
 <h2 id="searchbytitleandrelease_year">Search by title and release_year</h2>
 <p>Now let's say we want to find all titles including 'Python' released in 1972. To do this we add the <code>release_year</code> column. Note,
 that it needs transformed to a text value in order to by processed.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
-FROM netflix_shows 
-WHERE 
-    to_tsvector(title || ' ' || release_year::text) @@ 
-    to_tsquery('Python &amp; 1972') 
-ORDER BY release_year DESC;
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span> title, release_year 
+<span class="hljs-keyword">FROM</span> netflix_shows 
+<span class="hljs-keyword">WHERE</span> 
+    to_tsvector(title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> release_year::text) @@ 
+    to_tsquery(<span class="hljs-string">&#x27;Python &amp; 1972&#x27;</span>) 
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> release_year <span class="hljs-keyword">DESC</span>;
 </code></pre>
-<pre><code>              title               | release_year
-----------------------------------+--------------
- Monty Python's Fliegender Zirkus |         1972
+<pre><code class="hljs"><span class="hljs-section">              title               | release_year
+----------------------------------+--------------</span>
+<span class="hljs-code"> Monty Python&#x27;s Fliegender Zirkus |         1972</span>
 (1 row)
 </code></pre>
 <h2 id="searchusingafullsentence">Search using a full sentence</h2>
 <p>You will notice the in the previous example that <code>&amp;</code> was used to seperate the words in the query. Removing this would result in an error.
 Likely when using this feature in the real world you will be passing a string from a user into the query. Each word must be seperated by an
 ampersand. A quick way to ensure this is to use a <code>regexp_replace</code> to insert the <code>&amp;</code> sumbol between each word.</p>
-<pre><code class="sql language-sql">SELECT title, release_year 
-FROM netflix_shows 
-WHERE 
-    to_tsvector(title || ' ' || release_year::text) @@ 
-    to_tsquery(regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g')) 
-ORDER BY release_year DESC;
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span> title, release_year 
+<span class="hljs-keyword">FROM</span> netflix_shows 
+<span class="hljs-keyword">WHERE</span> 
+    to_tsvector(title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> release_year::text) @@ 
+    to_tsquery(regexp_replace(<span class="hljs-string">&#x27;Monty Python 1972&#x27;</span>, <span class="hljs-string">&#x27;\s+&#x27;</span>, <span class="hljs-string">&#x27; &amp; &#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>)) 
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> release_year <span class="hljs-keyword">DESC</span>;
 </code></pre>
-<pre><code>              title               | release_year
-----------------------------------+--------------
- Monty Python's Fliegender Zirkus |         1972
+<pre><code class="hljs"><span class="hljs-section">              title               | release_year
+----------------------------------+--------------</span>
+<span class="hljs-code"> Monty Python&#x27;s Fliegender Zirkus |         1972</span>
 (1 row)
 </code></pre>
 <h2 id="addinganindexforperformance">Adding an index for performance</h2>
@@ -142,23 +262,23 @@ corresponds to the <code>title</code> and <code>release_year</code> column. Addi
 of the query and can be done like so.</p>
 <p><chicken-asks>What's <em>fts</em>?</chicken-asks>
 <magpie-replies>Full Text Search</magpie-replies></p>
-<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts
-ON netflix_shows
-USING GIN (
-    to_tsvector('english', title || ' ' || release_year::text)
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">CREATE</span> INDEX idx_netflix_fts
+<span class="hljs-keyword">ON</span> netflix_shows
+<span class="hljs-keyword">USING</span> GIN (
+    to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>, title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> release_year::text)
 );
 </code></pre>
 <p>The above index can be used as per the following example.</p>
-<pre><code class="sql language-sql">SELECT title, release_year
-FROM netflix_shows
-WHERE
-    to_tsvector('english', title || ' ' || release_year::text) @@
-    to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
-ORDER BY release_year DESC;
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span> title, release_year
+<span class="hljs-keyword">FROM</span> netflix_shows
+<span class="hljs-keyword">WHERE</span>
+    to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>, title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> release_year::text) @@
+    to_tsquery(<span class="hljs-string">&#x27;english&#x27;</span>, regexp_replace(<span class="hljs-string">&#x27;Monty Python 1972&#x27;</span>, <span class="hljs-string">&#x27;\s+&#x27;</span>, <span class="hljs-string">&#x27; &amp; &#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>))
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> release_year <span class="hljs-keyword">DESC</span>;
 </code></pre>
 <p>This results in the following speed up when run with <code>EXPLAIN</code>.</p>
-<pre><code>Before Index: (cost=5057.67..5057.67 rows=1 width=22)
-After Index:  (cost=30.20..34.48 rows=1 width=22)
+<pre><code class="hljs"><span class="hljs-attribute">Before</span> Index: (cost=<span class="hljs-number">5057</span>.<span class="hljs-number">67</span>..<span class="hljs-number">5057</span>.<span class="hljs-number">67</span> rows=<span class="hljs-number">1</span> width=<span class="hljs-number">22</span>)
+<span class="hljs-attribute">After</span> Index:  (cost=<span class="hljs-number">30</span>.<span class="hljs-number">20</span>..<span class="hljs-number">34</span>.<span class="hljs-number">48</span> rows=<span class="hljs-number">1</span> width=<span class="hljs-number">22</span>)
 </code></pre>
 <p>The cost drops drastically from 5057 to ~30–34 units of work. Before it was likely a sequential scan, checking every row.
 Now it's using a GIN index and skipping most rows, which is nearly 150 times faster.</p>
@@ -166,19 +286,19 @@ Now it's using a GIN index and skipping most rows, which is nearly 150 times fas
 <p>As we stated above, searching based on <em>title</em> and <em>release</em>year_ is a regular occurence. So this may justify adding
 a generated <em>tsvector</em> column. Let's alter the table to add an <code>fts</code> column that creates a <code>tsvector</code> based off the
 <em>title</em> and <em>release</em>year_.</p>
-<pre><code class="sql language-sql">ALTER TABLE netflix_shows 
-ADD COLUMN fts tsvector GENERATED ALWAYS AS (
-    to_tsvector('english', title || ' ' || release_year::text)
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">ALTER TABLE</span> netflix_shows 
+<span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> fts tsvector GENERATED ALWAYS <span class="hljs-keyword">AS</span> (
+    to_tsvector(<span class="hljs-string">&#x27;english&#x27;</span>, title <span class="hljs-operator">||</span> <span class="hljs-string">&#x27; &#x27;</span> <span class="hljs-operator">||</span> release_year::text)
 ) STORED;
 </code></pre>
 <p>Then create the index.</p>
-<pre><code class="sql language-sql">CREATE INDEX idx_netflix_fts ON netflix_shows USING GIN (fts);
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">CREATE</span> INDEX idx_netflix_fts <span class="hljs-keyword">ON</span> netflix_shows <span class="hljs-keyword">USING</span> GIN (fts);
 </code></pre>
 <p>The <code>tsvector</code> column <code>fts</code> can now be used with the <code>@@</code> operator when searching.</p>
-<pre><code class="sql language-sql">SELECT title, release_year
-FROM netflix_shows
-WHERE fts @@ to_tsquery('english', regexp_replace('Monty Python 1972', '\s+', ' &amp; ', 'g'))
-ORDER BY release_year DESC;
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span> title, release_year
+<span class="hljs-keyword">FROM</span> netflix_shows
+<span class="hljs-keyword">WHERE</span> fts @@ to_tsquery(<span class="hljs-string">&#x27;english&#x27;</span>, regexp_replace(<span class="hljs-string">&#x27;Monty Python 1972&#x27;</span>, <span class="hljs-string">&#x27;\s+&#x27;</span>, <span class="hljs-string">&#x27; &amp; &#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>))
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> release_year <span class="hljs-keyword">DESC</span>;
 </code></pre>
             </div>
 
@@ -200,6 +320,5 @@ ORDER BY release_year DESC;
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

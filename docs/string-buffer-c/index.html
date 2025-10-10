@@ -50,6 +50,126 @@
 
     <title>Making a StringBuffer in C</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -99,413 +219,413 @@ the up to date source code at <a href="https://github.com/BrianDouglasIE/c_strin
 <p>The replace and remove were particularly tricky to implement. My brain was on fire trying to figure out
 how to juggle the memory about correctly.</p>
 <h3 id="header">Header</h3>
-<pre><code class="c language-c">#ifndef STRING_BUFFER_H
-#define STRING_BUFFER_H
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> STRING_BUFFER_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> STRING_BUFFER_H</span>
 
-#include &lt;stddef.h&gt;
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stddef.h&gt;</span></span>
 
-/// @brief A dynamic string buffer that supports common string operations.
-typedef struct {
-  size_t size;     ///&lt; The current size (length) of the string.
-  size_t capacity; ///&lt; The total allocated capacity of the buffer.
-  char *data;      ///&lt; Pointer to the character data.
+<span class="hljs-comment">/// @brief A dynamic string buffer that supports common string operations.</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+  <span class="hljs-type">size_t</span> size;     <span class="hljs-comment">///&lt; The current size (length) of the string.</span>
+  <span class="hljs-type">size_t</span> capacity; <span class="hljs-comment">///&lt; The total allocated capacity of the buffer.</span>
+  <span class="hljs-type">char</span> *data;      <span class="hljs-comment">///&lt; Pointer to the character data.</span>
 } StringBuffer;
 
-/// @brief Represents all positions where a match was found.
-typedef struct {
-  size_t *positions; ///&lt; Array of match positions.
-  size_t count;      ///&lt; Number of matches found.
+<span class="hljs-comment">/// @brief Represents all positions where a match was found.</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+  <span class="hljs-type">size_t</span> *positions; <span class="hljs-comment">///&lt; Array of match positions.</span>
+  <span class="hljs-type">size_t</span> count;      <span class="hljs-comment">///&lt; Number of matches found.</span>
 } MatchResult;
 
-/// @brief Represents the result of splitting a string.
-typedef struct {
-  char **parts; ///&lt; Array of substrings resulting from the split.
-  size_t count; ///&lt; Number of parts.
+<span class="hljs-comment">/// @brief Represents the result of splitting a string.</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+  <span class="hljs-type">char</span> **parts; <span class="hljs-comment">///&lt; Array of substrings resulting from the split.</span>
+  <span class="hljs-type">size_t</span> count; <span class="hljs-comment">///&lt; Number of parts.</span>
 } SplitResult;
 
-// Lifecycle
+<span class="hljs-comment">// Lifecycle</span>
 
-/// @brief Initializes a new, empty StringBuffer.
-/// @return A pointer to the newly allocated StringBuffer.
-StringBuffer *StringBuffer_init();
+<span class="hljs-comment">/// @brief Initializes a new, empty StringBuffer.</span>
+<span class="hljs-comment">/// @return A pointer to the newly allocated StringBuffer.</span>
+StringBuffer *<span class="hljs-title function_">StringBuffer_init</span><span class="hljs-params">()</span>;
 
-/// @brief Frees memory used by the given StringBuffer.
-/// @param buf Pointer to the StringBuffer to be freed.
-void StringBuffer_free(StringBuffer *buf);
+<span class="hljs-comment">/// @brief Frees memory used by the given StringBuffer.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer to be freed.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_free</span><span class="hljs-params">(StringBuffer *buf)</span>;
 
-/// @brief Clears the contents of the StringBuffer without freeing the object.
-/// @param buf Pointer to the StringBuffer to be cleared.
-void StringBuffer_clear(StringBuffer *buf);
+<span class="hljs-comment">/// @brief Clears the contents of the StringBuffer without freeing the object.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer to be cleared.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_clear</span><span class="hljs-params">(StringBuffer *buf)</span>;
 
-// Operations
+<span class="hljs-comment">// Operations</span>
 
-/// @brief Prints the contents of the StringBuffer to stdout.
-/// @param buf Pointer to the StringBuffer to be printed.
-void StringBuffer_print(const StringBuffer *buf);
+<span class="hljs-comment">/// @brief Prints the contents of the StringBuffer to stdout.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer to be printed.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_print</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf)</span>;
 
-/// @brief Appends text to the end of the StringBuffer.
-/// @param buf Pointer to the StringBuffer.
-/// @param text Null-terminated string to append.
-void StringBuffer_append(StringBuffer *buf, const char *text);
+<span class="hljs-comment">/// @brief Appends text to the end of the StringBuffer.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param text Null-terminated string to append.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_append</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text)</span>;
 
-/// @brief Prepends text to the beginning of the StringBuffer.
-/// @param buf Pointer to the StringBuffer.
-/// @param text Null-terminated string to prepend.
-void StringBuffer_prepend(StringBuffer *buf, const char *text);
+<span class="hljs-comment">/// @brief Prepends text to the beginning of the StringBuffer.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param text Null-terminated string to prepend.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_prepend</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text)</span>;
 
-/// @brief Removes the first occurrence of text from the buffer starting from a given index.
-/// @param buf Pointer to the StringBuffer.
-/// @param text Null-terminated string to remove.
-/// @param from Index to start the search from.
-void StringBuffer_remove(StringBuffer *buf, const char *text, size_t from);
+<span class="hljs-comment">/// @brief Removes the first occurrence of text from the buffer starting from a given index.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param text Null-terminated string to remove.</span>
+<span class="hljs-comment">/// @param from Index to start the search from.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_remove</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text, <span class="hljs-type">size_t</span> from)</span>;
 
-/// @brief Replaces the first occurrence of a substring with another string, starting from a given index.
-/// @param buf Pointer to the StringBuffer.
-/// @param original Substring to be replaced.
-/// @param update Replacement string.
-/// @param from Index to start the search from.
-void StringBuffer_replace(StringBuffer *buf, const char *original,
-                          const char *update, size_t from);
+<span class="hljs-comment">/// @brief Replaces the first occurrence of a substring with another string, starting from a given index.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param original Substring to be replaced.</span>
+<span class="hljs-comment">/// @param update Replacement string.</span>
+<span class="hljs-comment">/// @param from Index to start the search from.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_replace</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *original,
+                          <span class="hljs-type">const</span> <span class="hljs-type">char</span> *update, <span class="hljs-type">size_t</span> from)</span>;
 
-// Search &amp; Split
+<span class="hljs-comment">// Search &amp; Split</span>
 
-/// @brief Finds the index of the first occurrence of text starting from a given index.
-/// @param buf Pointer to the StringBuffer.
-/// @param text Substring to search for.
-/// @param from Index to start the search from.
-/// @return The index of the first occurrence, or -1 if not found.
-int StringBuffer_index_of(const StringBuffer *buf, const char *text,
-                          size_t from);
+<span class="hljs-comment">/// @brief Finds the index of the first occurrence of text starting from a given index.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param text Substring to search for.</span>
+<span class="hljs-comment">/// @param from Index to start the search from.</span>
+<span class="hljs-comment">/// @return The index of the first occurrence, or -1 if not found.</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">StringBuffer_index_of</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text,
+                          <span class="hljs-type">size_t</span> from)</span>;
 
-/// @brief Finds all occurrences of a substring starting from a given index.
-/// @param buf Pointer to the StringBuffer.
-/// @param text Substring to match.
-/// @param from Index to start the search from.
-/// @return A pointer to a MatchResult containing all match positions.
-MatchResult *StringBuffer_match_all(const StringBuffer *buf, const char *text,
-                                    size_t from);
+<span class="hljs-comment">/// @brief Finds all occurrences of a substring starting from a given index.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param text Substring to match.</span>
+<span class="hljs-comment">/// @param from Index to start the search from.</span>
+<span class="hljs-comment">/// @return A pointer to a MatchResult containing all match positions.</span>
+MatchResult *<span class="hljs-title function_">StringBuffer_match_all</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text,
+                                    <span class="hljs-type">size_t</span> from)</span>;
 
-/// @brief Splits the buffer into parts using the given delimiter.
-/// @param buf Pointer to the StringBuffer.
-/// @param delimiter String delimiter to split by.
-/// @return A pointer to a SplitResult containing the parts.
-SplitResult *StringBuffer_split(const StringBuffer *buf, const char *delimiter);
+<span class="hljs-comment">/// @brief Splits the buffer into parts using the given delimiter.</span>
+<span class="hljs-comment">/// @param buf Pointer to the StringBuffer.</span>
+<span class="hljs-comment">/// @param delimiter String delimiter to split by.</span>
+<span class="hljs-comment">/// @return A pointer to a SplitResult containing the parts.</span>
+SplitResult *<span class="hljs-title function_">StringBuffer_split</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *delimiter)</span>;
 
-// Cleanup
+<span class="hljs-comment">// Cleanup</span>
 
-/// @brief Frees the memory used by a MatchResult.
-/// @param matches Pointer to the MatchResult to free.
-void MatchResult_free(MatchResult *matches);
+<span class="hljs-comment">/// @brief Frees the memory used by a MatchResult.</span>
+<span class="hljs-comment">/// @param matches Pointer to the MatchResult to free.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">MatchResult_free</span><span class="hljs-params">(MatchResult *matches)</span>;
 
-/// @brief Frees the memory used by a SplitResult.
-/// @param split Pointer to the SplitResult to free.
-void SplitResult_free(SplitResult *split);
+<span class="hljs-comment">/// @brief Frees the memory used by a SplitResult.</span>
+<span class="hljs-comment">/// @param split Pointer to the SplitResult to free.</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">SplitResult_free</span><span class="hljs-params">(SplitResult *split)</span>;
 
-#endif
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
 </code></pre>
 <h2 id="implementation">Implementation</h2>
-<pre><code class="c language-c">#include "string_buffer.h"
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;string_buffer.h&quot;</span></span>
 
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
 
-#define INITIAL_CAPACITY 16
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> INITIAL_CAPACITY 16</span>
 
-static int ensure_capacity(StringBuffer *buf, size_t required) {
-  if (required &lt;= buf-&gt;capacity)
-    return 1;
+<span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">ensure_capacity</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">size_t</span> required)</span> {
+  <span class="hljs-keyword">if</span> (required &lt;= buf-&gt;capacity)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 
-  size_t new_capacity = buf-&gt;capacity ? buf-&gt;capacity : INITIAL_CAPACITY;
-  while (new_capacity &lt; required) {
-    new_capacity *= 2;
+  <span class="hljs-type">size_t</span> new_capacity = buf-&gt;capacity ? buf-&gt;capacity : INITIAL_CAPACITY;
+  <span class="hljs-keyword">while</span> (new_capacity &lt; required) {
+    new_capacity *= <span class="hljs-number">2</span>;
   }
 
-  char *new_data = realloc(buf-&gt;data, new_capacity);
-  if (!new_data) {
-    perror("realloc");
-    return 0;
+  <span class="hljs-type">char</span> *new_data = <span class="hljs-built_in">realloc</span>(buf-&gt;data, new_capacity);
+  <span class="hljs-keyword">if</span> (!new_data) {
+    perror(<span class="hljs-string">&quot;realloc&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   }
 
   buf-&gt;data = new_data;
   buf-&gt;capacity = new_capacity;
-  return 1;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 }
 
-StringBuffer *StringBuffer_init() {
-  StringBuffer *buf = malloc(sizeof(StringBuffer));
-  if (!buf) {
-    perror("malloc");
-    return NULL;
+StringBuffer *<span class="hljs-title function_">StringBuffer_init</span><span class="hljs-params">()</span> {
+  StringBuffer *buf = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(StringBuffer));
+  <span class="hljs-keyword">if</span> (!buf) {
+    perror(<span class="hljs-string">&quot;malloc&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
   }
 
-  buf-&gt;size = 0;
-  buf-&gt;capacity = 0;
-  buf-&gt;data = NULL;
-  return buf;
+  buf-&gt;size = <span class="hljs-number">0</span>;
+  buf-&gt;capacity = <span class="hljs-number">0</span>;
+  buf-&gt;data = <span class="hljs-literal">NULL</span>;
+  <span class="hljs-keyword">return</span> buf;
 }
 
-void StringBuffer_free(StringBuffer *buf) {
-  if (!buf)
-    return;
-  free(buf-&gt;data);
-  free(buf);
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_free</span><span class="hljs-params">(StringBuffer *buf)</span> {
+  <span class="hljs-keyword">if</span> (!buf)
+    <span class="hljs-keyword">return</span>;
+  <span class="hljs-built_in">free</span>(buf-&gt;data);
+  <span class="hljs-built_in">free</span>(buf);
 }
 
-void StringBuffer_clear(StringBuffer *buf) {
-  if (!buf || !buf-&gt;data)
-    return;
-  buf-&gt;data[0] = '\0';
-  buf-&gt;size = 0;
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_clear</span><span class="hljs-params">(StringBuffer *buf)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !buf-&gt;data)
+    <span class="hljs-keyword">return</span>;
+  buf-&gt;data[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;\0&#x27;</span>;
+  buf-&gt;size = <span class="hljs-number">0</span>;
 }
 
-void StringBuffer_print(const StringBuffer *buf) {
-  if (!buf || !buf-&gt;data)
-    return;
-  printf("size: %zu\n", buf-&gt;size);
-  printf("data: %s\n", buf-&gt;data);
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_print</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !buf-&gt;data)
+    <span class="hljs-keyword">return</span>;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;size: %zu\n&quot;</span>, buf-&gt;size);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;data: %s\n&quot;</span>, buf-&gt;data);
 }
 
-void StringBuffer_append(StringBuffer *buf, const char *text) {
-  if (!buf || !text)
-    return;
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_append</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !text)
+    <span class="hljs-keyword">return</span>;
 
-  size_t text_len = strlen(text);
-  if (!ensure_capacity(buf, buf-&gt;size + text_len + 1))
-    return;
+  <span class="hljs-type">size_t</span> text_len = <span class="hljs-built_in">strlen</span>(text);
+  <span class="hljs-keyword">if</span> (!ensure_capacity(buf, buf-&gt;size + text_len + <span class="hljs-number">1</span>))
+    <span class="hljs-keyword">return</span>;
 
-  memcpy(buf-&gt;data + buf-&gt;size, text, text_len + 1);
+  <span class="hljs-built_in">memcpy</span>(buf-&gt;data + buf-&gt;size, text, text_len + <span class="hljs-number">1</span>);
   buf-&gt;size += text_len;
 }
 
-void StringBuffer_prepend(StringBuffer *buf, const char *text) {
-  if (!buf || !text)
-    return;
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_prepend</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !text)
+    <span class="hljs-keyword">return</span>;
 
-  size_t text_len = strlen(text);
-  if (!ensure_capacity(buf, buf-&gt;size + text_len + 1))
-    return;
+  <span class="hljs-type">size_t</span> text_len = <span class="hljs-built_in">strlen</span>(text);
+  <span class="hljs-keyword">if</span> (!ensure_capacity(buf, buf-&gt;size + text_len + <span class="hljs-number">1</span>))
+    <span class="hljs-keyword">return</span>;
 
   memmove(buf-&gt;data + text_len, buf-&gt;data,
-          buf-&gt;size + 1);
-  memcpy(buf-&gt;data, text, text_len);
+          buf-&gt;size + <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">memcpy</span>(buf-&gt;data, text, text_len);
   buf-&gt;size += text_len;
 }
 
-int StringBuffer_index_of(const StringBuffer *buf, const char *text,
-                          size_t from) {
-  if (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
-    return -1;
+<span class="hljs-type">int</span> <span class="hljs-title function_">StringBuffer_index_of</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text,
+                          <span class="hljs-type">size_t</span> from)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
 
-  char *match = strstr(buf-&gt;data + from, text);
-  return match ? (int)(match - buf-&gt;data) : -1;
+  <span class="hljs-type">char</span> *match = <span class="hljs-built_in">strstr</span>(buf-&gt;data + from, text);
+  <span class="hljs-keyword">return</span> match ? (<span class="hljs-type">int</span>)(match - buf-&gt;data) : <span class="hljs-number">-1</span>;
 }
 
-MatchResult *StringBuffer_match_all(const StringBuffer *buf, const char *text,
-                                    size_t from) {
-  if (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
-    return NULL;
+MatchResult *<span class="hljs-title function_">StringBuffer_match_all</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text,
+                                    <span class="hljs-type">size_t</span> from)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
 
-  MatchResult *matches = malloc(sizeof(MatchResult));
-  if (!matches)
-    return NULL;
-  matches-&gt;positions = NULL;
-  matches-&gt;count = 0;
+  MatchResult *matches = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(MatchResult));
+  <span class="hljs-keyword">if</span> (!matches)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+  matches-&gt;positions = <span class="hljs-literal">NULL</span>;
+  matches-&gt;count = <span class="hljs-number">0</span>;
 
-  int index = StringBuffer_index_of(buf, text, from);
-  while (index != -1) {
-    size_t *new_positions =
-        realloc(matches-&gt;positions, sizeof(size_t) * (matches-&gt;count + 1));
-    if (!new_positions) {
+  <span class="hljs-type">int</span> index = StringBuffer_index_of(buf, text, from);
+  <span class="hljs-keyword">while</span> (index != <span class="hljs-number">-1</span>) {
+    <span class="hljs-type">size_t</span> *new_positions =
+        <span class="hljs-built_in">realloc</span>(matches-&gt;positions, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">size_t</span>) * (matches-&gt;count + <span class="hljs-number">1</span>));
+    <span class="hljs-keyword">if</span> (!new_positions) {
       MatchResult_free(matches);
-      return NULL;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
 
     matches-&gt;positions = new_positions;
     matches-&gt;positions[matches-&gt;count++] = index;
-    index = StringBuffer_index_of(buf, text, index + 1);
+    index = StringBuffer_index_of(buf, text, index + <span class="hljs-number">1</span>);
   }
 
-  return matches;
+  <span class="hljs-keyword">return</span> matches;
 }
 
-void StringBuffer_remove(StringBuffer *buf, const char *text, size_t from) {
-  if (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
-    return;
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_remove</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *text, <span class="hljs-type">size_t</span> from)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !text || !buf-&gt;data || from &gt;= buf-&gt;size)
+    <span class="hljs-keyword">return</span>;
 
-  size_t text_len = strlen(text);
-  int index = StringBuffer_index_of(buf, text, from);
+  <span class="hljs-type">size_t</span> text_len = <span class="hljs-built_in">strlen</span>(text);
+  <span class="hljs-type">int</span> index = StringBuffer_index_of(buf, text, from);
 
-  while (index != -1) {
-    size_t tail_len = buf-&gt;size - (index + text_len);
-    memmove(buf-&gt;data + index, buf-&gt;data + index + text_len, tail_len + 1);
+  <span class="hljs-keyword">while</span> (index != <span class="hljs-number">-1</span>) {
+    <span class="hljs-type">size_t</span> tail_len = buf-&gt;size - (index + text_len);
+    memmove(buf-&gt;data + index, buf-&gt;data + index + text_len, tail_len + <span class="hljs-number">1</span>);
     buf-&gt;size -= text_len;
     index = StringBuffer_index_of(buf, text, index);
   }
 }
 
-void StringBuffer_replace(StringBuffer *buf, const char *original,
-                          const char *update, size_t from) {
-  if (!buf || !original || !update || !buf-&gt;data || from &gt;= buf-&gt;size)
-    return;
+<span class="hljs-type">void</span> <span class="hljs-title function_">StringBuffer_replace</span><span class="hljs-params">(StringBuffer *buf, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *original,
+                          <span class="hljs-type">const</span> <span class="hljs-type">char</span> *update, <span class="hljs-type">size_t</span> from)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !original || !update || !buf-&gt;data || from &gt;= buf-&gt;size)
+    <span class="hljs-keyword">return</span>;
 
-  size_t original_len = strlen(original);
-  size_t update_len = strlen(update);
-  if (original_len == 0 || update_len == (size_t)-1)
-    return;
+  <span class="hljs-type">size_t</span> original_len = <span class="hljs-built_in">strlen</span>(original);
+  <span class="hljs-type">size_t</span> update_len = <span class="hljs-built_in">strlen</span>(update);
+  <span class="hljs-keyword">if</span> (original_len == <span class="hljs-number">0</span> || update_len == (<span class="hljs-type">size_t</span>)<span class="hljs-number">-1</span>)
+    <span class="hljs-keyword">return</span>;
 
-  int index = StringBuffer_index_of(buf, original, from);
+  <span class="hljs-type">int</span> index = StringBuffer_index_of(buf, original, from);
 
-  while (index != -1) {
-    if (update_len &gt; original_len) {
-      if (!ensure_capacity(buf, buf-&gt;size + (update_len - original_len) + 1))
-        return;
+  <span class="hljs-keyword">while</span> (index != <span class="hljs-number">-1</span>) {
+    <span class="hljs-keyword">if</span> (update_len &gt; original_len) {
+      <span class="hljs-keyword">if</span> (!ensure_capacity(buf, buf-&gt;size + (update_len - original_len) + <span class="hljs-number">1</span>))
+        <span class="hljs-keyword">return</span>;
     }
 
-    size_t tail_len = buf-&gt;size - (index + original_len);
+    <span class="hljs-type">size_t</span> tail_len = buf-&gt;size - (index + original_len);
     memmove(buf-&gt;data + index + update_len, buf-&gt;data + index + original_len,
-            tail_len + 1);
-    memcpy(buf-&gt;data + index, update, update_len);
+            tail_len + <span class="hljs-number">1</span>);
+    <span class="hljs-built_in">memcpy</span>(buf-&gt;data + index, update, update_len);
     buf-&gt;size = buf-&gt;size - original_len + update_len;
 
     index = StringBuffer_index_of(buf, original, index + update_len);
   }
 }
 
-SplitResult *StringBuffer_split(const StringBuffer *buf,
-                                const char *delimiter) {
-  if (!buf || !delimiter || !buf-&gt;data)
-    return NULL;
+SplitResult *<span class="hljs-title function_">StringBuffer_split</span><span class="hljs-params">(<span class="hljs-type">const</span> StringBuffer *buf,
+                                <span class="hljs-type">const</span> <span class="hljs-type">char</span> *delimiter)</span> {
+  <span class="hljs-keyword">if</span> (!buf || !delimiter || !buf-&gt;data)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
 
-  char *copy = strdup(buf-&gt;data);
-  if (!copy)
-    return NULL;
+  <span class="hljs-type">char</span> *copy = strdup(buf-&gt;data);
+  <span class="hljs-keyword">if</span> (!copy)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
 
-  SplitResult *result = malloc(sizeof(SplitResult));
-  if (!result) {
-    free(copy);
-    return NULL;
+  SplitResult *result = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(SplitResult));
+  <span class="hljs-keyword">if</span> (!result) {
+    <span class="hljs-built_in">free</span>(copy);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
   }
 
-  result-&gt;parts = NULL;
-  result-&gt;count = 0;
+  result-&gt;parts = <span class="hljs-literal">NULL</span>;
+  result-&gt;count = <span class="hljs-number">0</span>;
 
-  char *token = strtok(copy, delimiter);
-  while (token) {
-    char **tmp = realloc(result-&gt;parts, sizeof(char *) * (result-&gt;count + 1));
-    if (!tmp) {
+  <span class="hljs-type">char</span> *token = strtok(copy, delimiter);
+  <span class="hljs-keyword">while</span> (token) {
+    <span class="hljs-type">char</span> **tmp = <span class="hljs-built_in">realloc</span>(result-&gt;parts, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">char</span> *) * (result-&gt;count + <span class="hljs-number">1</span>));
+    <span class="hljs-keyword">if</span> (!tmp) {
       SplitResult_free(result);
-      free(copy);
-      return NULL;
+      <span class="hljs-built_in">free</span>(copy);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
     result-&gt;parts = tmp;
     result-&gt;parts[result-&gt;count] = strdup(token);
-    if (!result-&gt;parts[result-&gt;count]) {
+    <span class="hljs-keyword">if</span> (!result-&gt;parts[result-&gt;count]) {
       SplitResult_free(result);
-      free(copy);
-      return NULL;
+      <span class="hljs-built_in">free</span>(copy);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
     }
     result-&gt;count++;
-    token = strtok(NULL, delimiter);
+    token = strtok(<span class="hljs-literal">NULL</span>, delimiter);
   }
 
-  free(copy);
-  return result;
+  <span class="hljs-built_in">free</span>(copy);
+  <span class="hljs-keyword">return</span> result;
 }
 
-void MatchResult_free(MatchResult *matches) {
-  if (!matches)
-    return;
-  free(matches-&gt;positions);
-  free(matches);
+<span class="hljs-type">void</span> <span class="hljs-title function_">MatchResult_free</span><span class="hljs-params">(MatchResult *matches)</span> {
+  <span class="hljs-keyword">if</span> (!matches)
+    <span class="hljs-keyword">return</span>;
+  <span class="hljs-built_in">free</span>(matches-&gt;positions);
+  <span class="hljs-built_in">free</span>(matches);
 }
 
-void SplitResult_free(SplitResult *split) {
-  if (!split)
-    return;
-  for (size_t i = 0; i &lt; split-&gt;count; i++) {
-    free(split-&gt;parts[i]);
+<span class="hljs-type">void</span> <span class="hljs-title function_">SplitResult_free</span><span class="hljs-params">(SplitResult *split)</span> {
+  <span class="hljs-keyword">if</span> (!split)
+    <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; split-&gt;count; i++) {
+    <span class="hljs-built_in">free</span>(split-&gt;parts[i]);
   }
-  free(split-&gt;parts);
-  free(split);
+  <span class="hljs-built_in">free</span>(split-&gt;parts);
+  <span class="hljs-built_in">free</span>(split);
 }
 </code></pre>
 <h2 id="tests">Tests</h2>
-<pre><code class="c language-c">#include "string_buffer.h"
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;string_buffer.h&quot;</span></span>
 
-#include &lt;assert.h&gt;
-#include &lt;string.h&gt;
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
 
-int main(void) {
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> {
   StringBuffer *buf = StringBuffer_init();
-  assert(buf != NULL);
+  assert(buf != <span class="hljs-literal">NULL</span>);
 
-  StringBuffer_append(buf, "hello");
-  assert(buf-&gt;size == 5);
-  assert(strcmp(buf-&gt;data, "hello") == 0);
+  StringBuffer_append(buf, <span class="hljs-string">&quot;hello&quot;</span>);
+  assert(buf-&gt;size == <span class="hljs-number">5</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(buf-&gt;data, <span class="hljs-string">&quot;hello&quot;</span>) == <span class="hljs-number">0</span>);
 
-  StringBuffer_append(buf, " world");
-  assert(buf-&gt;size == 11);
-  assert(strcmp(buf-&gt;data, "hello world") == 0);
+  StringBuffer_append(buf, <span class="hljs-string">&quot; world&quot;</span>);
+  assert(buf-&gt;size == <span class="hljs-number">11</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(buf-&gt;data, <span class="hljs-string">&quot;hello world&quot;</span>) == <span class="hljs-number">0</span>);
 
-  assert(StringBuffer_index_of(buf, "hello", 0) == 0);
-  assert(StringBuffer_index_of(buf, "world", 0) == 6);
-  assert(StringBuffer_index_of(buf, "mars", 0) == -1);
-  assert(StringBuffer_index_of(buf, "llo", 2) == 2);
-  assert(StringBuffer_index_of(buf, "hello", 99) == -1);
-  assert(StringBuffer_index_of(buf, "hello", buf-&gt;size) == -1);
-  assert(StringBuffer_index_of(buf, "d", buf-&gt;size - 1) ==
-         (int)(buf-&gt;size - 1));
-  assert(StringBuffer_index_of(buf, "h", 1) == -1);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-number">0</span>) == <span class="hljs-number">0</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-number">0</span>) == <span class="hljs-number">6</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;mars&quot;</span>, <span class="hljs-number">0</span>) == <span class="hljs-number">-1</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;llo&quot;</span>, <span class="hljs-number">2</span>) == <span class="hljs-number">2</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-number">99</span>) == <span class="hljs-number">-1</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;hello&quot;</span>, buf-&gt;size) == <span class="hljs-number">-1</span>);
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;d&quot;</span>, buf-&gt;size - <span class="hljs-number">1</span>) ==
+         (<span class="hljs-type">int</span>)(buf-&gt;size - <span class="hljs-number">1</span>));
+  assert(StringBuffer_index_of(buf, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-number">1</span>) == <span class="hljs-number">-1</span>);
 
-  MatchResult *mr = StringBuffer_match_all(buf, "l", 0);
-  if (!mr) {
-    return -1;
+  MatchResult *mr = StringBuffer_match_all(buf, <span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">if</span> (!mr) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
   }
-  assert(mr-&gt;count == 3);
-  assert(mr-&gt;positions[0] == 2);
-  assert(mr-&gt;positions[1] == 3);
-  assert(mr-&gt;positions[2] == 9);
+  assert(mr-&gt;count == <span class="hljs-number">3</span>);
+  assert(mr-&gt;positions[<span class="hljs-number">0</span>] == <span class="hljs-number">2</span>);
+  assert(mr-&gt;positions[<span class="hljs-number">1</span>] == <span class="hljs-number">3</span>);
+  assert(mr-&gt;positions[<span class="hljs-number">2</span>] == <span class="hljs-number">9</span>);
   MatchResult_free(mr);
 
-  SplitResult *sr = StringBuffer_split(buf, " ");
-  assert(sr-&gt;count == 2);
-  assert(strcmp(sr-&gt;parts[0], "hello") == 0);
-  assert(strcmp(sr-&gt;parts[1], "world") == 0);
+  SplitResult *sr = StringBuffer_split(buf, <span class="hljs-string">&quot; &quot;</span>);
+  assert(sr-&gt;count == <span class="hljs-number">2</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(sr-&gt;parts[<span class="hljs-number">0</span>], <span class="hljs-string">&quot;hello&quot;</span>) == <span class="hljs-number">0</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(sr-&gt;parts[<span class="hljs-number">1</span>], <span class="hljs-string">&quot;world&quot;</span>) == <span class="hljs-number">0</span>);
   SplitResult_free(sr);
 
-  StringBuffer_prepend(buf, "hello ");
-  assert(buf-&gt;size == 17);
-  assert(strcmp("hello hello world", buf-&gt;data) == 0);
+  StringBuffer_prepend(buf, <span class="hljs-string">&quot;hello &quot;</span>);
+  assert(buf-&gt;size == <span class="hljs-number">17</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello hello world&quot;</span>, buf-&gt;data) == <span class="hljs-number">0</span>);
 
-  StringBuffer_remove(buf, " ", 0);
-  assert(buf-&gt;size == 15);
-  assert(strcmp("hellohelloworld", buf-&gt;data) == 0);
+  StringBuffer_remove(buf, <span class="hljs-string">&quot; &quot;</span>, <span class="hljs-number">0</span>);
+  assert(buf-&gt;size == <span class="hljs-number">15</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hellohelloworld&quot;</span>, buf-&gt;data) == <span class="hljs-number">0</span>);
 
   StringBuffer *remove_overlap_test = StringBuffer_init();
-  StringBuffer_append(remove_overlap_test, "lalalalala");
-  StringBuffer_remove(remove_overlap_test, "ala", 0);
-  assert(strcmp(remove_overlap_test-&gt;data, "llla") == 0);
-  assert(remove_overlap_test-&gt;size == 4);
+  StringBuffer_append(remove_overlap_test, <span class="hljs-string">&quot;lalalalala&quot;</span>);
+  StringBuffer_remove(remove_overlap_test, <span class="hljs-string">&quot;ala&quot;</span>, <span class="hljs-number">0</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(remove_overlap_test-&gt;data, <span class="hljs-string">&quot;llla&quot;</span>) == <span class="hljs-number">0</span>);
+  assert(remove_overlap_test-&gt;size == <span class="hljs-number">4</span>);
   StringBuffer_free(remove_overlap_test);
 
-  StringBuffer_replace(buf, "hellohello", "hello ", 0);
-  assert(buf-&gt;size == 11);
-  assert(strcmp("hello world", buf-&gt;data) == 0);
+  StringBuffer_replace(buf, <span class="hljs-string">&quot;hellohello&quot;</span>, <span class="hljs-string">&quot;hello &quot;</span>, <span class="hljs-number">0</span>);
+  assert(buf-&gt;size == <span class="hljs-number">11</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello world&quot;</span>, buf-&gt;data) == <span class="hljs-number">0</span>);
 
   StringBuffer *replace_overlap_test = StringBuffer_init();
-  StringBuffer_append(replace_overlap_test, "lalalalala");
-  StringBuffer_replace(replace_overlap_test, "ala", "", 0);
-  assert(strcmp(replace_overlap_test-&gt;data, "llla") == 0);
-  assert(replace_overlap_test-&gt;size == 4);
+  StringBuffer_append(replace_overlap_test, <span class="hljs-string">&quot;lalalalala&quot;</span>);
+  StringBuffer_replace(replace_overlap_test, <span class="hljs-string">&quot;ala&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>);
+  assert(<span class="hljs-built_in">strcmp</span>(replace_overlap_test-&gt;data, <span class="hljs-string">&quot;llla&quot;</span>) == <span class="hljs-number">0</span>);
+  assert(replace_overlap_test-&gt;size == <span class="hljs-number">4</span>);
   StringBuffer_free(replace_overlap_test);
 
   StringBuffer_clear(buf);
-  assert(buf-&gt;size == 0);
-  assert(strlen(buf-&gt;data) == 0);
+  assert(buf-&gt;size == <span class="hljs-number">0</span>);
+  assert(<span class="hljs-built_in">strlen</span>(buf-&gt;data) == <span class="hljs-number">0</span>);
 
   StringBuffer_free(buf);
-  return 0;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
             </div>
@@ -528,6 +648,5 @@ int main(void) {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

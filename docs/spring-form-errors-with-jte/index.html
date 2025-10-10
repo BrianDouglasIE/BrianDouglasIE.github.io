@@ -50,6 +50,126 @@
 
     <title>Handle Spring form errors with JTE</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -92,34 +212,34 @@ documented how to pass form errors to your jte templates below.</p>
 <p>Let's say we have a <code>RegistrationForm</code> class, that has various validator annotations. When one of these validators fails
 we expect the <code>RegistrationController</code> to return the registration form view with the errors present, such as the below
 example.</p>
-<pre><code class="java language-java">@Controller
-@AllArgsConstructor
-@RequestMapping("/register")
-public class RegistrationController {
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@AllArgsConstructor</span>
+<span class="hljs-meta">@RequestMapping(&quot;/register&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegistrationController</span> {
 
-    private static final String FORM_VIEW = "auth/register";
-    private static final String ATTR_PAGE = "page";
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">FORM_VIEW</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;auth/register&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ATTR_PAGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;page&quot;</span>;
 
-    @GetMapping
-    public String showRegisterForm(Model model) {
-        model.addAttribute(ATTR_PAGE, new Page("Register"));
-        model.addAttribute(ATTR_REGISTRATION_FORM, new RegistrationForm());
-        return FORM_VIEW;
+    <span class="hljs-meta">@GetMapping</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">showRegisterForm</span><span class="hljs-params">(Model model)</span> {
+        model.addAttribute(ATTR_PAGE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>(<span class="hljs-string">&quot;Register&quot;</span>));
+        model.addAttribute(ATTR_REGISTRATION_FORM, <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegistrationForm</span>());
+        <span class="hljs-keyword">return</span> FORM_VIEW;
     }
 
-    @PostMapping
-    public String processRegisterForm(@ModelAttribute @Validated RegistrationForm registrationForm,
+    <span class="hljs-meta">@PostMapping</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">processRegisterForm</span><span class="hljs-params">(<span class="hljs-meta">@ModelAttribute</span> <span class="hljs-meta">@Validated</span> RegistrationForm registrationForm,
                                       BindingResult result,
-                                      Model model) {
+                                      Model model)</span> {
 
-        model.addAttribute(ATTR_PAGE, new Page("Register"));
+        model.addAttribute(ATTR_PAGE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>(<span class="hljs-string">&quot;Register&quot;</span>));
         model.addAttribute(ATTR_REGISTRATION_FORM, registrationForm);
 
-        if (result.hasErrors()) {
-            return FORM_VIEW;
+        <span class="hljs-keyword">if</span> (result.hasErrors()) {
+            <span class="hljs-keyword">return</span> FORM_VIEW;
         }
 
-        // ...
+        <span class="hljs-comment">// ...</span>
     }
 }
 </code></pre>
@@ -130,44 +250,44 @@ at <a href="https://www.baeldung.com/spring-thymeleaf-error-messages">spring-thy
 <p>Jte does not support this type of integration. This is a good thing, as it allows the developer to handle the form field
 validation how they see fit. Before I go into how I bind the form errors via the controller, here is the
 <code>RegistrationForm</code> class.</p>
-<pre><code class="java language-java">@Getter
-@Setter
-public class RegistrationForm {
-    @NotBlank(message = "Email address is required")
-    @Email(message = "Invalid email format")
-    private String email;
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-meta">@Getter</span>
+<span class="hljs-meta">@Setter</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegistrationForm</span> {
+    <span class="hljs-meta">@NotBlank(message = &quot;Email address is required&quot;)</span>
+    <span class="hljs-meta">@Email(message = &quot;Invalid email format&quot;)</span>
+    <span class="hljs-keyword">private</span> String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, max = 250, message = "Password must be a minimum of 8 characters in length")
-    private String password;
-    @NotBlank(message = "Confirm password is required")
-    private String confirmPassword;
+    <span class="hljs-meta">@NotBlank(message = &quot;Password is required&quot;)</span>
+    <span class="hljs-meta">@Size(min = 8, max = 250, message = &quot;Password must be a minimum of 8 characters in length&quot;)</span>
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-meta">@NotBlank(message = &quot;Confirm password is required&quot;)</span>
+    <span class="hljs-keyword">private</span> String confirmPassword;
 
-    @NotBlank(message = "First name is required")
-    @Size(min = 1, message = "First name must be between 1 and 50 characters in length")
-    private String firstName;
+    <span class="hljs-meta">@NotBlank(message = &quot;First name is required&quot;)</span>
+    <span class="hljs-meta">@Size(min = 1, message = &quot;First name must be between 1 and 50 characters in length&quot;)</span>
+    <span class="hljs-keyword">private</span> String firstName;
 
-    @NotBlank(message = "Last name is required")
-    @Size(min = 3, message = "Last name must be between 3 and 50 characters in length")
-    private String lastName;
+    <span class="hljs-meta">@NotBlank(message = &quot;Last name is required&quot;)</span>
+    <span class="hljs-meta">@Size(min = 3, message = &quot;Last name must be between 3 and 50 characters in length&quot;)</span>
+    <span class="hljs-keyword">private</span> String lastName;
 }
 </code></pre>
 <p>From this you can guess that when there is an email format issue we want to show the appropriate message to our user on
 the frontend. Naturally this is the case for all the other fields also. Here is how I render the error message in the
 jte template.</p>
-<pre><code class="html language-html">@param ValidationHelper validation
+<pre class="html language-html"><code class="hljs html language-html">@param ValidationHelper validation
 @param RegistrationForm registrationForm
 
 @if(validation.hasErrors())
-    &lt;div class="form-error"&gt;Please correct the following errors to proceed.&lt;/div&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-error&quot;</span>&gt;</span>Please correct the following errors to proceed.<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 @endif
 
-&lt;label&gt;Email Address
-    &lt;input name="email" type="email" value="${registrationForm.getEmail()}" required&gt;
-    @if(validation.hasError("email"))
-        &lt;small class="error-text"&gt;${validation.getError("email").getDefaultMessage()}&lt;/small&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Email Address
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;${registrationForm.getEmail()}&quot;</span> <span class="hljs-attr">required</span>&gt;</span>
+    @if(validation.hasError(&quot;email&quot;))
+        <span class="hljs-tag">&lt;<span class="hljs-name">small</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;error-text&quot;</span>&gt;</span>${validation.getError(&quot;email&quot;).getDefaultMessage()}<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
     @endif
-&lt;/label&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
 </code></pre>
 <p><chicken-asks>But wait! where is the <code>ValidationHelper</code> coming from?</chicken-asks>
 <magpie-replies>Eagle eyed again, he shows us how to add it below</magpie-replies></p>
@@ -179,68 +299,68 @@ of the specific error.</p>
 <p>The <code>ValidationHelper</code> class itself is just a wrapper around the <code>BindingResult</code> which we will pass in via the
 controller. I've added the <code>@NoArgsConstructor</code> so that is can be instantiated without a <code>BindingResult</code>. The null
 checks mean that this is safe to use when a <code>BindingResult</code> is not present.</p>
-<pre><code class="java language-java">@NoArgsConstructor
-@AllArgsConstructor
-public class ValidationHelper {
-    private BindingResult bindingResult;
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-meta">@AllArgsConstructor</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ValidationHelper</span> {
+    <span class="hljs-keyword">private</span> BindingResult bindingResult;
 
-    public boolean hasErrors() {
-        return bindingResult != null &amp;&amp; bindingResult.hasErrors();
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasErrors</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> bindingResult != <span class="hljs-literal">null</span> &amp;&amp; bindingResult.hasErrors();
     }
 
-    public boolean hasError(String name) {
-        return bindingResult != null &amp;&amp; bindingResult.hasFieldErrors(name);
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasError</span><span class="hljs-params">(String name)</span> {
+        <span class="hljs-keyword">return</span> bindingResult != <span class="hljs-literal">null</span> &amp;&amp; bindingResult.hasFieldErrors(name);
     }
 
-    public List&lt;FieldError&gt; getErrors() {
-        if (bindingResult == null) {
-            return Collections.emptyList();
-        } else {
-            return bindingResult.getFieldErrors();
+    <span class="hljs-keyword">public</span> List&lt;FieldError&gt; <span class="hljs-title function_">getErrors</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">if</span> (bindingResult == <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">return</span> Collections.emptyList();
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> bindingResult.getFieldErrors();
         }
     }
 
-    public FieldError getError(String fieldName) {
-        if (bindingResult == null) {
-            return null;
-        } else {
-            return bindingResult.getFieldError(fieldName);
+    <span class="hljs-keyword">public</span> FieldError <span class="hljs-title function_">getError</span><span class="hljs-params">(String fieldName)</span> {
+        <span class="hljs-keyword">if</span> (bindingResult == <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> bindingResult.getFieldError(fieldName);
         }
     }
 }
 </code></pre>
 <p>The updated <code>RegistrationController</code> is below. The example registration form jte template does not need to be updated.</p>
-<pre><code class="java language-java">@Controller
-@AllArgsConstructor
-@RequestMapping("/register")
-public class RegistrationController {
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@AllArgsConstructor</span>
+<span class="hljs-meta">@RequestMapping(&quot;/register&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RegistrationController</span> {
 
-    private static final String FORM_VIEW = "auth/register";
-    private static final String ATTR_PAGE = "page";
-    private static final String ATTR_VALIDATION = "validation";
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">FORM_VIEW</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;auth/register&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ATTR_PAGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;page&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ATTR_VALIDATION</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;validation&quot;</span>;
 
-    @GetMapping
-    public String showRegisterForm(Model model) {
-        model.addAttribute(ATTR_PAGE, new Page("Register"));
-        model.addAttribute(ATTR_REGISTRATION_FORM, new RegistrationForm());
-        model.addAttribute(ATTR_VALIDATION, new ValidationHelper());
-        return FORM_VIEW;
+    <span class="hljs-meta">@GetMapping</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">showRegisterForm</span><span class="hljs-params">(Model model)</span> {
+        model.addAttribute(ATTR_PAGE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>(<span class="hljs-string">&quot;Register&quot;</span>));
+        model.addAttribute(ATTR_REGISTRATION_FORM, <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegistrationForm</span>());
+        model.addAttribute(ATTR_VALIDATION, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ValidationHelper</span>());
+        <span class="hljs-keyword">return</span> FORM_VIEW;
     }
 
-    @PostMapping
-    public String processRegisterForm(@ModelAttribute @Validated RegistrationForm registrationForm,
+    <span class="hljs-meta">@PostMapping</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">processRegisterForm</span><span class="hljs-params">(<span class="hljs-meta">@ModelAttribute</span> <span class="hljs-meta">@Validated</span> RegistrationForm registrationForm,
                                       BindingResult result,
-                                      Model model) {
+                                      Model model)</span> {
 
-        model.addAttribute(ATTR_PAGE, new Page("Register"));
+        model.addAttribute(ATTR_PAGE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>(<span class="hljs-string">&quot;Register&quot;</span>));
         model.addAttribute(ATTR_REGISTRATION_FORM, registrationForm);
-        model.addAttribute(ATTR_VALIDATION, new ValidationHelper(result));
+        model.addAttribute(ATTR_VALIDATION, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ValidationHelper</span>(result));
 
-        if (result.hasErrors()) {
-            return FORM_VIEW;
+        <span class="hljs-keyword">if</span> (result.hasErrors()) {
+            <span class="hljs-keyword">return</span> FORM_VIEW;
         }
 
-        // ...
+        <span class="hljs-comment">// ...</span>
     }
 }
 </code></pre>
@@ -264,6 +384,5 @@ public class RegistrationController {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

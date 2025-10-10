@@ -50,6 +50,126 @@
 
     <title>Literal templates</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -96,32 +216,32 @@ Offering dynamic registration and rendering of template views, includes, and hel
 </ul>
 <p><magpie-trinket>Full source code is available at <a href="https://github.com/BrianDouglasIE/literal-templates/tree/master">BrianDouglasIE/literal-templates</a></magpie-trinket></p>
 <h2 id="installation">Installation</h2>
-<pre><code class="bash language-bash">npm install @briandouglasie/literal-templates
+<pre class="bash language-bash"><code class="hljs bash language-bash">npm install @briandouglasie/literal-templates
 </code></pre>
 <h2 id="usage">Usage</h2>
 <h3 id="basicexample">Basic Example</h3>
-<pre><code class="js language-js">import {
+<pre class="js language-js"><code class="hljs js language-js"><span class="hljs-keyword">import</span> {
   registerView,
   view,
   registerHelper,
   create
-} from '@briandouglasie/literal-templates'
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@briandouglasie/literal-templates&#x27;</span>
 
-// Register a helper
-registerHelper('upper', str =&gt; str.toUpperCase())
+<span class="hljs-comment">// Register a helper</span>
+<span class="hljs-title function_">registerHelper</span>(<span class="hljs-string">&#x27;upper&#x27;</span>, <span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span> str.<span class="hljs-title function_">toUpperCase</span>())
 
-// Register a view
-registerView('greeting', create('Hello ${data.name}!'))
+<span class="hljs-comment">// Register a view</span>
+<span class="hljs-title function_">registerView</span>(<span class="hljs-string">&#x27;greeting&#x27;</span>, <span class="hljs-title function_">create</span>(<span class="hljs-string">&#x27;Hello ${data.name}!&#x27;</span>))
 
-// Render the view
-console.log(view('greeting', { name: 'World' })) // Output: Hello World!
+<span class="hljs-comment">// Render the view</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">view</span>(<span class="hljs-string">&#x27;greeting&#x27;</span>, { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;World&#x27;</span> })) <span class="hljs-comment">// Output: Hello World!</span>
 </code></pre>
 <h3 id="registeringviewsandincludesfromdirectories">Registering Views and Includes from Directories</h3>
 <p>You can bulk-register all <code>.html</code> files in a directory as views or includes:</p>
-<pre><code class="js language-js">import { registerViewDir, registerIncludeDir } from '@briandouglasie/literal-templates'
+<pre class="js language-js"><code class="hljs js language-js"><span class="hljs-keyword">import</span> { registerViewDir, registerIncludeDir } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@briandouglasie/literal-templates&#x27;</span>
 
-await registerViewDir('./views')    // Registers all .html files as views
-await registerIncludeDir('./includes') // Registers all .html files as includes
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">registerViewDir</span>(<span class="hljs-string">&#x27;./views&#x27;</span>)    <span class="hljs-comment">// Registers all .html files as views</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">registerIncludeDir</span>(<span class="hljs-string">&#x27;./includes&#x27;</span>) <span class="hljs-comment">// Registers all .html files as includes</span>
 </code></pre>
 <h2 id="apireference">API Reference</h2>
 <h3 id="views">Views</h3>
@@ -157,7 +277,7 @@ await registerIncludeDir('./includes') // Registers all .html files as includes
 </ul>
 <h2 id="templatesyntax">Template Syntax</h2>
 <p>Templates use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">ES6 template literals</a> for variable interpolation:</p>
-<pre><code class="js language-js">create('Hello ${data.name}, today is ${helpers.upper(data.day)}!')
+<pre class="js language-js"><code class="hljs js language-js"><span class="hljs-title function_">create</span>(<span class="hljs-string">&#x27;Hello ${data.name}, today is ${helpers.upper(data.day)}!&#x27;</span>)
 </code></pre>
 <ul>
 <li><code>helpers</code>: Access any registered helper functions.</li>
@@ -166,13 +286,13 @@ await registerIncludeDir('./includes') // Registers all .html files as includes
 </ul>
 <h2 id="exampleusingincludesandhelpers">Example: Using Includes and Helpers</h2>
 <p>Suppose you have the following in <code>includes/header.html</code>:</p>
-<pre><code class="html language-html">&lt;h1&gt;${helpers.upper(data.title)}&lt;/h1&gt;
+<pre class="html language-html"><code class="hljs html language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>${helpers.upper(data.title)}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 </code></pre>
 <p>Register and use it:</p>
-<pre><code class="js language-js">await registerIncludeDir('./includes')
-const template = create('${include("header", { title: data.header })} Hello, ${data.name}!')
-console.log(template({ header: 'welcome', name: 'Alice' }))
-// Output: &lt;h1&gt;WELCOME&lt;/h1&gt; Hello, Alice!
+<pre class="js language-js"><code class="hljs js language-js"><span class="hljs-keyword">await</span> <span class="hljs-title function_">registerIncludeDir</span>(<span class="hljs-string">&#x27;./includes&#x27;</span>)
+<span class="hljs-keyword">const</span> template = <span class="hljs-title function_">create</span>(<span class="hljs-string">&#x27;${include(&quot;header&quot;, { title: data.header })} Hello, ${data.name}!&#x27;</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">template</span>({ <span class="hljs-attr">header</span>: <span class="hljs-string">&#x27;welcome&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span> }))
+<span class="hljs-comment">// Output: &lt;h1&gt;WELCOME&lt;/h1&gt; Hello, Alice!</span>
 </code></pre>
 <h2 id="license">License</h2>
 <p>See <a href="./LICENSE">LICENSE</a> for details.</p>
@@ -196,6 +316,5 @@ console.log(template({ header: 'welcome', name: 'Alice' }))
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

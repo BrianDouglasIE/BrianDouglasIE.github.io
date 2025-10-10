@@ -50,6 +50,126 @@
 
     <title>Using CPU branch prediction in Java</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -100,80 +220,80 @@ in memory, and therefore can be accessed more quickly, providing a performance b
 <h2 id="exampleusage">Example Usage</h2>
 <p>Let's see this in action with some example code. Given the following program, the sorted array will be
 processed roughly 4 times faster than the unsorted array.</p>
-<pre><code class="java language-java">import java.util.Random;
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-keyword">import</span> java.util.Random;
 
-public class Main {
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
 
-    public static void main(String[] args) {
-        int arraySize = 10_000_000;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">arraySize</span> <span class="hljs-operator">=</span> <span class="hljs-number">10_000_000</span>;
 
-        int[] sortedArray = new int[arraySize];
-        for (int i = 0; i &lt; arraySize; i++) {
+        <span class="hljs-type">int</span>[] sortedArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[arraySize];
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arraySize; i++) {
             sortedArray[i] = i;
         }
 
-        long startTime = System.nanoTime();
-        long sortedSum = evenNumberSum(sortedArray);
-        long sortedTime = System.nanoTime() - startTime;
+        <span class="hljs-type">long</span> <span class="hljs-variable">startTime</span> <span class="hljs-operator">=</span> System.nanoTime();
+        <span class="hljs-type">long</span> <span class="hljs-variable">sortedSum</span> <span class="hljs-operator">=</span> evenNumberSum(sortedArray);
+        <span class="hljs-type">long</span> <span class="hljs-variable">sortedTime</span> <span class="hljs-operator">=</span> System.nanoTime() - startTime;
 
-        int[] shuffledArray = shuffle(sortedArray);
+        <span class="hljs-type">int</span>[] shuffledArray = shuffle(sortedArray);
         startTime = System.nanoTime();
-        long unsortedSum = evenNumberSum(shuffledArray);
-        long unsortedTime = System.nanoTime() - startTime;
+        <span class="hljs-type">long</span> <span class="hljs-variable">unsortedSum</span> <span class="hljs-operator">=</span> evenNumberSum(shuffledArray);
+        <span class="hljs-type">long</span> <span class="hljs-variable">unsortedTime</span> <span class="hljs-operator">=</span> System.nanoTime() - startTime;
 
-        if (unsortedSum != sortedSum) {
-            throw new Error("sortedSum and unsortedSum should match");
+        <span class="hljs-keyword">if</span> (unsortedSum != sortedSum) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;sortedSum and unsortedSum should match&quot;</span>);
         }
 
-        System.out.println("Sorted array processing time:   " + sortedTime + " ns");
-        System.out.println("Unsorted array processing time: " + unsortedTime + " ns");
-        System.out.println("Times faster: " + Math.floorDiv(unsortedTime, sortedTime));
+        System.out.println(<span class="hljs-string">&quot;Sorted array processing time:   &quot;</span> + sortedTime + <span class="hljs-string">&quot; ns&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;Unsorted array processing time: &quot;</span> + unsortedTime + <span class="hljs-string">&quot; ns&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;Times faster: &quot;</span> + Math.floorDiv(unsortedTime, sortedTime));
     }
 
-    /**
-     * Returns a clone of the array with it's values shuffled.
+    <span class="hljs-comment">/**
+     * Returns a clone of the array with it&#x27;s values shuffled.
      *
-     * @param srcArray
-     * @return
-     */
-    private static int[] shuffle(int[] srcArray) {
-        Random rand = new Random();
-        int[] array = srcArray.clone();
+     * <span class="hljs-doctag">@param</span> srcArray
+     * <span class="hljs-doctag">@return</span>
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] shuffle(<span class="hljs-type">int</span>[] srcArray) {
+        <span class="hljs-type">Random</span> <span class="hljs-variable">rand</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();
+        <span class="hljs-type">int</span>[] array = srcArray.clone();
 
-        for (int i = array.length - 1; i &gt; 0; i--) {
-            int randIndex = rand.nextInt(i + 1);
-            int randIndexValue = array[randIndex];
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> array.length - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) {
+            <span class="hljs-type">int</span> <span class="hljs-variable">randIndex</span> <span class="hljs-operator">=</span> rand.nextInt(i + <span class="hljs-number">1</span>);
+            <span class="hljs-type">int</span> <span class="hljs-variable">randIndexValue</span> <span class="hljs-operator">=</span> array[randIndex];
             array[randIndex] = array[i];
             array[i] = randIndexValue;
         }
 
-        return array;
+        <span class="hljs-keyword">return</span> array;
     }
 
-    /**
+    <span class="hljs-comment">/**
      * Returns the sum of all the even numbers in the array.
      *
-     * @param array
-     * @return
-     */
-    private static long evenNumberSum(int[] array) {
-        long sum = 0;
-        for (int value : array) {
-            if (isEven(value)) {
+     * <span class="hljs-doctag">@param</span> array
+     * <span class="hljs-doctag">@return</span>
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">evenNumberSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] array)</span> {
+        <span class="hljs-type">long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> value : array) {
+            <span class="hljs-keyword">if</span> (isEven(value)) {
                 sum += value;
             }
         }
-        return sum;
+        <span class="hljs-keyword">return</span> sum;
     }
 
-    /**
+    <span class="hljs-comment">/**
      * Returns true if n is even and false if not.
      *
-     * @param n
-     * @return
-     */
-    private static boolean isEven(int n) {
-        return n % 2 == 0;
+     * <span class="hljs-doctag">@param</span> n
+     * <span class="hljs-doctag">@return</span>
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEven</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> {
+        <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;
     }
 }
 </code></pre>
@@ -182,8 +302,8 @@ the sum of all the even ints, measuring the execution time. It then does the sam
 version of the initial sorted array. Running the program you should see that the sorted array is processed
 much quicker than the unsorted array. Demonstrating the advantage of CPU branch prediction and cache optimisation.
 Below is the result I get when running it locally.</p>
-<pre><code>Sorted array processing time:   8745547 ns
-Unsorted array processing time: 37145149 ns
+<pre><code class="hljs">Sorted<span class="hljs-built_in"> array </span>processing time:   8745547 ns
+Unsorted<span class="hljs-built_in"> array </span>processing time: 37145149 ns
 Times faster: 4
 </code></pre>
 <h2 id="drawbacks">Drawbacks</h2>
@@ -219,6 +339,5 @@ memory access patterns.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

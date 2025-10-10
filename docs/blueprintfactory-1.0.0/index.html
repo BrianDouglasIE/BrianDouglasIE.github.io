@@ -50,6 +50,126 @@
 
     <title>New Lib: Blueprint Factory</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -105,25 +225,25 @@ It's designed to be used along with <a href="https://github.com/DiUS/java-faker"
 </ul>
 <h2 id="installation">Installation</h2>
 <h3 id="maven">Maven</h3>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;ie.briandouglas&lt;/groupId&gt;
-    &lt;artifactId&gt;BlueprintFactory&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0&lt;/version&gt;
-&lt;/dependency&gt;
+<pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ie.briandouglas<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>BlueprintFactory<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <h3 id="gradle">Gradle</h3>
-<pre><code>implementation group: 'ie.briandouglas', name: 'BlueprintFactory', version: '1.0.0'
+<pre><code class="hljs">implementation <span class="hljs-keyword">group</span>: <span class="hljs-string">&#x27;ie.briandouglas&#x27;</span>, <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;BlueprintFactory&#x27;</span>, <span class="hljs-keyword">version</span>: <span class="hljs-string">&#x27;1.0.0&#x27;</span>
 </code></pre>
 <h2 id="usage">Usage</h2>
 <hr />
 <h3 id="defineyourfactory">Define your Factory</h3>
 <p>Extend the abstract <code>BlueprintFactory&lt;T&gt;</code> and implement the <code>blueprint()</code> method to provide a default instance:</p>
-<pre><code class="java language-java">public class UserFactory extends BlueprintFactory&lt;User&gt; {
-    private final Faker faker = new Faker();
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BlueprintFactory</span>&lt;User&gt; {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Faker</span> <span class="hljs-variable">faker</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Faker</span>();
 
-    @Override
-    protected User blueprint () {
-        return new User(faker.name().firstName(), faker.internet().emailAddress());
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">protected</span> User <span class="hljs-title function_">blueprint</span> <span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(faker.name().firstName(), faker.internet().emailAddress());
     }
 }
 </code></pre>
@@ -134,63 +254,63 @@ data.</p>
 <hr />
 <h3 id="creatinginstances">Creating Instances</h3>
 <p><strong>Basic instance:</strong></p>
-<pre><code class="java language-java">User user = userFactory.create();
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory.create();
 </code></pre>
 <p><strong>Override fields with an instance:</strong></p>
-<pre><code class="java language-java">User override = new User("alice", "alice@example.com");
-User user = userFactory.create(override);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">User</span> <span class="hljs-variable">override</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;alice&quot;</span>, <span class="hljs-string">&quot;alice@example.com&quot;</span>);
+<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory.create(override);
 </code></pre>
 <p><strong>Override fields with a map:</strong></p>
-<pre><code class="java language-java">User user = userFactory.create(Map.of("name", "bob", "email", "bob@example.com"));
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory.create(Map.of(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;bob&quot;</span>, <span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;bob@example.com&quot;</span>));
 </code></pre>
 <p><strong>Create multiple instances:</strong></p>
-<pre><code class="java language-java">List&lt;User&gt; users = userFactory.create(5);
+<pre class="java language-java"><code class="hljs java language-java">List&lt;User&gt; users = userFactory.create(<span class="hljs-number">5</span>);
 </code></pre>
 <p><strong>Create from a list of variants:</strong></p>
-<pre><code class="java language-java">List&lt;User&gt; variants = List.of(
-    new User("charlie", "charlie@example.com"),
-    new User("dave", "dave@example.com")
+<pre class="java language-java"><code class="hljs java language-java">List&lt;User&gt; variants = List.of(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;charlie&quot;</span>, <span class="hljs-string">&quot;charlie@example.com&quot;</span>),
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;dave&quot;</span>, <span class="hljs-string">&quot;dave@example.com&quot;</span>)
 );
-List&lt;User&gt; users = userFactory.create(new VariantList&lt;&gt;(variants));
+List&lt;User&gt; users = userFactory.create(<span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantList</span>&lt;&gt;(variants));
 </code></pre>
 <p><strong>Create from a list of map variants:</strong></p>
-<pre><code class="java language-java">List&lt;VariantMap&gt; variantMaps = List.of(
-    new VariantMap(Map.of("name", "eve")),
-    new VariantMap(Map.of("name", "frank"))
+<pre class="java language-java"><code class="hljs java language-java">List&lt;VariantMap&gt; variantMaps = List.of(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantMap</span>(Map.of(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;eve&quot;</span>)),
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantMap</span>(Map.of(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;frank&quot;</span>))
 );
-List&lt;User&gt; users = userFactory.create(new VariantMapList(variantMaps));
+List&lt;User&gt; users = userFactory.create(<span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantMapList</span>(variantMaps));
 </code></pre>
 <hr />
 <h3 id="settingrelatedentities">Setting Related Entities</h3>
 <p><strong>With a single related object:</strong></p>
-<pre><code class="java language-java">User user = userFactory
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory
     .with(roleFactory::create, User::setRole)
     .create();
 </code></pre>
 <p><strong>With multiple related objects:</strong></p>
-<pre><code class="java language-java">User user = userFactory
-    .with(roleFactory::create, 3, User::setRoles)
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory
+    .with(roleFactory::create, <span class="hljs-number">3</span>, User::setRoles)
     .create();
 </code></pre>
 <p><strong>With a variant passed to related factory:</strong></p>
-<pre><code class="java language-java">Role adminRole = new Role("admin");
-User user = userFactory
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">Role</span> <span class="hljs-variable">adminRole</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Role</span>(<span class="hljs-string">&quot;admin&quot;</span>);
+<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory
     .with(roleFactory::create, adminRole, User::setRole)
     .create();
 </code></pre>
 <p><strong>With a list of variants:</strong></p>
-<pre><code class="java language-java">List&lt;Role&gt; roles = List.of(new Role("editor"), new Role("viewer"));
-User user = userFactory
-    .with(roleFactory::create, new VariantList&lt;&gt;(roles), User::setRoles)
+<pre class="java language-java"><code class="hljs java language-java">List&lt;Role&gt; roles = List.of(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Role</span>(<span class="hljs-string">&quot;editor&quot;</span>), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Role</span>(<span class="hljs-string">&quot;viewer&quot;</span>));
+<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory
+    .with(roleFactory::create, <span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantList</span>&lt;&gt;(roles), User::setRoles)
     .create();
 </code></pre>
 <p><strong>With a list of map variants:</strong></p>
-<pre><code class="java language-java">List&lt;Map&lt;String, ?&gt;&gt; maps = List.of(
-        Map.of("name", "contributor"),
-        Map.of("name", "maintainer")
+<pre class="java language-java"><code class="hljs java language-java">List&lt;Map&lt;String, ?&gt;&gt; maps = List.of(
+        Map.of(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;contributor&quot;</span>),
+        Map.of(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;maintainer&quot;</span>)
 );
-User user = userFactory
-        .with(roleFactory::create, new VariantMapList&lt;&gt;(maps), User::setRoles)
+<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userFactory
+        .with(roleFactory::create, <span class="hljs-keyword">new</span> <span class="hljs-title class_">VariantMapList</span>&lt;&gt;(maps), User::setRoles)
         .create();
 </code></pre>
 <hr />
@@ -217,6 +337,5 @@ See the LICENSE file for license rights and limitations.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

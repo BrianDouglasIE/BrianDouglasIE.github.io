@@ -50,6 +50,126 @@
 
     <title>Add a CSRF token to HTML forms with JTE</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -93,48 +213,48 @@ post I'll demonstrate my reusable solution to this when using Spring and JTE. </
 <h2 id="addingthehiddenfield">Adding the hidden field</h2>
 <p>In the below example logout form jte template, the csrf param is used to create the hidden field. In this scenario the
 controller will be required to set the <code>csrf</code> param as a model attribute.</p>
-<pre><code class="html language-html">@import org.springframework.security.web.csrf.CsrfToken
+<pre class="html language-html"><code class="hljs html language-html">@import org.springframework.security.web.csrf.CsrfToken
 
 @param CsrfToken csrf
 
-&lt;form action="/logout" method="post"&gt;
-    &lt;input type="hidden" name="${csrf.parameterName}" value="${csrf.token}"/&gt;
-    &lt;input type="submit" value="Log out" /&gt;
-&lt;/form&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/logout&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;${csrf.parameterName}&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;${csrf.token}&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Log out&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <p>But the question is, how can I make it easy to add this to all my forms?
 And how can I do it without having to pass the token to the view in each controller method?</p>
 <p>The solution is to create a JTE template that can be included in all forms. This template will read the csrf token, 
 which will be supplied via a <code>@ControllerAdvice</code> annotated class on each request. The result will be a JTE template that
 can be used like so:</p>
-<pre><code class="html language-html">@import org.springframework.security.web.csrf.CsrfToken
+<pre class="html language-html"><code class="hljs html language-html">@import org.springframework.security.web.csrf.CsrfToken
 
 @param CsrfToken csrf
 
-&lt;form action="/logout" method="post"&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/logout&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
     @template.components.csrf(csrf = csrf)
-    &lt;input type="submit" value="Log out" /&gt;
-&lt;/form&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Log out&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <h2 id="implementation">Implementation</h2>
 <p>To make the csrf component work without passing the csrf token to each view model, we will create a class with
 a <code>@ControllerAdvice</code> annotation. This will allow us to annotate a method with <code>@ModelAttribute</code> to set the <code>csrf</code> 
 param.</p>
-<pre><code class="java language-java">@ControllerAdvice
-public class CsrfControllerAdvice {
-    @ModelAttribute
-    public void addCsrfToken(Model model, CsrfToken token) {
-        model.addAttribute("csrf", token);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-meta">@ControllerAdvice</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CsrfControllerAdvice</span> {
+    <span class="hljs-meta">@ModelAttribute</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addCsrfToken</span><span class="hljs-params">(Model model, CsrfToken token)</span> {
+        model.addAttribute(<span class="hljs-string">&quot;csrf&quot;</span>, token);
     }
 }
 </code></pre>
 <p>The csrf jte template will look as follows.</p>
-<pre><code class="html language-html">@import org.springframework.security.web.csrf.CsrfToken
+<pre class="html language-html"><code class="hljs html language-html">@import org.springframework.security.web.csrf.CsrfToken
 
 @param CsrfToken csrf
 
 @if(csrf != null)
-    &lt;input type="hidden" name="${csrf.getParameterName()}" value="${csrf.getToken()}"&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;hidden&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;${csrf.getParameterName()}&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;${csrf.getToken()}&quot;</span>&gt;</span>
 @endif
 </code></pre>
 <p>The one downside with this is we will still have to pass the <code>csrf</code> value to the template as a parameter. The upside is
@@ -159,6 +279,5 @@ the controller does not have to be updated to add the model attribute due to the
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

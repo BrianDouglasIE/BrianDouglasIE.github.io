@@ -101,11 +101,9 @@ main,
 pre {
     max-width: 100%;
     overflow-x: auto;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     border: 1px solid #ddd;
     border-radius: 3px;
-    padding: .5rem;
-    background: #fafafa;
 }
 
 .site-footer {
@@ -114,6 +112,31 @@ pre {
     p {
         margin: 0;
     }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tr:hover {
+    background-color: #f5faff;
 }
 
 .magpie-trinket {

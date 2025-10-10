@@ -50,6 +50,126 @@
 
     <title>Feature flags db schema</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -95,70 +215,70 @@ straight forward on / off switch.</p>
 <h2 id="setup">Set Up</h2>
 <p>Full source code can be found at <a href="https://github.com/BrianDouglasIE/ExampleDatabasesSchemas/tree/master/feature_flags">ExampleDatabasesSchemas/feature_flags</a>.
 This includes the schema and a <code>data.sql</code> file to quickly load some example data.</p>
-<pre><code class="sql language-sql">createdb feature_flags
-psql -d feature_flags -f feature_flags.schema.sql
-psql -d feature_flags -f feature_flags.data.sql
+<pre class="sql language-sql"><code class="hljs sql language-sql">createdb feature_flags
+psql <span class="hljs-operator">-</span>d feature_flags <span class="hljs-operator">-</span>f feature_flags.schema.sql
+psql <span class="hljs-operator">-</span>d feature_flags <span class="hljs-operator">-</span>f feature_flags.data.sql
 </code></pre>
 <h2 id="examplequeries">Example Queries</h2>
 <h3 id="getaspecificflagonstagingforagivendomain">Get a specific flag on staging for a given domain</h3>
-<pre><code class="sql language-sql">SELECT
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span>
   d.hostname,
-  f.name AS flag,
+  f.name <span class="hljs-keyword">AS</span> flag,
   df.status,
   df.env,
   f.updated_at
-FROM flags f
-JOIN domain_flags df ON f.id = df.flag_id
-JOIN domains d ON d.id = df.domain_id
-WHERE d.hostname = 'example.com'
-  AND df.env = 'staging'
-  AND f.name = 'enable_dark_mode';
+<span class="hljs-keyword">FROM</span> flags f
+<span class="hljs-keyword">JOIN</span> domain_flags df <span class="hljs-keyword">ON</span> f.id <span class="hljs-operator">=</span> df.flag_id
+<span class="hljs-keyword">JOIN</span> domains d <span class="hljs-keyword">ON</span> d.id <span class="hljs-operator">=</span> df.domain_id
+<span class="hljs-keyword">WHERE</span> d.hostname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;example.com&#x27;</span>
+  <span class="hljs-keyword">AND</span> df.env <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;staging&#x27;</span>
+  <span class="hljs-keyword">AND</span> f.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;enable_dark_mode&#x27;</span>;
 </code></pre>
-<pre><code>  hostname   |       flag       | status | env         |          updated_at
--------------+------------------+--------+-------------+-------------------------------
- example.com | enable_dark_mode | on     | staging     | 2025-08-05 08:10:01.471816+00
+<pre><code class="hljs"><span class="hljs-section">  hostname   |       flag       | status | env         |          updated_at
+-------------+------------------+--------+-------------+-------------------------------</span>
+<span class="hljs-code"> example.com | enable_dark_mode | on     | staging     | 2025-08-05 08:10:01.471816+00</span>
 (1 row)
 </code></pre>
 <h3 id="getallactiveflagsonprodforagivendomain">Get all active flags on prod for a given domain</h3>
-<pre><code class="sql language-sql">SELECT
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span>
   d.hostname,
-  f.name AS flag,
+  f.name <span class="hljs-keyword">AS</span> flag,
   df.status,
   f.updated_at
-FROM flags f
-JOIN domain_flags df ON f.id = df.flag_id
-JOIN domains d ON d.id = df.domain_id
-WHERE d.hostname = 'example.com'
-  AND df.env = 'prod'
-  AND df.status = 'on';
+<span class="hljs-keyword">FROM</span> flags f
+<span class="hljs-keyword">JOIN</span> domain_flags df <span class="hljs-keyword">ON</span> f.id <span class="hljs-operator">=</span> df.flag_id
+<span class="hljs-keyword">JOIN</span> domains d <span class="hljs-keyword">ON</span> d.id <span class="hljs-operator">=</span> df.domain_id
+<span class="hljs-keyword">WHERE</span> d.hostname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;example.com&#x27;</span>
+  <span class="hljs-keyword">AND</span> df.env <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;prod&#x27;</span>
+  <span class="hljs-keyword">AND</span> df.status <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;on&#x27;</span>;
 </code></pre>
-<pre><code>  hostname   |    flag     | status |          updated_at
--------------+-------------+--------+-------------------------------
- example.com | require_2fa | on     | 2025-08-05 08:10:01.471816+00
+<pre><code class="hljs"><span class="hljs-section">  hostname   |    flag     | status |          updated_at
+-------------+-------------+--------+-------------------------------</span>
+<span class="hljs-code"> example.com | require_2fa | on     | 2025-08-05 08:10:01.471816+00</span>
 (1 row)
 </code></pre>
 <h3 id="getstatusofallflagsonallenvsforagivendomain">Get status of all flags on all envs for a given domain</h3>
-<pre><code class="sql language-sql">SELECT
-  f.name AS flag,
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-keyword">SELECT</span>
+  f.name <span class="hljs-keyword">AS</span> flag,
   df.status,
   df.env
-FROM flags f
-JOIN domain_flags df ON f.id = df.flag_id
-JOIN domains d ON d.id = df.domain_id
-WHERE d.hostname = 'example.com';
+<span class="hljs-keyword">FROM</span> flags f
+<span class="hljs-keyword">JOIN</span> domain_flags df <span class="hljs-keyword">ON</span> f.id <span class="hljs-operator">=</span> df.flag_id
+<span class="hljs-keyword">JOIN</span> domains d <span class="hljs-keyword">ON</span> d.id <span class="hljs-operator">=</span> df.domain_id
+<span class="hljs-keyword">WHERE</span> d.hostname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;example.com&#x27;</span>;
 </code></pre>
-<pre><code>       flag       | status | env
+<pre><code class="hljs">       flag       | <span class="hljs-type">status</span> | <span class="hljs-type">env</span>
 ------------------+--------+-------------
- enable_dark_mode | on     | dev
- enable_dark_mode | on     | staging
- enable_dark_mode | off    | prod
- new_ui           | on     | dev
- new_ui           | off    | staging
- new_ui           | off    | prod
- require_2fa      | off    | dev
- require_2fa      | off    | staging
- require_2fa      | on     | prod
-(9 rows)
+ enable_dark_mode | <span class="hljs-type">on</span>     | <span class="hljs-type">dev</span>
+ enable_dark_mode | <span class="hljs-type">on</span>     | <span class="hljs-type">staging</span>
+ enable_dark_mode | <span class="hljs-type">off</span>    | <span class="hljs-type">prod</span>
+ new_ui           | <span class="hljs-type">on</span>     | <span class="hljs-type">dev</span>
+ new_ui           | <span class="hljs-type">off</span>    | <span class="hljs-type">staging</span>
+ new_ui           | <span class="hljs-type">off</span>    | <span class="hljs-type">prod</span>
+ require_2fa      | <span class="hljs-type">off</span>    | <span class="hljs-type">dev</span>
+ require_2fa      | <span class="hljs-type">off</span>    | <span class="hljs-type">staging</span>
+ require_2fa      | <span class="hljs-type">on</span>     | <span class="hljs-type">prod</span>
+(<span class="hljs-number">9</span> rows)
 </code></pre>
             </div>
 
@@ -180,6 +300,5 @@ WHERE d.hostname = 'example.com';
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

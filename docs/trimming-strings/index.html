@@ -50,6 +50,126 @@
 
     <title>Trimming strings in c</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -102,144 +222,144 @@ I return an empty string.</p>
 <span><strong>rtrim</em>string</strong>: removes whitespace from the end of the string.</span><br>
 <span><strong>trim_string</strong>: removes whitespace from the start and end of the string.</span>
 </magpie-trinket></p>
-<pre><code class="c language-c">#include &lt;string.h&gt;
-#include &lt;ctype.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;assert.h&gt;
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ctype.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;assert.h&gt;</span></span>
 
-char *empty_string()
+<span class="hljs-type">char</span> *<span class="hljs-title function_">empty_string</span><span class="hljs-params">()</span>
 {
-  char *str = malloc(1);
-  if(!str) return nullptr;
-  str[0] = '\0';
-  return str;
+  <span class="hljs-type">char</span> *str = <span class="hljs-built_in">malloc</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">if</span>(!str) <span class="hljs-keyword">return</span> nullptr;
+  str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;\0&#x27;</span>;
+  <span class="hljs-keyword">return</span> str;
 }
 
-char *ltrim_string(char *str)
+<span class="hljs-type">char</span> *<span class="hljs-title function_">ltrim_string</span><span class="hljs-params">(<span class="hljs-type">char</span> *str)</span>
 {
-  if(!str) return nullptr;
+  <span class="hljs-keyword">if</span>(!str) <span class="hljs-keyword">return</span> nullptr;
 
-  size_t len = strlen(str);
-  if(!len) return empty_string();
+  <span class="hljs-type">size_t</span> len = <span class="hljs-built_in">strlen</span>(str);
+  <span class="hljs-keyword">if</span>(!len) <span class="hljs-keyword">return</span> empty_string();
 
-  size_t start = 0;
-  while(start &lt; len &amp;&amp; isspace(str[start])) start++;
+  <span class="hljs-type">size_t</span> start = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span>(start &lt; len &amp;&amp; <span class="hljs-built_in">isspace</span>(str[start])) start++;
 
-  if(start &gt;= len) return empty_string();
+  <span class="hljs-keyword">if</span>(start &gt;= len) <span class="hljs-keyword">return</span> empty_string();
 
-  size_t new_size = len - start;
-  char *result = malloc(new_size);
-  if (!result) return nullptr;
+  <span class="hljs-type">size_t</span> new_size = len - start;
+  <span class="hljs-type">char</span> *result = <span class="hljs-built_in">malloc</span>(new_size);
+  <span class="hljs-keyword">if</span> (!result) <span class="hljs-keyword">return</span> nullptr;
 
-  memcpy(result, str + start, new_size);
-  result[new_size] = '\0';
+  <span class="hljs-built_in">memcpy</span>(result, str + start, new_size);
+  result[new_size] = <span class="hljs-string">&#x27;\0&#x27;</span>;
 
-  return result;
+  <span class="hljs-keyword">return</span> result;
 }
 
-char *rtrim_string(char *str)
+<span class="hljs-type">char</span> *<span class="hljs-title function_">rtrim_string</span><span class="hljs-params">(<span class="hljs-type">char</span> *str)</span>
 {
-  if(!str) return nullptr;
+  <span class="hljs-keyword">if</span>(!str) <span class="hljs-keyword">return</span> nullptr;
 
-  size_t len = strlen(str);
-  if(!len) return empty_string();
+  <span class="hljs-type">size_t</span> len = <span class="hljs-built_in">strlen</span>(str);
+  <span class="hljs-keyword">if</span>(!len) <span class="hljs-keyword">return</span> empty_string();
 
-  size_t end = len - 1;
-  while(end &amp;&amp; isspace(str[end])) end--;
+  <span class="hljs-type">size_t</span> end = len - <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">while</span>(end &amp;&amp; <span class="hljs-built_in">isspace</span>(str[end])) end--;
 
-  if(0 &gt;= end) return empty_string();
+  <span class="hljs-keyword">if</span>(<span class="hljs-number">0</span> &gt;= end) <span class="hljs-keyword">return</span> empty_string();
 
-  size_t new_size = end + 1;
-  char *result = malloc(new_size);
-  if (!result) return nullptr;
+  <span class="hljs-type">size_t</span> new_size = end + <span class="hljs-number">1</span>;
+  <span class="hljs-type">char</span> *result = <span class="hljs-built_in">malloc</span>(new_size);
+  <span class="hljs-keyword">if</span> (!result) <span class="hljs-keyword">return</span> nullptr;
 
-  memcpy(result, str, new_size);
-  result[new_size] = '\0';
+  <span class="hljs-built_in">memcpy</span>(result, str, new_size);
+  result[new_size] = <span class="hljs-string">&#x27;\0&#x27;</span>;
 
-  return result;
+  <span class="hljs-keyword">return</span> result;
 }
 
-char *trim_string(char *str)
+<span class="hljs-type">char</span> *<span class="hljs-title function_">trim_string</span><span class="hljs-params">(<span class="hljs-type">char</span> *str)</span>
 {
-  if (!str) return nullptr;
+  <span class="hljs-keyword">if</span> (!str) <span class="hljs-keyword">return</span> nullptr;
 
-  size_t len = strlen(str);
-  if(!len) return empty_string();
+  <span class="hljs-type">size_t</span> len = <span class="hljs-built_in">strlen</span>(str);
+  <span class="hljs-keyword">if</span>(!len) <span class="hljs-keyword">return</span> empty_string();
 
-  size_t start = 0;
-  while(isspace(str[start])) start++;
+  <span class="hljs-type">size_t</span> start = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span>(<span class="hljs-built_in">isspace</span>(str[start])) start++;
 
-  size_t end = len - 1;
-  if(start &gt;= end) return empty_string();
-  while(end &amp;&amp; isspace(str[end])) end--;
+  <span class="hljs-type">size_t</span> end = len - <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span>(start &gt;= end) <span class="hljs-keyword">return</span> empty_string();
+  <span class="hljs-keyword">while</span>(end &amp;&amp; <span class="hljs-built_in">isspace</span>(str[end])) end--;
 
-  size_t new_size = end - start + 1;
-  char *result = malloc(new_size + 1);
-  if(!result) return nullptr;
+  <span class="hljs-type">size_t</span> new_size = end - start + <span class="hljs-number">1</span>;
+  <span class="hljs-type">char</span> *result = <span class="hljs-built_in">malloc</span>(new_size + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">if</span>(!result) <span class="hljs-keyword">return</span> nullptr;
 
-  memcpy(result, str + start, new_size);
-  result[new_size] = '\0';
+  <span class="hljs-built_in">memcpy</span>(result, str + start, new_size);
+  result[new_size] = <span class="hljs-string">&#x27;\0&#x27;</span>;
 
-  return result;
+  <span class="hljs-keyword">return</span> result;
 }
 
-int main(void)
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>
 {
-  // ltrim
-  char *test_str = ltrim_string("   hello   ");
-  assert(test_str &amp;&amp; 0 == strcmp("hello   ", test_str));
-  free(test_str);
+  <span class="hljs-comment">// ltrim</span>
+  <span class="hljs-type">char</span> *test_str = ltrim_string(<span class="hljs-string">&quot;   hello   &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello   &quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = ltrim_string("\r\nhello\n");
-  assert(test_str &amp;&amp; 0 == strcmp("hello\n", test_str));
-  free(test_str);
+  test_str = ltrim_string(<span class="hljs-string">&quot;\r\nhello\n&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello\n&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  // rtrim
-  test_str = rtrim_string("   hello   ");
-  assert(test_str &amp;&amp; 0 == strcmp("   hello", test_str));
-  free(test_str);
+  <span class="hljs-comment">// rtrim</span>
+  test_str = rtrim_string(<span class="hljs-string">&quot;   hello   &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;   hello&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = rtrim_string("\r\nhello\n");
-  assert(test_str &amp;&amp; 0 == strcmp("\r\nhello", test_str));
-  free(test_str);
+  test_str = rtrim_string(<span class="hljs-string">&quot;\r\nhello\n&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;\r\nhello&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  // trim
-  test_str = trim_string("   hello   ");
-  assert(test_str &amp;&amp; 0 == strcmp("hello", test_str));
-  free(test_str);
+  <span class="hljs-comment">// trim</span>
+  test_str = trim_string(<span class="hljs-string">&quot;   hello   &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = trim_string("\r\nhello\n");
-  assert(test_str &amp;&amp; 0 == strcmp("hello", test_str));
-  free(test_str);
+  test_str = trim_string(<span class="hljs-string">&quot;\r\nhello\n&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  // empty strings
-  test_str = ltrim_string("    ");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  <span class="hljs-comment">// empty strings</span>
+  test_str = ltrim_string(<span class="hljs-string">&quot;    &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = ltrim_string("");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  test_str = ltrim_string(<span class="hljs-string">&quot;&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = rtrim_string("    ");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  test_str = rtrim_string(<span class="hljs-string">&quot;    &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = rtrim_string("");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  test_str = rtrim_string(<span class="hljs-string">&quot;&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = trim_string("    ");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  test_str = trim_string(<span class="hljs-string">&quot;    &quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
-  test_str = trim_string("");
-  assert(test_str &amp;&amp; 0 == strcmp("", test_str));
-  free(test_str);
+  test_str = trim_string(<span class="hljs-string">&quot;&quot;</span>);
+  assert(test_str &amp;&amp; <span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;&quot;</span>, test_str));
+  <span class="hljs-built_in">free</span>(test_str);
 
   assert(trim_string(nullptr) == nullptr);
 
-  return 0;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
             </div>
@@ -262,6 +382,5 @@ int main(void)
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

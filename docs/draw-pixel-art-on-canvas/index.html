@@ -50,6 +50,126 @@
 
     <title>Prevent pixel art blur on canvas</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -107,11 +227,11 @@ initial boilerplate code that is needed.</p>
 the following code. Which creates the canvas and appends it to the document's body. I 
 also set the canvas' width and height to be a quarter of the intended size. I will scale
 this up later.</p>
-<pre><code class="javascript language-javascript">const canvas = document.createElement('canvas')
-const ctx = canvas.getContext('2d')
-document.body.appendChild(canvas)
-canvas.height = 120
-canvas.width = 160
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">const</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>)
+<span class="hljs-keyword">const</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>)
+<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(canvas)
+canvas.<span class="hljs-property">height</span> = <span class="hljs-number">120</span>
+canvas.<span class="hljs-property">width</span> = <span class="hljs-number">160</span>
 </code></pre>
 <p>Once this is in place I will add some functions to render the sprite sheet and extract the
 image data of the sprite that I want to render. To do this I create a separate canvas. This
@@ -119,49 +239,49 @@ canvas will not be appended to the body of the html document as the user will ne
 Instead it will be used to draw the sprite sheet in it's entirety. I will then grab the
 individual sprites from it as and when they are needed. I also set the canvas to be scaled
 up the target size using CSS. The code for this is below.</p>
-<pre><code class="javascript language-javascript">const spriteCellSize = 16
-const spriteSheet = new Image()
-spriteSheet.crossOrigin = "anonymous"
-spriteSheet.addEventListener("load", onLoad, false)
-spriteSheet.src = "./monochrome-transparent.png"
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">const</span> spriteCellSize = <span class="hljs-number">16</span>
+<span class="hljs-keyword">const</span> spriteSheet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>()
+spriteSheet.<span class="hljs-property">crossOrigin</span> = <span class="hljs-string">&quot;anonymous&quot;</span>
+spriteSheet.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;load&quot;</span>, onLoad, <span class="hljs-literal">false</span>)
+spriteSheet.<span class="hljs-property">src</span> = <span class="hljs-string">&quot;./monochrome-transparent.png&quot;</span>
 
-const scale = 4
-canvas.style.width = `${canvas.width * scale}px`
-canvas.style.height = `${canvas.height * scale}px`
+<span class="hljs-keyword">const</span> scale = <span class="hljs-number">4</span>
+canvas.<span class="hljs-property">style</span>.<span class="hljs-property">width</span> = <span class="hljs-string">`<span class="hljs-subst">${canvas.width * scale}</span>px`</span>
+canvas.<span class="hljs-property">style</span>.<span class="hljs-property">height</span> = <span class="hljs-string">`<span class="hljs-subst">${canvas.height * scale}</span>px`</span>
 
-const spriteSheetCanvas = document.createElement('canvas')
+<span class="hljs-keyword">const</span> spriteSheetCanvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>)
 
-let heroSprite = undefined
+<span class="hljs-keyword">let</span> heroSprite = <span class="hljs-literal">undefined</span>
 
-function onLoad() {
-  if (!heroSprite) {
-    spriteSheetCanvas.width = spriteSheet.width
-    spriteSheetCanvas.height = spriteSheet.height
-    const spriteSheetContext = spriteSheetCanvas.getContext('2d')
-    clearScreen(spriteSheetContext, spriteSheetCanvas.width, spriteSheetCanvas.height)
-    drawSpriteSheet(spriteSheetContext, spriteSheet)
-    heroSprite = getSpriteSheetCell(spriteSheetContext, spriteCellSize, 26, 0)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onLoad</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (!heroSprite) {
+    spriteSheetCanvas.<span class="hljs-property">width</span> = spriteSheet.<span class="hljs-property">width</span>
+    spriteSheetCanvas.<span class="hljs-property">height</span> = spriteSheet.<span class="hljs-property">height</span>
+    <span class="hljs-keyword">const</span> spriteSheetContext = spriteSheetCanvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>)
+    <span class="hljs-title function_">clearScreen</span>(spriteSheetContext, spriteSheetCanvas.<span class="hljs-property">width</span>, spriteSheetCanvas.<span class="hljs-property">height</span>)
+    <span class="hljs-title function_">drawSpriteSheet</span>(spriteSheetContext, spriteSheet)
+    heroSprite = <span class="hljs-title function_">getSpriteSheetCell</span>(spriteSheetContext, spriteCellSize, <span class="hljs-number">26</span>, <span class="hljs-number">0</span>)
   }
 
-  clearScreen(ctx, canvas.width, canvas.height)
-  ctx.putImageData(heroSprite, canvas.width / 2 - spriteCellSize / 2, canvas.height / 2 - spriteCellSize / 2)
+  <span class="hljs-title function_">clearScreen</span>(ctx, canvas.<span class="hljs-property">width</span>, canvas.<span class="hljs-property">height</span>)
+  ctx.<span class="hljs-title function_">putImageData</span>(heroSprite, canvas.<span class="hljs-property">width</span> / <span class="hljs-number">2</span> - spriteCellSize / <span class="hljs-number">2</span>, canvas.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - spriteCellSize / <span class="hljs-number">2</span>)
 }
 
-function clearScreen(ctx, w, h) {
-  ctx.save()
-  ctx.fillStyle = "black"
-  ctx.fillRect(0, 0, w, h)
-  ctx.restore()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearScreen</span>(<span class="hljs-params">ctx, w, h</span>) {
+  ctx.<span class="hljs-title function_">save</span>()
+  ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&quot;black&quot;</span>
+  ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, w, h)
+  ctx.<span class="hljs-title function_">restore</span>()
 }
 
-function drawSpriteSheet(ctx, spriteSheet) {
-  ctx.drawImage(spriteSheet, 0, 0)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawSpriteSheet</span>(<span class="hljs-params">ctx, spriteSheet</span>) {
+  ctx.<span class="hljs-title function_">drawImage</span>(spriteSheet, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
 }
 
-function getSpriteSheetCell(ctx, spriteCellSize, col, row) {
-  const x = spriteCellSize * col
-  const y = spriteCellSize * row
-  return ctx.getImageData(x, y, spriteCellSize, spriteCellSize)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getSpriteSheetCell</span>(<span class="hljs-params">ctx, spriteCellSize, col, row</span>) {
+  <span class="hljs-keyword">const</span> x = spriteCellSize * col
+  <span class="hljs-keyword">const</span> y = spriteCellSize * row
+  <span class="hljs-keyword">return</span> ctx.<span class="hljs-title function_">getImageData</span>(x, y, spriteCellSize, spriteCellSize)
 }
 </code></pre>
 <p>Here is what is rendered on the canvas. As you can see it is super blurry.</p>
@@ -169,7 +289,7 @@ function getSpriteSheetCell(ctx, spriteCellSize, col, row) {
 <h2 id="thesolution">The solution</h2>
 <p>One line of CSS fixes this. Setting the <code>image-rendering</code> property on the canvas to be <code>pixelated</code>.
 In the demo code this can be done by adding the following statement at line 10.</p>
-<pre><code class="javascript language-javascript">canvas.style.imageRendering = "pixelated"
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript">canvas.<span class="hljs-property">style</span>.<span class="hljs-property">imageRendering</span> = <span class="hljs-string">&quot;pixelated&quot;</span>
 </code></pre>
 <p>The canvas now renders a crisp sprite.</p>
 <p><img src="/images/crisp-sprite-render.png" alt="crisp sprite render" /></p>
@@ -193,6 +313,5 @@ In the demo code this can be done by adding the following statement at line 10.<
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

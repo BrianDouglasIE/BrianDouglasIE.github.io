@@ -50,6 +50,126 @@
 
     <title>GameDev in C Part 2: Raylib</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -101,72 +221,72 @@ make it available to my C file.</p>
 <p>I was aware that raylib needed to be included somehow, and I was fairly sure that
 doing it via make was the best idea. But before I jumped into that I added the
 following example to my <code>main.c</code> file.</p>
-<pre><code class="c language-c">#include "raylib.h"
+<pre class="c language-c"><code class="hljs c language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;raylib.h&quot;</span></span>
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
-int main(void)
+<span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Program main entry point</span>
+<span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>
 {
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    <span class="hljs-comment">// Initialization</span>
+    <span class="hljs-comment">//--------------------------------------------------------------------------------------</span>
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> screenWidth = <span class="hljs-number">800</span>;
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> screenHeight = <span class="hljs-number">450</span>;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, <span class="hljs-string">&quot;raylib [core] example - basic window&quot;</span>);
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
+    SetTargetFPS(<span class="hljs-number">60</span>);               <span class="hljs-comment">// Set our game to run at 60 frames-per-second</span>
+    <span class="hljs-comment">//--------------------------------------------------------------------------------------</span>
 
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    <span class="hljs-comment">// Main game loop</span>
+    <span class="hljs-keyword">while</span> (!WindowShouldClose())    <span class="hljs-comment">// Detect window close button or ESC key</span>
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
+        <span class="hljs-comment">// Update</span>
+        <span class="hljs-comment">//----------------------------------------------------------------------------------</span>
+        <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Update your variables here</span>
+        <span class="hljs-comment">//----------------------------------------------------------------------------------</span>
 
-        // Draw
-        //----------------------------------------------------------------------------------
+        <span class="hljs-comment">// Draw</span>
+        <span class="hljs-comment">//----------------------------------------------------------------------------------</span>
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+            DrawText(<span class="hljs-string">&quot;Congrats! You created your first window!&quot;</span>, <span class="hljs-number">190</span>, <span class="hljs-number">200</span>, <span class="hljs-number">20</span>, LIGHTGRAY);
 
         EndDrawing();
-        //----------------------------------------------------------------------------------
+        <span class="hljs-comment">//----------------------------------------------------------------------------------</span>
     }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
+    <span class="hljs-comment">// De-Initialization</span>
+    <span class="hljs-comment">//--------------------------------------------------------------------------------------</span>
+    CloseWindow();        <span class="hljs-comment">// Close window and OpenGL context</span>
+    <span class="hljs-comment">//--------------------------------------------------------------------------------------</span>
 
-    return 0;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
 <p>This is pretty much the "Hello, World!" of the raylib world. It displays a simple window
 with a message.</p>
 <p>The problem I had now is that if I ran make build I would get this error:</p>
-<pre><code>main.c:1:10: fatal error: raylib.h: No such file or directory
-    1 | #include "raylib.h"
+<pre><code class="hljs">main.c:1:10: fatal <span class="hljs-keyword">error</span>: raylib.<span class="hljs-keyword">h</span>: <span class="hljs-keyword">No</span> such <span class="hljs-keyword">file</span> or directory
+    1 | #<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;raylib.h&quot;</span>
       |          ^~~~~~~~~~
 </code></pre>
 <p>Meaning that gcc couldn't find the raylib header to include it. This meant updating the Makefile.</p>
 <p>The working Makefile looks like this:</p>
-<pre><code>CC = gcc
-CFLAGS = -I"C:\raylib\raylib\src"
-LDFLAGS = -L"C:\raylib\raylib\src" -lraylib -lgdi32 -lwinmm
+<pre><code class="hljs">CC = gcc
+CFLAGS = -I<span class="hljs-string">&quot;C:\raylib\raylib\src&quot;</span>
+LDFLAGS = -L<span class="hljs-string">&quot;C:\raylib\raylib\src&quot;</span> -lraylib -lgdi32 -lwinmm
 
-build : main.o
-    gcc -o build.exe main.o $(LDFLAGS)
+build : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span>
+    gcc -o build<span class="hljs-selector-class">.exe</span> <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> $(LDFLAGS)
 
-main.o : main.c
-    gcc -c main.c $(CFLAGS)
+<span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.o</span> : <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span>
+    gcc -c <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.c</span> $(CFLAGS)
 
 clean : 
-    powershell Remove-Item *.exe, *.o
+    powershell Remove-Item *<span class="hljs-selector-class">.exe</span>, *<span class="hljs-selector-class">.o</span>
 </code></pre>
 <p>The issues that I ran into were figuring out what <code>LDFLAGS</code> to include. I had initial only <code>-lraylib</code>.
 Which didn't work. The solution was found in the raylib <a href="https://github.com/raysan5/raylib/wiki/Working-on-Windows#manual-setup-with-w64devkit">docs</a>.
@@ -196,6 +316,5 @@ Which generated this beautiful screen.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

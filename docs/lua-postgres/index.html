@@ -50,6 +50,126 @@
 
     <title>Setting up PostgreSQL and Lua in Docker</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -89,7 +209,7 @@
 The environment used for this tutorial is Ubuntu running inside WSL.
 </magpie-trinket></p>
 <h2 id="creatingthepostgresqlcontainer">Creating the PostgreSQL container</h2>
-<pre><code>docker run --name postgres-1 -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine
+<pre><code class="hljs">docker <span class="hljs-built_in">run</span> --name postgres-1 -e <span class="hljs-attribute">POSTGRES_PASSWORD</span>=password -d -p 5432:5432 postgres:alpine
 </code></pre>
 <p>This command creates an instance of the <code>postgres:alpine</code> container. The <code>--name</code> flag is used to assign a name to the container.
 The <code>-e</code> flag passes in the required environment variables. In this case a <code>POSTGRES_PASSWORD</code> is required. This will be used to
@@ -97,7 +217,7 @@ authenticate the <code>postgres</code> user. <code>-d</code> tells docker to run
 the port that postgres is running on. The default is <code>5432</code>, so we map the container's <code>5432</code> to <code>localhost:5432</code>.</p>
 <h2 id="createadatabaseandaddsomecontent">Create a database and add some content</h2>
 <h3 id="accessthepostgresqlinstancerunninginsidethedockercontainer">Access the PostgreSQL instance running inside the Docker container</h3>
-<pre><code>docker exec -it postgres-1 psql -h localhost -p 5432 -U postgres
+<pre><code class="hljs"><span class="hljs-attribute">docker</span> exec -it postgres-<span class="hljs-number">1</span> psql -h localhost -p <span class="hljs-number">5432</span> -U postgres
 </code></pre>
 <p>This command can be broken into two parts. The first part <code>docker exec -it postgres-1</code>, tells docker the execute the following 
 command inside our previously created container. The <code>-it</code> flag is a combination of <code>--interactive</code> and<code>--tty</code>. This tells 
@@ -108,16 +228,16 @@ specifies the the host, <code>-p</code> specifies the port, and <code>-U</code> 
 <h3 id="createandmodifydatabase">Create and modify database</h3>
 <p>Once inside the postgres instance we can use the following commands to create a database, add a table to
 that database, and finally insert data into the table.</p>
-<pre><code>create database test;
+<pre><code class="hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> test;
 </code></pre>
 <p>The above command creates a database named "test". We can then connect to that database using the following command.</p>
-<pre><code>\c test;
+<pre><code class="hljs">\c test<span class="hljs-comment">;</span>
 </code></pre>
 <p>Once connected we can run the following to add the <code>messages</code> table to the test database.</p>
-<pre><code>create table if not exists messages();
-alter table messages add column id uuid not null primary key;
-alter table messages add column content varchar(255);
-insert into messages (id, content) values (uuid_generate_v4(), 'Hi, from postgres');
+<pre><code class="hljs"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span> messages();
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> messages <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> id <span class="hljs-type">uuid</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">primary key</span>;
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> messages <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> content <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> messages (id, content) <span class="hljs-keyword">values</span> (uuid_generate_v4(), <span class="hljs-string">&#x27;Hi, from postgres&#x27;</span>);
 </code></pre>
 <blockquote>
   <p>Install the <code>uuid-ossp</code> extension with the following command <code>create extension if not exists "uuid-ossp";</code></p>
@@ -129,46 +249,46 @@ insert into messages (id, content) values (uuid_generate_v4(), 'Hi, from postgre
 To install this rock run the following command <code>luarocks install luasql-postgres</code>.</p>
 <h4 id="fixingthelibpqfehinstallerroronubuntu">Fixing the <code>libpq-fe.h</code> install error on Ubuntu</h4>
 <p>If you are using Ubuntu to follow this tutorial, you may see the following error when running <code>luarocks install luasql-postgres</code>.</p>
-<pre><code>Error: Could not find header file for PGSQL
+<pre><code class="hljs">Error: Could<span class="hljs-built_in"> not </span>find header file for PGSQL
   No file libpq-fe.h in /usr/local/include
   No file libpq-fe.h in /usr/include
   No file libpq-fe.h in /include
-You may have to install PGSQL in your system and/or pass PGSQL_DIR or PGSQL_INCDIR to the luarocks command.
+You may have to install PGSQL in your<span class="hljs-keyword"> system</span><span class="hljs-built_in"> and/or </span>pass PGSQL_DIR<span class="hljs-built_in"> or </span>PGSQL_INCDIR to the luarocks command.
 </code></pre>
 <p>This can be solved by passing the <code>PGSQL_INCDIR</code> property to the progam. Commonly the required value is 
 <code>/usr/include/postgresql/</code>. As that is the directory containing the <code>libpg-fe.h</code>.</p>
 <p>Run the command as follows to successfully install <code>luasql-postgres</code>.</p>
-<pre><code>luarocks install luasql-postgres PGSQL_INCDIR=/usr/include/postgresql
+<pre><code class="hljs">luarocks <span class="hljs-keyword">install</span> luasql-postgres PGSQL_INCDIR=/usr/<span class="hljs-keyword">include</span>/postgresql
 </code></pre>
 <h3 id="writingaluascripttoprintthemessages">Writing a lua script to print the messages</h3>
 <p>Once <code>luasql-postgres</code> has successfully been installed, we can then write a Lua program to fetch records
 from the database we created earlier.</p>
 <p>Create a <code>main.lua</code> file and add the following.</p>
-<pre><code class="lua language-lua">-- load driver
-local driver = require "luasql.postgres"
--- create environment object
-env = assert (driver.postgres())
--- connect to data source
-con = assert (env:connect("test"))
--- reset our table
-cur = con:execute"SELECT * FROM messages;"
-row = cur:fetch ({}, "a")
-while row do
-  print(string.format("MESSAGE: %s", row.content))
-  -- reusing the table of results
-  row = cur:fetch (row, "a")
-end
--- close everything
-cur:close() -- already closed because all the result set was consumed
-con:close()
-env:close()
+<pre class="lua language-lua"><code class="hljs lua language-lua"><span class="hljs-comment">-- load driver</span>
+<span class="hljs-keyword">local</span> driver = <span class="hljs-built_in">require</span> <span class="hljs-string">&quot;luasql.postgres&quot;</span>
+<span class="hljs-comment">-- create environment object</span>
+env = <span class="hljs-built_in">assert</span> (driver.postgres())
+<span class="hljs-comment">-- connect to data source</span>
+con = <span class="hljs-built_in">assert</span> (env:connect(<span class="hljs-string">&quot;test&quot;</span>))
+<span class="hljs-comment">-- reset our table</span>
+cur = con:<span class="hljs-built_in">execute</span><span class="hljs-string">&quot;SELECT * FROM messages;&quot;</span>
+row = cur:fetch ({}, <span class="hljs-string">&quot;a&quot;</span>)
+<span class="hljs-keyword">while</span> row <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">print</span>(<span class="hljs-built_in">string</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;MESSAGE: %s&quot;</span>, row.content))
+  <span class="hljs-comment">-- reusing the table of results</span>
+  row = cur:fetch (row, <span class="hljs-string">&quot;a&quot;</span>)
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment">-- close everything</span>
+cur:<span class="hljs-built_in">close</span>() <span class="hljs-comment">-- already closed because all the result set was consumed</span>
+con:<span class="hljs-built_in">close</span>()
+env:<span class="hljs-built_in">close</span>()
 </code></pre>
 <h3 id="runthescriptwiththecorrectenvvariables">Run the script with the correct env variables</h3>
 <p>The script written inside our <code>main.lua</code> file expects that we supply some postgres variables when running it.
 These are <code>PGUSER</code>, the user we want to connect to our database with. <code>PGPASSWORD</code>, the password set for the
 user. <code>PGHOST</code>, the host we will use to access the server. And finally, <code>PGPORT</code>, the port number at which we
 can access the postgres server.</p>
-<pre><code>PGUSER=postgres PGPASSWORD=password PGDATABASE=lua_messages PGHOST=localhost PGPORT=5432 lua main.lua
+<pre><code class="hljs"><span class="hljs-attribute">PGUSER</span>=postgres <span class="hljs-attribute">PGPASSWORD</span>=password <span class="hljs-attribute">PGDATABASE</span>=lua_messages <span class="hljs-attribute">PGHOST</span>=localhost <span class="hljs-attribute">PGPORT</span>=5432 lua main.lua
 </code></pre>
 <p>Running the above script should print out the content of the messages we added to our postgres database.</p>
             </div>
@@ -191,6 +311,5 @@ can access the postgres server.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

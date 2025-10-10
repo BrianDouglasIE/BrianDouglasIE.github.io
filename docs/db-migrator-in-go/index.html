@@ -50,6 +50,126 @@
 
     <title>Writing a DB migrator in Go</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -92,16 +212,16 @@ migrate down a version, migrate to version x, migrate all pending migrations, an
 a reset command to remove all migrations. This is all I want. So I decided to make my
 own, no bloat, no complexity, just simple useful commands.</p>
 <p>Convert the above requirements to CLI commands and we get.</p>
-<pre><code>  -all
-        Apply all pending migrations
-  -down int
-        Migrate down a certain number of versions
+<pre><code class="hljs">  -<span class="hljs-keyword">all</span>
+        Apply <span class="hljs-keyword">all</span> pending migrations
+  -down <span class="hljs-keyword">int</span>
+        Migrate down <span class="hljs-keyword">a</span> certain <span class="hljs-keyword">number</span> of versions
   -reset
-        Revert all migrations
-  -to int
-        Migrate to a specific version
-  -up int
-        Migrate up a certain number of versions
+        Revert <span class="hljs-keyword">all</span> migrations
+  -<span class="hljs-keyword">to</span> <span class="hljs-keyword">int</span>
+        Migrate <span class="hljs-keyword">to</span> <span class="hljs-keyword">a</span> specific <span class="hljs-keyword">version</span>
+  -<span class="hljs-keyword">up</span> <span class="hljs-keyword">int</span>
+        Migrate <span class="hljs-keyword">up</span> <span class="hljs-keyword">a</span> certain <span class="hljs-keyword">number</span> of versions
 </code></pre>
 <p><magpie-trinket>
 He highlights some interesting bit's of code below. Well at least the parts he found interesting. If you want the full source code it
@@ -114,22 +234,22 @@ recieved details about how to connect to the database, and uses the go <code>sql
 <h2 id="commandlineoptions">Command line options</h2>
 <p>This is intended to be a command line tool. Luckily Go's <code>flags</code> package makes this trivial.
 I start by defining an <code>Options</code> struct in the <code>migrator</code> package.</p>
-<pre><code class="go language-go">type Options struct {
-    To    int
-    Up    int
-    Down  int
-    All   bool
-    Reset bool
+<pre class="go language-go"><code class="hljs go language-go"><span class="hljs-keyword">type</span> Options <span class="hljs-keyword">struct</span> {
+    To    <span class="hljs-type">int</span>
+    Up    <span class="hljs-type">int</span>
+    Down  <span class="hljs-type">int</span>
+    All   <span class="hljs-type">bool</span>
+    Reset <span class="hljs-type">bool</span>
 }
 </code></pre>
 <p>Then inside <code>main.go</code> I can set the <code>Options</code> values like so. Notice the default values and description text.
 All this info will be displayed when passing the <code>--help</code> flag.</p>
-<pre><code class="go language-go">var opts migrator.Options
-flag.BoolVar(&amp;opts.All, "all", false, "Apply all pending migrations")
-flag.BoolVar(&amp;opts.Reset, "reset", false, "Revert all migrations")
-flag.IntVar(&amp;opts.To, "to", 0, "Migrate to a specific version")
-flag.IntVar(&amp;opts.Up, "up", 0, "Migrate up a certain number of versions")
-flag.IntVar(&amp;opts.Down, "down", 0, "Migrate down a certain number of versions")
+<pre class="go language-go"><code class="hljs go language-go"><span class="hljs-keyword">var</span> opts migrator.Options
+flag.BoolVar(&amp;opts.All, <span class="hljs-string">&quot;all&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;Apply all pending migrations&quot;</span>)
+flag.BoolVar(&amp;opts.Reset, <span class="hljs-string">&quot;reset&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;Revert all migrations&quot;</span>)
+flag.IntVar(&amp;opts.To, <span class="hljs-string">&quot;to&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Migrate to a specific version&quot;</span>)
+flag.IntVar(&amp;opts.Up, <span class="hljs-string">&quot;up&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Migrate up a certain number of versions&quot;</span>)
+flag.IntVar(&amp;opts.Down, <span class="hljs-string">&quot;down&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Migrate down a certain number of versions&quot;</span>)
 flag.Parse()
 </code></pre>
 <p>A pointer to this struct will then be passed into the <code>migrator.Migrate</code> function.</p>
@@ -141,26 +261,26 @@ nuances of an orm, when I already know what I want to achieve with sql.</p>
 and <code>.down.sql</code> file. The file naming convention will look like this <code>[version]-[name].[direction].sql</code>.
 So, for example, our first migration will look as follows. <strong>Note</strong>: this migration will always need to
 be first as it creates the table where our migration info will be stored.</p>
-<pre><code class="sql language-sql">-- 001-create-migrations-table.up.sql
-CREATE TABLE IF NOT EXISTS migrations (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+<pre class="sql language-sql"><code class="hljs sql language-sql"><span class="hljs-comment">-- 001-create-migrations-table.up.sql</span>
+<span class="hljs-keyword">CREATE TABLE</span> IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> migrations (
+    id <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">PRIMARY KEY</span> AUTOINCREMENT,
 
-    version INTEGER NOT NULL,
-    name TEXT NOT NULL,
+    version <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT NULL</span>,
+    name TEXT <span class="hljs-keyword">NOT NULL</span>,
 
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>
 );
 
--- 001-create-migrations-table.down.sql
-DROP TABLE IF EXISTS migrations;
+<span class="hljs-comment">-- 001-create-migrations-table.down.sql</span>
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> migrations;
 </code></pre>
 <p>Our migrator program will read the <code>migrations</code> directory and gather the migration files into the
 following <code>struct</code>.</p>
-<pre><code class="go language-go">type Migration struct {
-    Version  int
-    Name     string
-    UpFile   string
-    DownFile string
+<pre class="go language-go"><code class="hljs go language-go"><span class="hljs-keyword">type</span> Migration <span class="hljs-keyword">struct</span> {
+    Version  <span class="hljs-type">int</span>
+    Name     <span class="hljs-type">string</span>
+    UpFile   <span class="hljs-type">string</span>
+    DownFile <span class="hljs-type">string</span>
 }
 </code></pre>
 <p>This can then be used to sort migrations by version. Getting the latest migration from our <code>migrations</code>
@@ -184,17 +304,17 @@ manage timeouts, cancellations, and ensures that long-running database operation
 If the context is canceled any ongoing database transactions can be rolled back. This prevents partial data writes
 or inconsistencies.</p>
 <p>Using a transaction along with a context is trivial.</p>
-<pre><code class="go language-go">// create context
+<pre class="go language-go"><code class="hljs go language-go"><span class="hljs-comment">// create context</span>
 ctx := context.Background()
 
-// pass our context to the transaction
-tx, err := db.BeginTx(ctx, nil)
-if err != nil {
-    return fail(err)
+<span class="hljs-comment">// pass our context to the transaction</span>
+tx, err := db.BeginTx(ctx, <span class="hljs-literal">nil</span>)
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    <span class="hljs-keyword">return</span> fail(err)
 }
 
-// defer rollback, will be called if `tx.Commit` is not
-defer tx.Rollback()
+<span class="hljs-comment">// defer rollback, will be called if `tx.Commit` is not</span>
+<span class="hljs-keyword">defer</span> tx.Rollback()
 </code></pre>
 <p>This transaction can then be passed around out migrator program. Once all the migrations
 have been handled, and assuming no errors have occured, the transaction can be committed
@@ -227,6 +347,5 @@ also now have my own tool to manage migrations, that I can bend to my liking.</p
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

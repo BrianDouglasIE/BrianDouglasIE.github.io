@@ -50,6 +50,126 @@
 
     <title>New Lib: Placeholder Image Generator</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -102,33 +222,33 @@ can be reused in any app. The details of which are below.</p>
 </ul>
 <h2 id="installation">Installation</h2>
 <p>Add the following dependency to your Maven <code>pom.xml</code>:</p>
-<pre><code class="xml language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;ie.briandouglas&lt;/groupId&gt;
-    &lt;artifactId&gt;PlaceholderImageGenerator&lt;/artifactId&gt;
-    &lt;version&gt;1.0.1&lt;/version&gt;
-&lt;/dependency&gt;
+<pre class="xml language-xml"><code class="hljs xml language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ie.briandouglas<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>PlaceholderImageGenerator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <p>Or if you're using Gradle:</p>
-<pre><code class="kotlin language-kotlin">dependencies {
-    implementation("ie.briandouglas:PlaceholderImageGenerator:1.0.1")
+<pre class="kotlin language-kotlin"><code class="hljs kotlin language-kotlin">dependencies {
+    implementation(<span class="hljs-string">&quot;ie.briandouglas:PlaceholderImageGenerator:1.0.1&quot;</span>)
 }
 </code></pre>
 <h2 id="exampleusage">Example usage:</h2>
-<pre><code class="java language-java">public class Main {
-    public static void main(String[] args) throws IOException {
-        var placeholderImage = new PlaceholderImage();
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-type">var</span> <span class="hljs-variable">placeholderImage</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PlaceholderImage</span>();
 
-        var options = PlaceholderImageOptions.builder()
-                .text("BD")
-                .width(400)
-                .height(400)
-                .backgroundColor(Color.decode("#DCDCDC"))
-                .font(new Font("Arial", Font.BOLD, 200))
+        <span class="hljs-type">var</span> <span class="hljs-variable">options</span> <span class="hljs-operator">=</span> PlaceholderImageOptions.builder()
+                .text(<span class="hljs-string">&quot;BD&quot;</span>)
+                .width(<span class="hljs-number">400</span>)
+                .height(<span class="hljs-number">400</span>)
+                .backgroundColor(Color.decode(<span class="hljs-string">&quot;#DCDCDC&quot;</span>))
+                .font(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Font</span>(<span class="hljs-string">&quot;Arial&quot;</span>, Font.BOLD, <span class="hljs-number">200</span>))
                 .build();
 
-        var image = placeholderImage.generate(options);
-        ImageIO.write(image, "png", new File("placeholder.png"));
-        System.out.println("Generated placeholder.png");
+        <span class="hljs-type">var</span> <span class="hljs-variable">image</span> <span class="hljs-operator">=</span> placeholderImage.generate(options);
+        ImageIO.write(image, <span class="hljs-string">&quot;png&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;placeholder.png&quot;</span>));
+        System.out.println(<span class="hljs-string">&quot;Generated placeholder.png&quot;</span>);
     }
 }
 </code></pre>
@@ -138,19 +258,19 @@ can be reused in any app. The details of which are below.</p>
 <p>See <a href="https://javadoc.io/doc/ie.briandouglas/PlaceholderImageGenerator/latest/index.html">javadoc.io</a></p>
 <h3 id="placeholderimageoptions"><code>PlaceholderImageOptions</code></h3>
 <p>Encapsulates configuration options for generating a placeholder image.</p>
-<pre><code class="java language-java">PlaceholderImageOptions.builder()
-    .text("AB")                                // Text to display
-    .width(300)                                // Width in pixels
-    .height(300)                               // Height in pixels
-    .textColor(Color.DARK_GRAY)                // Color of the text (optional, default: DARK_GRAY)
-    .backgroundColor(Color.GRAY)               // Background color (optional, default: GRAY)
-    .font(new Font("Arial", Font.PLAIN, 16))   // Font used for rendering (optional)
-    .antiAliasOn(true)                         // Enable anti-aliasing (optional, default: true)
+<pre class="java language-java"><code class="hljs java language-java">PlaceholderImageOptions.builder()
+    .text(<span class="hljs-string">&quot;AB&quot;</span>)                                <span class="hljs-comment">// Text to display</span>
+    .width(<span class="hljs-number">300</span>)                                <span class="hljs-comment">// Width in pixels</span>
+    .height(<span class="hljs-number">300</span>)                               <span class="hljs-comment">// Height in pixels</span>
+    .textColor(Color.DARK_GRAY)                <span class="hljs-comment">// Color of the text (optional, default: DARK_GRAY)</span>
+    .backgroundColor(Color.GRAY)               <span class="hljs-comment">// Background color (optional, default: GRAY)</span>
+    .font(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Font</span>(<span class="hljs-string">&quot;Arial&quot;</span>, Font.PLAIN, <span class="hljs-number">16</span>))   <span class="hljs-comment">// Font used for rendering (optional)</span>
+    .antiAliasOn(<span class="hljs-literal">true</span>)                         <span class="hljs-comment">// Enable anti-aliasing (optional, default: true)</span>
     .build();
 </code></pre>
 <h3 id="placeholderimage"><code>PlaceholderImage</code></h3>
 <p>Generates a <code>BufferedImage</code> using the provided <code>PlaceholderImageOptions</code>.</p>
-<pre><code class="java language-java">BufferedImage image = new PlaceholderImage().generate(options);
+<pre class="java language-java"><code class="hljs java language-java"><span class="hljs-type">BufferedImage</span> <span class="hljs-variable">image</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PlaceholderImage</span>().generate(options);
 </code></pre>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
@@ -179,6 +299,5 @@ can be reused in any app. The details of which are below.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

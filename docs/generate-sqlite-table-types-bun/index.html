@@ -50,6 +50,126 @@
 
     <title>Generate SQLite table types for Typescript</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -93,132 +213,132 @@ generate Typescript types for table definitions.</p>
 <h2 id="implementation">Implementation</h2>
 <p>The goal here is not to have to write types that model db tables. So the end goal is to run a query like so,
 where <code>projects_table</code> is a type that has been generated from the db schema.</p>
-<pre><code class="typescript language-typescript">const project = db.query&lt;projects_table, []&gt;('SELECT * FROM projects WHERE id = 1').get()
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">const</span> project = db.<span class="hljs-property">query</span>&lt;projects_table, []&gt;(<span class="hljs-string">&#x27;SELECT * FROM projects WHERE id = 1&#x27;</span>).<span class="hljs-title function_">get</span>()
 </code></pre>
 <p>In order to generate the table definition types I use the below scripts. Which I call on each db migration.
 This means that the generated types stay up to date with my database.</p>
 <p>The below only generates types for table definitions, but I am sure views and function return types could
 also be modelled.</p>
-<pre><code class="typescript language-typescript">import { writeFileSync } from "node:fs";
-import { db } from "./db/db";
-import { join } from "node:path";
-import { mapSqliteTypeToTs } from "./sqlite-types"
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">import</span> { writeFileSync } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs&quot;</span>;
+<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./db/db&quot;</span>;
+<span class="hljs-keyword">import</span> { join } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:path&quot;</span>;
+<span class="hljs-keyword">import</span> { mapSqliteTypeToTs } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./sqlite-types&quot;</span>
 
-export function generateSqliteTableDefinitions() {
-    let content = '/* GENERATED FILE CONTENT DO NOT EDIT */\n\n'
-    const tables = db.query&lt;{ name: string }, []&gt;(`SELECT name FROM sqlite_master WHERE type='table';`).all()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateSqliteTableDefinitions</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> content = <span class="hljs-string">&#x27;/* GENERATED FILE CONTENT DO NOT EDIT */\n\n&#x27;</span>
+    <span class="hljs-keyword">const</span> tables = db.<span class="hljs-property">query</span>&lt;{ <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> }, []&gt;(<span class="hljs-string">`SELECT name FROM sqlite_master WHERE type=&#x27;table&#x27;;`</span>).<span class="hljs-title function_">all</span>()
 
-    for (const table of tables) {
-        const stmt = db.prepare&lt;{ name: string, type: string, }, []&gt;(`PRAGMA table_info(${table.name})`);
-        const columns = stmt.all();
-        content += `export type ${table.name}_table = { \n${columns.map(it =&gt; `  ${it.name}: ${mapSqliteTypeToTs(it.type)}`).join(';\n')}\n}\n\n`
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> table <span class="hljs-keyword">of</span> tables) {
+        <span class="hljs-keyword">const</span> stmt = db.<span class="hljs-property">prepare</span>&lt;{ <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>, }, []&gt;(<span class="hljs-string">`PRAGMA table_info(<span class="hljs-subst">${table.name}</span>)`</span>);
+        <span class="hljs-keyword">const</span> columns = stmt.<span class="hljs-title function_">all</span>();
+        content += <span class="hljs-string">`export type <span class="hljs-subst">${table.name}</span>_table = { \n<span class="hljs-subst">${columns.map(it =&gt; <span class="hljs-string">`  <span class="hljs-subst">${it.name}</span>: <span class="hljs-subst">${mapSqliteTypeToTs(it.<span class="hljs-keyword">type</span>)}</span>`</span>).join(<span class="hljs-string">&#x27;;\n&#x27;</span>)}</span>\n}\n\n`</span>
     }
 
-    writeFileSync(join(process.cwd(), 'sqlite-table-defs.ts'), content, 'utf8')
+    <span class="hljs-title function_">writeFileSync</span>(<span class="hljs-title function_">join</span>(process.<span class="hljs-title function_">cwd</span>(), <span class="hljs-string">&#x27;sqlite-table-defs.ts&#x27;</span>), content, <span class="hljs-string">&#x27;utf8&#x27;</span>)
 }
 </code></pre>
 <p>And the type mapper:</p>
-<pre><code class="typescript language-typescript">// sqlite-types.ts
-const sqliteToTsType: Record&lt;string, string&gt; = {
-    // numeric
-    "INT": "number",
-    "INTEGER": "number",
-    "TINYINT": "number",
-    "SMALLINT": "number",
-    "MEDIUMINT": "number",
-    "BIGINT": "number",
-    "UNSIGNED BIG INT": "number",
-    "INT2": "number",
-    "INT8": "number",
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-comment">// sqlite-types.ts</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">sqliteToTsType</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; = {
+    <span class="hljs-comment">// numeric</span>
+    <span class="hljs-string">&quot;INT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;INTEGER&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;TINYINT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;SMALLINT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;MEDIUMINT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;BIGINT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;UNSIGNED BIG INT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;INT2&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;INT8&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
 
-    // real
-    "REAL": "number",
-    "DOUBLE": "number",
-    "DOUBLE PRECISION": "number",
-    "FLOAT": "number",
-    "NUMERIC": "number",
-    "DECIMAL": "number",
+    <span class="hljs-comment">// real</span>
+    <span class="hljs-string">&quot;REAL&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;DOUBLE&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;DOUBLE PRECISION&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;FLOAT&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;NUMERIC&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+    <span class="hljs-string">&quot;DECIMAL&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
 
-    // text
-    "TEXT": "string",
-    "CHARACTER": "string",
-    "VARCHAR": "string",
-    "VARYING CHARACTER": "string",
-    "NCHAR": "string",
-    "NATIVE CHARACTER": "string",
-    "NVARCHAR": "string",
-    "CLOB": "string",
+    <span class="hljs-comment">// text</span>
+    <span class="hljs-string">&quot;TEXT&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;CHARACTER&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;VARCHAR&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;VARYING CHARACTER&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;NCHAR&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;NATIVE CHARACTER&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;NVARCHAR&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;CLOB&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
 
-    // date/time
-    "DATE": "string",
-    "DATETIME": "string",
+    <span class="hljs-comment">// date/time</span>
+    <span class="hljs-string">&quot;DATE&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-string">&quot;DATETIME&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
 
-    // blob
-    "BLOB": "Buffer",
+    <span class="hljs-comment">// blob</span>
+    <span class="hljs-string">&quot;BLOB&quot;</span>: <span class="hljs-string">&quot;Buffer&quot;</span>,
 
-    // null
-    "NULL": "null",
+    <span class="hljs-comment">// null</span>
+    <span class="hljs-string">&quot;NULL&quot;</span>: <span class="hljs-string">&quot;null&quot;</span>,
 };
 
-export function mapSqliteTypeToTs(type: string): string {
-    const normalized = type.trim().toUpperCase();
-    for (const key in sqliteToTsType) {
-        if (normalized.includes(key)) {
-            return sqliteToTsType[key] ?? 'any';
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">mapSqliteTypeToTs</span>(<span class="hljs-params"><span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">const</span> normalized = <span class="hljs-keyword">type</span>.<span class="hljs-title function_">trim</span>().<span class="hljs-title function_">toUpperCase</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> sqliteToTsType) {
+        <span class="hljs-keyword">if</span> (normalized.<span class="hljs-title function_">includes</span>(key)) {
+            <span class="hljs-keyword">return</span> sqliteToTsType[key] ?? <span class="hljs-string">&#x27;any&#x27;</span>;
         }
     }
-    return "any";
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;any&quot;</span>;
 }
 </code></pre>
 <h2 id="generatedtypes">Generated Types</h2>
 <p>The generated output is as follows:</p>
-<pre><code class="typescript language-typescript">/* GENERATED FILE CONTENT DO NOT EDIT */
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-comment">/* GENERATED FILE CONTENT DO NOT EDIT */</span>
 
-export type migrations_table = { 
-  id: number;
-  name: string;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> migrations_table = { 
+  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 
-export type sqlite_sequence_table = { 
-  name: any;
-  seq: any
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> sqlite_sequence_table = { 
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">any</span>;
+  <span class="hljs-attr">seq</span>: <span class="hljs-built_in">any</span>
 }
 
-export type users_table = { 
-  id: number;
-  email: string;
-  password: string;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> users_table = { 
+  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 
-export type projects_table = { 
-  id: number;
-  name: string;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> projects_table = { 
+  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 
-export type project_users_table = { 
-  project_id: number;
-  user_id: number;
-  role: string;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> project_users_table = { 
+  <span class="hljs-attr">project_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">user_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">role</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 
-export type questions_table = { 
-  id: number;
-  text: string;
-  project_id: number;
-  user_id: number;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> questions_table = { 
+  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">project_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">user_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 
-export type answers_table = { 
-  id: number;
-  text: string;
-  question_id: number;
-  user_id: number;
-  created_at: string
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> answers_table = { 
+  <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">question_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">user_id</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">created_at</span>: <span class="hljs-built_in">string</span>
 }
 </code></pre>
             </div>
@@ -241,6 +361,5 @@ export type answers_table = {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

@@ -50,6 +50,126 @@
 
     <title>Object field validators in Typescript</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -90,7 +210,7 @@ object field validator. </p>
 <h2 id="whatsanobjectfieldvalidator">Whats an object field validator?</h2>
 <p>Ok, so let's work with the following scenario. You have a user registration form. It's represented
 in your code as the following type.</p>
-<pre><code class="typescript language-typescript">type UserForm = { email: string, password: string }
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">UserForm</span> = { <span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span> }
 </code></pre>
 <p>Typescript will ensure that you get an error message when you try to assign a <code>number</code> instead of
 a <code>string</code> for the email field. But this object represents form data, aka user input. So it could
@@ -108,29 +228,29 @@ be composable methods.</p>
 <p>When the composed validator is called with our <code>UserForm</code> instance, it should return an object representing
 any errors that were found.</p>
 <p>The end result should be a clean api for creating <em>object field validators</em>. To me the below example is perfect.</p>
-<pre><code class="typescript language-typescript">type UserForm = { email: string, password: string }
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">UserForm</span> = { <span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span> }
 
-const userFormValidator = createFieldValidator&lt;UserForm&gt;({
-  email: [stringValidators.email((email: string) =&gt; `${email} is not a valid email address`)],
-  password: [
-    stringValidators.min(8, () =&gt; `Password must be greater than 8 characters in length`),
-    stringValidators.max(250, () =&gt; `Password must be less than 8 characters in length`),
+<span class="hljs-keyword">const</span> userFormValidator = createFieldValidator&lt;<span class="hljs-title class_">UserForm</span>&gt;({
+  <span class="hljs-attr">email</span>: [stringValidators.<span class="hljs-title function_">email</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${email}</span> is not a valid email address`</span>)],
+  <span class="hljs-attr">password</span>: [
+    stringValidators.<span class="hljs-title function_">min</span>(<span class="hljs-number">8</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-string">`Password must be greater than 8 characters in length`</span>),
+    stringValidators.<span class="hljs-title function_">max</span>(<span class="hljs-number">250</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-string">`Password must be less than 8 characters in length`</span>),
   ]
 })
 
-const validated = userFormValidator({ email: 'not an email', password: '2 short' })
+<span class="hljs-keyword">const</span> validated = <span class="hljs-title function_">userFormValidator</span>({ <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;not an email&#x27;</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;2 short&#x27;</span> })
 </code></pre>
 <p>The <code>validated</code> variable above will hold the following value.</p>
-<pre><code>{
-  input: {
-    email: "not an email",
-    password: "2 short",
+<pre><code class="hljs">{
+  <span class="hljs-params">input:</span> {
+    <span class="hljs-params">email:</span> <span class="hljs-string">&quot;not an email&quot;</span>,
+    <span class="hljs-params">password:</span> <span class="hljs-string">&quot;2 short&quot;</span>,
   },
-  errors: {
-    email: [ "'not an email' is not a valid email address" ],
-    password: [ "Password must be at least 8 characters long" ],
+  <span class="hljs-params">errors:</span> {
+    <span class="hljs-params">email:</span> [ <span class="hljs-string">&quot;&#x27;not an email&#x27; is not a valid email address&quot;</span> ],
+    <span class="hljs-params">password:</span> [ <span class="hljs-string">&quot;Password must be at least 8 characters long&quot;</span> ],
   },
-  hasErrors: true,
+  <span class="hljs-params">hasErrors:</span> <span class="hljs-literal">true</span>,
 }
 </code></pre>
 <p>This makes it easy to check if there are errors present, using the <code>hasErrors</code> field, and then access a list
@@ -140,23 +260,23 @@ of error messages for each field.</p>
 The code doesn't tell lies, I do. So here is the code.</p>
 <p><chicken-asks>Why did he need to add <code>&lt;T extends Object&gt;</code>?</chicken-asks>
 <magpie-replies>Well <code>Object.entries</code> needs to take an <code>Object</code> or an <code>ArrayLike</code> entity. So it was just to tell the type checker that <code>T</code> is some sort of <code>Object</code>.</magpie-replies></p>
-<pre><code class="typescript language-typescript">type ErrorMap = { [key: string]: string[] }
-type ErrorMessageCallback = (input: string) =&gt; string
-type ValidatorMap = { [key: string]: Function[] }
-type Validated&lt;T&gt; = { input: T, errors: ErrorMap, hasErrors: boolean }
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ErrorMap</span> = { [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span>[] }
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ErrorMessageCallback</span> = <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">string</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ValidatorMap</span> = { [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-title class_">Function</span>[] }
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Validated</span>&lt;T&gt; = { <span class="hljs-attr">input</span>: T, <span class="hljs-attr">errors</span>: <span class="hljs-title class_">ErrorMap</span>, <span class="hljs-attr">hasErrors</span>: <span class="hljs-built_in">boolean</span> }
 
-export const createFieldValidator = &lt;T extends Object&gt;(validators: ValidatorMap) =&gt; (input: T): Validated&lt;T&gt; =&gt; {
-  const errors: ErrorMap = {}
-  let hasErrors = false
-  for (const [key, value] of Object.entries(input)) {
-    if (validators[key]) {
-      for (const validator of validators[key]) {
-        const error = validator(value)
-        if (error) {
-          hasErrors = true
-          if (errors[key]) {
-            errors[key].push(error)
-          } else {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createFieldValidator = &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Object</span>&gt;<span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">validators</span>: <span class="hljs-title class_">ValidatorMap</span></span>) =&gt;</span> (<span class="hljs-attr">input</span>: T): <span class="hljs-title class_">Validated</span>&lt;T&gt; =&gt; {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">errors</span>: <span class="hljs-title class_">ErrorMap</span> = {}
+  <span class="hljs-keyword">let</span> hasErrors = <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(input)) {
+    <span class="hljs-keyword">if</span> (validators[key]) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> validator <span class="hljs-keyword">of</span> validators[key]) {
+        <span class="hljs-keyword">const</span> error = <span class="hljs-title function_">validator</span>(value)
+        <span class="hljs-keyword">if</span> (error) {
+          hasErrors = <span class="hljs-literal">true</span>
+          <span class="hljs-keyword">if</span> (errors[key]) {
+            errors[key].<span class="hljs-title function_">push</span>(error)
+          } <span class="hljs-keyword">else</span> {
             errors[key] = [error]
           }
         }
@@ -164,22 +284,22 @@ export const createFieldValidator = &lt;T extends Object&gt;(validators: Validat
     }
   }
 
-  return { input, errors, hasErrors }
+  <span class="hljs-keyword">return</span> { input, errors, hasErrors }
 }
 
-export const stringValidators = {
-  isString: (msg?: ErrorMessageCallback) =&gt; (input: string) =&gt; {
-    if (!(typeof input == 'string')) return msg ? msg(input) : 'Not a string'
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> stringValidators = {
+  <span class="hljs-attr">isString</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">msg</span>?: <span class="hljs-title class_">ErrorMessageCallback</span></span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">typeof</span> input == <span class="hljs-string">&#x27;string&#x27;</span>)) <span class="hljs-keyword">return</span> msg ? <span class="hljs-title function_">msg</span>(input) : <span class="hljs-string">&#x27;Not a string&#x27;</span>
   },
-  min: (n: number, msg?: ErrorMessageCallback) =&gt; (input: string) =&gt; {
-    if (input.length &lt; n) return msg ? msg(input) : `Must be greater than ${n} characters in length`
+  <span class="hljs-attr">min</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">msg</span>?: <span class="hljs-title class_">ErrorMessageCallback</span></span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (input.<span class="hljs-property">length</span> &lt; n) <span class="hljs-keyword">return</span> msg ? <span class="hljs-title function_">msg</span>(input) : <span class="hljs-string">`Must be greater than <span class="hljs-subst">${n}</span> characters in length`</span>
   },
-  max: (n: number, msg?: ErrorMessageCallback) =&gt; (input: string) =&gt; {
-    if (input.length &gt; n) return msg ? msg(input) : `Must be less than ${n} characters in length`
+  <span class="hljs-attr">max</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">msg</span>?: <span class="hljs-title class_">ErrorMessageCallback</span></span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (input.<span class="hljs-property">length</span> &gt; n) <span class="hljs-keyword">return</span> msg ? <span class="hljs-title function_">msg</span>(input) : <span class="hljs-string">`Must be less than <span class="hljs-subst">${n}</span> characters in length`</span>
   },
-  email: (msg?: ErrorMessageCallback) =&gt; (input: string) =&gt; {
-    const emailRe = /^(([^&lt;&gt;()[\]\\.,;:\s@"]+(\.[^&lt;&gt;()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!emailRe.test(input.toLowerCase())) return msg ? msg(input) : 'Not a valid email address'
+  <span class="hljs-attr">email</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">msg</span>?: <span class="hljs-title class_">ErrorMessageCallback</span></span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> emailRe = <span class="hljs-regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|.(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/</span>
+    <span class="hljs-keyword">if</span> (!emailRe.<span class="hljs-title function_">test</span>(input.<span class="hljs-title function_">toLowerCase</span>())) <span class="hljs-keyword">return</span> msg ? <span class="hljs-title function_">msg</span>(input) : <span class="hljs-string">&#x27;Not a valid email address&#x27;</span>
   }
 }
 </code></pre>
@@ -203,6 +323,5 @@ export const stringValidators = {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

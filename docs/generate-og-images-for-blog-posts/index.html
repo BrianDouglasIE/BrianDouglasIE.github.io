@@ -50,6 +50,126 @@
 
     <title>Generate OG images for blog posts</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -108,113 +228,113 @@ He probably leaves out a load of detail in the next section. But the general gis
 <h3 id="gotcha1loadingthefont">Gotcha 1 - Loading the font</h3>
 <p>The first gotcha when using <code>PureImage</code> is that there are no fonts loaded by default. So in order to draw text to our image
 we must first load the font like so.</p>
-<pre><code class="javascript language-javascript">import * as PImage from "pureimage";
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">PImage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;pureimage&quot;</span>;
 
-const OUT_DIR = "./docs/images/og-images";
-const FONT = PImage.registerFont(
-  "C:\\Users\\brian\\AppData\\Local\\Microsoft\\Windows\\Fonts\\JetBrainsMono-Bold.ttf",
-  "MyFont",
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">OUT_DIR</span> = <span class="hljs-string">&quot;./docs/images/og-images&quot;</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">FONT</span> = <span class="hljs-title class_">PImage</span>.<span class="hljs-title function_">registerFont</span>(
+  <span class="hljs-string">&quot;C:\\Users\\brian\\AppData\\Local\\Microsoft\\Windows\\Fonts\\JetBrainsMono-Bold.ttf&quot;</span>,
+  <span class="hljs-string">&quot;MyFont&quot;</span>,
 );
 
-FONT.loadSync();
+<span class="hljs-variable constant_">FONT</span>.<span class="hljs-title function_">loadSync</span>();
 </code></pre>
 <p>This will load the required font so that we can use it when drawing on our image template.</p>
 <h3 id="gotcha2wrappingthetext">Gotcha 2 - Wrapping the text</h3>
 <p>The second gotcha is that because we are using the canvas api to draw text, it will not wrap unless we specifically tell
 it to do so. To get around this I have used the below method. This is actually a common issue when making browser games
 using the canvas. So I was expecting to encounter the problem.</p>
-<pre><code class="javascript language-javascript">function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = text.split(" ");
-  let line = "";
-  let testLine, metrics, testWidth;
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">wrapText</span>(<span class="hljs-params">ctx, text, x, y, maxWidth, lineHeight</span>) {
+  <span class="hljs-keyword">const</span> words = text.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>);
+  <span class="hljs-keyword">let</span> line = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">let</span> testLine, metrics, testWidth;
 
-  for (let n = 0; n &lt; words.length; n++) {
-    testLine = line + words[n] + " ";
-    metrics = ctx.measureText(testLine);
-    testWidth = metrics.width;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>; n &lt; words.<span class="hljs-property">length</span>; n++) {
+    testLine = line + words[n] + <span class="hljs-string">&quot; &quot;</span>;
+    metrics = ctx.<span class="hljs-title function_">measureText</span>(testLine);
+    testWidth = metrics.<span class="hljs-property">width</span>;
 
-    if (testWidth &gt; maxWidth &amp;&amp; n &gt; 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + " ";
+    <span class="hljs-keyword">if</span> (testWidth &gt; maxWidth &amp;&amp; n &gt; <span class="hljs-number">0</span>) {
+      ctx.<span class="hljs-title function_">fillText</span>(line, x, y);
+      line = words[n] + <span class="hljs-string">&quot; &quot;</span>;
       y += lineHeight;
-    } else {
+    } <span class="hljs-keyword">else</span> {
       line = testLine;
     }
   }
-  ctx.fillText(line, x, y);
+  ctx.<span class="hljs-title function_">fillText</span>(line, x, y);
 }
 </code></pre>
 <h3 id="puttingitalltogether">Putting it all together</h3>
 <p>Here is the code I use to generate my OG images. It's specific to my use case, but I feel that you, a talented software
 engineer, will be able to extract the bits you need.</p>
 <p>The main domain specific things here is that my <code>Post</code> class looks something like this.</p>
-<pre><code class="typescript language-typescript">type Post = {
-    slug: string
-    html: string
-    excerpt: string
-    data: { title: string, date: string, tags: string[] }
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Post</span> = {
+    <span class="hljs-attr">slug</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">html</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">excerpt</span>: <span class="hljs-built_in">string</span>
+    <span class="hljs-attr">data</span>: { <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">date</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">tags</span>: <span class="hljs-built_in">string</span>[] }
 }
 </code></pre>
 <p>With that in mind here is the full implementation.</p>
-<pre><code class="javascript language-javascript">import * as PImage from "pureimage";
-import * as fs from "fs";
-import path from "node:path";
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">PImage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;pureimage&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;fs&quot;</span>;
+<span class="hljs-keyword">import</span> path <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:path&quot;</span>;
 
-const OUT_DIR = "./docs/images/og-images";
-const FONT = PImage.registerFont(
-  "C:\\Users\\brian\\AppData\\Local\\Microsoft\\Windows\\Fonts\\JetBrainsMono-Bold.ttf",
-  "MyFont",
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">OUT_DIR</span> = <span class="hljs-string">&quot;./docs/images/og-images&quot;</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">FONT</span> = <span class="hljs-title class_">PImage</span>.<span class="hljs-title function_">registerFont</span>(
+  <span class="hljs-string">&quot;C:\\Users\\brian\\AppData\\Local\\Microsoft\\Windows\\Fonts\\JetBrainsMono-Bold.ttf&quot;</span>,
+  <span class="hljs-string">&quot;MyFont&quot;</span>,
 );
 
-FONT.loadSync();
+<span class="hljs-variable constant_">FONT</span>.<span class="hljs-title function_">loadSync</span>();
 
-export async function generateOGImage(post) {
-  const pImage = PImage.make(1280, 640);
-  const ctx = pImage.getContext("2d");
-  const image = await PImage.decodePNGFromStream(
-    fs.createReadStream("./theme/assets/images/open-graph-template.png"),
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateOGImage</span>(<span class="hljs-params">post</span>) {
+  <span class="hljs-keyword">const</span> pImage = <span class="hljs-title class_">PImage</span>.<span class="hljs-title function_">make</span>(<span class="hljs-number">1280</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-keyword">const</span> ctx = pImage.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&quot;2d&quot;</span>);
+  <span class="hljs-keyword">const</span> image = <span class="hljs-keyword">await</span> <span class="hljs-title class_">PImage</span>.<span class="hljs-title function_">decodePNGFromStream</span>(
+    fs.<span class="hljs-title function_">createReadStream</span>(<span class="hljs-string">&quot;./theme/assets/images/open-graph-template.png&quot;</span>),
   );
-  ctx.drawImage(image, 0, 0);
+  ctx.<span class="hljs-title function_">drawImage</span>(image, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 
-  const text = post.data.title;
-  const maxWidth = 700;
-  const lineHeight = 80;
-  const x = 520;
-  const y = 270;
+  <span class="hljs-keyword">const</span> text = post.<span class="hljs-property">data</span>.<span class="hljs-property">title</span>;
+  <span class="hljs-keyword">const</span> maxWidth = <span class="hljs-number">700</span>;
+  <span class="hljs-keyword">const</span> lineHeight = <span class="hljs-number">80</span>;
+  <span class="hljs-keyword">const</span> x = <span class="hljs-number">520</span>;
+  <span class="hljs-keyword">const</span> y = <span class="hljs-number">270</span>;
 
-  ctx.font = "80px MyFont";
-  ctx.fillStyle = "black";
-  wrapText(ctx, text, x, y, maxWidth, lineHeight);
+  ctx.<span class="hljs-property">font</span> = <span class="hljs-string">&quot;80px MyFont&quot;</span>;
+  ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&quot;black&quot;</span>;
+  <span class="hljs-title function_">wrapText</span>(ctx, text, x, y, maxWidth, lineHeight);
 
-  if (!fs.existsSync(OUT_DIR)) {
-    fs.mkdirSync(OUT_DIR);
+  <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(<span class="hljs-variable constant_">OUT_DIR</span>)) {
+    fs.<span class="hljs-title function_">mkdirSync</span>(<span class="hljs-variable constant_">OUT_DIR</span>);
   }
 
-  await PImage.encodePNGToStream(
+  <span class="hljs-keyword">await</span> <span class="hljs-title class_">PImage</span>.<span class="hljs-title function_">encodePNGToStream</span>(
     pImage,
-    fs.createWriteStream(path.join(OUT_DIR, `${post.slug}.png`)),
+    fs.<span class="hljs-title function_">createWriteStream</span>(path.<span class="hljs-title function_">join</span>(<span class="hljs-variable constant_">OUT_DIR</span>, <span class="hljs-string">`<span class="hljs-subst">${post.slug}</span>.png`</span>)),
   );
 }
 
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = text.split(" ");
-  let line = "";
-  let testLine, metrics, testWidth;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">wrapText</span>(<span class="hljs-params">ctx, text, x, y, maxWidth, lineHeight</span>) {
+  <span class="hljs-keyword">const</span> words = text.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>);
+  <span class="hljs-keyword">let</span> line = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">let</span> testLine, metrics, testWidth;
 
-  for (let n = 0; n &lt; words.length; n++) {
-    testLine = line + words[n] + " ";
-    metrics = ctx.measureText(testLine);
-    testWidth = metrics.width;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = <span class="hljs-number">0</span>; n &lt; words.<span class="hljs-property">length</span>; n++) {
+    testLine = line + words[n] + <span class="hljs-string">&quot; &quot;</span>;
+    metrics = ctx.<span class="hljs-title function_">measureText</span>(testLine);
+    testWidth = metrics.<span class="hljs-property">width</span>;
 
-    if (testWidth &gt; maxWidth &amp;&amp; n &gt; 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + " ";
+    <span class="hljs-keyword">if</span> (testWidth &gt; maxWidth &amp;&amp; n &gt; <span class="hljs-number">0</span>) {
+      ctx.<span class="hljs-title function_">fillText</span>(line, x, y);
+      line = words[n] + <span class="hljs-string">&quot; &quot;</span>;
       y += lineHeight;
-    } else {
+    } <span class="hljs-keyword">else</span> {
       line = testLine;
     }
   }
-  ctx.fillText(line, x, y);
+  ctx.<span class="hljs-title function_">fillText</span>(line, x, y);
 }
 </code></pre>
 <h2 id="theresult">The Result</h2>
@@ -246,6 +366,5 @@ however, the current implementation will suffice.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

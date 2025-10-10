@@ -50,6 +50,126 @@
 
     <title>Template strings as a view engine</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -92,34 +212,34 @@ strings as a view engine.</p>
 because it's so straight forward that it would be a waste of time. Get your eyeballs on the code
 below, and see for yourself.</p>
 <p><magpie-trinket>Notice that he used <code>new Function</code> instead of <code>eval</code>. This means only the function body will be evaluated. It also allows for a clean way to pass vars to the view.</magpie-trinket></p>
-<pre><code class="javascript language-javascript">const layoutFile = Bun.file('./app.layout.html')
-const bodyFile = Bun.file('./template.html')
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">const</span> layoutFile = <span class="hljs-title class_">Bun</span>.<span class="hljs-title function_">file</span>(<span class="hljs-string">&#x27;./app.layout.html&#x27;</span>)
+<span class="hljs-keyword">const</span> bodyFile = <span class="hljs-title class_">Bun</span>.<span class="hljs-title function_">file</span>(<span class="hljs-string">&#x27;./template.html&#x27;</span>)
 
-function compileTemplate(template, vars) {
-    return new Function(...vars, `return \`${template}\``)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-params">template, vars</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>(...vars, <span class="hljs-string">`return \`<span class="hljs-subst">${template}</span>\``</span>)
 }
 
-const body = compileTemplate(await bodyFile.text(), ['name', 'hobbies'])
-const layout = compileTemplate(await layoutFile.text(), ['data'])
+<span class="hljs-keyword">const</span> body = <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-keyword">await</span> bodyFile.<span class="hljs-title function_">text</span>(), [<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;hobbies&#x27;</span>])
+<span class="hljs-keyword">const</span> layout = <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-keyword">await</span> layoutFile.<span class="hljs-title function_">text</span>(), [<span class="hljs-string">&#x27;data&#x27;</span>])
 
-const rendereredHTML = layout({
-    title:'my page', 
-    body: body('brian', ['a', 'b', 'c'])
+<span class="hljs-keyword">const</span> rendereredHTML = <span class="hljs-title function_">layout</span>({
+    <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;my page&#x27;</span>, 
+    <span class="hljs-attr">body</span>: <span class="hljs-title function_">body</span>(<span class="hljs-string">&#x27;brian&#x27;</span>, [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>])
 })
 </code></pre>
-<pre><code class="html language-html">&lt;!-- template.html --&gt;
-&lt;h1&gt;Hello ${name}&lt;/h1&gt;
-&lt;ul&gt;${hobbies.map(hobby =&gt; `&lt;li&gt;${hobby}&lt;/li&gt;`).join('')}&lt;/ul&gt;
+<pre class="html language-html"><code class="hljs html language-html"><span class="hljs-comment">&lt;!-- template.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello ${name}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>${hobbies.map(hobby =&gt; `<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>${hobby}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>`).join(&#x27;&#x27;)}<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
-<pre><code class="html language-html">&lt;!-- app.layout.html --&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;${ data.title ?? 'default title'}&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
+<pre class="html language-html"><code class="hljs html language-html"><span class="hljs-comment">&lt;!-- app.layout.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>${ data.title ?? &#x27;default title&#x27;}<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
         ${data.body}
-    &lt;/body&gt;
-&lt;/html&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
             </div>
 
@@ -141,6 +261,5 @@ const rendereredHTML = layout({
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

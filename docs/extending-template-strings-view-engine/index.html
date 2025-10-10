@@ -50,6 +50,126 @@
 
     <title>Template strings as a view engine - Part 2</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -102,64 +222,64 @@ Means that the <code>helpers.include()</code> method can pull in any template fr
 Likewise <code>view</code> will render any file from the <code>viewDir</code>.</p>
 <p>Implementation and example usage below.</p>
 <h2 id="usage">Usage</h2>
-<pre><code class="html language-html">&lt;!-- index.html --&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;${ data.title ?? 'default title'}&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h2&gt;Post List&lt;/h2&gt;
-        ${helpers.include('post-list', { posts })}
-    &lt;/body&gt;
-&lt;/html&gt;
+<pre class="html language-html"><code class="hljs html language-html"><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>${ data.title ?? &#x27;default title&#x27;}<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Post List<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+        ${helpers.include(&#x27;post-list&#x27;, { posts })}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<pre><code class="html language-html">&lt;!-- includes/post-list.html --&gt;
-&lt;ul&gt;
+<pre class="html language-html"><code class="hljs html language-html"><span class="hljs-comment">&lt;!-- includes/post-list.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
     ${data.posts.map(post =&gt; `
-        &lt;li&gt;${post.title}&lt;/li&gt;
-    `).join('')}
-&lt;/ul&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>${post.title}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    `).join(&#x27;&#x27;)}
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
 <h2 id="implementation">Implementation</h2>
-<pre><code class="javascript language-javascript">import {readFile} from 'node:fs/promises'
-import {existsSync} from 'node:fs'
-import {join} from 'node:path'
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">import</span> {readFile} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node:fs/promises&#x27;</span>
+<span class="hljs-keyword">import</span> {existsSync} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node:fs&#x27;</span>
+<span class="hljs-keyword">import</span> {join} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node:path&#x27;</span>
 
-const outDir = './docs'
-const viewDir = './views'
-const includeDir = join(viewDir, './includes')
+<span class="hljs-keyword">const</span> outDir = <span class="hljs-string">&#x27;./docs&#x27;</span>
+<span class="hljs-keyword">const</span> viewDir = <span class="hljs-string">&#x27;./views&#x27;</span>
+<span class="hljs-keyword">const</span> includeDir = <span class="hljs-title function_">join</span>(viewDir, <span class="hljs-string">&#x27;./includes&#x27;</span>)
 
-/*
+<span class="hljs-comment">/*
  * View engine
- */
+ */</span>
 
-const views = {}
-const includes = {}
+<span class="hljs-keyword">const</span> views = {}
+<span class="hljs-keyword">const</span> includes = {}
 
-const templateHelpers = {
-    include: (name, data) =&gt; includes[name](data),
-    // add methods here to make them available in templates
+<span class="hljs-keyword">const</span> templateHelpers = {
+    <span class="hljs-attr">include</span>: <span class="hljs-function">(<span class="hljs-params">name, data</span>) =&gt;</span> includes[name](data),
+    <span class="hljs-comment">// add methods here to make them available in templates</span>
 }
 
-function compileTemplate(template, ...varNames) {
-    const fn = new Function('helpers', ...varNames, `return \`${template}\``)
-    return (...args) =&gt; fn(templateHelpers, ...args)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-params">template, ...varNames</span>) {
+    <span class="hljs-keyword">const</span> fn = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>(<span class="hljs-string">&#x27;helpers&#x27;</span>, ...varNames, <span class="hljs-string">`return \`<span class="hljs-subst">${template}</span>\``</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> <span class="hljs-title function_">fn</span>(templateHelpers, ...args)
 }
 
-for (const entry of await readdir(includeDir)) {
-    if (!entry.endsWith('.html')) continue
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> entry <span class="hljs-keyword">of</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">readdir</span>(includeDir)) {
+    <span class="hljs-keyword">if</span> (!entry.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&#x27;.html&#x27;</span>)) <span class="hljs-keyword">continue</span>
 
-    includes[entry.replace('.html', '')] = compileTemplate(await readFile(join(includeDir, entry)), 'data')
+    includes[entry.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;.html&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)] = <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-keyword">await</span> <span class="hljs-title function_">readFile</span>(<span class="hljs-title function_">join</span>(includeDir, entry)), <span class="hljs-string">&#x27;data&#x27;</span>)
 }
 
-for (const entry of await readdir(viewDir)) {
-    if (!entry.endsWith('.html')) continue
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> entry <span class="hljs-keyword">of</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">readdir</span>(viewDir)) {
+    <span class="hljs-keyword">if</span> (!entry.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&#x27;.html&#x27;</span>)) <span class="hljs-keyword">continue</span>
 
-    views[entry.replace('.html', '')] = compileTemplate(await readFile(join(viewDir, entry), 'utf8'), 'data')
+    views[entry.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;.html&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)] = <span class="hljs-title function_">compileTemplate</span>(<span class="hljs-keyword">await</span> <span class="hljs-title function_">readFile</span>(<span class="hljs-title function_">join</span>(viewDir, entry), <span class="hljs-string">&#x27;utf8&#x27;</span>), <span class="hljs-string">&#x27;data&#x27;</span>)
 }
 
-function view(name, data) {
-    return views[name](data)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">view</span>(<span class="hljs-params">name, data</span>) {
+    <span class="hljs-keyword">return</span> views[name](data)
 }
 </code></pre>
             </div>
@@ -182,6 +302,5 @@ function view(name, data) {
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

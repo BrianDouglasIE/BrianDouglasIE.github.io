@@ -1,8 +1,9 @@
-import {readdir, readFile, writeFile, mkdir, copyFile, cp} from 'node:fs/promises'
-import {existsSync} from 'node:fs'
-import {join} from 'node:path'
+import { readdir, readFile, writeFile, mkdir, copyFile, cp } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import matter from 'gray-matter'
 import showdown from 'showdown'
+import showdownHighlight from 'showdown-highlight'
 import sharp from 'sharp'
 
 const postsDir = './posts'
@@ -10,7 +11,11 @@ const outDir = './docs'
 const viewDir = './views'
 const assetsDir = './assets'
 const includeDir = join(viewDir, './includes')
-const markdown = new showdown.Converter()
+const markdown = new showdown.Converter({
+    extensions: [showdownHighlight({
+        pre: true, auto_detection: true
+    })]
+})
 
 const ogSvgMaxLineLength = 20;
 const ogSvgFontSize = 60;
@@ -64,7 +69,7 @@ for (const entry of await readdir(postsDir)) {
     if (!entry.endsWith('.md')) continue
 
     const path = join(postsDir, entry)
-    const post = matter.read(path, {excerpt_separator: '<!-- more -->'})
+    const post = matter.read(path, { excerpt_separator: '<!-- more -->' })
     post.html = markdown.makeHtml(post.content)
     post.excerptHtml = markdown.makeHtml(post.excerpt)
     post.slug = entry.replace('.md', '')
@@ -74,7 +79,7 @@ for (const entry of await readdir(postsDir)) {
     if (!existsSync(targetDir)) await mkdir(targetDir)
 
     postWriteQueue.push(writeFile(join(targetDir, 'index.html'), view('post', post)))
-    if(!existsSync(getOgImagePath(post))) ogImageQueue.push(generateOgImage(post))
+    if (!existsSync(getOgImagePath(post))) ogImageQueue.push(generateOgImage(post))
 }
 
 await Promise.all([...ogImageQueue, ...postWriteQueue])
@@ -82,13 +87,13 @@ await Promise.all([...ogImageQueue, ...postWriteQueue])
 const postsDateDesc = posts.toSorted((a, b) =>
     parseDate(a.data.date) > parseDate(b.data.date) ? -1 : 1)
 
-await writeFile(join(outDir, 'index.html'), view('index', {posts: postsDateDesc}))
+await writeFile(join(outDir, 'index.html'), view('index', { posts: postsDateDesc }))
 
 const sitemap = compileTemplate(await readFile('./sitemap.xml'), 'data')
-await writeFile(join(outDir, 'sitemap.xml'), sitemap({posts: postsDateDesc}))
+await writeFile(join(outDir, 'sitemap.xml'), sitemap({ posts: postsDateDesc }))
 
 await copyFile('./CNAME', join(outDir, 'CNAME'))
-await cp(assetsDir, outDir, {recursive: true})
+await cp(assetsDir, outDir, { recursive: true })
 
 async function generateOgImage(post) {
     try {
@@ -98,7 +103,7 @@ async function generateOgImage(post) {
 
         const svgText = createWrappedSvg(post.data.title, metadata.width, metadata.height);
         const targetDir = join(outDir, 'images/og-images')
-        if (!existsSync(targetDir)) await mkdir(targetDir, {recursive: true})
+        if (!existsSync(targetDir)) await mkdir(targetDir, { recursive: true })
 
         return image
             .composite([

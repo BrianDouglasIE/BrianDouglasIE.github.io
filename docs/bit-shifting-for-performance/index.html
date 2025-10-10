@@ -50,6 +50,126 @@
 
     <title>Bit shifting to increase performance</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -133,15 +253,15 @@ it as an object in this example.</p>
 <p></magpie-trinket></p>
 <h2 id="theplan">The Plan</h2>
 <p>When creating games and rendering scenes on canvas I often start by creating a <code>Vector</code> class like the one below.</p>
-<pre><code class="javascript language-javascript">class Vector3 {
-    x = 0
-    y = 0
-    z = 0
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Vector3</span> {
+    x = <span class="hljs-number">0</span>
+    y = <span class="hljs-number">0</span>
+    z = <span class="hljs-number">0</span>
 
-    constructor(x, y, z) {
-        this.x = x
-        this.y = y
-        this.z = z
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y, z</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">z</span> = z
     }
 }
 </code></pre>
@@ -158,69 +278,69 @@ written the following method. Which breaks down the results as follows:</p>
 <li>external: Memory used by C++ objects bound to JavaScript objects.</li>
 <li>arrayBuffers: Memory allocated for ArrayBuffers and SharedArrayBuffers.</li>
 </ul>
-<pre><code class="javascript language-javascript">function logMemoryUsage() {
-    const memoryUsage = process.memoryUsage();
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">logMemoryUsage</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> memoryUsage = process.<span class="hljs-title function_">memoryUsage</span>();
 
-    console.log(`Memory Usage:
-        RSS: ${memoryUsage.rss / 1024 / 1024} MB
-        Heap Total: ${memoryUsage.heapTotal / 1024 / 1024} MB
-        Heap Used: ${memoryUsage.heapUsed / 1024 / 1024} MB
-        External: ${memoryUsage.external / 1024 / 1024} MB
-        Array Buffers: ${memoryUsage.arrayBuffers / 1024 / 1024} MB
-    `);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Memory Usage:
+        RSS: <span class="hljs-subst">${memoryUsage.rss / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>}</span> MB
+        Heap Total: <span class="hljs-subst">${memoryUsage.heapTotal / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>}</span> MB
+        Heap Used: <span class="hljs-subst">${memoryUsage.heapUsed / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>}</span> MB
+        External: <span class="hljs-subst">${memoryUsage.external / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>}</span> MB
+        Array Buffers: <span class="hljs-subst">${memoryUsage.arrayBuffers / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span>}</span> MB
+    `</span>);
 }
 </code></pre>
 <p>The below script creates <strong>10 million</strong> <code>Vector3</code> objects and updates the <code>x</code> and <code>y</code> co-ordinates of each randomly
 every
 millisecond for 2 seconds.</p>
-<pre><code class="javascript language-javascript">class Vector3 {
-    x = 0
-    y = 0
-    z = 0
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Vector3</span> {
+    x = <span class="hljs-number">0</span>
+    y = <span class="hljs-number">0</span>
+    z = <span class="hljs-number">0</span>
 
-    constructor(x, y, z) {
-        this.x = x
-        this.y = y
-        this.z = z
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y, z</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">z</span> = z
     }
 }
 
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * max) + min;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">randomNumber</span>(<span class="hljs-params">min, max</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * max) + min;
 }
 
-const maxVectors = 10_000_000
-const vectors = new Array(maxVectors)
+<span class="hljs-keyword">const</span> maxVectors = <span class="hljs-number">10_000_000</span>
+<span class="hljs-keyword">const</span> vectors = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(maxVectors)
 
-for (let i = 0; i &lt; maxVectors; i++) {
-    vectors[i] = new Vector3(
-        randomNumber(0, 1000),
-        randomNumber(0, 1000),
-        randomNumber(0, 1000)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; maxVectors; i++) {
+    vectors[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector3</span>(
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>)
     )
 }
 
-let demoLengthInSeconds = 2;
+<span class="hljs-keyword">let</span> demoLengthInSeconds = <span class="hljs-number">2</span>;
 
-const updateInterval = setInterval(() =&gt; {
-    for (const v of vectors) {
-        v.x += randomNumber(-2, 2)
-        v.y += randomNumber(-2, 2)
+<span class="hljs-keyword">const</span> updateInterval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> v <span class="hljs-keyword">of</span> vectors) {
+        v.<span class="hljs-property">x</span> += <span class="hljs-title function_">randomNumber</span>(-<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+        v.<span class="hljs-property">y</span> += <span class="hljs-title function_">randomNumber</span>(-<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
     }
-}, 1);
+}, <span class="hljs-number">1</span>);
 
-setTimeout(() =&gt; {
-    logMemoryUsage()
-    clearInterval(updateInterval)
-}, demoLengthInSeconds * 1000)
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">logMemoryUsage</span>()
+    <span class="hljs-built_in">clearInterval</span>(updateInterval)
+}, demoLengthInSeconds * <span class="hljs-number">1000</span>)
 </code></pre>
 <p>For the purposes of this article I will run the script with node. Which gives the following results.</p>
-<pre><code>Memory Usage:
-        RSS: 646.12109375 MB
-        Heap Total: 576.828125 MB
-        Heap Used: 545.6746520996094 MB
-        External: 0.9788284301757812 MB
-        Array Buffers: 0.009958267211914062 MB
+<pre><code class="hljs"><span class="hljs-attribute">Memory</span> Usage:
+        <span class="hljs-attribute">RSS</span>: <span class="hljs-number">646</span>.<span class="hljs-number">12109375</span> MB
+        <span class="hljs-attribute">Heap</span> Total: <span class="hljs-number">576</span>.<span class="hljs-number">828125</span> MB
+        <span class="hljs-attribute">Heap</span> Used: <span class="hljs-number">545</span>.<span class="hljs-number">6746520996094</span> MB
+        <span class="hljs-attribute">External</span>: <span class="hljs-number">0</span>.<span class="hljs-number">9788284301757812</span> MB
+        <span class="hljs-attribute">Array</span> Buffers: <span class="hljs-number">0</span>.<span class="hljs-number">009958267211914062</span> MB
 </code></pre>
 <p>Using the above object based implementation as baseline, let's now look at the bit-shifter variant.</p>
 <h2 id="thebitshifterimplementation">The Bit Shifter Implementation</h2>
@@ -229,78 +349,78 @@ and <code>unpack</code> our vector's values. Essentially what we are doing with 
 and <code>z</code> to pack them efficiently into a single 32-bit number. The idea here being that a 32-bit number will be stored
 with less memory than the class used in the object based run.</p>
 <p>Putting these concepts into practice we have the below script.</p>
-<pre><code class="javascript language-javascript">function pack(n, offset) {
-    if (!offset) return (n &amp; 0x3FF);
-    return (n &amp; 0x3FF) &lt;&lt; offset;
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">pack</span>(<span class="hljs-params">n, offset</span>) {
+    <span class="hljs-keyword">if</span> (!offset) <span class="hljs-keyword">return</span> (n &amp; <span class="hljs-number">0x3FF</span>);
+    <span class="hljs-keyword">return</span> (n &amp; <span class="hljs-number">0x3FF</span>) &lt;&lt; offset;
 }
 
-function Vector3(x, y, z) {
-    return (pack(x, 20) | pack(y, 10) | pack(z));
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Vector3</span>(<span class="hljs-params">x, y, z</span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-title function_">pack</span>(x, <span class="hljs-number">20</span>) | <span class="hljs-title function_">pack</span>(y, <span class="hljs-number">10</span>) | <span class="hljs-title function_">pack</span>(z));
 }
 
-function unpack(packed, offset) {
-    if (!offset) return packed &amp; 0x3FF;
-    return (packed &gt;&gt; offset) &amp; 0x3FF;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">unpack</span>(<span class="hljs-params">packed, offset</span>) {
+    <span class="hljs-keyword">if</span> (!offset) <span class="hljs-keyword">return</span> packed &amp; <span class="hljs-number">0x3FF</span>;
+    <span class="hljs-keyword">return</span> (packed &gt;&gt; offset) &amp; <span class="hljs-number">0x3FF</span>;
 }
 
-function getX(vector3) {
-    return unpack(vector3, 20);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getX</span>(<span class="hljs-params">vector3</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">unpack</span>(vector3, <span class="hljs-number">20</span>);
 }
 
-function getY(vector3) {
-    return unpack(vector3, 10);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getY</span>(<span class="hljs-params">vector3</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">unpack</span>(vector3, <span class="hljs-number">10</span>);
 }
 
-function getZ(vector3) {
-    return unpack(vector3);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getZ</span>(<span class="hljs-params">vector3</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">unpack</span>(vector3);
 }
 
-function setX(vector3, x) {
-    vector3 &amp;= ~(0x3FF &lt;&lt; 20);
-    vector3 |= pack(x, 20);
-    return vector3;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setX</span>(<span class="hljs-params">vector3, x</span>) {
+    vector3 &amp;= ~(<span class="hljs-number">0x3FF</span> &lt;&lt; <span class="hljs-number">20</span>);
+    vector3 |= <span class="hljs-title function_">pack</span>(x, <span class="hljs-number">20</span>);
+    <span class="hljs-keyword">return</span> vector3;
 }
 
-function setY(vector3, y) {
-    vector3 &amp;= ~(0x3FF &lt;&lt; 10);
-    vector3 |= pack(y, 10);
-    return vector3;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setY</span>(<span class="hljs-params">vector3, y</span>) {
+    vector3 &amp;= ~(<span class="hljs-number">0x3FF</span> &lt;&lt; <span class="hljs-number">10</span>);
+    vector3 |= <span class="hljs-title function_">pack</span>(y, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">return</span> vector3;
 }
 
-function setZ(vector3, z) {
-    vector3 &amp;= ~0x3FF;
-    vector3 |= pack(z);
-    return vector3;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setZ</span>(<span class="hljs-params">vector3, z</span>) {
+    vector3 &amp;= ~<span class="hljs-number">0x3FF</span>;
+    vector3 |= <span class="hljs-title function_">pack</span>(z);
+    <span class="hljs-keyword">return</span> vector3;
 }
 
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * max) + min;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">randomNumber</span>(<span class="hljs-params">min, max</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * max) + min;
 }
 
-const maxVectors = 10_000_000
-const vectors = new Array(maxVectors)
+<span class="hljs-keyword">const</span> maxVectors = <span class="hljs-number">10_000_000</span>
+<span class="hljs-keyword">const</span> vectors = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(maxVectors)
 
-for (let i = 0; i &lt; maxVectors; i++) {
-    vectors[i] = Vector3(
-        randomNumber(0, 1000),
-        randomNumber(0, 1000),
-        randomNumber(0, 1000)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; maxVectors; i++) {
+    vectors[i] = <span class="hljs-title class_">Vector3</span>(
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>),
+        <span class="hljs-title function_">randomNumber</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>)
     )
 }
 
-let demoLengthInSeconds = 2;
+<span class="hljs-keyword">let</span> demoLengthInSeconds = <span class="hljs-number">2</span>;
 
-const updateInterval = setInterval(() =&gt; {
-    for (const v of vectors) {
-        setX(v, getX(v) + randomNumber(-2, 2))
-        setY(v, getY(v) + randomNumber(-2, 2))
+<span class="hljs-keyword">const</span> updateInterval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> v <span class="hljs-keyword">of</span> vectors) {
+        <span class="hljs-title function_">setX</span>(v, <span class="hljs-title function_">getX</span>(v) + <span class="hljs-title function_">randomNumber</span>(-<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
+        <span class="hljs-title function_">setY</span>(v, <span class="hljs-title function_">getY</span>(v) + <span class="hljs-title function_">randomNumber</span>(-<span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
     }
-}, 1);
+}, <span class="hljs-number">1</span>);
 
-setTimeout(() =&gt; {
-    logMemoryUsage()
-    clearInterval(updateInterval)
-}, demoLengthInSeconds * 1000)
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">logMemoryUsage</span>()
+    <span class="hljs-built_in">clearInterval</span>(updateInterval)
+}, demoLengthInSeconds * <span class="hljs-number">1000</span>)
 </code></pre>
 <p><chicken-asks>
 Will the calls to <code>pack</code> and <code>unpack</code> affect the performance?
@@ -310,12 +430,12 @@ Good question, there may be a more efficient way of doing this. But in regard to
 and <code>unpack</code> seem to be negligible.
 </magpie-replies></p>
 <p>Again this is run with node, <code>v18.19.0</code>. The resulting memory usage is as follows.</p>
-<pre><code>Memory Usage:
-        RSS: 132.28515625 MB
-        Heap Total: 87.578125 MB
-        Heap Used: 82.33492279052734 MB
-        External: 0.9788284301757812 MB
-        Array Buffers: 0.009958267211914062 MB
+<pre><code class="hljs"><span class="hljs-attribute">Memory</span> Usage:
+        <span class="hljs-attribute">RSS</span>: <span class="hljs-number">132</span>.<span class="hljs-number">28515625</span> MB
+        <span class="hljs-attribute">Heap</span> Total: <span class="hljs-number">87</span>.<span class="hljs-number">578125</span> MB
+        <span class="hljs-attribute">Heap</span> Used: <span class="hljs-number">82</span>.<span class="hljs-number">33492279052734</span> MB
+        <span class="hljs-attribute">External</span>: <span class="hljs-number">0</span>.<span class="hljs-number">9788284301757812</span> MB
+        <span class="hljs-attribute">Array</span> Buffers: <span class="hljs-number">0</span>.<span class="hljs-number">009958267211914062</span> MB
 </code></pre>
 <h2 id="theresults">The Results</h2>
 <table class="pure-table">
@@ -378,6 +498,5 @@ code required is still fairly minimal. Especially seeing as it uses a seventh of
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

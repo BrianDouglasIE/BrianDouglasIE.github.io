@@ -50,6 +50,126 @@
 
     <title>One assertion per test please</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -93,36 +213,36 @@ Stick to one assertion per test, and split out any shared logic into
 hooks, like <code>beforeEach</code> and <code>beforeAll</code>.
 </magpie-trinket></p>
 <h2 id="themonstrosity">The Monstrosity</h2>
-<pre><code class="javascript language-javascript">import { render, screen, fireEvent } from '@testing-library/react';
-import { expect, test } from 'vitest';
-import MyComponent from './MyComponent';
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">import</span> { render, screen, fireEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@testing-library/react&#x27;</span>;
+<span class="hljs-keyword">import</span> { expect, test } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">MyComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./MyComponent&#x27;</span>;
 
-test('User Name Submit Form', () =&gt; {
-  const mockApiData = { user: 'John Doe' };
-  const apiFetchMock = vi.fn(() =&gt; Promise.resolve(mockApiData));
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;User Name Submit Form&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> mockApiData = { <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span> };
+  <span class="hljs-keyword">const</span> apiFetchMock = vi.<span class="hljs-title function_">fn</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(mockApiData));
 
-  render(&lt;MyComponent fetchData={apiFetchMock} /&gt;);
+  <span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> <span class="hljs-attr">fetchData</span>=<span class="hljs-string">{apiFetchMock}</span> /&gt;</span></span>);
 
-  const header = screen.getByText(/My Dashboard/i);
-  expect(header).toBeInTheDocument();
+  <span class="hljs-keyword">const</span> header = screen.<span class="hljs-title function_">getByText</span>(<span class="hljs-regexp">/My Dashboard/i</span>);
+  <span class="hljs-title function_">expect</span>(header).<span class="hljs-title function_">toBeInTheDocument</span>();
 
-  const button = screen.getByRole('button', { name: /Submit/i });
-  expect(button).toBeInTheDocument();
-  expect(button).toBeDisabled();
+  <span class="hljs-keyword">const</span> button = screen.<span class="hljs-title function_">getByRole</span>(<span class="hljs-string">&#x27;button&#x27;</span>, { <span class="hljs-attr">name</span>: <span class="hljs-regexp">/Submit/i</span> });
+  <span class="hljs-title function_">expect</span>(button).<span class="hljs-title function_">toBeInTheDocument</span>();
+  <span class="hljs-title function_">expect</span>(button).<span class="hljs-title function_">toBeDisabled</span>();
 
-  const input = screen.getByPlaceholderText('Enter your name');
-  expect(input).toBeInTheDocument();
-  expect(input.value).toBe('');
+  <span class="hljs-keyword">const</span> input = screen.<span class="hljs-title function_">getByPlaceholderText</span>(<span class="hljs-string">&#x27;Enter your name&#x27;</span>);
+  <span class="hljs-title function_">expect</span>(input).<span class="hljs-title function_">toBeInTheDocument</span>();
+  <span class="hljs-title function_">expect</span>(input.<span class="hljs-property">value</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;&#x27;</span>);
 
-  fireEvent.change(input, { target: { value: 'John Doe' } });
-  expect(input.value).toBe('John Doe');
+  fireEvent.<span class="hljs-title function_">change</span>(input, { <span class="hljs-attr">target</span>: { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span> } });
+  <span class="hljs-title function_">expect</span>(input.<span class="hljs-property">value</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;John Doe&#x27;</span>);
 
-  expect(button).not.toBeDisabled();
+  <span class="hljs-title function_">expect</span>(button).<span class="hljs-property">not</span>.<span class="hljs-title function_">toBeDisabled</span>();
 
-  fireEvent.click(button);
+  fireEvent.<span class="hljs-title function_">click</span>(button);
 
-  const successMessage = screen.getByText(/Success!/i);
-  expect(successMessage).toBeInTheDocument();
+  <span class="hljs-keyword">const</span> successMessage = screen.<span class="hljs-title function_">getByText</span>(<span class="hljs-regexp">/Success!/i</span>);
+  <span class="hljs-title function_">expect</span>(successMessage).<span class="hljs-title function_">toBeInTheDocument</span>();
 });
 </code></pre>
 <p>Now you wouldn't know it at first glance but the above test case is used to validate
@@ -141,56 +261,56 @@ So how do we fix this?
 We break out each assertion into its own test.
 </magpie-replies></p>
 <h2 id="therefactor">The Refactor</h2>
-<pre><code class="javascript language-javascript">import { render, screen, fireEvent } from '@testing-library/react';
-import { beforeEach, expect, test } from 'vitest';
-import MyComponent from './MyComponent';
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">import</span> { render, screen, fireEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@testing-library/react&#x27;</span>;
+<span class="hljs-keyword">import</span> { beforeEach, expect, test } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">MyComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./MyComponent&#x27;</span>;
 
-describe('User Name Submit Form', () =&gt; {
-    let apiFetchMock;
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;User Name Submit Form&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">let</span> apiFetchMock;
 
-    beforeEach(() =&gt; {
-        const mockApiData = { user: 'John Doe' };
-        apiFetchMock = vi.fn(() =&gt; Promise.resolve(mockApiData));
+    <span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> mockApiData = { <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span> };
+        apiFetchMock = vi.<span class="hljs-title function_">fn</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(mockApiData));
 
-        render(&lt;MyComponent fetchData={apiFetchMock} /&gt;);
+        <span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> <span class="hljs-attr">fetchData</span>=<span class="hljs-string">{apiFetchMock}</span> /&gt;</span></span>);
     });
 
-    test('renders header', () =&gt; {
-        const header = screen.getByText(/My Dashboard/i);
-        expect(header).toBeInTheDocument();
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;renders header&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> header = screen.<span class="hljs-title function_">getByText</span>(<span class="hljs-regexp">/My Dashboard/i</span>);
+        <span class="hljs-title function_">expect</span>(header).<span class="hljs-title function_">toBeInTheDocument</span>();
     });
 
-    test('renders input field', () =&gt; {
-        const input = screen.getByPlaceholderText('Enter your name');
-        expect(input).toBeInTheDocument();
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;renders input field&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> input = screen.<span class="hljs-title function_">getByPlaceholderText</span>(<span class="hljs-string">&#x27;Enter your name&#x27;</span>);
+        <span class="hljs-title function_">expect</span>(input).<span class="hljs-title function_">toBeInTheDocument</span>();
     });
 
-    test('initial input field is empty', () =&gt; {
-        const input = screen.getByPlaceholderText('Enter your name');
-        expect(input.value).toBe('');
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;initial input field is empty&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> input = screen.<span class="hljs-title function_">getByPlaceholderText</span>(<span class="hljs-string">&#x27;Enter your name&#x27;</span>);
+        <span class="hljs-title function_">expect</span>(input.<span class="hljs-property">value</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;&#x27;</span>);
     });
 
-    test('changes input value on user input', () =&gt; {
-        const input = screen.getByPlaceholderText('Enter your name');
-        fireEvent.change(input, { target: { value: 'John Doe' } });
-        expect(input.value).toBe('John Doe');
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;changes input value on user input&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> input = screen.<span class="hljs-title function_">getByPlaceholderText</span>(<span class="hljs-string">&#x27;Enter your name&#x27;</span>);
+        fireEvent.<span class="hljs-title function_">change</span>(input, { <span class="hljs-attr">target</span>: { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span> } });
+        <span class="hljs-title function_">expect</span>(input.<span class="hljs-property">value</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;John Doe&#x27;</span>);
     });
 
-    test('renders submit button', () =&gt; {
-        const button = screen.getByRole('button', { name: /Submit/i });
-        expect(button).toBeInTheDocument();
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;renders submit button&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> button = screen.<span class="hljs-title function_">getByRole</span>(<span class="hljs-string">&#x27;button&#x27;</span>, { <span class="hljs-attr">name</span>: <span class="hljs-regexp">/Submit/i</span> });
+        <span class="hljs-title function_">expect</span>(button).<span class="hljs-title function_">toBeInTheDocument</span>();
     });
 
-    test('submit button is disabled initially', () =&gt; {
-        const button = screen.getByRole('button', { name: /Submit/i });
-        expect(button).toBeDisabled();
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;submit button is disabled initially&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> button = screen.<span class="hljs-title function_">getByRole</span>(<span class="hljs-string">&#x27;button&#x27;</span>, { <span class="hljs-attr">name</span>: <span class="hljs-regexp">/Submit/i</span> });
+        <span class="hljs-title function_">expect</span>(button).<span class="hljs-title function_">toBeDisabled</span>();
     });
 
-    test('submit button is enabled after input change', () =&gt; {
-        const input = screen.getByPlaceholderText('Enter your name');
-        fireEvent.change(input, { target: { value: 'John Doe' } });
-        const button = screen.getByRole('button', { name: /Submit/i });
-        expect(button).not.toBeDisabled();
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;submit button is enabled after input change&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">const</span> input = screen.<span class="hljs-title function_">getByPlaceholderText</span>(<span class="hljs-string">&#x27;Enter your name&#x27;</span>);
+        fireEvent.<span class="hljs-title function_">change</span>(input, { <span class="hljs-attr">target</span>: { <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span> } });
+        <span class="hljs-keyword">const</span> button = screen.<span class="hljs-title function_">getByRole</span>(<span class="hljs-string">&#x27;button&#x27;</span>, { <span class="hljs-attr">name</span>: <span class="hljs-regexp">/Submit/i</span> });
+        <span class="hljs-title function_">expect</span>(button).<span class="hljs-property">not</span>.<span class="hljs-title function_">toBeDisabled</span>();
     });
 });
 </code></pre>
@@ -201,18 +321,18 @@ story. We know exactly what the intent of each test case is, and  we only have t
 read a small amount of code to understand the test's logic. To accentuate my point
 about read ability. If we were to take the name of each test case and list it out
 we would have the following verse.</p>
-<pre><code>User Name Submit Form
-    renders header
-    renders input field
-    initial input field is empty
-    changes input value on user input
+<pre><code class="hljs"><span class="hljs-keyword">User</span> <span class="hljs-type">Name</span> Submit Form
+    renders <span class="hljs-keyword">header</span>
+    renders <span class="hljs-keyword">input</span> field
+    initial <span class="hljs-keyword">input</span> field <span class="hljs-keyword">is</span> empty
+    changes <span class="hljs-keyword">input</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">input</span>
     renders submit button
-    submit button is disabled initially
-    submit button is enabled after input change
+    submit button <span class="hljs-keyword">is</span> disabled <span class="hljs-keyword">initially</span>
+    submit button <span class="hljs-keyword">is</span> enabled <span class="hljs-keyword">after</span> <span class="hljs-keyword">input</span> change
 </code></pre>
 <p>This reads like a list of requirements. Which is essentially what UI tests are.
 Compare this with the story the initial test gave us.</p>
-<pre><code>User Name Submit Form
+<pre><code class="hljs"><span class="hljs-keyword">User</span> <span class="hljs-title">Name</span> Submit Form
 </code></pre>
 <p>Yea, not as descriptive. Who knows what that test does. Not me.</p>
 <p>So in summary, try your best to write your test cases as if they were telling a 
@@ -238,6 +358,5 @@ hooks, like <code>beforeEach</code> and <code>beforeAll</code>.</p>
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>

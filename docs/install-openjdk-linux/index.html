@@ -50,6 +50,126 @@
 
     <title>Install OpenJDK on Ubuntu</title>
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+    </style>
 </head>
 <body>
 
@@ -86,22 +206,22 @@
                 <p>Let's install OpenJDK 21 LTS on Ubuntu.</p>
 <!-- more -->
 <p>The install command:</p>
-<pre><code>sudo apt install openjdk-21-jdk
-</code></pre>
+<pre><code class="hljs">sudo apt <span class="hljs-keyword">install </span>openjdk<span class="hljs-number">-21</span>-<span class="hljs-keyword">jdk
+</span></code></pre>
 <h2 id="usingthecorrectjavaversion">Using the correct Java version</h2>
 <p>It's likely that if you are a Java Developer that you will have multiple versions of Java installed.
 To specify the default version of java to use we will run the <code>update-alternatives</code> command.</p>
-<pre><code>sudo update-alternatives --config java
-</code></pre>
+<pre><code class="hljs">sudo update-alternatives --<span class="hljs-built_in">config</span> <span class="hljs-keyword">java
+</span></code></pre>
 <p>This will list the available Java installs and request you to choose which one you want to use as the default.
 You should see output similar to what is below. In this instance I choose 2. As I want to default to OpenJDK 21.</p>
-<pre><code>There are 2 choices for the alternative java (providing /usr/bin/java).
+<pre><code class="hljs">There are 2 choices for the alternative java (providing /usr/bin/java).
 
-  Selection    Path                                         Priority   Status
-------------------------------------------------------------
-* 0            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      auto mode
-  1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java   1111      manual mode
-  2            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      manual mode
+<span class="hljs-section">  Selection    Path                                         Priority   Status
+------------------------------------------------------------</span>
+<span class="hljs-bullet">* </span>0            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      auto mode
+<span class="hljs-code">  1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java   1111      manual mode</span>
+<span class="hljs-code">  2            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      manual mode</span>
 
 Press &lt;enter&gt; to keep the current choice[*], or type selection number:
 </code></pre>
@@ -110,11 +230,11 @@ Press &lt;enter&gt; to keep the current choice[*], or type selection number:
 <p>In order to set up the <code>JAVA_HOME</code> variable we can use <code>update-alternatives</code> again. Running <code>sudo update-alternatives --config java</code>
 will show the select Java path. We can take this and append it to our shell's path by adding the following to
 our <code>.bashrc</code> file.</p>
-<pre><code>export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/
-export PATH=$PATH:$JAVA_HOME/bin
+<pre><code class="hljs"><span class="hljs-built_in">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr/lib/jvm/java-21-openjdk-amd64/
+<span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$PATH</span>:$JAVA_HOME/bin
 </code></pre>
 <p>To confirm this has worked reload your shell with <code>source ~/.bashrc</code> and run <code>echo $JAVA_HOME</code>. You should see output similar to:</p>
-<pre><code>/usr/lib/jvm/java-21-openjdk-amd64/
+<pre><code class="hljs"><span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">21</span>-openjdk-amd64/
 </code></pre>
 <p>Now you can enjoy writing your enterprise Java code on Ubuntu. I know I do.</p>
             </div>
@@ -137,6 +257,5 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 <script src="/scripts/chicken-and-magpie.js"></script>
 <script src="/scripts/skip-to-section.js"></script>
-<script src="/scripts/code-highlighter.js"></script>
 </body>
 </html>
