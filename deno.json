@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "dev": "deno -A --watch=posts,views main.js",
+    "build": "deno -A main.js"
+  },
+  "imports": {
+    "@types/node": "npm:@types/node@^24.2.0",
+    "gray-matter": "npm:gray-matter@^4.0.3",
+    "sharp": "npm:sharp@^0.34.4",
+    "showdown": "npm:showdown@^2.1.0",
+    "showdown-highlight": "npm:showdown-highlight@^3.1.0"
+  },
+  "nodeModulesDir": "auto"
+}

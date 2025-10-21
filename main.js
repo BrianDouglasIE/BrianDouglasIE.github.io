@@ -1,10 +1,12 @@
-import { readdir, readFile, writeFile, mkdir, copyFile, cp } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { existsSync } from 'node:fs'
+import { Buffer } from "node:buffer";
+import { readdir, readFile, writeFile, mkdir, copyFile, cp } from 'node:fs/promises'
+
+import sharp from 'sharp'
 import matter from 'gray-matter'
 import showdown from 'showdown'
 import showdownHighlight from 'showdown-highlight'
-import sharp from 'sharp'
 
 const postsDir = './posts'
 const outDir = './docs'
