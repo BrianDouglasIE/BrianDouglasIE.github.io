@@ -243,6 +243,10 @@ time {
 @media screen and (max-width: 40rem) {
     .about {
         flex-wrap: wrap;
+
+		img {
+			max-width: 100%;
+		}
     }
 
     .post-title-list {
