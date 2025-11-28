@@ -89,17 +89,48 @@
             </p>
             <p>
                 I've been paid to program for ${new Date().getFullYear() - 2012} years.
-                People have paid me to write SQL, Java, Python, PHP, C, and JavaScript.
-                Which is ridiculous as it's just my hobby. I love to code.
+                People have paid me to write SQL, Java, Python, PHP, C, and C++.
+                Which is ridiculous as it's my hobby. I love to code.
             </p>
         </div>
     </section>
 
     <main>
         <h2>Latest Posts</h2>
-        ${ helpers.include('post-excerpt-list', { posts: data.posts.slice(0, 3)}) }
-        <h2>Older Posts <i>(${data.posts.length - 3})</i></h2>
-        ${ helpers.include('post-title-list', { posts: data.posts.slice(3) }) }
+		<ul class="post-excerpt-list">
+			${data.posts.slice(0, 3).map(post => `
+			<li>
+				<article>
+					<header>
+						<a href="${post.slug}"><h3>${post.data.title}</h3></a>
+						<time datetime="${post.data.date}">${helpers.formatDate(post.data.date)}</time>
+					</header>
+
+					<div>${post.excerptHtml}</div>
+
+					<footer>
+						<a href="${post.slug}">Read more</a>
+					</footer>
+				</article>
+			</li>
+			`).join('')}
+		</ul>
+
+        <h2>All Posts <i>(${data.posts.length})</i></h2>
+		<ul class="post-title-list">
+			${Object.entries(helpers.groupPostsByYear(data.posts))
+			.filter(([year, posts]) => posts.length)
+			.toReversed()
+			.map(([year, posts]) => `
+			<li><h3>${year} - <i><small>${posts.length} posts</small></i></h3></li>
+			${posts.map(post => `
+			<li>
+				<time datetime="${post.data.date}">${post.data.date.replace(`/${year}`, '')}</time>
+				<a href="${post.slug}">${post.data.title}</a>
+			</li>
+			`).join('')}
+			`).join('')}
+		</ul>
     </main>
 
     ${helpers.include('site-footer')}

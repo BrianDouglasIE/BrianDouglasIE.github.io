@@ -2,6 +2,13 @@
 <urlset>
     
     <url>
+        <loc>https://briandouglas.ie/vim-dot-pack</loc>
+        <lastmod>2025-11-28T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>https://briandouglas.ie/sheep-farming</loc>
         <lastmod>2025-11-27T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>

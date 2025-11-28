@@ -33,7 +33,7 @@ const includes = {}
 
 const templateHelpers = {
     include: (name, data) => includes[name](data),
-    formatDate, parseDate
+    formatDate, parseDate, groupPostsByYear
 }
 
 function compileTemplate(template, ...varNames) {
@@ -201,4 +201,14 @@ function createWrappedSvg(text, width, height) {
 
 function getOgImagePath(post) {
     return join(outDir, 'images/og-images', post.slug + '.png')
+}
+
+function groupPostsByYear(posts) {
+	const postsByYear = {}
+	for(const post of posts) {
+		const year = post.data.date.split('/').pop()
+		if(postsByYear[year]) postsByYear[year].push(post)
+		else postsByYear[year] = [post]
+	}
+	return postsByYear
 }
