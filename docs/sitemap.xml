@@ -2,6 +2,13 @@
 <urlset>
     
     <url>
+        <loc>https://briandouglas.ie/a-year-of-experiments</loc>
+        <lastmod>2025-12-01T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>https://briandouglas.ie/vim-dot-pack</loc>
         <lastmod>2025-11-28T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
