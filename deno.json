@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build": "deno -A main.js"
+    "build": "deno -A main.js "
   },
   "imports": {
     "@types/node": "npm:@types/node@^24.2.0",
