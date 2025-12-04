@@ -2,6 +2,13 @@
 <urlset>
     
     <url>
+        <loc>https://briandouglas.ie/2025-aoc-4</loc>
+        <lastmod>2025-12-04T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>https://briandouglas.ie/2025-aoc-3</loc>
         <lastmod>2025-12-03T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
@@ -135,14 +142,14 @@
     </url>
     
     <url>
-        <loc>https://briandouglas.ie/string-buffer-c</loc>
+        <loc>https://briandouglas.ie/banned-from-lobsters-and-hn</loc>
         <lastmod>2025-07-15T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://briandouglas.ie/banned-from-lobsters-and-hn</loc>
+        <loc>https://briandouglas.ie/string-buffer-c</loc>
         <lastmod>2025-07-15T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -226,14 +233,14 @@
     </url>
     
     <url>
-        <loc>https://briandouglas.ie/install-openjdk-linux</loc>
+        <loc>https://briandouglas.ie/docker-on-linux-mint</loc>
         <lastmod>2025-04-02T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://briandouglas.ie/docker-on-linux-mint</loc>
+        <loc>https://briandouglas.ie/install-openjdk-linux</loc>
         <lastmod>2025-04-02T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
