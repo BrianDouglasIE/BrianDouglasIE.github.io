@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.34.5",
+    "showdown": "^2.1.0",
+    "showdown-highlight": "^3.1.0"
+  }
+}
